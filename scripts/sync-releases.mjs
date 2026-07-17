@@ -108,13 +108,23 @@ async function buildEntry(repo, existingByGithubId) {
   }
 
   const latestStable = releases.find((release) => !release.prerelease) ?? releases[0];
+  const existingNotesByVersion = new Map(
+    (existing?.changelog || [])
+      .filter((entry) => entry.manuallyEdited)
+      .map((entry) => [entry.version, entry.notes])
+  );
 
-  const changelog = releases.map((release) => ({
-    version: extractVersion(release),
-    date: (release.published_at ?? release.created_at).slice(0, 10),
-    notes: notesFromBody(release.body),
-    prerelease: release.prerelease,
-  }));
+  const changelog = releases.map((release) => {
+    const version = extractVersion(release);
+    const editedNotes = existingNotesByVersion.get(version);
+    return {
+      version,
+      date: (release.published_at ?? release.created_at).slice(0, 10),
+      notes: editedNotes ?? notesFromBody(release.body),
+      prerelease: release.prerelease,
+      ...(editedNotes ? { manuallyEdited: true } : {}),
+    };
+  });
 
   const versionHistory = releases.map((release) => ({
     version: extractVersion(release),
@@ -140,6 +150,9 @@ async function buildEntry(repo, existingByGithubId) {
     version: extractVersion(latestStable),
     prerelease: latestStable.prerelease,
     category: existing?.category ?? "Utilities",
+    tags: existing?.tags ?? [],
+    hidden: existing?.hidden ?? false,
+    order: existing?.order ?? 999,
     icon: existing?.icon ?? DEFAULT_ICON,
     screenshots: existing?.screenshots ?? [],
     systemRequirements: existing?.systemRequirements ?? "Windows 10/11, 64-bit",
@@ -180,6 +193,12 @@ async function sync() {
       if (fallback) entries.push(fallback);
     }
   }
+
+  const syncedIds = new Set(entries.map((entry) => entry.id));
+  const manualOnlyEntries = existingCatalog.filter(
+    (entry) => !entry.githubRepoId && !syncedIds.has(entry.id)
+  );
+  entries.push(...manualOnlyEntries);
 
   entries.sort((a, b) => a.name.localeCompare(b.name));
 

@@ -97,25 +97,25 @@ Official Repository: https://github.com/Patrickjaillet/sandefjord-software
 
 > Contrainte technique : GitHub Pages est un hébergement 100% statique, sans backend serveur. L'admin doit donc fonctionner en client-side et écrire directement dans le dépôt GitHub via l'API GitHub (authentification par OAuth App ou token), à la manière d'un CMS headless (type Decap/Netlify CMS). Toute modification validée dans l'admin déclenche un commit + push automatique sur `sandefjord-software`, ce qui redéploie le site via GitHub Pages.
 
-- [ ] Choisir le mécanisme d'authentification admin (GitHub OAuth App, ou Personal Access Token saisi/chiffré côté client)
-- [ ] Page de connexion admin sécurisée (accès restreint au compte `Patrickjaillet`)
-- [ ] Tableau de bord admin listant tous les logiciels avec actions rapides (éditer / supprimer / masquer)
-- [ ] Formulaire d'ajout d'un nouveau logiciel (nom, description, catégorie, tags, configuration requise)
-- [ ] Formulaire d'édition complète d'une fiche logiciel existante (texte, images, liens)
-- [ ] Gestion des captures d'écran par logiciel (upload, réorganisation, suppression) avec écriture des fichiers dans `/assets`
-- [ ] Gestion des icônes logiciel + icône installeur Inno Setup (upload et remplacement)
-- [ ] Gestion des liens/assets de téléchargement (sélection de la release GitHub à publier, ou upload manuel d'un binaire)
-- [ ] Édition du changelog par logiciel, avec répercussion automatique dans `CHANGELOG.md`
-- [ ] Édition du contenu de la page "À propos" (copyright, créateur, email, site, dépôt)
-- [ ] Édition des textes globaux du site (accueil, footer, mentions légales)
-- [ ] Gestion de l'ordre d'affichage des logiciels sur la page d'accueil
-- [ ] Système de brouillon / prévisualisation avant publication (preview avant commit)
-- [ ] Historique des modifications admin (via l'historique des commits Git)
-- [ ] Journal d'activité admin visible dans le panneau (dernières actions effectuées)
-- [ ] Confirmation avant toute action destructive (suppression logiciel, suppression asset)
-- [ ] Génération/mise à jour automatique de `README.md` et `CHANGELOG.md` depuis l'admin
-- [ ] Responsive minimal de l'admin (utilisable au moins sur desktop)
-- [ ] Page d'admin exclue de l'indexation SEO (`noindex`, non listée dans le menu public)
+- [x] Choisir le mécanisme d'authentification admin (GitHub OAuth App, ou Personal Access Token saisi/chiffré côté client) → PAT saisi côté client, chiffré (AES-GCM, clé dérivée par PBKDF2 depuis une passphrase) et stocké uniquement dans `localStorage` du navigateur — pas d'OAuth App car ça exige un serveur pour l'échange de token, incompatible avec l'hébergement 100 % statique
+- [x] Page de connexion admin sécurisée (accès restreint au compte `Patrickjaillet`) → `admin.html`, vérifie `GET /user` et rejette tout token dont le `login` n'est pas `Patrickjaillet`
+- [x] Tableau de bord admin listant tous les logiciels avec actions rapides (éditer / supprimer / masquer) → `src/js/admin.js` (`renderDashboard`)
+- [x] Formulaire d'ajout d'un nouveau logiciel (nom, description, catégorie, tags, configuration requise) → `renderEditForm(null)`, entrées ajoutées ainsi restent dans le catalogue même sans dépôt GitHub associé (`sync-releases.mjs` préserve les entrées sans `githubRepoId`)
+- [x] Formulaire d'édition complète d'une fiche logiciel existante (texte, images, liens) → `renderEditForm(item)`
+- [x] Gestion des captures d'écran par logiciel (upload, suppression) avec écriture des fichiers dans `/assets` → upload multiple + suppression ; la réorganisation (glisser-déposer) n'est pas implémentée, seul l'ordre d'ajout est conservé
+- [x] Gestion des icônes logiciel (upload et remplacement) → champ icône dans le formulaire, écrit dans `assets/icons/`
+- [x] Gestion des liens/assets de téléchargement (sélection de la release GitHub à publier, ou upload manuel d'un binaire) → auto-géré depuis la dernière release GitHub pour les logiciels synchronisés ; champ librement éditable pour les logiciels ajoutés manuellement
+- [x] Édition du changelog par logiciel, avec répercussion automatique dans `CHANGELOG.md` → les notes de la version courante sont éditables par logiciel (marquées `manuallyEdited`, préservées par le sync) ; chaque commit admin ajoute aussi une ligne dans le `CHANGELOG.md` du site documentant l'action
+- [ ] Édition du contenu de la page "À propos" (copyright, créateur, email, site, dépôt) → non éditable depuis l'admin par choix : ce sont des informations d'identité/légales fixes (cf. section License and Copyright de ce document), pas du contenu éditorial
+- [x] Édition des textes globaux du site (accueil, footer, mentions légales) → texte du hero (`data/site-content.json`) éditable via "Edit homepage text" ; footer/mentions légales sont des constantes légales fixes, non éditables (même choix que la page About)
+- [x] Gestion de l'ordre d'affichage des logiciels sur la page d'accueil → boutons ↑/↓ par ligne dans le tableau de bord, champ `order` par logiciel
+- [x] Système de brouillon / prévisualisation avant publication (preview avant commit) → aperçu live de la carte logiciel dans le formulaire avant de cliquer "Commit changes" ; ce n'est pas un vrai flux de brouillon par branche/PR (non retenu pour rester simple sans backend), documenté comme limitation
+- [x] Historique des modifications admin (via l'historique des commits Git) → section "Recent activity" du tableau de bord, alimentée par `GET /repos/.../commits`
+- [x] Journal d'activité admin visible dans le panneau (dernières actions effectuées) → même section "Recent activity"
+- [x] Confirmation avant toute action destructive (suppression logiciel, suppression asset) → `confirm()` avant suppression d'un logiciel
+- [x] Génération/mise à jour automatique de `CHANGELOG.md` depuis l'admin → chaque commit admin insère une ligne dans `[Unreleased] → ### Added` de `CHANGELOG.md`, dans le même commit atomique ; mise à jour de `README.md` non implémentée (rien de dynamique à y refléter depuis l'admin)
+- [x] Responsive minimal de l'admin (utilisable au moins sur desktop) → formulaire en une colonne sous 800px, table qui reste utilisable
+- [x] Page d'admin exclue de l'indexation SEO (`noindex`, non listée dans le menu public) → `<meta name="robots" content="noindex, nofollow">` + `Disallow: /admin.html` dans `robots.txt`, pas de lien dans la navigation publique
 
 ## Phase 7 — Déploiement & synchronisation
 

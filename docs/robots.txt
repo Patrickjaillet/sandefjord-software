@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
+Disallow: /admin.html
 
 Sitemap: https://patrickjaillet.github.io/sandefjord-software/sitemap.xml

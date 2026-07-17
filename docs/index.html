@@ -33,10 +33,10 @@
 
   <main class="container">
     <section class="hero">
-      <div class="hero-content">
-        <span class="eyebrow">Windows applications</span>
-        <h1>Software that does one thing well.</h1>
-        <p class="hero-lede">Free Windows applications, published straight from GitHub — no installer to hunt for, no account required.</p>
+      <div class="hero-content" id="hero-content">
+        <span class="eyebrow" id="hero-eyebrow">Windows applications</span>
+        <h1 id="hero-title">Software that does one thing well.</h1>
+        <p class="hero-lede" id="hero-lede">Free Windows applications, published straight from GitHub — no installer to hunt for, no account required.</p>
       </div>
       <svg class="fjord-lines" viewBox="0 0 640 260" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
         <path d="M0 40 C 120 10, 260 80, 400 40 S 620 10, 640 50" />
@@ -66,6 +66,6 @@
 
 
   <script src="js/main.js"></script>
-  <script>renderHomepage();</script>
+  <script>renderHomepage(); renderHero();</script>
 </body>
 </html>

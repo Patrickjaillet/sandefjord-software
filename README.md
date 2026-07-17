@@ -25,6 +25,7 @@ templates/      Workflow template for software repositories (release notificatio
 - `downloads.html` — all software and their current versions
 - `about.html` — copyright, creator, contact, official repository
 - `404.html` — custom not found page
+- `admin.html` — client-side admin panel (not linked publicly, `noindex`), see below
 
 ## Stack
 
@@ -33,9 +34,8 @@ catalog from GitHub Releases (see `scripts/sync-releases.mjs`) and regenerates
 `data/software.json`. Running `npm run build` injects the shared header/footer
 partials into every page and outputs the final site into `docs/` for GitHub Pages.
 
-Note: the software listed in `data/software.json` is currently placeholder
-sample content — real applications will be added in Phase 4 as repositories
-are tagged with the sync convention below.
+`data/site-content.json` holds the editable homepage hero text, fetched at
+runtime the same way as the software catalog.
 
 ## Automatic sync with GitHub Releases
 
@@ -61,6 +61,31 @@ no manual admin step required to add a new app to the site.
   release, instead of waiting for the cron safety net. It needs a
   `SITE_DISPATCH_TOKEN` secret (PAT with `contents:write` on this repo) set
   on the software repository.
+
+## Admin panel
+
+`admin.html` is a client-side CMS: GitHub Pages has no backend, so it
+authenticates with a GitHub token (fine-grained, `contents:write` on this
+repo, or a classic token with the `repo` scope) pasted in by hand and
+encrypted at rest in the browser's `localStorage` with a passphrase
+(PBKDF2 + AES-GCM — the token never leaves the browser except to call the
+GitHub API directly). Access is hard-restricted to the `Patrickjaillet`
+account via `GET /user`.
+
+From the dashboard you can add, edit, hide, reorder, and delete software,
+upload icons/screenshots, edit the current version's changelog notes, and
+edit the homepage hero text. Every save previews the change client-side
+first, then commits atomically (via the Git Data API, one commit for every
+changed file) straight to `main` — which also appends a line to
+`CHANGELOG.md` in the same commit and redeploys the site through GitHub
+Pages. A "Recent activity" panel on the dashboard reads the actual Git
+commit history.
+
+The page is not linked from the public navigation, is marked `noindex`, and
+is disallowed in `robots.txt`. It's still a public URL on a public repo:
+treat the token passphrase as the only thing standing between the page and
+write access to this repo, and revoke the token from GitHub if you ever
+suspect it leaked.
 
 ## Design
 

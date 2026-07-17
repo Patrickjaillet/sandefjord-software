@@ -1,4 +1,5 @@
 const DATA_URL = "data/software.json";
+const SITE_CONTENT_URL = "data/site-content.json";
 const SITE_URL = "https://patrickjaillet.github.io/sandefjord-software";
 
 async function fetchSoftwareCatalog() {
@@ -7,6 +8,28 @@ async function fetchSoftwareCatalog() {
     throw new Error("Unable to load software catalog");
   }
   return response.json();
+}
+
+function visibleSoftware(data) {
+  return data.software
+    .filter((item) => !item.hidden)
+    .sort((a, b) => (a.order ?? 999) - (b.order ?? 999) || a.name.localeCompare(b.name));
+}
+
+async function renderHero() {
+  try {
+    const response = await fetch(SITE_CONTENT_URL);
+    if (!response.ok) return;
+    const content = await response.json();
+    const eyebrow = document.getElementById("hero-eyebrow");
+    const title = document.getElementById("hero-title");
+    const lede = document.getElementById("hero-lede");
+    if (eyebrow && content.heroEyebrow) eyebrow.textContent = content.heroEyebrow;
+    if (title && content.heroTitle) title.textContent = content.heroTitle;
+    if (lede && content.heroLede) lede.textContent = content.heroLede;
+  } catch (error) {
+    console.error(error);
+  }
 }
 
 function escapeHtml(value) {
@@ -57,14 +80,15 @@ async function renderHomepage() {
   const container = document.getElementById("software-list");
   try {
     const data = await fetchSoftwareCatalog();
-    if (!data.software.length) {
+    const software = visibleSoftware(data);
+    if (!software.length) {
       container.innerHTML = `
         <div class="empty-state">
           <p>No software published yet. New applications appear here automatically as soon as they are released.</p>
         </div>`;
       return;
     }
-    container.innerHTML = data.software
+    container.innerHTML = software
       .map(
         (item) => `
         <a class="software-card" href="software.html?id=${encodeURIComponent(item.id)}">
@@ -192,6 +216,7 @@ async function renderSoftwareDetail() {
             <dd>${escapeHtml(item.systemRequirements)}</dd>
             <dt>Category</dt>
             <dd>${escapeHtml(item.category)}</dd>
+            ${(item.tags || []).length ? `<dt>Tags</dt><dd>${item.tags.map(escapeHtml).join(", ")}</dd>` : ""}
             <dt>Repository</dt>
             <dd><a href="${item.repositoryUrl}" target="_blank" rel="noopener">View on GitHub</a></dd>
           </dl>
@@ -208,11 +233,12 @@ async function renderDownloadsPage() {
   const tbody = document.querySelector("#downloads-table tbody");
   try {
     const data = await fetchSoftwareCatalog();
-    if (!data.software.length) {
+    const software = visibleSoftware(data);
+    if (!software.length) {
       tbody.innerHTML = `<tr><td colspan="5">No software published yet.</td></tr>`;
       return;
     }
-    tbody.innerHTML = data.software
+    tbody.innerHTML = software
       .map(
         (item) => `
         <tr>

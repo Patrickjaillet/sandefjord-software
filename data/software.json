@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-17T20:57:40.374Z",
+  "generatedAt": "2026-07-17T23:19:21.306Z",
   "software": [
     {
       "id": "numis-euro",
@@ -10,6 +10,9 @@
       "version": "5.0.0",
       "prerelease": false,
       "category": "Collectibles",
+      "tags": [],
+      "hidden": false,
+      "order": 999,
       "icon": "assets/icons/default-app.svg",
       "screenshots": [],
       "systemRequirements": "Windows 10/11, 64-bit",
@@ -54,6 +57,9 @@
       "version": "1.0",
       "prerelease": false,
       "category": "Developer Tools",
+      "tags": [],
+      "hidden": false,
+      "order": 999,
       "icon": "assets/icons/default-app.svg",
       "screenshots": [
         "assets/screenshots/shaderfmt-1.png"
@@ -95,6 +101,9 @@
       "version": "2.7.0",
       "prerelease": false,
       "category": "Developer Tools",
+      "tags": [],
+      "hidden": false,
+      "order": 999,
       "icon": "assets/icons/default-app.svg",
       "screenshots": [
         "assets/screenshots/z-gl-shadertoy-1.jpg"

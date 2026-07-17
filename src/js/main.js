@@ -1,4 +1,5 @@
 const DATA_URL = "data/software.json";
+const SITE_URL = "https://patrickjaillet.github.io/sandefjord-software";
 
 async function fetchSoftwareCatalog() {
   const response = await fetch(DATA_URL);
@@ -16,6 +17,40 @@ function escapeHtml(value) {
 
 function getQueryParam(name) {
   return new URLSearchParams(window.location.search).get(name);
+}
+
+function setMeta(selector, attr, value) {
+  const el = document.querySelector(selector);
+  if (el) el.setAttribute(attr, value);
+}
+
+function setSoftwareMeta(item) {
+  const description = (item.shortDescription || item.description || "").slice(0, 160);
+  const url = `${SITE_URL}/software.html?id=${encodeURIComponent(item.id)}`;
+  const image = item.screenshots && item.screenshots.length
+    ? `${SITE_URL}/${item.screenshots[0]}`
+    : `${SITE_URL}/assets/social-preview.png`;
+
+  setMeta('meta[name="description"]', "content", description);
+  setMeta('meta[property="og:title"]', "content", `${item.name} — Sandefjord Software`);
+  setMeta('meta[property="og:description"]', "content", description);
+  setMeta('meta[property="og:image"]', "content", image);
+
+  let ogUrl = document.querySelector('meta[property="og:url"]');
+  if (!ogUrl) {
+    ogUrl = document.createElement("meta");
+    ogUrl.setAttribute("property", "og:url");
+    document.head.appendChild(ogUrl);
+  }
+  ogUrl.setAttribute("content", url);
+
+  let canonical = document.querySelector('link[rel="canonical"]');
+  if (!canonical) {
+    canonical = document.createElement("link");
+    canonical.setAttribute("rel", "canonical");
+    document.head.appendChild(canonical);
+  }
+  canonical.setAttribute("href", url);
 }
 
 async function renderHomepage() {
@@ -115,6 +150,7 @@ async function renderSoftwareDetail() {
       : `<li class="version-history-entry"><span class="version-history-date">No archived versions yet</span></li>`;
 
     document.title = `${item.name} — Sandefjord Software`;
+    setSoftwareMeta(item);
 
     container.innerHTML = `
       <div class="software-detail-layout">

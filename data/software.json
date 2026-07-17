@@ -97,7 +97,7 @@
       "category": "Developer Tools",
       "icon": "assets/icons/default-app.svg",
       "screenshots": [
-        "assets/screenshots/z-gl-shadertoy-1.png"
+        "assets/screenshots/z-gl-shadertoy-1.jpg"
       ],
       "systemRequirements": "Windows 10/11, 64-bit",
       "downloadUrl": "https://github.com/Patrickjaillet/Z-GL-Shadertoy/releases/download/2.7.0/Z-GL.Shadertoy_2.7.0_x64-setup.exe",

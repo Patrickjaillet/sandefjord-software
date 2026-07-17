@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://patrickjaillet.github.io/sandefjord-software/sitemap.xml

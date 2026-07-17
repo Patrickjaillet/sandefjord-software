@@ -396,10 +396,12 @@ async function saveCatalog(commitMessage) {
   try {
     const changelog = await getFile(CHANGELOG_PATH);
     const updatedChangelog = insertChangelogEntry(changelog.text, commitMessage.replace(/^chore\(admin\): /, ""));
+    const softwareJson = `${JSON.stringify(softwareFile.data, null, 2)}\n`;
 
     await commitFiles(
       [
-        { path: SOFTWARE_PATH, content: `${JSON.stringify(softwareFile.data, null, 2)}\n` },
+        { path: SOFTWARE_PATH, content: softwareJson },
+        { path: `docs/${SOFTWARE_PATH}`, content: softwareJson },
         { path: CHANGELOG_PATH, content: updatedChangelog },
       ],
       commitMessage
@@ -665,16 +667,20 @@ function renderEditForm(item) {
 
 async function saveSoftwareWithAssets(commitMessage) {
   const assetFiles = [];
-  if (pendingIconUpload) assetFiles.push(pendingIconUpload);
-  assetFiles.push(...pendingScreenshotUploads);
+  if (pendingIconUpload) assetFiles.push(pendingIconUpload, { ...pendingIconUpload, path: `docs/${pendingIconUpload.path}` });
+  for (const upload of pendingScreenshotUploads) {
+    assetFiles.push(upload, { ...upload, path: `docs/${upload.path}` });
+  }
 
   try {
     const changelog = await getFile(CHANGELOG_PATH);
     const updatedChangelog = insertChangelogEntry(changelog.text, commitMessage.replace(/^\w+\(admin\): /, ""));
+    const softwareJson = `${JSON.stringify(softwareFile.data, null, 2)}\n`;
 
     await commitFiles(
       [
-        { path: SOFTWARE_PATH, content: `${JSON.stringify(softwareFile.data, null, 2)}\n` },
+        { path: SOFTWARE_PATH, content: softwareJson },
+        { path: `docs/${SOFTWARE_PATH}`, content: softwareJson },
         { path: CHANGELOG_PATH, content: updatedChangelog },
         ...assetFiles,
       ],
@@ -733,9 +739,11 @@ function renderSiteContentForm() {
     try {
       const changelog = await getFile(CHANGELOG_PATH);
       const updatedChangelog = insertChangelogEntry(changelog.text, "Update homepage text");
+      const siteContentJson = `${JSON.stringify(siteContentFile.data, null, 2)}\n`;
       await commitFiles(
         [
-          { path: SITE_CONTENT_PATH, content: `${JSON.stringify(siteContentFile.data, null, 2)}\n` },
+          { path: SITE_CONTENT_PATH, content: siteContentJson },
+          { path: `docs/${SITE_CONTENT_PATH}`, content: siteContentJson },
           { path: CHANGELOG_PATH, content: updatedChangelog },
         ],
         "chore(admin): update homepage text"

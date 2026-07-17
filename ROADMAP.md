@@ -119,11 +119,11 @@ Official Repository: https://github.com/Patrickjaillet/sandefjord-software
 
 ## Phase 7 — Déploiement & synchronisation
 
-- [ ] Pipeline CI (GitHub Actions) : build + déploiement automatique sur GitHub Pages
-- [ ] Vérification du bon fonctionnement des liens de téléchargement en production
-- [ ] Synchronisation systématique avec `https://github.com/Patrickjaillet/sandefjord-software` à chaque modification
-- [ ] Tests cross-browser (Chrome, Edge, Firefox)
-- [ ] Vérification que les commits effectués depuis l'admin déclenchent bien un redéploiement du site
+- [x] Pipeline CI (GitHub Actions) : build + déploiement automatique sur GitHub Pages → `.github/workflows/deploy.yml` (build sur chaque push vers `main`) + `.github/workflows/sync.yml` (sync + build + commit, cron 6h / dispatch)
+- [x] Vérification du bon fonctionnement des liens de téléchargement en production → les 12 liens (téléchargement courant + historique complet des 3 logiciels publiés) vérifiés en HTTP 200 en direct sur `patrickjaillet.github.io`
+- [x] Synchronisation systématique avec `https://github.com/Patrickjaillet/sandefjord-software` à chaque modification → chaque modification de ce projet a été commit + push vers `main` tout au long des phases précédentes
+- [x] Tests cross-browser (Chrome, Edge, Firefox) → testé en réel avec Playwright sur Chromium et Firefox contre le site déployé (0 erreur console, 7 pages, cartes logiciels correctement rendues) ; Edge non installé sur cette machine mais partage le même moteur que Chromium (Blink/V8) et le site n'utilise aucune API propriétaire à un navigateur
+- [x] Vérification que les commits effectués depuis l'admin déclenchent bien un redéploiement du site → bug trouvé et corrigé : l'admin ne commitait que les fichiers source (`data/`), pas `docs/` (ce qui est réellement servi) ; il mirrore désormais aussi `docs/data/...` et `docs/assets/...` dans le même commit atomique, vérifié en réel (build Pages déclenché sur le commit exact du fix)
 
 ## Phase 8 — Maintenance continue
 

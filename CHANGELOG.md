@@ -34,5 +34,8 @@ All notable changes to this project will be documented in this file.
 - MIT License
 - Base `README.md` and `CHANGELOG.md`
 
+### Fixed
+- Admin panel writes now also commit to `docs/` (what GitHub Pages actually serves), not just the `data/` source files — previously an admin change wouldn't appear on the live site until the next scheduled sync
+
 ### Changed
 - Compressed the Z-GL Shadertoy screenshot from a 1.49 MB PNG to a 189 KB JPEG resized to its actual display width

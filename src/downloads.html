@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Downloads — Sandefjord Software</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <!--include:header-->
+
+  <main class="container">
+    <span class="eyebrow">All applications</span>
+    <h1>Downloads</h1>
+    <p class="downloads-intro">Every Sandefjord Software application, with its current version and system requirements.</p>
+    <table id="downloads-table" class="downloads-table">
+      <thead>
+        <tr>
+          <th>Software</th>
+          <th>Category</th>
+          <th>Version</th>
+          <th>Requirements</th>
+          <th>Download</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td colspan="5" class="loading-text">Loading downloads...</td></tr>
+      </tbody>
+    </table>
+  </main>
+
+  <!--include:footer-->
+
+  <script src="js/main.js"></script>
+  <script>renderDownloadsPage();</script>
+</body>
+</html>

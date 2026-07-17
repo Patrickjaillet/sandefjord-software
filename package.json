@@ -1,0 +1,13 @@
+{
+  "name": "sandefjord-software",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Static showcase website for Sandefjord Software Windows applications",
+  "type": "module",
+  "scripts": {
+    "sync": "node scripts/sync-releases.mjs",
+    "build": "node scripts/build.mjs"
+  },
+  "license": "MIT",
+  "author": "Patrick JAILLET"
+}

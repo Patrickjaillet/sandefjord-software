@@ -1,0 +1,45 @@
+{
+  "generatedAt": null,
+  "software": [
+    {
+      "id": "sample-app-one",
+      "name": "Sample App One",
+      "shortDescription": "Placeholder short description for the software card on the homepage.",
+      "description": "Placeholder full description of Sample App One. This text will be replaced with real content in Phase 4.",
+      "version": "1.0.0",
+      "category": "Utilities",
+      "icon": "assets/icons/sample-app-one.svg",
+      "screenshots": [],
+      "systemRequirements": "Windows 10/11, 64-bit",
+      "downloadUrl": "https://github.com/Patrickjaillet/sample-app-one/releases/latest",
+      "repositoryUrl": "https://github.com/Patrickjaillet/sample-app-one",
+      "changelog": [
+        {
+          "version": "1.0.0",
+          "date": "2026-01-01",
+          "notes": ["Placeholder changelog entry."]
+        }
+      ]
+    },
+    {
+      "id": "sample-app-two",
+      "name": "Sample App Two",
+      "shortDescription": "Placeholder short description for the software card on the homepage.",
+      "description": "Placeholder full description of Sample App Two. This text will be replaced with real content in Phase 4.",
+      "version": "0.9.0",
+      "category": "Productivity",
+      "icon": "assets/icons/sample-app-two.svg",
+      "screenshots": [],
+      "systemRequirements": "Windows 10/11, 64-bit",
+      "downloadUrl": "https://github.com/Patrickjaillet/sample-app-two/releases/latest",
+      "repositoryUrl": "https://github.com/Patrickjaillet/sample-app-two",
+      "changelog": [
+        {
+          "version": "0.9.0",
+          "date": "2026-02-01",
+          "notes": ["Placeholder changelog entry."]
+        }
+      ]
+    }
+  ]
+}

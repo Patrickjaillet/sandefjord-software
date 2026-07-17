@@ -88,6 +88,32 @@ async function renderSoftwareDetail() {
           .join("")
       : `<li class="changelog-entry"><span class="changelog-meta">No changelog entries yet</span></li>`;
 
+    const versionHistory = item.versionHistory || [];
+    const versionHistoryHtml = versionHistory.length
+      ? versionHistory
+          .map((entry) => {
+            const assets = entry.assets || [];
+            const assetsHtml = assets.length
+              ? assets
+                  .map(
+                    (asset) =>
+                      `<a class="button button-small" href="${asset.url}" target="_blank" rel="noopener">${escapeHtml(asset.name)}</a>`
+                  )
+                  .join("")
+              : `<span class="version-history-noassets">No downloadable assets</span>`;
+            return `
+            <li class="version-history-entry">
+              <div class="version-history-meta">
+                <span class="version-tag">v${escapeHtml(entry.version)}</span>
+                ${entry.prerelease ? `<span class="badge-prerelease">Pre-release</span>` : ""}
+                <span class="version-history-date">${escapeHtml(entry.date)}</span>
+              </div>
+              <div class="version-history-assets">${assetsHtml}</div>
+            </li>`;
+          })
+          .join("")
+      : `<li class="version-history-entry"><span class="version-history-date">No archived versions yet</span></li>`;
+
     document.title = `${item.name} — Sandefjord Software`;
 
     container.innerHTML = `
@@ -99,6 +125,7 @@ async function renderSoftwareDetail() {
             <div>
               <h1>${escapeHtml(item.name)}</h1>
               <span class="version-tag">v${escapeHtml(item.version)}</span>
+              ${item.prerelease ? `<span class="badge-prerelease">Pre-release</span>` : ""}
             </div>
           </div>
 
@@ -112,6 +139,11 @@ async function renderSoftwareDetail() {
           <section>
             <h2>Changelog</h2>
             <ul class="changelog-list">${changelogHtml}</ul>
+          </section>
+
+          <section>
+            <h2>Version history</h2>
+            <ul class="version-history-list">${versionHistoryHtml}</ul>
           </section>
         </div>
 

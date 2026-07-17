@@ -3,10 +3,12 @@
   "software": [
     {
       "id": "sample-app-one",
+      "githubRepoId": null,
       "name": "Sample App One",
       "shortDescription": "Placeholder short description for the software card on the homepage.",
       "description": "Placeholder full description of Sample App One. This text will be replaced with real content in Phase 4.",
       "version": "1.0.0",
+      "prerelease": false,
       "category": "Utilities",
       "icon": "assets/icons/sample-app-one.svg",
       "screenshots": [],
@@ -17,16 +19,27 @@
         {
           "version": "1.0.0",
           "date": "2026-01-01",
-          "notes": ["Placeholder changelog entry."]
+          "notes": ["Placeholder changelog entry."],
+          "prerelease": false
+        }
+      ],
+      "versionHistory": [
+        {
+          "version": "1.0.0",
+          "date": "2026-01-01",
+          "prerelease": false,
+          "assets": []
         }
       ]
     },
     {
       "id": "sample-app-two",
+      "githubRepoId": null,
       "name": "Sample App Two",
       "shortDescription": "Placeholder short description for the software card on the homepage.",
       "description": "Placeholder full description of Sample App Two. This text will be replaced with real content in Phase 4.",
       "version": "0.9.0",
+      "prerelease": false,
       "category": "Productivity",
       "icon": "assets/icons/sample-app-two.svg",
       "screenshots": [],
@@ -37,7 +50,16 @@
         {
           "version": "0.9.0",
           "date": "2026-02-01",
-          "notes": ["Placeholder changelog entry."]
+          "notes": ["Placeholder changelog entry."],
+          "prerelease": false
+        }
+      ],
+      "versionHistory": [
+        {
+          "version": "0.9.0",
+          "date": "2026-02-01",
+          "prerelease": false,
+          "assets": []
         }
       ]
     }

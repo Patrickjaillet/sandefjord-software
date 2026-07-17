@@ -5,6 +5,11 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased]
 
 ### Added
+- Automatic GitHub Releases sync (`scripts/sync-releases.mjs`): discovers repositories tagged with the `sandefjord-software` GitHub topic, reads their published releases, and regenerates `data/software.json` (version, per-release changelog, downloadable version history with release assets); editorial fields are preserved across runs, archived repos are skipped, pre-releases are flagged, renamed repos are tracked via stable GitHub repo id, and a zero-result run never wipes an existing catalog
+- Scheduled + event-driven sync workflow (`.github/workflows/sync.yml`): 6-hour cron safety net, manual `workflow_dispatch`, and instant `repository_dispatch` trigger; syncs, rebuilds `docs/`, and commits/pushes so GitHub Pages redeploys automatically
+- `templates/notify-sandefjord-software.yml`: workflow template to copy into each software repository so it pings this site the moment it publishes a release
+- "Version history" section on the software detail page listing every archived release with its downloadable assets, and a pre-release badge on the current version and in the changelog
+- Default placeholder icon (`assets/icons/default-app.svg`) for newly discovered software before a custom icon is set
 - Full visual identity: white theme, deep fjord-teal accent (`#0B4F62`), system typography with monospace reserved for factual data (versions, dates) — design tokens in `src/css/style.css`
 - Signature hero graphic: subtle fjord contour-line illustration (SVG, static, no 3D/Three.js)
 - Redesigned software cards (icon, category, name, description, version tag, "View details" link) with hover/focus states

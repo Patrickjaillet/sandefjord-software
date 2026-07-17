@@ -5,6 +5,7 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased]
 
 ### Added
+- Automated weekly content review (`scripts/check-content.mjs`, `.github/workflows/content-check.yml`): checks every software entry's download links (current version and latest release assets) and whether its linked repository was archived, opening or updating a `content-review`-labeled GitHub issue when problems are found and closing it automatically once resolved
 - Client-side admin panel (`admin.html`) for managing the catalog without a backend: GitHub token login (encrypted at rest in the browser with a passphrase, restricted to the `Patrickjaillet` account), a dashboard to add/edit/hide/delete/reorder software, icon and screenshot uploads, per-version changelog note editing, homepage hero text editing, a live preview before publishing, a recent-activity log from the Git commit history, and confirmation prompts before destructive actions; every write commits atomically (via the Git Data API) to `data/software.json` and appends a line to `CHANGELOG.md` in the same commit, which redeploys the site
 - `hidden`, `order`, and `tags` fields on software entries, and support for software added manually (without a linked GitHub repo) that the release sync now preserves instead of dropping
 - SEO: title/description/Open Graph meta tags on every page (static on `index`/`downloads`/`about`/`404`, dynamic per product on `software.html`), a build-time `sitemap.xml` covering every software entry, `robots.txt`, and a site favicon

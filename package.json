@@ -6,7 +6,8 @@
   "type": "module",
   "scripts": {
     "sync": "node scripts/sync-releases.mjs",
-    "build": "node scripts/build.mjs"
+    "build": "node scripts/build.mjs",
+    "check-content": "node scripts/check-content.mjs"
   },
   "license": "MIT",
   "author": "Patrick JAILLET"

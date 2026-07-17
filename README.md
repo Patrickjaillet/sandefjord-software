@@ -87,6 +87,32 @@ treat the token passphrase as the only thing standing between the page and
 write access to this repo, and revoke the token from GitHub if you ever
 suspect it leaked.
 
+## Maintenance
+
+**Adding a new piece of software** — two ways:
+1. Tag its GitHub repo (owned by `Patrickjaillet`) with the topic
+   `sandefjord-software` and publish a release with installer assets
+   (`.exe`/`.msi`/`.zip`). It appears on the site within 6 hours (the sync
+   cron), or instantly if you copy `templates/notify-sandefjord-software.yml`
+   into that repo. Refine the auto-generated description/category/screenshots
+   afterward from the admin panel or by editing `data/software.json` directly
+   — those fields are preserved across future syncs.
+2. For software without a GitHub repo, use "+ Add software" in the admin
+   panel — the sync process ignores entries with no linked repo, so they
+   stay exactly as entered.
+
+**How updates propagate automatically** is covered above under "Automatic
+sync with GitHub Releases" (new releases) and "Admin panel" (manual edits) —
+both end in a commit to `main`, which GitHub Pages redeploys from.
+
+**Content review** — `npm run check-content` (`scripts/check-content.mjs`)
+checks every software entry's current download link and latest release
+assets for dead links (HTTP HEAD, non-2xx = broken) and flags any linked
+repository that's been archived. `.github/workflows/content-check.yml` runs
+it weekly and on demand: if it finds problems, it opens (or comments on) a
+GitHub issue labeled `content-review` with the details; once a later run
+finds nothing, it closes that issue automatically.
+
 ## Design
 
 White theme, one accent color, no decoration beyond what's needed:

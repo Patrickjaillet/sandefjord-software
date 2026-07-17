@@ -127,6 +127,6 @@ Official Repository: https://github.com/Patrickjaillet/sandefjord-software
 
 ## Phase 8 — Maintenance continue
 
-- [ ] Processus pour ajouter un nouveau logiciel au site
-- [ ] Processus de mise à jour automatique lors d'une nouvelle release GitHub
-- [ ] Revue régulière du contenu (liens morts, versions obsolètes)
+- [x] Processus pour ajouter un nouveau logiciel au site → documenté dans le README ("Maintenance") : tag GitHub `sandefjord-software` + release publiée (détection automatique), ou "+ Add software" dans l'admin pour un logiciel sans dépôt GitHub
+- [x] Processus de mise à jour automatique lors d'une nouvelle release GitHub → déjà couvert par la Phase 3 (`sync.yml`) ; documenté dans le README
+- [x] Revue régulière du contenu (liens morts, versions obsolètes) → automatisée plutôt que manuelle : `scripts/check-content.mjs` (`npm run check-content`) vérifie tous les liens de téléchargement et les dépôts archivés ; `.github/workflows/content-check.yml` l'exécute chaque semaine et ouvre/ferme automatiquement une issue GitHub (`content-review`) selon le résultat

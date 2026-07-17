@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-17T20:47:26.306Z",
+  "generatedAt": "2026-07-17T20:50:41.442Z",
   "software": [
     {
       "id": "numis-euro",
@@ -7,7 +7,7 @@
       "name": "Numis-Euro",
       "shortDescription": "Gestionnaire de collection de pièces euro, pour Windows",
       "description": "Gestionnaire de collection de pièces euro, pour Windows",
-      "version": "install",
+      "version": "5.0.0",
       "prerelease": false,
       "category": "Utilities",
       "icon": "assets/icons/default-app.svg",
@@ -17,7 +17,7 @@
       "repositoryUrl": "https://github.com/Patrickjaillet/Numis-Euro",
       "changelog": [
         {
-          "version": "install",
+          "version": "5.0.0",
           "date": "2026-06-15",
           "notes": [
             "No release notes provided."
@@ -27,7 +27,7 @@
       ],
       "versionHistory": [
         {
-          "version": "install",
+          "version": "5.0.0",
           "date": "2026-06-15",
           "prerelease": false,
           "assets": [
@@ -193,7 +193,7 @@
           "prerelease": false
         },
         {
-          "version": "z-gl2.1.3",
+          "version": "2.1.3",
           "date": "2026-06-28",
           "notes": [
             "No release notes provided."
@@ -201,7 +201,7 @@
           "prerelease": false
         },
         {
-          "version": "z-gl2.1.2",
+          "version": "2.1.2",
           "date": "2026-06-20",
           "notes": [
             "## [2.1.2] — 20 juin 2026",
@@ -212,7 +212,7 @@
           "prerelease": false
         },
         {
-          "version": "z-gl",
+          "version": "2.0.0",
           "date": "2026-06-18",
           "notes": [
             "<p align=\"center\">",
@@ -342,7 +342,7 @@
           ]
         },
         {
-          "version": "z-gl2.1.3",
+          "version": "2.1.3",
           "date": "2026-06-28",
           "prerelease": false,
           "assets": [
@@ -354,7 +354,7 @@
           ]
         },
         {
-          "version": "z-gl2.1.2",
+          "version": "2.1.2",
           "date": "2026-06-20",
           "prerelease": false,
           "assets": [
@@ -366,7 +366,7 @@
           ]
         },
         {
-          "version": "z-gl",
+          "version": "2.0.0",
           "date": "2026-06-18",
           "prerelease": false,
           "assets": [

@@ -61,8 +61,21 @@ function slugify(name) {
     .replace(/(^-|-$)/g, "");
 }
 
-function versionFromTag(tag) {
-  return tag.replace(/^v/i, "");
+const SEMVER_PATTERN = /\d+\.\d+(?:\.\d+){0,2}/;
+
+function extractVersion(release) {
+  const fromTag = release.tag_name.match(SEMVER_PATTERN);
+  if (fromTag) return fromTag[0];
+
+  for (const asset of release.assets || []) {
+    const fromAsset = asset.name.match(SEMVER_PATTERN);
+    if (fromAsset) return fromAsset[0];
+  }
+
+  const fromName = (release.name || "").match(SEMVER_PATTERN);
+  if (fromName) return fromName[0];
+
+  return release.tag_name.replace(/^v/i, "");
 }
 
 function pickPrimaryAsset(assets) {
@@ -97,14 +110,14 @@ async function buildEntry(repo, existingByGithubId) {
   const latestStable = releases.find((release) => !release.prerelease) ?? releases[0];
 
   const changelog = releases.map((release) => ({
-    version: versionFromTag(release.tag_name),
+    version: extractVersion(release),
     date: (release.published_at ?? release.created_at).slice(0, 10),
     notes: notesFromBody(release.body),
     prerelease: release.prerelease,
   }));
 
   const versionHistory = releases.map((release) => ({
-    version: versionFromTag(release.tag_name),
+    version: extractVersion(release),
     date: (release.published_at ?? release.created_at).slice(0, 10),
     prerelease: release.prerelease,
     assets: (release.assets || []).map((asset) => ({
@@ -124,7 +137,7 @@ async function buildEntry(repo, existingByGithubId) {
     name: existing?.name ?? repo.name,
     shortDescription: existing?.shortDescription ?? fallbackDescription.slice(0, 140),
     description: existing?.description ?? fallbackDescription,
-    version: versionFromTag(latestStable.tag_name),
+    version: extractVersion(latestStable),
     prerelease: latestStable.prerelease,
     category: existing?.category ?? "Utilities",
     icon: existing?.icon ?? DEFAULT_ICON,

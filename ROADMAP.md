@@ -84,8 +84,6 @@ Official Repository: https://github.com/Patrickjaillet/sandefjord-software
 
 - [ ] Rédiger la description de chaque logiciel (anglais, cohérent avec les conventions)
 - [ ] Réaliser/collecter les captures d'écran de chaque logiciel
-- [ ] Créer les icônes des logiciels (format web + haute résolution)
-- [ ] Créer les icônes de l'installeur Inno Setup pour chaque logiciel
 - [ ] Rédiger la page "About" avec copyright, créateur, email, site, dépôt officiel
 
 ## Phase 5 — SEO & Performance

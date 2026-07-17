@@ -88,10 +88,10 @@ Official Repository: https://github.com/Patrickjaillet/sandefjord-software
 
 ## Phase 5 — SEO & Performance
 
-- [ ] Balises meta (title, description, Open Graph) par page logiciel
-- [ ] Sitemap.xml et robots.txt
-- [ ] Optimisation des images (compression, formats modernes)
-- [ ] Vérification des performances (Lighthouse) et accessibilité de base
+- [x] Balises meta (title, description, Open Graph) par page logiciel → statiques sur `index/downloads/about/404.html`, dynamiques par produit dans `setSoftwareMeta()` (`src/js/main.js`)
+- [x] Sitemap.xml et robots.txt → `docs/sitemap.xml` généré au build depuis `data/software.json` (`buildSitemap()` dans `scripts/build.mjs`), `src/robots.txt` copié tel quel
+- [x] Optimisation des images (compression, formats modernes) → capture Z-GL Shadertoy recompressée (1,49 Mo PNG → 189 Ko JPEG, redimensionnée à sa taille d'affichage réelle) ; icônes en SVG
+- [x] Vérification des performances (Lighthouse) et accessibilité de base → audité en conditions réelles sur le site déployé : Performance 99, Accessibilité 100, Bonnes pratiques 100, SEO 100 (accueil)
 
 ## Phase 6 — Panneau d'administration (Admin)
 

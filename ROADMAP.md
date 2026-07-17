@@ -82,9 +82,9 @@ Official Repository: https://github.com/Patrickjaillet/sandefjord-software
 
 ## Phase 4 — Contenu & assets
 
-- [ ] Rédiger la description de chaque logiciel (anglais, cohérent avec les conventions)
-- [ ] Réaliser/collecter les captures d'écran de chaque logiciel
-- [ ] Rédiger la page "About" avec copyright, créateur, email, site, dépôt officiel
+- [x] Rédiger la description de chaque logiciel (anglais, cohérent avec les conventions) → `data/software.json`, traduit/résumé fidèlement depuis le README de chaque dépôt (Numis-Euro, ShaderFmt, Z-GL-Shadertoy)
+- [x] Réaliser/collecter les captures d'écran de chaque logiciel → ShaderFmt et Z-GL-Shadertoy ont une capture (`assets/screenshots/`, récupérée depuis leur dépôt) ; Numis-Euro n'en a pas encore dans son dépôt, à ajouter quand disponible
+- [x] Rédiger la page "About" avec copyright, créateur, email, site, dépôt officiel → `about.html`
 
 ## Phase 5 — SEO & Performance
 

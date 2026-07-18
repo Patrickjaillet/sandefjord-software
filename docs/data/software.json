@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-18T12:58:24.682Z",
+  "generatedAt": "2026-07-18T18:15:38.750Z",
   "software": [
     {
       "id": "aiprompt",
@@ -55,13 +55,17 @@
               "name": "AIPromptSetup_x64.exe",
               "url": "https://github.com/Patrickjaillet/AIPrompt/releases/download/v1.0.0/AIPromptSetup_x64.exe",
               "size": 55748238,
-              "downloadCount": 5,
+              "downloadCount": 6,
               "sha256": "d01ac86946215cac8f554ae9fb57e07a2658c755423b74c6deade41f4d37ab8e"
             }
           ]
         }
       ],
-      "totalDownloads": 5
+      "totalDownloads": 6,
+      "engagement": {
+        "likes": 0,
+        "comments": 0
+      }
     },
     {
       "id": "glsl-hyper-golfer",
@@ -103,13 +107,17 @@
               "name": "glsl-hyper-golfer-1.0.0.zip",
               "url": "https://github.com/Patrickjaillet/GLSL-Hyper-Golfer/releases/download/1.0.0/glsl-hyper-golfer-1.0.0.zip",
               "size": 283602,
-              "downloadCount": 3,
+              "downloadCount": 4,
               "sha256": "d32e6d0c33089c2cf0a0e025d7c048d9c99f6f66f675646e7164e9e97fa854c4"
             }
           ]
         }
       ],
-      "totalDownloads": 3
+      "totalDownloads": 4,
+      "engagement": {
+        "likes": 0,
+        "comments": 0
+      }
     },
     {
       "id": "numis-euro",
@@ -157,13 +165,17 @@
               "name": "NumisEuro-5.0.0-setup.exe",
               "url": "https://github.com/Patrickjaillet/Numis-Euro/releases/download/install/NumisEuro-5.0.0-setup.exe",
               "size": 3157039,
-              "downloadCount": 8,
+              "downloadCount": 9,
               "sha256": "0aedc907c264deaf431266b01ba08290924d8d2136515b67de9f906d2f1a35ee"
             }
           ]
         }
       ],
-      "totalDownloads": 14
+      "totalDownloads": 15,
+      "engagement": {
+        "likes": 0,
+        "comments": 0
+      }
     },
     {
       "id": "shaddem",
@@ -213,7 +225,7 @@
               "name": "Shaddem.v1.0.0.exe",
               "url": "https://github.com/Patrickjaillet/Shaddem/releases/download/sd100/Shaddem.v1.0.0.exe",
               "size": 27538220,
-              "downloadCount": 3,
+              "downloadCount": 4,
               "sha256": "7c6fcce0ce1146753ade3b7e5b7124afbb8382ad8c4230c400bb7be23c0e9216"
             }
           ]
@@ -232,7 +244,11 @@
           ]
         }
       ],
-      "totalDownloads": 3
+      "totalDownloads": 4,
+      "engagement": {
+        "likes": 0,
+        "comments": 0
+      }
     },
     {
       "id": "shaderfmt",
@@ -274,13 +290,17 @@
               "name": "ShaderFmt-0.2.1-win64-setup.exe",
               "url": "https://github.com/Patrickjaillet/ShaderFmt/releases/download/1.0/ShaderFmt-0.2.1-win64-setup.exe",
               "size": 15984919,
-              "downloadCount": 6,
+              "downloadCount": 7,
               "sha256": "a9d3ac88666c08b5c9d9192a509fd1e450cbff215d9593cf2dc8e102d6c6db81"
             }
           ]
         }
       ],
-      "totalDownloads": 6
+      "totalDownloads": 7,
+      "engagement": {
+        "likes": 0,
+        "comments": 0
+      }
     },
     {
       "id": "z-gl-shadertoy",
@@ -520,7 +540,7 @@
               "name": "Z-GL.Shadertoy_2.7.0_x64-setup.exe",
               "url": "https://github.com/Patrickjaillet/Z-GL-Shadertoy/releases/download/2.7.0/Z-GL.Shadertoy_2.7.0_x64-setup.exe",
               "size": 5400341,
-              "downloadCount": 11,
+              "downloadCount": 12,
               "sha256": "b4d61499918b4df8eb067840dc0bfb057fb82af4a674aa0f7afbbc6251d21897"
             },
             {
@@ -590,7 +610,11 @@
           ]
         }
       ],
-      "totalDownloads": 25
+      "totalDownloads": 26,
+      "engagement": {
+        "likes": 0,
+        "comments": 0
+      }
     }
   ]
 }

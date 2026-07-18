@@ -191,12 +191,12 @@ function renderSimilarSoftware(item, software) {
       <div class="software-grid similar-software-grid">
         ${similar
           .map(
-            (entry) => `
-          <a class="software-card" href="software.html?id=${encodeURIComponent(entry.id)}">
+            (entry, i) => `
+          <a class="software-card" style="--card-i: ${i}" href="software.html?id=${encodeURIComponent(entry.id)}">
             <div class="software-card-top">
               <img class="software-card-icon" src="${entry.icon}" alt="" loading="lazy">
               <div>
-                <span class="software-card-category">${escapeHtml(entry.category)}</span>
+                <span class="software-card-category">${categoryBadge(entry.category)}</span>
                 <h3 class="software-card-title">${escapeHtml(entry.name)}</h3>
               </div>
             </div>
@@ -235,6 +235,19 @@ function setupDownloadButton(container) {
 }
 
 const WINDOWS_ICON_SVG = `<svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M3 5.5 10.5 4.4v7.1H3V5.5zm8.5-1.3L21 3v8.5h-9.5V4.2zM3 12.5h7.5v7.1L3 18.5v-6zm8.5 0H21V21l-9.5-1.3v-7.2z"/></svg>`;
+
+const CATEGORY_ICON_ATTRS = `viewBox="0 0 16 16" width="12" height="12" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"`;
+const CATEGORY_ICONS = {
+  "Developer Tools": `<svg ${CATEGORY_ICON_ATTRS}><path d="M5 4 1 8l4 4M11 4l4 4-4 4"/></svg>`,
+  Collectibles: `<svg ${CATEGORY_ICON_ATTRS}><circle cx="8" cy="8" r="6"/><circle cx="8" cy="8" r="2.25"/></svg>`,
+  Utilities: `<svg ${CATEGORY_ICON_ATTRS}><line x1="3" y1="4" x2="13" y2="4"/><circle cx="9.5" cy="4" r="1.4"/><line x1="3" y1="8" x2="13" y2="8"/><circle cx="6.5" cy="8" r="1.4"/><line x1="3" y1="12" x2="13" y2="12"/><circle cx="10.5" cy="12" r="1.4"/></svg>`,
+};
+const DEFAULT_CATEGORY_ICON = `<svg ${CATEGORY_ICON_ATTRS}><rect x="2" y="2" width="5" height="5" rx="1"/><rect x="9" y="2" width="5" height="5" rx="1"/><rect x="2" y="9" width="5" height="5" rx="1"/><rect x="9" y="9" width="5" height="5" rx="1"/></svg>`;
+
+function categoryBadge(category) {
+  const icon = CATEGORY_ICONS[category] || DEFAULT_CATEGORY_ICON;
+  return `${icon}<span>${escapeHtml(category)}</span>`;
+}
 
 function renderBreadcrumb(items) {
   return `
@@ -373,7 +386,7 @@ function renderSoftwareCards(container, software) {
     return;
   }
   container.innerHTML = software
-    .map((item) => {
+    .map((item, i) => {
       const screenshots = item.screenshots || [];
       const updatedDate = latestReleaseDateString(item);
       const recent = isRecentlyUpdated(updatedDate);
@@ -394,12 +407,12 @@ function renderSoftwareCards(container, software) {
       }
 
       return `
-      <a class="software-card" href="software.html?id=${encodeURIComponent(item.id)}">
+      <a class="software-card" style="--card-i: ${i}" href="software.html?id=${encodeURIComponent(item.id)}">
         ${thumbHtml}
         <div class="software-card-top">
           <img class="software-card-icon" src="${item.icon}" alt="" loading="lazy">
           <div>
-            <span class="software-card-category">${escapeHtml(item.category)}</span>
+            <span class="software-card-category">${categoryBadge(item.category)}</span>
             <h2 class="software-card-title">${escapeHtml(item.name)}</h2>
           </div>
         </div>
@@ -423,8 +436,29 @@ function renderSoftwareCards(container, software) {
     .join("");
 }
 
+function renderSkeletonCards(container, count) {
+  container.innerHTML = Array.from({ length: count })
+    .map(
+      () => `
+      <div class="skeleton-card" aria-hidden="true">
+        <div class="skeleton skeleton-thumb"></div>
+        <div class="software-card-top">
+          <div class="skeleton skeleton-icon"></div>
+          <div class="skeleton-lines">
+            <div class="skeleton skeleton-line" style="width: 40%; height: 0.55rem;"></div>
+            <div class="skeleton skeleton-line" style="width: 70%; height: 0.9rem;"></div>
+          </div>
+        </div>
+        <div class="skeleton skeleton-line" style="width: 100%;"></div>
+        <div class="skeleton skeleton-line" style="width: 82%;"></div>
+      </div>`
+    )
+    .join("");
+}
+
 async function renderHomepage() {
   const container = document.getElementById("software-list");
+  renderSkeletonCards(container, 6);
   try {
     const data = await fetchSoftwareCatalog();
     const software = visibleSoftware(data);
@@ -448,9 +482,32 @@ async function renderHomepage() {
   }
 }
 
+function renderSkeletonDetail(container) {
+  container.innerHTML = `
+    <div class="software-detail-layout" aria-hidden="true">
+      <div class="software-detail-main">
+        <div class="skeleton skeleton-line" style="width: 6rem; height: 0.7rem;"></div>
+        <div class="software-detail-header">
+          <div class="skeleton skeleton-icon" style="width: 56px; height: 56px;"></div>
+          <div class="skeleton-lines" style="flex: 1;">
+            <div class="skeleton skeleton-line" style="width: 45%; height: 1.4rem;"></div>
+            <div class="skeleton skeleton-line" style="width: 20%; height: 0.9rem;"></div>
+          </div>
+        </div>
+        <div class="skeleton skeleton-line" style="width: 100%;"></div>
+        <div class="skeleton skeleton-line" style="width: 95%;"></div>
+        <div class="skeleton skeleton-line" style="width: 70%; margin-bottom: 1.5rem;"></div>
+        <div class="skeleton skeleton-thumb" style="width: 280px; margin: 0;"></div>
+      </div>
+      <div class="skeleton skeleton-aside"></div>
+    </div>
+  `;
+}
+
 async function renderSoftwareDetail() {
   const container = document.getElementById("software-detail");
   const id = getQueryParam("id");
+  renderSkeletonDetail(container);
   try {
     const data = await fetchSoftwareCatalog();
     const item = data.software.find((entry) => entry.id === id);
@@ -529,7 +586,7 @@ async function renderSoftwareDetail() {
       ${renderBreadcrumb([{ label: "Home", href: "index.html" }, { label: item.name }])}
       <div class="software-detail-layout">
         <div class="software-detail-main">
-          <span class="eyebrow">${escapeHtml(item.category)}</span>
+          <span class="eyebrow">${categoryBadge(item.category)}</span>
           <div class="software-detail-header">
             <img class="software-detail-icon" src="${item.icon}" alt="">
             <div>
@@ -574,7 +631,7 @@ async function renderSoftwareDetail() {
             <dt>Current version</dt>
             <dd>${escapeHtml(item.version)}</dd>
             <dt>Category</dt>
-            <dd>${escapeHtml(item.category)}</dd>
+            <dd>${categoryBadge(item.category)}</dd>
             ${(item.tags || []).length ? `<dt>Tags</dt><dd>${item.tags.map(escapeHtml).join(", ")}</dd>` : ""}
             <dt>Repository</dt>
             <dd><a href="${item.repositoryUrl}" target="_blank" rel="noopener">View on GitHub</a></dd>
@@ -672,7 +729,7 @@ function renderDownloadsRows(tbody, software) {
       (item) => `
       <tr>
         <td><a href="software.html?id=${encodeURIComponent(item.id)}">${escapeHtml(item.name)}</a></td>
-        <td>${escapeHtml(item.category)}</td>
+        <td class="downloads-category">${categoryBadge(item.category)}</td>
         <td class="mono"><span class="version-tag">v${escapeHtml(item.version)}</span></td>
         <td>${escapeHtml(item.systemRequirements)}</td>
         <td><a class="button" href="${item.downloadUrl}" target="_blank" rel="noopener">Download</a></td>
@@ -681,8 +738,24 @@ function renderDownloadsRows(tbody, software) {
     .join("");
 }
 
+function renderSkeletonRows(tbody, count) {
+  tbody.innerHTML = Array.from({ length: count })
+    .map(
+      () => `
+      <tr aria-hidden="true">
+        <td><span class="skeleton skeleton-line" style="width: 70%;"></span></td>
+        <td><span class="skeleton skeleton-line" style="width: 60%;"></span></td>
+        <td><span class="skeleton skeleton-line" style="width: 3rem;"></span></td>
+        <td><span class="skeleton skeleton-line" style="width: 80%;"></span></td>
+        <td><span class="skeleton skeleton-line" style="width: 4.5rem;"></span></td>
+      </tr>`
+    )
+    .join("");
+}
+
 async function renderDownloadsPage() {
   const tbody = document.querySelector("#downloads-table tbody");
+  renderSkeletonRows(tbody, 6);
   try {
     const data = await fetchSoftwareCatalog();
     const software = visibleSoftware(data);

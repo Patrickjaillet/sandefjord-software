@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased]
 
 ### Added
+- System dark mode (`prefers-color-scheme: dark`) across all public pages, with a dedicated fjord-teal dark palette and a `--color-on-accent` token to keep solid buttons/badges readable in both themes; the admin panel keeps its existing fixed light theme
+- A shared animation scale (one easing curve, three durations) applied consistently to every hover/focus/appearance transition site-wide
+- Fade-and-rise entrance animation for grid cards on initial load and when filtering/searching
+- Skeleton loading states (shimmering placeholders) for the homepage grid, the product page, and the downloads table, replacing the plain "Loading..." text
+- Consistent monoline category pictograms next to every category badge (cards, product page, downloads table)
+- A `.button-secondary` variant and a shared disabled state for the public-site button component; footer links now get the same fade-in underline transition as the nav on hover
 - Real screenshots for AIPrompt (dark/light theme, from the repo's `assets/screenshots`) and GLSL-Hyper-Golfer (from the repo's `docs/screenshot.png`)
 - Software cards: a more visible category pill, real file size and "Updated <date>" pulled from the catalog, an "Updated recently" badge for releases under 30 days old, and a second-screenshot cross-fade on hover/focus when a software has more than one screenshot
 - Software detail page: a breadcrumb (also added to the downloads page), a redesigned primary download button (bigger, Windows icon, real file size and download count subtext, a "Preparing download..." → "Download started" transient state), system requirements shown as a checklist instead of plain text, a "You might also like" section (same-category software first), and a screenshot gallery with a consistent frame, a position caption per thumbnail, and a fade transition plus position counter in the lightbox

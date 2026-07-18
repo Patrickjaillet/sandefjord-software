@@ -6,7 +6,7 @@
    ========================================================================== */
 
 :root {
-  color-scheme: light;
+  color-scheme: light dark;
 
   /* Color */
   --color-bg: #ffffff;
@@ -23,6 +23,7 @@
   --color-danger-border: #f0d5d5;
   --color-success: #256a4a;
   --color-success-bg: #eaf6ef;
+  --color-on-accent: #ffffff;
 
   /* Elevation */
   --shadow-sm: 0 1px 2px rgba(10, 30, 40, 0.06);
@@ -43,12 +44,47 @@
 
   --radius: 8px;
   --border-w: 1px;
-  --transition: 150ms ease;
+
+  /* Motion scale: one easing curve, three durations, used everywhere
+     something hovers, focuses, or appears. */
+  --ease: cubic-bezier(0.4, 0, 0.2, 1);
+  --duration-fast: 120ms;
+  --duration-base: 180ms;
+  --duration-slow: 320ms;
+  --transition: var(--duration-base) var(--ease);
+  --transition-fast: var(--duration-fast) var(--ease);
+  --transition-slow: var(--duration-slow) var(--ease);
 }
 
 @media (prefers-reduced-motion: reduce) {
-  :root { --transition: 0ms; }
+  :root { --transition: 0ms; --transition-fast: 0ms; --transition-slow: 0ms; }
   * { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; }
+}
+
+/* Dark mode follows the system preference on public pages only — the
+   admin panel (`.admin-body`) keeps its own fixed light design. */
+@media (prefers-color-scheme: dark) {
+  body:not(.admin-body) {
+    --color-bg: #0e1a1f;
+    --color-bg-subtle: #16262c;
+    --color-text: #e6edef;
+    --color-muted: #8fa3aa;
+    --color-border: #26393f;
+    --color-accent: #5bb8cc;
+    --color-accent-strong: #8fd2e0;
+    --color-accent-tint: #16333b;
+    --color-accent-soft: #3c5f68;
+    --color-danger: #e2908f;
+    --color-danger-bg: #351f1f;
+    --color-danger-border: #4a2a2a;
+    --color-success: #7ecba0;
+    --color-success-bg: #16302a;
+    --color-on-accent: #06232b;
+
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.35);
+    --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.4);
+    --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.5);
+  }
 }
 
 /* ==========================================================================
@@ -468,7 +504,18 @@ img { max-width: 100%; display: block; }
 .category-filter-btn.active {
   background: var(--color-accent);
   border-color: var(--color-accent);
-  color: #ffffff;
+  color: var(--color-on-accent);
+}
+
+@keyframes card-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .software-card {
@@ -483,6 +530,8 @@ img { max-width: 100%; display: block; }
   box-shadow: var(--shadow-sm);
   overflow: hidden;
   transition: border-color var(--transition), transform var(--transition), box-shadow var(--transition);
+  animation: card-in var(--transition-slow) both;
+  animation-delay: calc(var(--card-i, 0) * 40ms);
 }
 
 .software-card-thumb-wrap {
@@ -518,7 +567,7 @@ img { max-width: 100%; display: block; }
   font-size: 0.625rem;
   letter-spacing: 0.04em;
   text-transform: uppercase;
-  color: #ffffff;
+  color: var(--color-on-accent);
   background: var(--color-accent-strong);
   border-radius: 999px;
   padding: 0.15rem 0.55rem;
@@ -564,7 +613,9 @@ img { max-width: 100%; display: block; }
 }
 
 .software-card-category {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
   font-family: var(--font-mono);
   font-size: 0.625rem;
   letter-spacing: 0.06em;
@@ -574,6 +625,26 @@ img { max-width: 100%; display: block; }
   border-radius: 999px;
   padding: 0.1rem 0.5rem;
   margin-bottom: 0.3rem;
+}
+
+.software-card-category svg,
+.eyebrow svg,
+.detail-aside dd svg,
+.downloads-category svg {
+  flex-shrink: 0;
+  color: var(--color-accent);
+}
+
+.eyebrow svg {
+  vertical-align: -1px;
+  margin-right: 0.35em;
+}
+
+.detail-aside dd,
+.downloads-category {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
 }
 
 .software-card-meta {
@@ -633,6 +704,62 @@ img { max-width: 100%; display: block; }
 }
 
 /* ==========================================================================
+   Skeleton loading states
+   ========================================================================== */
+
+@keyframes skeleton-shimmer {
+  0% { background-position: -200px 0; }
+  100% { background-position: calc(200px + 100%) 0; }
+}
+
+.skeleton {
+  background-image: linear-gradient(90deg, var(--color-bg-subtle) 25%, var(--color-border) 37%, var(--color-bg-subtle) 63%);
+  background-size: 400px 100%;
+  animation: skeleton-shimmer 1.4s ease-in-out infinite;
+  border-radius: 4px;
+}
+
+.skeleton-card {
+  border: var(--border-w) solid var(--color-border);
+  border-radius: calc(var(--radius) + 2px);
+  padding: 1.25rem;
+  background: var(--color-bg);
+  overflow: hidden;
+}
+
+.skeleton-thumb {
+  width: calc(100% + 2.5rem);
+  aspect-ratio: 16 / 10;
+  margin: -1.25rem -1.25rem 1rem;
+  border-radius: 0;
+}
+
+.skeleton-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 9px;
+  flex-shrink: 0;
+}
+
+.skeleton-lines {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  flex: 1;
+}
+
+.skeleton-line {
+  display: block;
+  height: 0.7rem;
+  margin-bottom: 0.5rem;
+}
+
+.skeleton-aside {
+  height: 220px;
+  border-radius: var(--radius);
+}
+
+/* ==========================================================================
    Version tag / badges
    ========================================================================== */
 
@@ -664,7 +791,9 @@ img { max-width: 100%; display: block; }
   border: 1.5px solid var(--color-accent);
   color: var(--color-accent);
   background: transparent;
-  transition: background var(--transition), color var(--transition);
+  box-shadow: none;
+  cursor: pointer;
+  transition: background var(--transition), color var(--transition), border-color var(--transition), box-shadow var(--transition);
 }
 
 .button:hover {
@@ -674,12 +803,36 @@ img { max-width: 100%; display: block; }
 
 .button-primary {
   background: var(--color-accent);
-  color: #ffffff;
+  border-color: var(--color-accent);
+  color: var(--color-on-accent);
+  box-shadow: var(--shadow-sm);
 }
 
 .button-primary:hover {
   background: var(--color-accent-strong);
-  color: #ffffff;
+  border-color: var(--color-accent-strong);
+  color: var(--color-on-accent);
+  box-shadow: var(--shadow-md);
+}
+
+.button-secondary {
+  background: var(--color-bg-subtle);
+  border-color: var(--color-border);
+  color: var(--color-text);
+}
+
+.button-secondary:hover {
+  background: var(--color-accent-tint);
+  border-color: var(--color-accent-soft);
+  color: var(--color-accent-strong);
+}
+
+.button:disabled,
+.button[aria-disabled="true"] {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+  box-shadow: none;
 }
 
 .button-block { width: 100%; }
@@ -707,10 +860,12 @@ img { max-width: 100%; display: block; }
 .button-download.is-downloading,
 .button-download.is-downloaded {
   background: var(--color-accent-strong);
+  border-color: var(--color-accent-strong);
 }
 
 .button-download.is-downloaded {
   background: var(--color-success);
+  border-color: var(--color-success);
 }
 
 /* ==========================================================================
@@ -816,7 +971,7 @@ img { max-width: 100%; display: block; }
   border-radius: 6px;
   box-shadow: var(--shadow-lg);
   opacity: 0;
-  transition: opacity 150ms ease;
+  transition: opacity var(--transition-fast);
 }
 
 .lightbox-image.is-visible {
@@ -1163,8 +1318,16 @@ img { max-width: 100%; display: block; }
   text-align: center;
 }
 
-.site-footer a { color: var(--color-muted); }
-.site-footer a:hover { color: var(--color-accent); }
+.site-footer a {
+  color: var(--color-muted);
+  text-decoration-color: transparent;
+  transition: color var(--transition), text-decoration-color var(--transition);
+}
+
+.site-footer a:hover {
+  color: var(--color-accent);
+  text-decoration-color: var(--color-accent-soft);
+}
 
 .loading-text { color: var(--color-muted); }
 

@@ -303,7 +303,17 @@ img { max-width: 100%; display: block; }
   color: inherit;
   background: var(--color-bg);
   box-shadow: var(--shadow-sm);
+  overflow: hidden;
   transition: border-color var(--transition), transform var(--transition), box-shadow var(--transition);
+}
+
+.software-card-thumb {
+  width: calc(100% + 2.5rem);
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  margin: -1.25rem -1.25rem 1rem;
+  background: var(--color-bg-subtle);
+  border-bottom: var(--border-w) solid var(--color-border);
 }
 
 .software-card:hover,

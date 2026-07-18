@@ -145,6 +145,11 @@ function renderSoftwareCards(container, software) {
     .map(
       (item) => `
       <a class="software-card" href="software.html?id=${encodeURIComponent(item.id)}">
+        ${
+          (item.screenshots || []).length
+            ? `<img class="software-card-thumb" src="${item.screenshots[0]}" alt="" loading="lazy">`
+            : ""
+        }
         <div class="software-card-top">
           <img class="software-card-icon" src="${item.icon}" alt="" loading="lazy">
           <div>

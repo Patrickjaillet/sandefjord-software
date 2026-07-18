@@ -61,6 +61,7 @@ All notable changes to this project will be documented in this file.
 - Base `README.md` and `CHANGELOG.md`
 
 ### Fixed
+- CI's Lighthouse job failed with "Invalid action input 'staticDistDir'" — `treosh/lighthouse-ci-action@v11` dropped the `staticDistDir`/`urls` action inputs; moved both into `.lighthouserc.json`'s `ci.collect` (`staticDistDir` + explicit `url` list), which is how that version expects them
 - Keyboard focus on screenshot thumbnails (and any other `tabindex`-only element) fell back to the browser's default focus ring instead of the site's teal outline — the global focus-visible rule only covered `a`/`button`; extended it to `input` and any `[tabindex]` element
 - The hidden native "Share" button on the product page stayed visible regardless of `navigator.share` support, because `.share-icon-button { display: inline-flex }` overrode the browser's default `[hidden]` rule — added an explicit `[hidden] { display: none }` override
 - AIPrompt and GLSL-Hyper-Golfer descriptions were pulled from their GitHub repo description field in French; rewritten in English from each project's README, consistent with the "English only" convention

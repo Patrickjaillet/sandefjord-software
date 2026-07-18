@@ -5,6 +5,8 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased]
 
 ### Added
+- Software cards: a more visible category pill, real file size and "Updated <date>" pulled from the catalog, an "Updated recently" badge for releases under 30 days old, and a second-screenshot cross-fade on hover/focus when a software has more than one screenshot
+- Software detail page: a breadcrumb (also added to the downloads page), a redesigned primary download button (bigger, Windows icon, real file size and download count subtext, a "Preparing download..." → "Download started" transient state), system requirements shown as a checklist instead of plain text, a "You might also like" section (same-category software first), and a screenshot gallery with a consistent frame, a position caption per thumbnail, and a fade transition plus position counter in the lightbox
 - Homepage hero redesign: stronger benefit-driven headline and reassuring subtitle, trust indicators (apps published, total downloads, link to the official GitHub account) computed live from the catalog, a dual call-to-action ("Browse software" / "View on GitHub"), a "Latest release" featured card, a "Latest updates" banner surfacing the 3 most recent releases across all software, and a subtle scroll parallax on the fjord contour-line graphic (`prefers-reduced-motion` respected)
 - Real per-release download counts (`totalDownloads` per software, `downloadCount` per asset) captured by `scripts/sync-releases.mjs` from the GitHub Releases API, powering the homepage trust indicators
 - Homepage and downloads page: live search and category filter pills over the software catalog

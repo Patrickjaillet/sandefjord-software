@@ -112,6 +112,36 @@ img { max-width: 100%; display: block; }
 }
 
 /* ==========================================================================
+   Breadcrumb
+   ========================================================================== */
+
+.breadcrumb {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  font-size: var(--step--1);
+  color: var(--color-muted);
+  margin: 1.25rem 0 0;
+}
+
+.breadcrumb a {
+  color: var(--color-muted);
+  text-decoration: none;
+}
+
+.breadcrumb a:hover {
+  color: var(--color-accent);
+}
+
+.breadcrumb-sep {
+  color: var(--color-border);
+}
+
+.breadcrumb [aria-current="page"] {
+  color: var(--color-text);
+}
+
+/* ==========================================================================
    Header
    ========================================================================== */
 
@@ -455,13 +485,43 @@ img { max-width: 100%; display: block; }
   transition: border-color var(--transition), transform var(--transition), box-shadow var(--transition);
 }
 
-.software-card-thumb {
+.software-card-thumb-wrap {
+  position: relative;
   width: calc(100% + 2.5rem);
   aspect-ratio: 16 / 10;
-  object-fit: cover;
   margin: -1.25rem -1.25rem 1rem;
   background: var(--color-bg-subtle);
   border-bottom: var(--border-w) solid var(--color-border);
+  overflow: hidden;
+}
+
+.software-card-thumb {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: opacity var(--transition);
+}
+
+.software-card-thumb-alt {
+  opacity: 0;
+}
+
+.software-card:hover .software-card-thumb-alt,
+.software-card:focus-visible .software-card-thumb-alt {
+  opacity: 1;
+}
+
+.software-card-recent-badge {
+  font-family: var(--font-mono);
+  font-size: 0.625rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #ffffff;
+  background: var(--color-accent-strong);
+  border-radius: 999px;
+  padding: 0.15rem 0.55rem;
 }
 
 .software-card:hover,
@@ -504,11 +564,34 @@ img { max-width: 100%; display: block; }
 }
 
 .software-card-category {
+  display: inline-block;
   font-family: var(--font-mono);
-  font-size: 0.6875rem;
-  letter-spacing: 0.08em;
+  font-size: 0.625rem;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
+  color: var(--color-accent);
+  background: var(--color-accent-tint);
+  border-radius: 999px;
+  padding: 0.1rem 0.5rem;
+  margin-bottom: 0.3rem;
+}
+
+.software-card-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.35rem 0.75rem;
+  margin-top: 0.6rem;
+  font-size: 0.75rem;
   color: var(--color-muted);
+}
+
+.software-card-size {
+  font-family: var(--font-mono);
+}
+
+.software-card-updated {
+  font-family: var(--font-mono);
 }
 
 .software-card-title {
@@ -601,6 +684,35 @@ img { max-width: 100%; display: block; }
 
 .button-block { width: 100%; }
 
+.button-download {
+  padding: 0.9rem 1.25rem;
+  gap: 0.75rem;
+  font-size: var(--step-0);
+}
+
+.download-button-text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  line-height: 1.25;
+}
+
+.download-button-subtext {
+  font-size: 0.75rem;
+  font-weight: 500;
+  font-family: var(--font-mono);
+  opacity: 0.85;
+}
+
+.button-download.is-downloading,
+.button-download.is-downloaded {
+  background: var(--color-accent-strong);
+}
+
+.button-download.is-downloaded {
+  background: var(--color-success);
+}
+
 /* ==========================================================================
    Software detail page
    ========================================================================== */
@@ -654,17 +766,36 @@ img { max-width: 100%; display: block; }
   flex-wrap: wrap;
 }
 
-.screenshot {
+.screenshot-frame {
+  margin: 0;
   max-width: 280px;
   border: var(--border-w) solid var(--color-border);
   border-radius: 6px;
+  overflow: hidden;
+  background: var(--color-bg-subtle);
+  cursor: zoom-in;
   transition: transform var(--transition), box-shadow var(--transition);
 }
 
-.screenshot:hover,
-.screenshot:focus-visible {
+.screenshot-frame:hover,
+.screenshot-frame:focus-visible {
   transform: translateY(-2px);
   box-shadow: var(--shadow-md);
+}
+
+.screenshot {
+  display: block;
+  width: 100%;
+  border-radius: 0;
+}
+
+.screenshot-position {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  color: var(--color-muted);
+  text-align: center;
+  padding: 0.3rem 0;
+  border-top: var(--border-w) solid var(--color-border);
 }
 
 .lightbox-overlay {
@@ -684,6 +815,26 @@ img { max-width: 100%; display: block; }
   max-height: 85vh;
   border-radius: 6px;
   box-shadow: var(--shadow-lg);
+  opacity: 0;
+  transition: opacity 150ms ease;
+}
+
+.lightbox-image.is-visible {
+  opacity: 1;
+}
+
+.lightbox-counter {
+  position: absolute;
+  bottom: 1.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.12);
+  border: var(--border-w) solid rgba(255, 255, 255, 0.25);
+  border-radius: 999px;
+  padding: 0.25rem 0.75rem;
 }
 
 .lightbox-close,
@@ -738,6 +889,45 @@ img { max-width: 100%; display: block; }
   color: var(--color-accent);
   display: block;
   margin-bottom: 0.25rem;
+}
+
+.requirements-checklist {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.5rem;
+}
+
+.requirements-checklist li {
+  position: relative;
+  padding-left: 1.6rem;
+  color: var(--color-text);
+  font-size: var(--step--1);
+}
+
+.requirements-checklist li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.15rem;
+  width: 1.05rem;
+  height: 1.05rem;
+  border-radius: 4px;
+  background: var(--color-accent-tint);
+  border: var(--border-w) solid var(--color-accent-soft);
+}
+
+.requirements-checklist li::after {
+  content: "";
+  position: absolute;
+  left: 0.28rem;
+  top: 0.35rem;
+  width: 0.5rem;
+  height: 0.28rem;
+  border-left: 2px solid var(--color-accent);
+  border-bottom: 2px solid var(--color-accent);
+  transform: rotate(-45deg);
 }
 
 .changelog-entry ul {
@@ -851,6 +1041,19 @@ img { max-width: 100%; display: block; }
 .detail-aside dd {
   margin: 0.15rem 0 0;
   color: var(--color-text);
+}
+
+.similar-software {
+  padding: 2.5rem 0 3rem;
+  border-top: var(--border-w) solid var(--color-border);
+}
+
+.similar-software-grid {
+  padding-top: 0.5rem;
+}
+
+.similar-software-grid .software-card-title {
+  font-size: var(--step-0);
 }
 
 /* ==========================================================================

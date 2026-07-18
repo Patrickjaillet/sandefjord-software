@@ -129,6 +129,127 @@ function latestReleaseDate(item) {
   return entry ? new Date(entry.date).getTime() : 0;
 }
 
+function latestReleaseDateString(item) {
+  const entry = (item.changelog || [])[0];
+  return entry ? entry.date : null;
+}
+
+function isRecentlyUpdated(dateStr) {
+  if (!dateStr) return false;
+  const date = new Date(dateStr);
+  if (Number.isNaN(date.getTime())) return false;
+  const diffDays = (Date.now() - date.getTime()) / 86400000;
+  return diffDays >= 0 && diffDays <= 30;
+}
+
+function formatFileSize(bytes) {
+  if (!bytes && bytes !== 0) return null;
+  const units = ["B", "KB", "MB", "GB"];
+  let value = bytes;
+  let unitIndex = 0;
+  while (value >= 1024 && unitIndex < units.length - 1) {
+    value /= 1024;
+    unitIndex += 1;
+  }
+  const decimals = unitIndex === 0 || value >= 10 ? 0 : 1;
+  return `${value.toFixed(decimals)} ${units[unitIndex]}`;
+}
+
+function primaryAsset(item) {
+  const latest = (item.versionHistory || [])[0];
+  if (!latest) return null;
+  const assets = latest.assets || [];
+  return assets.find((asset) => asset.url === item.downloadUrl) || assets[0] || null;
+}
+
+function renderRequirementsChecklist(requirements) {
+  const items = (requirements || "")
+    .split(",")
+    .map((part) => part.trim())
+    .filter(Boolean);
+  if (!items.length) return "";
+  return `
+    <ul class="requirements-checklist">
+      ${items.map((req) => `<li>${escapeHtml(req)}</li>`).join("")}
+    </ul>
+  `;
+}
+
+function similarSoftware(item, software) {
+  const others = software.filter((entry) => entry.id !== item.id);
+  const sameCategory = others.filter((entry) => entry.category === item.category);
+  const rest = others.filter((entry) => entry.category !== item.category);
+  return [...sameCategory, ...rest].slice(0, 3);
+}
+
+function renderSimilarSoftware(item, software) {
+  const similar = similarSoftware(item, software);
+  if (!similar.length) return "";
+  return `
+    <section class="similar-software">
+      <h2>You might also like</h2>
+      <div class="software-grid similar-software-grid">
+        ${similar
+          .map(
+            (entry) => `
+          <a class="software-card" href="software.html?id=${encodeURIComponent(entry.id)}">
+            <div class="software-card-top">
+              <img class="software-card-icon" src="${entry.icon}" alt="" loading="lazy">
+              <div>
+                <span class="software-card-category">${escapeHtml(entry.category)}</span>
+                <h3 class="software-card-title">${escapeHtml(entry.name)}</h3>
+              </div>
+            </div>
+            <p class="software-card-desc">${escapeHtml(entry.shortDescription)}</p>
+            <div class="software-card-footer">
+              <span class="version-tag">v${escapeHtml(entry.version)}</span>
+              <span class="software-card-link">View details</span>
+            </div>
+          </a>`
+          )
+          .join("")}
+      </div>
+    </section>
+  `;
+}
+
+function setupDownloadButton(container) {
+  const button = container.querySelector("[data-download-button]");
+  if (!button) return;
+  button.addEventListener("click", () => {
+    const label = button.querySelector(".download-button-label");
+    if (!label) return;
+    const originalText = label.textContent;
+    button.classList.add("is-downloading");
+    label.textContent = "Preparing download...";
+    window.setTimeout(() => {
+      button.classList.remove("is-downloading");
+      button.classList.add("is-downloaded");
+      label.textContent = "Download started";
+      window.setTimeout(() => {
+        button.classList.remove("is-downloaded");
+        label.textContent = originalText;
+      }, 2000);
+    }, 900);
+  });
+}
+
+const WINDOWS_ICON_SVG = `<svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M3 5.5 10.5 4.4v7.1H3V5.5zm8.5-1.3L21 3v8.5h-9.5V4.2zM3 12.5h7.5v7.1L3 18.5v-6zm8.5 0H21V21l-9.5-1.3v-7.2z"/></svg>`;
+
+function renderBreadcrumb(items) {
+  return `
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      ${items
+        .map((crumb, i) =>
+          i === items.length - 1
+            ? `<span aria-current="page">${escapeHtml(crumb.label)}</span>`
+            : `<a href="${crumb.href}">${escapeHtml(crumb.label)}</a><span class="breadcrumb-sep" aria-hidden="true">/</span>`
+        )
+        .join("")}
+    </nav>
+  `;
+}
+
 function renderFeaturedSoftware(software) {
   const container = document.getElementById("featured-software");
   if (!container || !software.length) return;
@@ -252,14 +373,29 @@ function renderSoftwareCards(container, software) {
     return;
   }
   container.innerHTML = software
-    .map(
-      (item) => `
+    .map((item) => {
+      const screenshots = item.screenshots || [];
+      const updatedDate = latestReleaseDateString(item);
+      const recent = isRecentlyUpdated(updatedDate);
+      const size = formatFileSize((primaryAsset(item) || {}).size);
+
+      let thumbHtml = "";
+      if (screenshots.length > 1) {
+        thumbHtml = `
+          <div class="software-card-thumb-wrap">
+            <img class="software-card-thumb" src="${screenshots[0]}" alt="" loading="lazy">
+            <img class="software-card-thumb software-card-thumb-alt" src="${screenshots[1]}" alt="" loading="lazy">
+          </div>`;
+      } else if (screenshots.length === 1) {
+        thumbHtml = `
+          <div class="software-card-thumb-wrap">
+            <img class="software-card-thumb" src="${screenshots[0]}" alt="" loading="lazy">
+          </div>`;
+      }
+
+      return `
       <a class="software-card" href="software.html?id=${encodeURIComponent(item.id)}">
-        ${
-          (item.screenshots || []).length
-            ? `<img class="software-card-thumb" src="${item.screenshots[0]}" alt="" loading="lazy">`
-            : ""
-        }
+        ${thumbHtml}
         <div class="software-card-top">
           <img class="software-card-icon" src="${item.icon}" alt="" loading="lazy">
           <div>
@@ -273,12 +409,17 @@ function renderSoftwareCards(container, software) {
             ? `<div class="software-card-tags">${item.tags.slice(0, 4).map((tag) => `<span class="tag-chip">${escapeHtml(tag)}</span>`).join("")}</div>`
             : ""
         }
+        <div class="software-card-meta">
+          ${size ? `<span class="software-card-size">${size}</span>` : ""}
+          ${updatedDate ? `<span class="software-card-updated">Updated ${formatDisplayDate(updatedDate)}</span>` : ""}
+          ${recent ? `<span class="software-card-recent-badge">Updated recently</span>` : ""}
+        </div>
         <div class="software-card-footer">
           <span class="version-tag">v${escapeHtml(item.version)}</span>
           <span class="software-card-link">View details</span>
         </div>
-      </a>`
-    )
+      </a>`;
+    })
     .join("");
 }
 
@@ -322,11 +463,15 @@ async function renderSoftwareDetail() {
       return;
     }
 
-    const screenshotsHtml = (item.screenshots || []).length
-      ? (item.screenshots)
+    const screenshots = item.screenshots || [];
+    const screenshotsHtml = screenshots.length
+      ? screenshots
           .map(
-            (src, i) =>
-              `<img class="screenshot" src="${src}" alt="${escapeHtml(item.name)} screenshot" loading="lazy" tabindex="0" data-lightbox-index="${i}">`
+            (src, i) => `
+            <figure class="screenshot-frame" tabindex="0" data-lightbox-index="${i}">
+              <img class="screenshot" src="${src}" alt="${escapeHtml(item.name)} screenshot" loading="lazy">
+              ${screenshots.length > 1 ? `<figcaption class="screenshot-position">${i + 1} / ${screenshots.length}</figcaption>` : ""}
+            </figure>`
           )
           .join("")
       : `<div class="empty-state"><p>Screenshots will be added soon.</p></div>`;
@@ -373,7 +518,15 @@ async function renderSoftwareDetail() {
     document.title = `${item.name} — Sandefjord Software`;
     setSoftwareMeta(item);
 
+    const asset = primaryAsset(item);
+    const assetSize = formatFileSize(asset ? asset.size : null);
+    const assetDownloads = asset ? asset.downloadCount : null;
+    const downloadSubtextParts = [assetSize, typeof assetDownloads === "number" ? `${formatCompactNumber(assetDownloads)} downloads` : null].filter(Boolean);
+
+    const similarSoftwareHtml = renderSimilarSoftware(item, visibleSoftware(data));
+
     container.innerHTML = `
+      ${renderBreadcrumb([{ label: "Home", href: "index.html" }, { label: item.name }])}
       <div class="software-detail-layout">
         <div class="software-detail-main">
           <span class="eyebrow">${escapeHtml(item.category)}</span>
@@ -394,6 +547,11 @@ async function renderSoftwareDetail() {
           </section>
 
           <section>
+            <h2>System requirements</h2>
+            ${renderRequirementsChecklist(item.systemRequirements)}
+          </section>
+
+          <section>
             <h2>Changelog</h2>
             <ul class="changelog-list">${changelogHtml}</ul>
           </section>
@@ -405,12 +563,16 @@ async function renderSoftwareDetail() {
         </div>
 
         <aside class="detail-aside">
-          <a class="button button-primary button-block" href="${item.downloadUrl}" target="_blank" rel="noopener">Download v${escapeHtml(item.version)}</a>
+          <a class="button button-primary button-block button-download" href="${item.downloadUrl}" target="_blank" rel="noopener" data-download-button>
+            ${WINDOWS_ICON_SVG}
+            <span class="download-button-text">
+              <span class="download-button-label">Download v${escapeHtml(item.version)}</span>
+              ${downloadSubtextParts.length ? `<span class="download-button-subtext">${escapeHtml(downloadSubtextParts.join(" · "))}</span>` : ""}
+            </span>
+          </a>
           <dl>
             <dt>Current version</dt>
             <dd>${escapeHtml(item.version)}</dd>
-            <dt>Requirements</dt>
-            <dd>${escapeHtml(item.systemRequirements)}</dd>
             <dt>Category</dt>
             <dd>${escapeHtml(item.category)}</dd>
             ${(item.tags || []).length ? `<dt>Tags</dt><dd>${item.tags.map(escapeHtml).join(", ")}</dd>` : ""}
@@ -419,9 +581,12 @@ async function renderSoftwareDetail() {
           </dl>
         </aside>
       </div>
+
+      ${similarSoftwareHtml}
     `;
 
-    setupLightbox(container, item.screenshots || [], item.name);
+    setupLightbox(container, screenshots, item.name);
+    setupDownloadButton(container);
   } catch (error) {
     container.innerHTML = `<div class="empty-state"><p>Unable to load software details right now.</p></div>`;
     console.error(error);
@@ -441,17 +606,24 @@ function setupLightbox(container, screenshots, name) {
       <button type="button" class="lightbox-nav lightbox-prev" aria-label="Previous screenshot">&larr;</button>
       <img class="lightbox-image" alt="">
       <button type="button" class="lightbox-nav lightbox-next" aria-label="Next screenshot">&rarr;</button>
+      <span class="lightbox-counter"></span>
     `;
     document.body.appendChild(overlay);
   }
 
   const image = overlay.querySelector(".lightbox-image");
+  const counter = overlay.querySelector(".lightbox-counter");
   let currentIndex = 0;
 
   function show(index) {
     currentIndex = (index + screenshots.length) % screenshots.length;
-    image.src = screenshots[currentIndex];
-    image.alt = `${name} screenshot ${currentIndex + 1}`;
+    image.classList.remove("is-visible");
+    window.setTimeout(() => {
+      image.src = screenshots[currentIndex];
+      image.alt = `${name} screenshot ${currentIndex + 1}`;
+      image.classList.add("is-visible");
+    }, 100);
+    if (counter) counter.textContent = `${currentIndex + 1} / ${screenshots.length}`;
   }
 
   function open(index) {

@@ -149,13 +149,13 @@ Official Repository: https://github.com/Patrickjaillet/sandefjord-software
 
 > Objectif : que chaque carte et chaque fiche logiciel donne confiance et pousse naturellement vers le téléchargement.
 
-- [ ] Enrichir `.software-card` : badge de catégorie plus visible, mise en avant de la taille du fichier et de la date de dernière mise à jour, indicateur "mis à jour récemment" (ex. moins de 30 jours)
-- [ ] Ajouter un état de survol plus riche sur les cartes (légère montée de l'ombre déjà présente + aperçu d'une deuxième capture d'écran en fondu, sans JS lourd)
-- [ ] Redessiner le bouton de téléchargement principal sur `software.html` : taille plus généreuse, icône Windows, sous-texte avec taille de fichier et nombre de téléchargements, état de chargement/succès après clic
-- [ ] Ajouter une section "Configuration requise" présentée sous forme de checklist visuelle (OS, RAM, espace disque) plutôt qu'en simple texte
-- [ ] Ajouter des logiciels "similaires / à découvrir aussi" en bas de chaque fiche produit pour encourager la navigation inter-logiciels
-- [ ] Améliorer la galerie de captures d'écran : miniatures avec cadre cohérent, indicateur de position (1/4, 2/4...), transition douce en lightbox
-- [ ] Ajouter un fil d'ariane (breadcrumb) discret en haut des fiches logiciel et de la page téléchargements pour clarifier la navigation
+- [x] Enrichir `.software-card` : badge de catégorie plus visible, mise en avant de la taille du fichier et de la date de dernière mise à jour, indicateur "mis à jour récemment" (ex. moins de 30 jours) → catégorie en pastille teal, taille (depuis `totalDownloads`/assets réels) et date en bas de carte, badge "Updated recently" si le dernier changelog date de moins de 30 jours (`renderSoftwareCards()`)
+- [x] Ajouter un état de survol plus riche sur les cartes (légère montée de l'ombre déjà présente + aperçu d'une deuxième capture d'écran en fondu, sans JS lourd) → `.software-card-thumb-alt`, fondu CSS pur au survol/focus quand un logiciel a au moins deux captures d'écran
+- [x] Redessiner le bouton de téléchargement principal sur `software.html` : taille plus généreuse, icône Windows, sous-texte avec taille de fichier et nombre de téléchargements, état de chargement/succès après clic → `.button-download`, icône Windows inline en SVG, sous-texte taille + téléchargements réels, séquence visuelle "Preparing download…" → "Download started" (`setupDownloadButton()`)
+- [x] Ajouter une section "Configuration requise" présentée sous forme de checklist visuelle (OS, RAM, espace disque) plutôt qu'en simple texte → `.requirements-checklist`, découpe la chaîne `systemRequirements` existante en items cochés (pas de champs RAM/espace disque distincts dans le modèle de données actuel — non fabriqués)
+- [x] Ajouter des logiciels "similaires / à découvrir aussi" en bas de chaque fiche produit pour encourager la navigation inter-logiciels → section "You might also like", priorise la même catégorie puis complète avec les autres logiciels (`renderSimilarSoftware()`)
+- [x] Améliorer la galerie de captures d'écran : miniatures avec cadre cohérent, indicateur de position (1/4, 2/4...), transition douce en lightbox → `.screenshot-frame` avec légende de position sous chaque miniature, compteur et fondu dans la lightbox
+- [x] Ajouter un fil d'ariane (breadcrumb) discret en haut des fiches logiciel et de la page téléchargements pour clarifier la navigation → `.breadcrumb` (Home / nom du logiciel sur `software.html`, Home / Downloads sur `downloads.html`)
 
 ## Phase 11 — Micro-interactions, motion et cohérence visuelle globale
 

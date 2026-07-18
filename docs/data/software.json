@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-17T23:19:21.306Z",
+  "generatedAt": "2026-07-18T00:18:11.185Z",
   "software": [
     {
       "id": "numis-euro",
@@ -43,6 +43,68 @@
               "name": "NumisEuro-5.0.0-setup.exe",
               "url": "https://github.com/Patrickjaillet/Numis-Euro/releases/download/install/NumisEuro-5.0.0-setup.exe",
               "size": 3157039
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "shaddem",
+      "githubRepoId": 1293764523,
+      "name": "Shaddem",
+      "shortDescription": "real-time GLSL shader visualizer and demo creator",
+      "description": "real-time GLSL shader visualizer and demo creator",
+      "version": "1.0.0",
+      "prerelease": false,
+      "category": "Utilities",
+      "tags": [],
+      "hidden": false,
+      "order": 999,
+      "icon": "assets/icons/default-app.svg",
+      "screenshots": [],
+      "systemRequirements": "Windows 10/11, 64-bit",
+      "downloadUrl": "https://github.com/Patrickjaillet/Shaddem/releases/download/sd100/Shaddem.v1.0.0.exe",
+      "repositoryUrl": "https://github.com/Patrickjaillet/Shaddem",
+      "changelog": [
+        {
+          "version": "1.0.0",
+          "date": "2026-07-10",
+          "notes": [
+            "No release notes provided."
+          ],
+          "prerelease": false
+        },
+        {
+          "version": "0.1.0",
+          "date": "2026-07-08",
+          "notes": [
+            "No release notes provided."
+          ],
+          "prerelease": false
+        }
+      ],
+      "versionHistory": [
+        {
+          "version": "1.0.0",
+          "date": "2026-07-10",
+          "prerelease": false,
+          "assets": [
+            {
+              "name": "Shaddem.v1.0.0.exe",
+              "url": "https://github.com/Patrickjaillet/Shaddem/releases/download/sd100/Shaddem.v1.0.0.exe",
+              "size": 27538220
+            }
+          ]
+        },
+        {
+          "version": "0.1.0",
+          "date": "2026-07-08",
+          "prerelease": false,
+          "assets": [
+            {
+              "name": "ShaderDemo-Setup-0.1.0.exe",
+              "url": "https://github.com/Patrickjaillet/Shaddem/releases/download/sd010/ShaderDemo-Setup-0.1.0.exe",
+              "size": 27422124
             }
           ]
         }

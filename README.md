@@ -71,22 +71,20 @@ script only loads when a visitor clicks "Show comments", so it never
 affects the page's initial load performance. Likes reuse the 👍 reaction
 on each software's discussion instead of a separate counter.
 
-**One-time setup required** (not done yet — the site ships with
-placeholder IDs until this is complete):
-
-1. In this repo's Settings → General → Features, enable **Discussions**.
-2. Create a discussion category named **Software Comments** (Settings →
-   Discussions → the pencil/edit icon next to categories, or the "New
-   category" flow), format "Announcement" or "Q&A" both work fine.
-3. Install the [giscus GitHub App](https://github.com/apps/giscus) on
-   this repo (requires interactive authorization in the GitHub UI — it
-   can't be done via API/token).
-4. Go to [giscus.app](https://giscus.app), enter this repo, pick the
-   "Software Comments" category and the "specific term" mapping, and copy
-   the generated `data-repo-id` and `data-category-id` values.
-5. Paste those two values into `GISCUS_REPO_ID` and `GISCUS_CATEGORY_ID`
-   near the top of `src/js/main.js` (`setupComments()`), then
-   `npm run build` and commit.
+**Setup status** — Discussions is enabled on this repo, and
+`GISCUS_REPO_ID`/`GISCUS_CATEGORY_ID` in `src/js/main.js` are already
+filled in (repo node ID and the built-in "General" category — GitHub's
+API has no way to create a custom category, only the web UI does, so
+"General" was used instead of a dedicated one to avoid an extra manual
+step). **One step is still required and can only be done by a repo
+admin in the browser:** install the
+[giscus GitHub App](https://github.com/apps/giscus) on
+`Patrickjaillet/sandefjord-software` — installing a GitHub App requires
+interactive OAuth consent, which no API or token can perform on your
+behalf. Until that's done, the widget loads and fails with a clear
+"giscus is not installed on this repository" console message instead of
+displaying comments; everything starts working the moment the app is
+installed, no further code changes needed.
 
 Each software's comments map to its `id` (stable across renames), not its
 URL, so a discussion always stays attached to the right software.

@@ -284,14 +284,13 @@ function setupShareButtons(container, item) {
 }
 
 // Comments are powered by giscus (https://giscus.app), backed by GitHub
-// Discussions on this repo. Discussions must be enabled on the repo, the
-// giscus GitHub App installed, and a dedicated category created before
-// these two IDs exist — get them from giscus.app's config generator once
-// that's done, and replace the placeholders below.
+// Discussions on this repo (enabled, using the built-in "General"
+// category). The giscus GitHub App still needs to be installed on the
+// repo before this actually works — see README.md.
 const GISCUS_REPO = "Patrickjaillet/sandefjord-software";
-const GISCUS_REPO_ID = "REPLACE_WITH_GISCUS_REPO_ID";
-const GISCUS_CATEGORY = "Software Comments";
-const GISCUS_CATEGORY_ID = "REPLACE_WITH_GISCUS_CATEGORY_ID";
+const GISCUS_REPO_ID = "R_kgDOTb6Q8w";
+const GISCUS_CATEGORY = "General";
+const GISCUS_CATEGORY_ID = "DIC_kwDOTb6Q884DBdIi";
 
 function setupComments(container, item) {
   const button = container.querySelector("[data-show-comments]");

@@ -1,6 +1,103 @@
 {
-  "generatedAt": "2026-07-18T00:33:53.473Z",
+  "generatedAt": "2026-07-18T06:35:08.528Z",
   "software": [
+    {
+      "id": "aiprompt",
+      "githubRepoId": 1304051796,
+      "name": "AIPrompt",
+      "shortDescription": "Générateur, bibliothèque et assembleur de prompts IA — avec générateur intégré de fichiers ROADMAP.md",
+      "description": "Générateur, bibliothèque et assembleur de prompts IA — avec générateur intégré de fichiers ROADMAP.md",
+      "version": "1.0.0",
+      "prerelease": false,
+      "category": "Utilities",
+      "tags": [],
+      "hidden": false,
+      "order": 999,
+      "icon": "assets/icons/default-app.svg",
+      "screenshots": [],
+      "systemRequirements": "Windows 10/11, 64-bit",
+      "downloadUrl": "https://github.com/Patrickjaillet/AIPrompt/releases/download/v1.0.0/AIPromptSetup_x64.exe",
+      "repositoryUrl": "https://github.com/Patrickjaillet/AIPrompt",
+      "changelog": [
+        {
+          "version": "1.0.0",
+          "date": "2026-07-18",
+          "notes": [
+            "First stable release of AIPrompt: a Windows desktop app to build, organize, and assemble AI prompts from a local library of reusable terms and phrases, and to generate structured `ROADMAP.md` files.",
+            "## Installation",
+            "Download `AIPromptSetup_x64.exe` below, run it (no administrator rights required), and launch AIPrompt from the Start Menu or Desktop shortcut. Windows 10/11 x64, self-contained (.NET 8) — no separate runtime install needed.",
+            "## Highlights since the last pre-release",
+            "### Added",
+            "Automatic semantic versioning: a single `VERSION` file drives `Version`/`AssemblyVersion`/`FileVersion`/`InformationalVersion` across all projects, with a local build script (`scripts/build.ps1`) that auto-increments `PATCH`",
+            "Windows installer built with Inno Setup 6 (per-user install, Start Menu / Desktop shortcuts, clean uninstall) and a one-step build script (`scripts/build-installer.ps1`)",
+            "Final `README.md` with installation instructions and real application screenshots",
+            "`CONTRIBUTING.md`, issue templates, and `CODEOWNERS`",
+            "### Changed",
+            "About tab now shows the full informational version (including pre-release suffixes) instead of a truncated 3-part version",
+            "### Fixed",
+            "Removed a stray AI co-author mention found in git history during the final compliance pass (history rewritten, affected tags recreated)",
+            "See `CHANGELOG.md` for the complete history."
+          ],
+          "prerelease": false
+        }
+      ],
+      "versionHistory": [
+        {
+          "version": "1.0.0",
+          "date": "2026-07-18",
+          "prerelease": false,
+          "assets": [
+            {
+              "name": "AIPromptSetup_x64.exe",
+              "url": "https://github.com/Patrickjaillet/AIPrompt/releases/download/v1.0.0/AIPromptSetup_x64.exe",
+              "size": 55748238
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "glsl-hyper-golfer",
+      "githubRepoId": 1299639988,
+      "name": "GLSL-Hyper-Golfer",
+      "shortDescription": "Minifieur de shaders GLSL avec aperçu WebGL en direct — 100 % dans le navigateur, rien n'est envoyé nulle part.",
+      "description": "Minifieur de shaders GLSL avec aperçu WebGL en direct — 100 % dans le navigateur, rien n'est envoyé nulle part.",
+      "version": "1.0.0",
+      "prerelease": false,
+      "category": "Utilities",
+      "tags": [],
+      "hidden": false,
+      "order": 999,
+      "icon": "assets/icons/default-app.svg",
+      "screenshots": [],
+      "systemRequirements": "Windows 10/11, 64-bit",
+      "downloadUrl": "https://github.com/Patrickjaillet/GLSL-Hyper-Golfer/releases/download/1.0.0/glsl-hyper-golfer-1.0.0.zip",
+      "repositoryUrl": "https://github.com/Patrickjaillet/GLSL-Hyper-Golfer",
+      "changelog": [
+        {
+          "version": "1.0.0",
+          "date": "2026-07-18",
+          "notes": [
+            "No release notes provided."
+          ],
+          "prerelease": false
+        }
+      ],
+      "versionHistory": [
+        {
+          "version": "1.0.0",
+          "date": "2026-07-18",
+          "prerelease": false,
+          "assets": [
+            {
+              "name": "glsl-hyper-golfer-1.0.0.zip",
+              "url": "https://github.com/Patrickjaillet/GLSL-Hyper-Golfer/releases/download/1.0.0/glsl-hyper-golfer-1.0.0.zip",
+              "size": 283602
+            }
+          ]
+        }
+      ]
+    },
     {
       "id": "numis-euro",
       "githubRepoId": 1270335065,
@@ -14,7 +111,9 @@
       "hidden": false,
       "order": 999,
       "icon": "assets/icons/default-app.svg",
-      "screenshots": ["assets/screenshots/numis-euro-1.png"],
+      "screenshots": [
+        "assets/screenshots/numis-euro-1.png"
+      ],
       "systemRequirements": "Windows 10/11, 64-bit",
       "downloadUrl": "https://github.com/Patrickjaillet/Numis-Euro/releases/download/install/NumisEuro-5.0.0-setup.exe",
       "repositoryUrl": "https://github.com/Patrickjaillet/Numis-Euro",

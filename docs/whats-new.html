@@ -3,16 +3,17 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>About — Sandefjord Software</title>
-  <meta name="description" content="Copyright, creator, contact and official GitHub repository for Sandefjord Software.">
-  <link rel="canonical" href="https://patrickjaillet.github.io/sandefjord-software/about.html">
+  <title>What's New — Sandefjord Software</title>
+  <meta name="description" content="Every release from every Sandefjord Software application, listed chronologically.">
+  <link rel="canonical" href="https://patrickjaillet.github.io/sandefjord-software/whats-new.html">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Sandefjord Software">
-  <meta property="og:title" content="About — Sandefjord Software">
-  <meta property="og:description" content="Copyright, creator, contact and official GitHub repository for Sandefjord Software.">
-  <meta property="og:url" content="https://patrickjaillet.github.io/sandefjord-software/about.html">
+  <meta property="og:title" content="What's New — Sandefjord Software">
+  <meta property="og:description" content="Every release from every Sandefjord Software application, listed chronologically.">
+  <meta property="og:url" content="https://patrickjaillet.github.io/sandefjord-software/whats-new.html">
   <meta property="og:image" content="https://patrickjaillet.github.io/sandefjord-software/assets/social-preview.png">
   <link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml">
+  <link rel="alternate" type="application/rss+xml" title="Sandefjord Software — What's New" href="rss.xml">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -32,30 +33,17 @@
 </header>
 
 
-  <main class="container about-page">
-    <span class="eyebrow">About</span>
-    <h1>Sandefjord Software</h1>
-    <p class="lede">Small Windows applications, built and maintained by a single developer.</p>
+  <main class="container">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="index.html">Home</a><span class="breadcrumb-sep" aria-hidden="true">/</span><span aria-current="page">What's New</span>
+    </nav>
+    <span class="eyebrow">Release history</span>
+    <h1>What's New</h1>
+    <p class="downloads-intro">Every release from every Sandefjord Software application, newest first. <a href="rss.xml">Subscribe via RSS</a>.</p>
 
-    <dl class="about-grid">
-      <dt>Creator</dt>
-      <dd>Patrick JAILLET</dd>
-
-      <dt>Email</dt>
-      <dd><a href="mailto:sandefjordsoftwaredevelopment@gmail.com">sandefjordsoftwaredevelopment@gmail.com</a></dd>
-
-      <dt>Website</dt>
-      <dd><a href="https://github.com/Patrickjaillet" target="_blank" rel="noopener">github.com/Patrickjaillet</a></dd>
-
-      <dt>Repository</dt>
-      <dd><a href="https://github.com/Patrickjaillet/sandefjord-software" target="_blank" rel="noopener">github.com/Patrickjaillet/sandefjord-software</a></dd>
-
-      <dt>License</dt>
-      <dd>MIT License, unless stated otherwise on a software's own page.</dd>
-
-      <dt>Copyright</dt>
-      <dd>&copy; 2026 Sandefjord Development. All rights reserved.</dd>
-    </dl>
+    <ul id="whats-new-list" class="whats-new-list">
+      <li class="loading-text">Loading releases...</li>
+    </ul>
   </main>
 
   <footer class="site-footer">
@@ -77,5 +65,6 @@
 
 
   <script src="js/main.js"></script>
+  <script>renderWhatsNewPage();</script>
 </body>
 </html>

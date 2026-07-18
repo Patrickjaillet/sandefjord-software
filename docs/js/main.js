@@ -236,12 +236,77 @@ function setupDownloadButton(container) {
 
 const WINDOWS_ICON_SVG = `<svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M3 5.5 10.5 4.4v7.1H3V5.5zm8.5-1.3L21 3v8.5h-9.5V4.2zM3 12.5h7.5v7.1L3 18.5v-6zm8.5 0H21V21l-9.5-1.3v-7.2z"/></svg>`;
 
+const SHARE_ICON_ATTRS = `viewBox="0 0 20 20" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"`;
+const COPY_ICON_SVG = `<svg ${SHARE_ICON_ATTRS}><rect x="7" y="7" width="10" height="10" rx="2"/><path d="M13 7V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2"/></svg>`;
+const SHARE_ICON_SVG = `<svg ${SHARE_ICON_ATTRS}><circle cx="15" cy="5" r="2"/><circle cx="5" cy="10" r="2"/><circle cx="15" cy="15" r="2"/><path d="M6.7 9 13.3 5.9M6.7 11l6.6 3.1"/></svg>`;
+const X_ICON_SVG = `<svg ${SHARE_ICON_ATTRS}><path d="M5 5l10 10M15 5 5 15"/></svg>`;
+const EMAIL_ICON_SVG = `<svg ${SHARE_ICON_ATTRS}><rect x="3" y="5" width="14" height="10" rx="1.5"/><path d="M3 6l7 5 7-5"/></svg>`;
+
+function shareUrl(item) {
+  return `${SITE_URL}/software.html?id=${encodeURIComponent(item.id)}`;
+}
+
+function setupShareButtons(container, item) {
+  const copyButton = container.querySelector("[data-copy-link]");
+  if (copyButton) {
+    const label = copyButton.querySelector("[data-copy-label]");
+    copyButton.addEventListener("click", async () => {
+      try {
+        await navigator.clipboard.writeText(shareUrl(item));
+        if (label) {
+          const original = label.textContent;
+          label.textContent = "Copied!";
+          window.setTimeout(() => {
+            label.textContent = original;
+          }, 2000);
+        }
+      } catch (error) {
+        console.error(error);
+      }
+    });
+  }
+
+  const nativeButton = container.querySelector("[data-native-share]");
+  if (nativeButton && navigator.share) {
+    nativeButton.hidden = false;
+    container.querySelectorAll("[data-static-share]").forEach((el) => {
+      el.hidden = true;
+    });
+    nativeButton.addEventListener("click", () => {
+      navigator.share({ title: item.name, text: item.shortDescription, url: shareUrl(item) }).catch(() => {});
+    });
+  }
+}
+
 const CATEGORY_ICON_ATTRS = `viewBox="0 0 16 16" width="12" height="12" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"`;
 const CATEGORY_ICONS = {
   "Developer Tools": `<svg ${CATEGORY_ICON_ATTRS}><path d="M5 4 1 8l4 4M11 4l4 4-4 4"/></svg>`,
   Collectibles: `<svg ${CATEGORY_ICON_ATTRS}><circle cx="8" cy="8" r="6"/><circle cx="8" cy="8" r="2.25"/></svg>`,
   Utilities: `<svg ${CATEGORY_ICON_ATTRS}><line x1="3" y1="4" x2="13" y2="4"/><circle cx="9.5" cy="4" r="1.4"/><line x1="3" y1="8" x2="13" y2="8"/><circle cx="6.5" cy="8" r="1.4"/><line x1="3" y1="12" x2="13" y2="12"/><circle cx="10.5" cy="12" r="1.4"/></svg>`,
 };
+
+const EMPTY_ICON_ATTRS = `viewBox="0 0 40 40" width="40" height="40" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"`;
+const EMPTY_ICONS = {
+  search: `<svg ${EMPTY_ICON_ATTRS}><circle cx="17" cy="17" r="10"/><line x1="24.5" y1="24.5" x2="33" y2="33"/></svg>`,
+  image: `<svg ${EMPTY_ICON_ATTRS}><rect x="4" y="7" width="32" height="26" rx="2"/><circle cx="14" cy="16" r="3"/><path d="M4 27 14 18l7 6 5-4 10 9"/></svg>`,
+  box: `<svg ${EMPTY_ICON_ATTRS}><path d="M4 13 20 6l16 7-16 7-16-7Z"/><path d="M4 13v14l16 7 16-7V13"/><path d="M20 20v14"/></svg>`,
+  warning: `<svg ${EMPTY_ICON_ATTRS}><path d="M20 6 36 33H4Z"/><line x1="20" y1="17" x2="20" y2="24"/><circle cx="20" cy="28.5" r="0.75" fill="currentColor"/></svg>`,
+};
+
+function emptyState({ icon, title, message, action }) {
+  return `
+    <div class="empty-state">
+      <div class="empty-state-icon">${EMPTY_ICONS[icon] || EMPTY_ICONS.box}</div>
+      <p class="empty-state-title">${escapeHtml(title)}</p>
+      <p class="empty-state-message">${escapeHtml(message)}</p>
+      ${action || ""}
+    </div>
+  `;
+}
+
+function emptyStateRow(colspan, args) {
+  return `<tr><td colspan="${colspan}">${emptyState(args)}</td></tr>`;
+}
 const DEFAULT_CATEGORY_ICON = `<svg ${CATEGORY_ICON_ATTRS}><rect x="2" y="2" width="5" height="5" rx="1"/><rect x="9" y="2" width="5" height="5" rx="1"/><rect x="2" y="9" width="5" height="5" rx="1"/><rect x="9" y="9" width="5" height="5" rx="1"/></svg>`;
 
 function categoryBadge(category) {
@@ -382,7 +447,11 @@ function setSoftwareMeta(item) {
 
 function renderSoftwareCards(container, software) {
   if (!software.length) {
-    container.innerHTML = `<div class="empty-state"><p>No software matches your search.</p></div>`;
+    container.innerHTML = emptyState({
+      icon: "search",
+      title: "No software matches",
+      message: "Try a different search term or category filter.",
+    });
     return;
   }
   container.innerHTML = software
@@ -464,10 +533,11 @@ async function renderHomepage() {
     const software = visibleSoftware(data);
     renderHeroStats(software);
     if (!software.length) {
-      container.innerHTML = `
-        <div class="empty-state">
-          <p>No software published yet. New applications appear here automatically as soon as they are released.</p>
-        </div>`;
+      container.innerHTML = emptyState({
+        icon: "box",
+        title: "No software published yet",
+        message: "New applications appear here automatically as soon as they are released.",
+      });
       return;
     }
     renderFeaturedSoftware(software);
@@ -477,7 +547,11 @@ async function renderHomepage() {
       renderSoftwareCards(container, software.filter((item) => matchesFilters(item, search, category)));
     });
   } catch (error) {
-    container.innerHTML = `<div class="empty-state"><p>Unable to load the software list right now.</p></div>`;
+    container.innerHTML = emptyState({
+      icon: "warning",
+      title: "Unable to load the software list",
+      message: "Something went wrong fetching the catalog. Please try refreshing the page.",
+    });
     console.error(error);
   }
 }
@@ -512,11 +586,12 @@ async function renderSoftwareDetail() {
     const data = await fetchSoftwareCatalog();
     const item = data.software.find((entry) => entry.id === id);
     if (!item) {
-      container.innerHTML = `
-        <div class="empty-state">
-          <p>Software not found.</p>
-          <p><a href="index.html">Back to homepage</a></p>
-        </div>`;
+      container.innerHTML = emptyState({
+        icon: "search",
+        title: "Software not found",
+        message: "This software may have been removed or the link is incorrect.",
+        action: `<a class="button button-primary" href="index.html">Back to homepage</a>`,
+      });
       return;
     }
 
@@ -526,12 +601,16 @@ async function renderSoftwareDetail() {
           .map(
             (src, i) => `
             <figure class="screenshot-frame" tabindex="0" data-lightbox-index="${i}">
-              <img class="screenshot" src="${src}" alt="${escapeHtml(item.name)} screenshot" loading="lazy">
+              <img class="screenshot" src="${src}" alt="${escapeHtml(item.name)} screenshot ${i + 1} of ${screenshots.length}" loading="lazy">
               ${screenshots.length > 1 ? `<figcaption class="screenshot-position">${i + 1} / ${screenshots.length}</figcaption>` : ""}
             </figure>`
           )
           .join("")
-      : `<div class="empty-state"><p>Screenshots will be added soon.</p></div>`;
+      : emptyState({
+          icon: "image",
+          title: "Screenshots coming soon",
+          message: "This software doesn't have any screenshots published yet.",
+        });
 
     const changelog = item.changelog || [];
     const changelogHtml = changelog.length
@@ -636,6 +715,24 @@ async function renderSoftwareDetail() {
             <dt>Repository</dt>
             <dd><a href="${item.repositoryUrl}" target="_blank" rel="noopener">View on GitHub</a></dd>
           </dl>
+
+          <div class="share-section">
+            <span class="eyebrow">Share</span>
+            <div class="share-row">
+              <button type="button" class="share-icon-button" data-copy-link aria-label="Copy link to this page">
+                ${COPY_ICON_SVG}<span data-copy-label>Copy link</span>
+              </button>
+              <button type="button" class="share-icon-button" data-native-share hidden aria-label="Share this page">
+                ${SHARE_ICON_SVG}<span>Share</span>
+              </button>
+              <a class="share-icon-button" data-static-share href="https://twitter.com/intent/tweet?url=${encodeURIComponent(shareUrl(item))}&text=${encodeURIComponent(`${item.name} — ${item.shortDescription}`)}" target="_blank" rel="noopener" aria-label="Share on X">
+                ${X_ICON_SVG}
+              </a>
+              <a class="share-icon-button" data-static-share href="mailto:?subject=${encodeURIComponent(item.name)}&body=${encodeURIComponent(`${item.shortDescription}\n\n${shareUrl(item)}`)}" aria-label="Share by email">
+                ${EMAIL_ICON_SVG}
+              </a>
+            </div>
+          </div>
         </aside>
       </div>
 
@@ -644,8 +741,13 @@ async function renderSoftwareDetail() {
 
     setupLightbox(container, screenshots, item.name);
     setupDownloadButton(container);
+    setupShareButtons(container, item);
   } catch (error) {
-    container.innerHTML = `<div class="empty-state"><p>Unable to load software details right now.</p></div>`;
+    container.innerHTML = emptyState({
+      icon: "warning",
+      title: "Unable to load software details",
+      message: "Something went wrong fetching this software. Please try refreshing the page.",
+    });
     console.error(error);
   }
 }
@@ -721,7 +823,11 @@ function setupLightbox(container, screenshots, name) {
 
 function renderDownloadsRows(tbody, software) {
   if (!software.length) {
-    tbody.innerHTML = `<tr><td colspan="5">No software matches your search.</td></tr>`;
+    tbody.innerHTML = emptyStateRow(5, {
+      icon: "search",
+      title: "No software matches",
+      message: "Try a different search term or category filter.",
+    });
     return;
   }
   tbody.innerHTML = software
@@ -760,7 +866,11 @@ async function renderDownloadsPage() {
     const data = await fetchSoftwareCatalog();
     const software = visibleSoftware(data);
     if (!software.length) {
-      tbody.innerHTML = `<tr><td colspan="5">No software published yet.</td></tr>`;
+      tbody.innerHTML = emptyStateRow(5, {
+        icon: "box",
+        title: "No software published yet",
+        message: "New applications appear here automatically as soon as they are released.",
+      });
       return;
     }
     renderDownloadsRows(tbody, software);
@@ -768,7 +878,58 @@ async function renderDownloadsPage() {
       renderDownloadsRows(tbody, software.filter((item) => matchesFilters(item, search, category)));
     });
   } catch (error) {
-    tbody.innerHTML = `<tr><td colspan="5">Unable to load downloads right now.</td></tr>`;
+    tbody.innerHTML = emptyStateRow(5, {
+      icon: "warning",
+      title: "Unable to load downloads",
+      message: "Something went wrong fetching the catalog. Please try refreshing the page.",
+    });
+    console.error(error);
+  }
+}
+
+function allReleasesChronological(software) {
+  return software
+    .flatMap((item) => (item.changelog || []).map((entry) => ({ item, entry })))
+    .sort((a, b) => new Date(b.entry.date) - new Date(a.entry.date));
+}
+
+function renderWhatsNewRows(container, releases) {
+  if (!releases.length) {
+    container.innerHTML = emptyState({
+      icon: "box",
+      title: "No releases yet",
+      message: "New releases from every application will show up here as soon as they're published.",
+    });
+    return;
+  }
+  container.innerHTML = releases
+    .map(
+      ({ item, entry }) => `
+      <li class="whats-new-entry">
+        <span class="whats-new-meta">
+          <a href="software.html?id=${encodeURIComponent(item.id)}">${escapeHtml(item.name)}</a>
+          <span class="version-tag">v${escapeHtml(entry.version)}</span>
+          ${entry.prerelease ? `<span class="badge-prerelease">Pre-release</span>` : ""}
+          <span class="whats-new-date">${formatDisplayDate(entry.date)}</span>
+        </span>
+        <ul>${renderChangelogNotes(entry.notes)}</ul>
+      </li>`
+    )
+    .join("");
+}
+
+async function renderWhatsNewPage() {
+  const container = document.getElementById("whats-new-list");
+  try {
+    const data = await fetchSoftwareCatalog();
+    const software = visibleSoftware(data);
+    renderWhatsNewRows(container, allReleasesChronological(software));
+  } catch (error) {
+    container.innerHTML = emptyState({
+      icon: "warning",
+      title: "Unable to load releases",
+      message: "Something went wrong fetching the release history. Please try refreshing the page.",
+    });
     console.error(error);
   }
 }

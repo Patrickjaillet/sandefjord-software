@@ -5,6 +5,10 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased]
 
 ### Added
+- "What's New" page (`whats-new.html`) listing every release from every application chronologically, plus an RSS feed (`rss.xml`, generated at build time) with feed autodiscovery on the homepage and the new page; linked from the main nav and the footer
+- "Copy link" and share buttons on the product page: clipboard copy, the native Web Share API where supported, and simple fallback links (X, email) with no third-party SDK
+- Polished empty states (search returns nothing, no screenshots yet, empty catalog, load errors) with a small SVG illustration and an engaging message, replacing plain "No results" text everywhere it appeared (homepage, downloads, product page, What's New)
+- A sober print stylesheet (`@media print`) for the product page: navigation, hero, share section, and similar-software are hidden, the layout flattens to one column, and text prints in black on white — useful for archiving a software's requirements or changelog
 - System dark mode (`prefers-color-scheme: dark`) across all public pages, with a dedicated fjord-teal dark palette and a `--color-on-accent` token to keep solid buttons/badges readable in both themes; the admin panel keeps its existing fixed light theme
 - A shared animation scale (one easing curve, three durations) applied consistently to every hover/focus/appearance transition site-wide
 - Fade-and-rise entrance animation for grid cards on initial load and when filtering/searching
@@ -51,6 +55,8 @@ All notable changes to this project will be documented in this file.
 - Base `README.md` and `CHANGELOG.md`
 
 ### Fixed
+- Keyboard focus on screenshot thumbnails (and any other `tabindex`-only element) fell back to the browser's default focus ring instead of the site's teal outline — the global focus-visible rule only covered `a`/`button`; extended it to `input` and any `[tabindex]` element
+- The hidden native "Share" button on the product page stayed visible regardless of `navigator.share` support, because `.share-icon-button { display: inline-flex }` overrode the browser's default `[hidden]` rule — added an explicit `[hidden] { display: none }` override
 - AIPrompt and GLSL-Hyper-Golfer descriptions were pulled from their GitHub repo description field in French; rewritten in English from each project's README, consistent with the "English only" convention
 - Admin panel writes now also commit to `docs/` (what GitHub Pages actually serves), not just the `data/` source files — previously an admin change wouldn't appear on the live site until the next scheduled sync
 - Two admin CSS media queries (login branding panel, sidebar-to-topbar collapse) were silently overridden by an unconditional rule later in the stylesheet, so nothing actually collapsed below the breakpoint; on mobile this hid the sidebar entirely with no way to switch views or sign out — reordered the rules and turned the sidebar into a horizontal top bar below 860px instead of hiding it

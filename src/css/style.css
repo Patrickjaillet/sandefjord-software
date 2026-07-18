@@ -124,7 +124,9 @@ a {
 a:hover { color: var(--color-accent-strong); }
 
 a:focus-visible,
-button:focus-visible {
+button:focus-visible,
+input:focus-visible,
+[tabindex]:focus-visible {
   outline: 2px solid var(--color-accent);
   outline-offset: 2px;
 }
@@ -564,7 +566,7 @@ img { max-width: 100%; display: block; }
 
 .software-card-recent-badge {
   font-family: var(--font-mono);
-  font-size: 0.625rem;
+  font-size: 0.6875rem;
   letter-spacing: 0.04em;
   text-transform: uppercase;
   color: var(--color-on-accent);
@@ -617,7 +619,7 @@ img { max-width: 100%; display: block; }
   align-items: center;
   gap: 0.3rem;
   font-family: var(--font-mono);
-  font-size: 0.625rem;
+  font-size: 0.6875rem;
   letter-spacing: 0.06em;
   text-transform: uppercase;
   color: var(--color-accent);
@@ -698,9 +700,34 @@ img { max-width: 100%; display: block; }
 .empty-state {
   border: 1px dashed var(--color-border);
   border-radius: var(--radius);
-  padding: 2rem;
+  padding: 2.5rem 2rem;
   text-align: center;
   color: var(--color-muted);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.empty-state-icon {
+  color: var(--color-accent-soft);
+  margin-bottom: 0.35rem;
+}
+
+.empty-state-title {
+  margin: 0;
+  font-weight: 600;
+  color: var(--color-text);
+  font-size: var(--step-0);
+}
+
+.empty-state-message {
+  margin: 0;
+  max-width: 32rem;
+}
+
+.empty-state .button {
+  margin-top: 0.75rem;
 }
 
 /* ==========================================================================
@@ -1100,6 +1127,60 @@ img { max-width: 100%; display: block; }
   padding: 0.05rem 0.3rem;
 }
 
+/* ==========================================================================
+   What's New page
+   ========================================================================== */
+
+.whats-new-list {
+  list-style: none;
+  margin: 2rem 0 3rem;
+  padding: 0;
+  border-left: 2px solid var(--color-border);
+}
+
+.whats-new-entry {
+  position: relative;
+  padding: 0 0 1.75rem 1.5rem;
+}
+
+.whats-new-entry::before {
+  content: "";
+  position: absolute;
+  left: -5px;
+  top: 4px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--color-accent);
+}
+
+.whats-new-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.35rem;
+}
+
+.whats-new-meta a {
+  font-weight: 700;
+  font-size: var(--step-1);
+  text-decoration: none;
+}
+
+.whats-new-date {
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+  color: var(--color-muted);
+}
+
+.whats-new-entry ul {
+  margin: 0.25rem 0 0;
+  padding-left: 1.1rem;
+  color: var(--color-muted);
+  font-size: var(--step--1);
+}
+
 .changelog-note-heading {
   list-style: none;
   margin: 0.85rem 0 0.2rem -1.1rem;
@@ -1196,6 +1277,46 @@ img { max-width: 100%; display: block; }
 .detail-aside dd {
   margin: 0.15rem 0 0;
   color: var(--color-text);
+}
+
+.share-section {
+  margin-top: 1.25rem;
+  padding-top: 1rem;
+  border-top: var(--border-w) solid var(--color-border);
+}
+
+.share-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.share-icon-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.45rem 0.65rem;
+  border: var(--border-w) solid var(--color-border);
+  border-radius: 6px;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font: inherit;
+  font-size: var(--step--1);
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition), color var(--transition);
+}
+
+.share-icon-button:hover {
+  background: var(--color-accent-tint);
+  border-color: var(--color-accent-soft);
+  color: var(--color-accent-strong);
+}
+
+.share-icon-button[hidden] {
+  display: none;
 }
 
 .similar-software {
@@ -1331,6 +1452,74 @@ img { max-width: 100%; display: block; }
 
 .loading-text { color: var(--color-muted); }
 
+/* ==========================================================================
+   Print (software detail page: requirements + changelog archiving)
+   ========================================================================== */
+
+@media print {
+  body:not(.admin-body) {
+    background: #ffffff;
+    color: #000000;
+  }
+
+  .site-header,
+  .breadcrumb,
+  .hero-actions,
+  .hero-stats,
+  .fjord-lines,
+  .catalog-toolbar,
+  .featured-software,
+  .latest-updates,
+  .software-card-link,
+  .software-detail-main section:has(> .screenshot-gallery),
+  .lightbox-overlay,
+  .share-section,
+  .similar-software,
+  .version-history-assets a,
+  .button-download,
+  .site-footer {
+    display: none !important;
+  }
+
+  a { color: #000000; text-decoration: underline; }
+
+  .software-detail-layout {
+    display: block;
+  }
+
+  .detail-aside {
+    position: static;
+    border: 1px solid #999999;
+    box-shadow: none;
+    margin-top: 1.5rem;
+  }
+
+  .software-card,
+  .featured-card,
+  .empty-state,
+  .screenshot-frame {
+    box-shadow: none;
+    border: 1px solid #999999;
+  }
+
+  .version-tag,
+  .tag-chip,
+  .software-card-category,
+  .badge-prerelease {
+    background: none;
+    border: 1px solid #999999;
+    color: #000000;
+  }
+
+  .requirements-checklist li::before {
+    background: none;
+    border-color: #999999;
+  }
+
+  .requirements-checklist li::after {
+    border-color: #000000;
+  }
+}
 
 /* ==========================================================================
    Admin

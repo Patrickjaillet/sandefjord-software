@@ -5,6 +5,8 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased]
 
 ### Added
+- Homepage hero redesign: stronger benefit-driven headline and reassuring subtitle, trust indicators (apps published, total downloads, link to the official GitHub account) computed live from the catalog, a dual call-to-action ("Browse software" / "View on GitHub"), a "Latest release" featured card, a "Latest updates" banner surfacing the 3 most recent releases across all software, and a subtle scroll parallax on the fjord contour-line graphic (`prefers-reduced-motion` respected)
+- Real per-release download counts (`totalDownloads` per software, `downloadCount` per asset) captured by `scripts/sync-releases.mjs` from the GitHub Releases API, powering the homepage trust indicators
 - Homepage and downloads page: live search and category filter pills over the software catalog
 - Tag chips on software cards and the software detail page
 - Click-to-enlarge screenshot lightbox (keyboard and mouse navigation) on the software detail page
@@ -40,6 +42,7 @@ All notable changes to this project will be documented in this file.
 - Base `README.md` and `CHANGELOG.md`
 
 ### Fixed
+- AIPrompt and GLSL-Hyper-Golfer descriptions were pulled from their GitHub repo description field in French; rewritten in English from each project's README, consistent with the "English only" convention
 - Admin panel writes now also commit to `docs/` (what GitHub Pages actually serves), not just the `data/` source files — previously an admin change wouldn't appear on the live site until the next scheduled sync
 - Two admin CSS media queries (login branding panel, sidebar-to-topbar collapse) were silently overridden by an unconditional rule later in the stylesheet, so nothing actually collapsed below the breakpoint; on mobile this hid the sidebar entirely with no way to switch views or sign out — reordered the rules and turned the sidebar into a horizontal top bar below 860px instead of hiding it
 

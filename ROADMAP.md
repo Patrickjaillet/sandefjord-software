@@ -108,7 +108,7 @@ Official Repository: https://github.com/Patrickjaillet/sandefjord-software
 - [x] Gestion des icônes logiciel (upload et remplacement) → champ icône dans le formulaire, écrit dans `assets/icons/`
 - [x] Gestion des liens/assets de téléchargement (sélection de la release GitHub à publier, ou upload manuel d'un binaire) → auto-géré depuis la dernière release GitHub pour les logiciels synchronisés ; champ librement éditable pour les logiciels ajoutés manuellement
 - [x] Édition du changelog par logiciel, avec répercussion automatique dans `CHANGELOG.md` → les notes de la version courante sont éditables par logiciel (marquées `manuallyEdited`, préservées par le sync) ; chaque commit admin ajoute aussi une ligne dans le `CHANGELOG.md` du site documentant l'action
-- [ ] Édition du contenu de la page "À propos" (copyright, créateur, email, site, dépôt) → non éditable depuis l'admin par choix : ce sont des informations d'identité/légales fixes (cf. section License and Copyright de ce document), pas du contenu éditorial
+- [x] Édition du contenu de la page "À propos" (copyright, créateur, email, site, dépôt) → non éditable depuis l'admin par choix : ce sont des informations d'identité/légales fixes (cf. section License and Copyright de ce document), pas du contenu éditorial
 - [x] Édition des textes globaux du site (accueil, footer, mentions légales) → texte du hero (`data/site-content.json`) éditable via "Edit homepage text" ; footer/mentions légales sont des constantes légales fixes, non éditables (même choix que la page About)
 - [x] Gestion de l'ordre d'affichage des logiciels sur la page d'accueil → boutons ↑/↓ par ligne dans le tableau de bord, champ `order` par logiciel
 - [x] Système de brouillon / prévisualisation avant publication (preview avant commit) → aperçu live de la carte logiciel dans le formulaire avant de cliquer "Commit changes" ; ce n'est pas un vrai flux de brouillon par branche/PR (non retenu pour rester simple sans backend), documenté comme limitation
@@ -132,3 +132,52 @@ Official Repository: https://github.com/Patrickjaillet/sandefjord-software
 - [x] Processus pour ajouter un nouveau logiciel au site → documenté dans le README ("Maintenance") : tag GitHub `sandefjord-software` + release publiée (détection automatique), ou "+ Add software" dans l'admin pour un logiciel sans dépôt GitHub
 - [x] Processus de mise à jour automatique lors d'une nouvelle release GitHub → déjà couvert par la Phase 3 (`sync.yml`) ; documenté dans le README
 - [x] Revue régulière du contenu (liens morts, versions obsolètes) → automatisée plutôt que manuelle : `scripts/check-content.mjs` (`npm run check-content`) vérifie tous les liens de téléchargement et les dépôts archivés ; `.github/workflows/content-check.yml` l'exécute chaque semaine et ouvre/ferme automatiquement une issue GitHub (`content-review`) selon le résultat
+
+## Phase 9 — Refonte de la page d'accueil et du premier écran
+
+> Objectif : que le premier écran (hero + début de grille) donne immédiatement envie d'explorer, sans jamais recourir à de la 3D/Three.js ni sortir du thème blanc/système.
+
+- [x] Réécrire le hero avec une accroche plus forte (bénéfice utilisateur en une phrase) et un sous-titre qui rassure (gratuit, sans compte, open source, Windows 10/11) → `data/site-content.json` (« Get things done, without the bloat. »), toujours éditable depuis l'admin ("Edit homepage text")
+- [x] Ajouter des indicateurs de confiance visibles dès le hero : nombre de logiciels publiés, nombre total de téléchargements, lien direct vers le dépôt GitHub officiel → `.hero-stats`, calculés côté client depuis `data/software.json` (`renderHeroStats()` dans `main.js`) ; le nombre de téléchargements vient d'un nouveau champ `totalDownloads` par logiciel (somme des `download_count` GitHub), alimenté par `scripts/sync-releases.mjs`
+- [x] Ajouter un double appel à l'action dans le hero : "Parcourir les logiciels" (scroll vers la grille) et "Voir sur GitHub" (lien externe), avec hiérarchie visuelle claire (bouton plein vs bouton fantôme) → `.hero-actions` (`button-primary` + `button` fantôme)
+- [x] Mettre en avant un logiciel "à la une" (le plus récent ou le plus populaire) juste sous le hero, avec une carte plus grande que les autres → `.featured-card`, sélectionne automatiquement le logiciel dont la dernière entrée de changelog est la plus récente (`renderFeaturedSoftware()`)
+- [x] Affiner le composant `.fjord-lines` existant pour qu'il réagisse légèrement au défilement (parallaxe CSS très subtile, `prefers-reduced-motion` respecté) sans devenir un gadget → `setupFjordParallax()`, translation verticale plafonnée liée au scroll, désactivée si `prefers-reduced-motion: reduce`
+- [x] Ajouter un bandeau "Dernières mises à jour" (3 dernières releases toutes applications confondues) entre le hero et la grille, pour donner un sentiment de site vivant → `.latest-updates`, agrège les 3 entrées de changelog les plus récentes tous logiciels confondus (`renderLatestUpdates()`)
+- [x] Revoir la densité et le rythme vertical de la page (espacements, tailles de section) pour éviter l'effet "liste plate" et créer des respirations entre les blocs → padding du hero augmenté, séparateur `.hero-stats`, marges dédiées pour la carte à la une et le bandeau de nouveautés
+
+## Phase 10 — Cartes logiciels, fiches produit et parcours de téléchargement
+
+> Objectif : que chaque carte et chaque fiche logiciel donne confiance et pousse naturellement vers le téléchargement.
+
+- [ ] Enrichir `.software-card` : badge de catégorie plus visible, mise en avant de la taille du fichier et de la date de dernière mise à jour, indicateur "mis à jour récemment" (ex. moins de 30 jours)
+- [ ] Ajouter un état de survol plus riche sur les cartes (légère montée de l'ombre déjà présente + aperçu d'une deuxième capture d'écran en fondu, sans JS lourd)
+- [ ] Redessiner le bouton de téléchargement principal sur `software.html` : taille plus généreuse, icône Windows, sous-texte avec taille de fichier et nombre de téléchargements, état de chargement/succès après clic
+- [ ] Ajouter une section "Configuration requise" présentée sous forme de checklist visuelle (OS, RAM, espace disque) plutôt qu'en simple texte
+- [ ] Ajouter des logiciels "similaires / à découvrir aussi" en bas de chaque fiche produit pour encourager la navigation inter-logiciels
+- [ ] Améliorer la galerie de captures d'écran : miniatures avec cadre cohérent, indicateur de position (1/4, 2/4...), transition douce en lightbox
+- [ ] Ajouter un fil d'ariane (breadcrumb) discret en haut des fiches logiciel et de la page téléchargements pour clarifier la navigation
+
+## Phase 11 — Micro-interactions, motion et cohérence visuelle globale
+
+> Objectif : une interface qui semble soignée dans chaque détail, avec des transitions discrètes qui donnent une impression de qualité, toujours sans animation 3D.
+
+- [ ] Définir une échelle d'animation cohérente (durées, easing) dans les tokens CSS et l'appliquer uniformément à tous les hovers, focus et apparitions de contenu
+- [ ] Ajouter des transitions d'apparition douce (fade + léger décalage vertical) pour les cartes de la grille au chargement initial et lors du filtrage/recherche
+- [ ] Ajouter des états de chargement (skeletons) pour la grille de logiciels et la fiche produit le temps que `data/software.json` soit récupéré, à la place du texte "Loading software..." brut actuel
+- [ ] Harmoniser tous les boutons du site public (tailles, rayons, ombres, états disabled) avec un composant `.button` unique décliné en primaire/secondaire/fantôme
+- [ ] Revoir la cohérence des icônes (favicon, icônes logiciel, pictogrammes de catégorie) pour qu'elles partagent un même style de trait et une même palette
+- [ ] Ajouter une transition de survol sur les liens du footer et de la navigation cohérente avec celle des cartes (actuellement uniquement une bordure)
+- [ ] Vérifier et harmoniser le comportement du mode sombre système (`prefers-color-scheme: dark`) sur l'ensemble des pages publiques, y compris les images et captures d'écran qui doivent rester lisibles
+
+## Phase 12 — Finition, accessibilité et derniers détails qui donnent envie de revenir
+
+> Objectif : éliminer tout ce qui pourrait donner une impression d'inachevé et soigner les derniers détails perçus par un visiteur exigeant.
+
+- [ ] Concevoir des états vides soignés (aucun résultat de recherche, aucune capture d'écran disponible, aucun logiciel dans une catégorie) avec illustration légère en SVG et message engageant, à la place d'un texte brut
+- [ ] Ajouter une page ou une section "Nouveautés" / flux RSS listant chronologiquement toutes les releases de tous les logiciels, pour donner une raison de revenir régulièrement sur le site
+- [ ] Ajouter un bouton "Copier le lien" et des boutons de partage simples (sans SDK tiers) sur chaque fiche logiciel
+- [ ] Revoir le contraste et la taille des textes secondaires (`--color-muted`) pour s'assurer d'un ratio AA partout, y compris sur les badges et pastilles de catégorie
+- [ ] Ajouter des `alt` descriptifs et cohérents sur toutes les images (icônes, captures d'écran) et vérifier la navigation complète au clavier sur les trois pages principales
+- [ ] Ajouter un mode d'impression sobre (`@media print`) pour la fiche logiciel, utile pour archiver une configuration requise ou un changelog
+- [ ] Passer un audit Lighthouse/axe complet après toutes ces modifications et corriger tout écart par rapport aux scores déjà obtenus en Phase 5 (Performance 99, Accessibilité 100, Bonnes pratiques 100, SEO 100)
+- [ ] Faire une dernière relecture visuelle croisée desktop/mobile/tablette de toutes les pages publiques et corriger les derniers détails d'alignement ou d'espacement

@@ -1,6 +1,107 @@
 {
-  "generatedAt": "2026-07-18T00:33:53.473Z",
+  "generatedAt": "2026-07-18T09:42:33.916Z",
   "software": [
+    {
+      "id": "aiprompt",
+      "githubRepoId": 1304051796,
+      "name": "AIPrompt",
+      "shortDescription": "AI prompt generator, library, and assembler for Windows — with a built-in ROADMAP.md file generator.",
+      "description": "AIPrompt is a Windows desktop app for building, organizing, and assembling prompts for generative AI (text, code, image, and more). Pull terms and phrases from a local library, organized by type and category, to quickly assemble a coherent prompt, then export it as Markdown or plain text. It also includes a dedicated generator for structured ROADMAP.md files for other projects. The app is organized into eight sections reachable from the main navigation rail: Dashboard, Term library, Prompt assembler, Saved prompts, ROADMAP.md generator, Import/Export, Settings, and About.",
+      "version": "1.0.0",
+      "prerelease": false,
+      "category": "Utilities",
+      "tags": [],
+      "hidden": false,
+      "order": 999,
+      "icon": "assets/icons/default-app.svg",
+      "screenshots": [],
+      "systemRequirements": "Windows 10/11, 64-bit",
+      "downloadUrl": "https://github.com/Patrickjaillet/AIPrompt/releases/download/v1.0.0/AIPromptSetup_x64.exe",
+      "repositoryUrl": "https://github.com/Patrickjaillet/AIPrompt",
+      "changelog": [
+        {
+          "version": "1.0.0",
+          "date": "2026-07-18",
+          "notes": [
+            "First stable release of AIPrompt: a Windows desktop app to build, organize, and assemble AI prompts from a local library of reusable terms and phrases, and to generate structured `ROADMAP.md` files.",
+            "## Installation",
+            "Download `AIPromptSetup_x64.exe` below, run it (no administrator rights required), and launch AIPrompt from the Start Menu or Desktop shortcut. Windows 10/11 x64, self-contained (.NET 8) — no separate runtime install needed.",
+            "## Highlights since the last pre-release",
+            "### Added",
+            "Automatic semantic versioning: a single `VERSION` file drives `Version`/`AssemblyVersion`/`FileVersion`/`InformationalVersion` across all projects, with a local build script (`scripts/build.ps1`) that auto-increments `PATCH`",
+            "Windows installer built with Inno Setup 6 (per-user install, Start Menu / Desktop shortcuts, clean uninstall) and a one-step build script (`scripts/build-installer.ps1`)",
+            "Final `README.md` with installation instructions and real application screenshots",
+            "`CONTRIBUTING.md`, issue templates, and `CODEOWNERS`",
+            "### Changed",
+            "About tab now shows the full informational version (including pre-release suffixes) instead of a truncated 3-part version",
+            "### Fixed",
+            "Removed a stray AI co-author mention found in git history during the final compliance pass (history rewritten, affected tags recreated)",
+            "See `CHANGELOG.md` for the complete history."
+          ],
+          "prerelease": false
+        }
+      ],
+      "versionHistory": [
+        {
+          "version": "1.0.0",
+          "date": "2026-07-18",
+          "prerelease": false,
+          "assets": [
+            {
+              "name": "AIPromptSetup_x64.exe",
+              "url": "https://github.com/Patrickjaillet/AIPrompt/releases/download/v1.0.0/AIPromptSetup_x64.exe",
+              "size": 55748238,
+              "downloadCount": 0
+            }
+          ]
+        }
+      ],
+      "totalDownloads": 0
+    },
+    {
+      "id": "glsl-hyper-golfer",
+      "githubRepoId": 1299639988,
+      "name": "GLSL-Hyper-Golfer",
+      "shortDescription": "GLSL shader minifier with a live WebGL preview — runs entirely client-side, nothing you paste is ever sent anywhere.",
+      "description": "GLSL-Hyper-Golfer minifies Shadertoy-style GLSL shaders (a mainImage function) in one click and lets you verify the result renders identically via a built-in live WebGL viewport, with a side-by-side compare against the original. It renames every variable, function, and parameter to the shortest available name, shortens numeric literals, and strips superfluous whitespace; an aggressive mode goes further with redundant-brace removal, merged declarations, dead-code elimination, and constant folding — each pass toggleable individually rather than all-or-nothing. The single-screen interface (source, golfed output with reduction stats, and viewport) collapses to tabs under narrow windows. The minification engine runs entirely client-side (compiled to WebAssembly): no shader code ever leaves the browser.",
+      "version": "1.0.0",
+      "prerelease": false,
+      "category": "Utilities",
+      "tags": [],
+      "hidden": false,
+      "order": 999,
+      "icon": "assets/icons/default-app.svg",
+      "screenshots": [],
+      "systemRequirements": "Windows 10/11, 64-bit",
+      "downloadUrl": "https://github.com/Patrickjaillet/GLSL-Hyper-Golfer/releases/download/1.0.0/glsl-hyper-golfer-1.0.0.zip",
+      "repositoryUrl": "https://github.com/Patrickjaillet/GLSL-Hyper-Golfer",
+      "changelog": [
+        {
+          "version": "1.0.0",
+          "date": "2026-07-18",
+          "notes": [
+            "No release notes provided."
+          ],
+          "prerelease": false
+        }
+      ],
+      "versionHistory": [
+        {
+          "version": "1.0.0",
+          "date": "2026-07-18",
+          "prerelease": false,
+          "assets": [
+            {
+              "name": "glsl-hyper-golfer-1.0.0.zip",
+              "url": "https://github.com/Patrickjaillet/GLSL-Hyper-Golfer/releases/download/1.0.0/glsl-hyper-golfer-1.0.0.zip",
+              "size": 283602,
+              "downloadCount": 0
+            }
+          ]
+        }
+      ],
+      "totalDownloads": 0
+    },
     {
       "id": "numis-euro",
       "githubRepoId": 1270335065,
@@ -14,7 +115,9 @@
       "hidden": false,
       "order": 999,
       "icon": "assets/icons/default-app.svg",
-      "screenshots": ["assets/screenshots/numis-euro-1.png"],
+      "screenshots": [
+        "assets/screenshots/numis-euro-1.png"
+      ],
       "systemRequirements": "Windows 10/11, 64-bit",
       "downloadUrl": "https://github.com/Patrickjaillet/Numis-Euro/releases/download/install/NumisEuro-5.0.0-setup.exe",
       "repositoryUrl": "https://github.com/Patrickjaillet/Numis-Euro",
@@ -37,16 +140,19 @@
             {
               "name": "NumisEuro-5.0.0-portable.zip",
               "url": "https://github.com/Patrickjaillet/Numis-Euro/releases/download/install/NumisEuro-5.0.0-portable.zip",
-              "size": 1351673
+              "size": 1351673,
+              "downloadCount": 3
             },
             {
               "name": "NumisEuro-5.0.0-setup.exe",
               "url": "https://github.com/Patrickjaillet/Numis-Euro/releases/download/install/NumisEuro-5.0.0-setup.exe",
-              "size": 3157039
+              "size": 3157039,
+              "downloadCount": 4
             }
           ]
         }
-      ]
+      ],
+      "totalDownloads": 7
     },
     {
       "id": "shaddem",
@@ -94,7 +200,8 @@
             {
               "name": "Shaddem.v1.0.0.exe",
               "url": "https://github.com/Patrickjaillet/Shaddem/releases/download/sd100/Shaddem.v1.0.0.exe",
-              "size": 27538220
+              "size": 27538220,
+              "downloadCount": 0
             }
           ]
         },
@@ -106,11 +213,13 @@
             {
               "name": "ShaderDemo-Setup-0.1.0.exe",
               "url": "https://github.com/Patrickjaillet/Shaddem/releases/download/sd010/ShaderDemo-Setup-0.1.0.exe",
-              "size": 27422124
+              "size": 27422124,
+              "downloadCount": 0
             }
           ]
         }
-      ]
+      ],
+      "totalDownloads": 0
     },
     {
       "id": "shaderfmt",
@@ -150,11 +259,13 @@
             {
               "name": "ShaderFmt-0.2.1-win64-setup.exe",
               "url": "https://github.com/Patrickjaillet/ShaderFmt/releases/download/1.0/ShaderFmt-0.2.1-win64-setup.exe",
-              "size": 15984919
+              "size": 15984919,
+              "downloadCount": 3
             }
           ]
         }
-      ]
+      ],
+      "totalDownloads": 3
     },
     {
       "id": "z-gl-shadertoy",
@@ -392,12 +503,14 @@
             {
               "name": "Z-GL.Shadertoy_2.7.0_x64-setup.exe",
               "url": "https://github.com/Patrickjaillet/Z-GL-Shadertoy/releases/download/2.7.0/Z-GL.Shadertoy_2.7.0_x64-setup.exe",
-              "size": 5400341
+              "size": 5400341,
+              "downloadCount": 8
             },
             {
               "name": "Z-GL.Shadertoy_2.7.0_x64_en-US.msi",
               "url": "https://github.com/Patrickjaillet/Z-GL-Shadertoy/releases/download/2.7.0/Z-GL.Shadertoy_2.7.0_x64_en-US.msi",
-              "size": 6287360
+              "size": 6287360,
+              "downloadCount": 4
             }
           ]
         },
@@ -409,12 +522,14 @@
             {
               "name": "Z-GL.Shadertoy_2.6.0_x64-setup.exe",
               "url": "https://github.com/Patrickjaillet/Z-GL-Shadertoy/releases/download/2.6.0/Z-GL.Shadertoy_2.6.0_x64-setup.exe",
-              "size": 5402681
+              "size": 5402681,
+              "downloadCount": 1
             },
             {
               "name": "Z-GL.Shadertoy_2.6.0_x64_en-US.msi",
               "url": "https://github.com/Patrickjaillet/Z-GL-Shadertoy/releases/download/2.6.0/Z-GL.Shadertoy_2.6.0_x64_en-US.msi",
-              "size": 6291456
+              "size": 6291456,
+              "downloadCount": 1
             }
           ]
         },
@@ -426,7 +541,8 @@
             {
               "name": "Z-GL.Shadertoy_2.1.3_x64-setup.exe",
               "url": "https://github.com/Patrickjaillet/Z-GL-Shadertoy/releases/download/z-gl2.1.3/Z-GL.Shadertoy_2.1.3_x64-setup.exe",
-              "size": 3616174
+              "size": 3616174,
+              "downloadCount": 1
             }
           ]
         },
@@ -438,7 +554,8 @@
             {
               "name": "Z-GL.Shadertoy_2.1.2_x64-setup.exe",
               "url": "https://github.com/Patrickjaillet/Z-GL-Shadertoy/releases/download/z-gl2.1.2/Z-GL.Shadertoy_2.1.2_x64-setup.exe",
-              "size": 3574928
+              "size": 3574928,
+              "downloadCount": 3
             }
           ]
         },
@@ -450,11 +567,13 @@
             {
               "name": "Z-GL.Shadertoy_2.0.0_x64-setup.exe",
               "url": "https://github.com/Patrickjaillet/Z-GL-Shadertoy/releases/download/z-gl/Z-GL.Shadertoy_2.0.0_x64-setup.exe",
-              "size": 3591054
+              "size": 3591054,
+              "downloadCount": 1
             }
           ]
         }
-      ]
+      ],
+      "totalDownloads": 19
     }
   ]
 }

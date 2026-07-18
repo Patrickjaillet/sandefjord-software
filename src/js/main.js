@@ -74,6 +74,116 @@ async function renderHero() {
   } catch (error) {
     console.error(error);
   }
+
+  setupFjordParallax();
+}
+
+function setupFjordParallax() {
+  const svg = document.getElementById("fjord-lines");
+  if (!svg) return;
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+  let ticking = false;
+  function update() {
+    const offset = Math.min(window.scrollY, 300) * 0.06;
+    svg.style.transform = `translateY(${offset}px)`;
+    ticking = false;
+  }
+  window.addEventListener(
+    "scroll",
+    () => {
+      if (!ticking) {
+        window.requestAnimationFrame(update);
+        ticking = true;
+      }
+    },
+    { passive: true }
+  );
+  update();
+}
+
+function formatCompactNumber(value) {
+  if (value >= 1000) return new Intl.NumberFormat("en-US", { notation: "compact" }).format(value);
+  return value.toLocaleString("en-US");
+}
+
+function formatDisplayDate(isoDate) {
+  const date = new Date(isoDate);
+  if (Number.isNaN(date.getTime())) return isoDate;
+  return date.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });
+}
+
+function renderHeroStats(software) {
+  const list = document.getElementById("hero-stats");
+  if (!list) return;
+  const totalDownloads = software.reduce((sum, item) => sum + (item.totalDownloads || 0), 0);
+  list.innerHTML = `
+    <li><strong>${formatCompactNumber(software.length)}</strong><span>Windows apps published</span></li>
+    <li><strong>${formatCompactNumber(totalDownloads)}</strong><span>Total downloads</span></li>
+    <li><strong><a href="https://github.com/Patrickjaillet" target="_blank" rel="noopener">GitHub</a></strong><span>Official repositories</span></li>
+  `;
+}
+
+function latestReleaseDate(item) {
+  const entry = (item.changelog || [])[0];
+  return entry ? new Date(entry.date).getTime() : 0;
+}
+
+function renderFeaturedSoftware(software) {
+  const container = document.getElementById("featured-software");
+  if (!container || !software.length) return;
+
+  const featured = [...software].sort((a, b) => latestReleaseDate(b) - latestReleaseDate(a))[0];
+
+  container.innerHTML = `
+    <a class="featured-card" href="software.html?id=${encodeURIComponent(featured.id)}">
+      ${
+        (featured.screenshots || []).length
+          ? `<img class="featured-card-thumb" src="${featured.screenshots[0]}" alt="" loading="lazy">`
+          : `<div class="featured-card-thumb featured-card-thumb-empty"></div>`
+      }
+      <div class="featured-card-body">
+        <span class="eyebrow">Latest release</span>
+        <h2 class="featured-card-title">${escapeHtml(featured.name)}</h2>
+        <p class="featured-card-desc">${escapeHtml(featured.shortDescription)}</p>
+        <div class="featured-card-footer">
+          <span class="version-tag">v${escapeHtml(featured.version)}</span>
+          <span class="software-card-link">View details</span>
+        </div>
+      </div>
+    </a>
+  `;
+}
+
+function renderLatestUpdates(software) {
+  const container = document.getElementById("latest-updates");
+  if (!container) return;
+
+  const updates = software
+    .flatMap((item) => (item.changelog || []).map((entry) => ({ item, entry })))
+    .sort((a, b) => new Date(b.entry.date) - new Date(a.entry.date))
+    .slice(0, 3);
+
+  if (!updates.length) {
+    container.innerHTML = "";
+    return;
+  }
+
+  container.innerHTML = `
+    <span class="eyebrow">Latest updates</span>
+    <ul class="latest-updates-list">
+      ${updates
+        .map(
+          ({ item, entry }) => `
+        <li>
+          <a href="software.html?id=${encodeURIComponent(item.id)}">${escapeHtml(item.name)}</a>
+          <span class="version-tag">v${escapeHtml(entry.version)}</span>
+          <span class="latest-updates-date">${formatDisplayDate(entry.date)}</span>
+        </li>`
+        )
+        .join("")}
+    </ul>
+  `;
 }
 
 function escapeHtml(value) {
@@ -177,6 +287,7 @@ async function renderHomepage() {
   try {
     const data = await fetchSoftwareCatalog();
     const software = visibleSoftware(data);
+    renderHeroStats(software);
     if (!software.length) {
       container.innerHTML = `
         <div class="empty-state">
@@ -184,6 +295,8 @@ async function renderHomepage() {
         </div>`;
       return;
     }
+    renderFeaturedSoftware(software);
+    renderLatestUpdates(software);
     renderSoftwareCards(container, software);
     setupCatalogToolbar(software, (search, category) => {
       renderSoftwareCards(container, software.filter((item) => matchesFilters(item, search, category)));

@@ -134,8 +134,14 @@ async function buildEntry(repo, existingByGithubId) {
       name: asset.name,
       url: asset.browser_download_url,
       size: asset.size,
+      downloadCount: asset.download_count,
     })),
   }));
+
+  const totalDownloads = versionHistory.reduce(
+    (sum, entry) => sum + entry.assets.reduce((assetSum, asset) => assetSum + (asset.downloadCount || 0), 0),
+    0
+  );
 
   const primaryAsset = pickPrimaryAsset(latestStable.assets || []);
   const downloadUrl = primaryAsset ? primaryAsset.browser_download_url : latestStable.html_url;
@@ -160,6 +166,7 @@ async function buildEntry(repo, existingByGithubId) {
     repositoryUrl: repo.html_url,
     changelog,
     versionHistory,
+    totalDownloads,
   };
 }
 

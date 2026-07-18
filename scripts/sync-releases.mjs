@@ -7,6 +7,7 @@
 // across renames using their stable GitHub repo id.
 
 import { readFile, writeFile } from "node:fs/promises";
+import { createHash } from "node:crypto";
 
 const OWNER = "Patrickjaillet";
 const TOPIC = "sandefjord-software";
@@ -85,6 +86,15 @@ function pickPrimaryAsset(assets) {
   return archive ?? assets[0] ?? null;
 }
 
+async function computeSha256(url) {
+  const response = await fetch(url);
+  if (!response.ok) {
+    throw new Error(`Failed to download asset for checksum: ${response.status} ${response.statusText}`);
+  }
+  const buffer = Buffer.from(await response.arrayBuffer());
+  return createHash("sha256").update(buffer).digest("hex");
+}
+
 function notesFromBody(body) {
   if (!body || !body.trim()) return ["No release notes provided."];
   const lines = body
@@ -126,6 +136,14 @@ async function buildEntry(repo, existingByGithubId) {
     };
   });
 
+  const knownChecksums = new Map(
+    (existing?.versionHistory || []).flatMap((entry) =>
+      (entry.assets || [])
+        .filter((asset) => asset.sha256)
+        .map((asset) => [asset.url, asset.sha256])
+    )
+  );
+
   const versionHistory = releases.map((release) => ({
     version: extractVersion(release),
     date: (release.published_at ?? release.created_at).slice(0, 10),
@@ -135,6 +153,9 @@ async function buildEntry(repo, existingByGithubId) {
       url: asset.browser_download_url,
       size: asset.size,
       downloadCount: asset.download_count,
+      ...(knownChecksums.has(asset.browser_download_url)
+        ? { sha256: knownChecksums.get(asset.browser_download_url) }
+        : {}),
     })),
   }));
 
@@ -146,6 +167,17 @@ async function buildEntry(repo, existingByGithubId) {
   const primaryAsset = pickPrimaryAsset(latestStable.assets || []);
   const downloadUrl = primaryAsset ? primaryAsset.browser_download_url : latestStable.html_url;
   const fallbackDescription = repo.description || "No description provided yet.";
+
+  let downloadSha256 = primaryAsset ? knownChecksums.get(primaryAsset.browser_download_url) : undefined;
+  if (primaryAsset && !downloadSha256) {
+    try {
+      downloadSha256 = await computeSha256(primaryAsset.browser_download_url);
+      const historyAsset = versionHistory[0]?.assets.find((asset) => asset.url === primaryAsset.browser_download_url);
+      if (historyAsset) historyAsset.sha256 = downloadSha256;
+    } catch (error) {
+      console.warn(`${repo.full_name}: could not compute checksum for ${primaryAsset.name}: ${error.message}`);
+    }
+  }
 
   return {
     id: existing?.id ?? slugify(repo.name),
@@ -163,6 +195,7 @@ async function buildEntry(repo, existingByGithubId) {
     screenshots: existing?.screenshots ?? [],
     systemRequirements: existing?.systemRequirements ?? "Windows 10/11, 64-bit",
     downloadUrl,
+    downloadSha256,
     repositoryUrl: repo.html_url,
     changelog,
     versionHistory,

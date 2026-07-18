@@ -23,11 +23,48 @@ function matchesFilters(item, search, category) {
   return haystack.includes(search.toLowerCase());
 }
 
+const SORT_OPTIONS = {
+  default: { label: "Recommended order", compare: null },
+  recent: {
+    label: "Recently updated",
+    compare: (a, b) => latestReleaseDate(b) - latestReleaseDate(a),
+  },
+  downloads: {
+    label: "Most downloaded",
+    compare: (a, b) => (b.totalDownloads || 0) - (a.totalDownloads || 0),
+  },
+  name: {
+    label: "Name (A-Z)",
+    compare: (a, b) => a.name.localeCompare(b.name),
+  },
+};
+
+function sortSoftware(software, sortKey) {
+  const option = SORT_OPTIONS[sortKey];
+  if (!option || !option.compare) return software;
+  return [...software].sort(option.compare);
+}
+
+function setupSearchShortcut(searchInput) {
+  document.addEventListener("keydown", (event) => {
+    if (event.key !== "/") return;
+    const target = event.target;
+    const isTyping =
+      target instanceof HTMLElement &&
+      (target.tagName === "INPUT" || target.tagName === "TEXTAREA" || target.isContentEditable);
+    if (isTyping) return;
+    event.preventDefault();
+    searchInput.focus();
+    searchInput.select();
+  });
+}
+
 function setupCatalogToolbar(software, onChange) {
   const searchInput = document.getElementById("catalog-search");
   const filtersEl = document.getElementById("category-filters");
+  const sortEl = document.getElementById("catalog-sort");
   if (!searchInput || !filtersEl) {
-    onChange("", "All");
+    onChange("", "All", "default");
     return;
   }
 
@@ -36,6 +73,7 @@ function setupCatalogToolbar(software, onChange) {
   );
 
   let activeCategory = "All";
+  let activeSort = "default";
 
   filtersEl.innerHTML = categories
     .map(
@@ -44,8 +82,14 @@ function setupCatalogToolbar(software, onChange) {
     )
     .join("");
 
+  if (sortEl) {
+    sortEl.innerHTML = Object.entries(SORT_OPTIONS)
+      .map(([key, { label }]) => `<option value="${key}">${escapeHtml(label)}</option>`)
+      .join("");
+  }
+
   function triggerChange() {
-    onChange(searchInput.value.trim(), activeCategory);
+    onChange(searchInput.value.trim(), activeCategory, activeSort);
   }
 
   filtersEl.querySelectorAll(".category-filter-btn").forEach((btn) => {
@@ -58,6 +102,15 @@ function setupCatalogToolbar(software, onChange) {
   });
 
   searchInput.addEventListener("input", triggerChange);
+
+  if (sortEl) {
+    sortEl.addEventListener("change", () => {
+      activeSort = sortEl.value;
+      triggerChange();
+    });
+  }
+
+  setupSearchShortcut(searchInput);
 }
 
 async function renderHero() {
@@ -236,6 +289,41 @@ function setupDownloadButton(container) {
 }
 
 const WINDOWS_ICON_SVG = `<svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M3 5.5 10.5 4.4v7.1H3V5.5zm8.5-1.3L21 3v8.5h-9.5V4.2zM3 12.5h7.5v7.1L3 18.5v-6zm8.5 0H21V21l-9.5-1.3v-7.2z"/></svg>`;
+
+function renderChecksumBlock(item) {
+  if (!item.downloadSha256) return "";
+  return `
+    <div class="checksum-block">
+      <span class="checksum-label">SHA-256 checksum</span>
+      <code class="checksum-value" data-checksum-value>${escapeHtml(item.downloadSha256)}</code>
+      <button type="button" class="button button-small button-secondary" data-copy-checksum>
+        ${COPY_ICON_SVG}<span data-copy-checksum-label>Copy</span>
+      </button>
+      <p class="checksum-hint">Compare this value against the hash of the file you downloaded to confirm it wasn't altered or corrupted.</p>
+    </div>
+  `;
+}
+
+function setupChecksumCopy(container) {
+  const button = container.querySelector("[data-copy-checksum]");
+  const value = container.querySelector("[data-checksum-value]");
+  if (!button || !value) return;
+  button.addEventListener("click", async () => {
+    const label = button.querySelector("[data-copy-checksum-label]");
+    try {
+      await navigator.clipboard.writeText(value.textContent.trim());
+      if (label) {
+        const original = label.textContent;
+        label.textContent = "Copied!";
+        window.setTimeout(() => {
+          label.textContent = original;
+        }, 2000);
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  });
+}
 
 const SHARE_ICON_ATTRS = `viewBox="0 0 20 20" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"`;
 const COPY_ICON_SVG = `<svg ${SHARE_ICON_ATTRS}><rect x="7" y="7" width="10" height="10" rx="2"/><path d="M13 7V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2"/></svg>`;
@@ -596,8 +684,9 @@ async function renderHomepage() {
     renderFeaturedSoftware(software);
     renderLatestUpdates(software);
     renderSoftwareCards(container, software);
-    setupCatalogToolbar(software, (search, category) => {
-      renderSoftwareCards(container, software.filter((item) => matchesFilters(item, search, category)));
+    setupCatalogToolbar(software, (search, category, sortKey) => {
+      const filtered = software.filter((item) => matchesFilters(item, search, category));
+      renderSoftwareCards(container, sortSoftware(filtered, sortKey));
     });
   } catch (error) {
     container.innerHTML = emptyState({
@@ -759,6 +848,7 @@ async function renderSoftwareDetail() {
               ${downloadSubtextParts.length ? `<span class="download-button-subtext">${escapeHtml(downloadSubtextParts.join(" · "))}</span>` : ""}
             </span>
           </a>
+          ${renderChecksumBlock(item)}
           <dl>
             <dt>Current version</dt>
             <dd>${escapeHtml(item.version)}</dd>
@@ -807,6 +897,7 @@ async function renderSoftwareDetail() {
 
     setupLightbox(container, screenshots, item.name);
     setupDownloadButton(container);
+    setupChecksumCopy(container);
     setupShareButtons(container, item);
     setupComments(container, item);
   } catch (error) {
@@ -943,8 +1034,9 @@ async function renderDownloadsPage() {
       return;
     }
     renderDownloadsRows(tbody, software);
-    setupCatalogToolbar(software, (search, category) => {
-      renderDownloadsRows(tbody, software.filter((item) => matchesFilters(item, search, category)));
+    setupCatalogToolbar(software, (search, category, sortKey) => {
+      const filtered = software.filter((item) => matchesFilters(item, search, category));
+      renderDownloadsRows(tbody, sortSoftware(filtered, sortKey));
     });
   } catch (error) {
     tbody.innerHTML = emptyStateRow(6, {

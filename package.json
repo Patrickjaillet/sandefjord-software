@@ -8,8 +8,14 @@
     "sync": "node scripts/sync-releases.mjs",
     "sync-engagement": "node scripts/sync-engagement.mjs",
     "build": "node scripts/build.mjs",
-    "check-content": "node scripts/check-content.mjs"
+    "check-content": "node scripts/check-content.mjs",
+    "serve": "node scripts/serve.mjs",
+    "test": "playwright test"
   },
   "license": "MIT",
-  "author": "Patrick JAILLET"
+  "author": "Patrick JAILLET",
+  "devDependencies": {
+    "@axe-core/playwright": "^4.10.1",
+    "@playwright/test": "^1.48.0"
+  }
 }

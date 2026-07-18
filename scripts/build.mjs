@@ -107,6 +107,36 @@ async function buildRssFeed() {
   await writeFile(path.join(OUT_DIR, "rss.xml"), xml, "utf8");
 }
 
+async function buildJsonFeed() {
+  const catalog = JSON.parse(await readFile(path.join("data", "software.json"), "utf8"));
+  const software = catalog.software.filter((item) => !item.hidden);
+
+  const items = software
+    .flatMap((item) =>
+      (item.changelog || []).map((entry) => ({
+        id: `${item.id}-${entry.version}`,
+        url: `${SITE_URL}/software.html?id=${encodeURIComponent(item.id)}`,
+        title: `${item.name} v${entry.version}`,
+        content_text: (entry.notes || []).join(" "),
+        date_published: new Date(entry.date).toISOString(),
+      }))
+    )
+    .sort((a, b) => new Date(b.date_published) - new Date(a.date_published))
+    .slice(0, 40);
+
+  const feed = {
+    version: "https://jsonfeed.org/version/1.1",
+    title: "Sandefjord Software — What's New",
+    home_page_url: `${SITE_URL}/whats-new.html`,
+    feed_url: `${SITE_URL}/feed.json`,
+    description: "Every release from every Sandefjord Software application, newest first.",
+    language: "en",
+    items,
+  };
+
+  await writeFile(path.join(OUT_DIR, "feed.json"), `${JSON.stringify(feed, null, 2)}\n`, "utf8");
+}
+
 async function build() {
   await rm(OUT_DIR, { recursive: true, force: true });
   await mkdir(OUT_DIR, { recursive: true });
@@ -116,6 +146,7 @@ async function build() {
   await cp("data", path.join(OUT_DIR, "data"), { recursive: true });
   await buildSitemap();
   await buildRssFeed();
+  await buildJsonFeed();
   console.log("Build complete: src -> docs (partials injected)");
 }
 

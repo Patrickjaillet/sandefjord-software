@@ -14,6 +14,7 @@
   <meta property="og:image" content="https://patrickjaillet.github.io/sandefjord-software/assets/social-preview.png">
   <link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml">
   <link rel="alternate" type="application/rss+xml" title="Sandefjord Software — What's New" href="rss.xml">
+  <link rel="alternate" type="application/feed+json" title="Sandefjord Software — What's New" href="feed.json">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -44,8 +45,9 @@
     <section id="latest-updates" class="latest-updates" aria-label="Latest updates"></section>
 
     <div class="catalog-toolbar">
-      <input type="search" id="catalog-search" class="catalog-search" placeholder="Search software..." aria-label="Search software">
+      <input type="search" id="catalog-search" class="catalog-search" placeholder="Search software... (press /)" aria-label="Search software">
       <div class="category-filters" id="category-filters"></div>
+      <select id="catalog-sort" class="catalog-sort" aria-label="Sort software"></select>
     </div>
 
     <section id="software-list" class="software-grid" aria-label="Software list">

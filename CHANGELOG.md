@@ -5,6 +5,11 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased]
 
 ### Added
+- Continuous integration on every Pull Request (`.github/workflows/ci.yml`): build + `check-content`, a Playwright test suite (`tests/e2e/`) covering homepage search/filter/sort and the `/` search shortcut, the downloads table, and a software detail page, an automated accessibility scan (`@axe-core/playwright`) on every main public page, and a Lighthouse CI budget (`.lighthouserc.json`) asserting on the same categories audited in Phase 5
+- SHA-256 checksum for each software's current download, computed and cached by `scripts/sync-releases.mjs` (`downloadSha256`), shown next to the download button on the product page with a "Copy" button
+- Sort control (recently updated / most downloaded / name A-Z) on the homepage and downloads page, alongside the existing search and category filter
+- Keyboard shortcut: pressing `/` anywhere on the homepage or downloads page focuses the search field
+- JSON Feed 1.1 (`docs/feed.json`, `buildJsonFeed()` in `scripts/build.mjs`) alongside the existing RSS feed, with autodiscovery on the homepage and What's New page
 - Community engagement: a lazy-loaded comments widget per software (giscus, backed by GitHub Discussions — no separate backend), reusing 👍 reactions as a like count; like/comment counts now show on software cards (homepage, "You might also like") and a new column in the downloads table; share buttons extended with Reddit and LinkedIn alongside X and email; `scripts/sync-engagement.mjs` fetches the counts on the existing 6-hour cron. GitHub Discussions is enabled (using the built-in "General" category — the API has no way to create a custom one), the giscus GitHub App is installed, and the comments widget is live and verified on the deployed site
 - "What's New" page (`whats-new.html`) listing every release from every application chronologically, plus an RSS feed (`rss.xml`, generated at build time) with feed autodiscovery on the homepage and the new page; linked from the main nav and the footer
 - "Copy link" and share buttons on the product page: clipboard copy, the native Web Share API where supported, and simple fallback links (X, email) with no third-party SDK

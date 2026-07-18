@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-18T00:18:11.185Z",
+  "generatedAt": "2026-07-18T00:33:53.473Z",
   "software": [
     {
       "id": "numis-euro",
@@ -52,16 +52,18 @@
       "id": "shaddem",
       "githubRepoId": 1293764523,
       "name": "Shaddem",
-      "shortDescription": "real-time GLSL shader visualizer and demo creator",
-      "description": "real-time GLSL shader visualizer and demo creator",
+      "shortDescription": "Real-time GLSL shader visualizer with a docked workspace: layers, post-processing, audio reactivity, and video export.",
+      "description": "Shaddem is a real-time GLSL shader visualizer for Windows with a docked workspace: a Navigation rail (Home, Shaders, Layers, Effects, Audio, Timeline, 3D, Export, Settings), a large central preview, and a contextual Inspector panel, with three switchable layout presets (Simple, Standard, Power User). It loads any number of .glsl fragment shaders from a folder with hot-reload and live compile-error reporting, and stacks multiple shaders as layers with per-layer blend modes and opacity. The post-processing pipeline covers color grading, geometric distortion (fisheye, wave, mirror, vortex, swirl, pixelate, mosaic), glitch/retro effects (RGB split, chromatic aberration, VHS, scanlines, datamosh), bloom, motion blur, feedback accumulation, and shader-to-shader transitions. Real-time FFT audio analysis drives shake, strobe, RGB split, scale, and kick-triggered effects with an on-screen spectrum/waveform overlay. Also included: a timeline/automation system, Wavefront .obj 3D model overlay, a CPU particle system, live shader coding with a snippet library, save/load/random-generate presets, and MP4/GIF video export via ffmpeg.",
       "version": "1.0.0",
       "prerelease": false,
-      "category": "Utilities",
+      "category": "Developer Tools",
       "tags": [],
       "hidden": false,
       "order": 999,
       "icon": "assets/icons/default-app.svg",
-      "screenshots": [],
+      "screenshots": [
+        "assets/screenshots/shaddem-1.jpg"
+      ],
       "systemRequirements": "Windows 10/11, 64-bit",
       "downloadUrl": "https://github.com/Patrickjaillet/Shaddem/releases/download/sd100/Shaddem.v1.0.0.exe",
       "repositoryUrl": "https://github.com/Patrickjaillet/Shaddem",

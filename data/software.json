@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-18T10:05:18.674Z",
+  "generatedAt": "2026-07-18T12:14:35.366Z",
   "software": [
     {
       "id": "aiprompt",
@@ -14,7 +14,10 @@
       "hidden": false,
       "order": 999,
       "icon": "assets/icons/default-app.svg",
-      "screenshots": ["assets/screenshots/aiprompt-1.png", "assets/screenshots/aiprompt-2.png"],
+      "screenshots": [
+        "assets/screenshots/aiprompt-1.png",
+        "assets/screenshots/aiprompt-2.png"
+      ],
       "systemRequirements": "Windows 10/11, 64-bit",
       "downloadUrl": "https://github.com/Patrickjaillet/AIPrompt/releases/download/v1.0.0/AIPromptSetup_x64.exe",
       "repositoryUrl": "https://github.com/Patrickjaillet/AIPrompt",
@@ -51,12 +54,16 @@
               "name": "AIPromptSetup_x64.exe",
               "url": "https://github.com/Patrickjaillet/AIPrompt/releases/download/v1.0.0/AIPromptSetup_x64.exe",
               "size": 55748238,
-              "downloadCount": 0
+              "downloadCount": 5
             }
           ]
         }
       ],
-      "totalDownloads": 0
+      "totalDownloads": 5,
+      "engagement": {
+        "likes": 0,
+        "comments": 0
+      }
     },
     {
       "id": "glsl-hyper-golfer",
@@ -71,7 +78,9 @@
       "hidden": false,
       "order": 999,
       "icon": "assets/icons/default-app.svg",
-      "screenshots": ["assets/screenshots/glsl-hyper-golfer-1.png"],
+      "screenshots": [
+        "assets/screenshots/glsl-hyper-golfer-1.png"
+      ],
       "systemRequirements": "Windows 10/11, 64-bit",
       "downloadUrl": "https://github.com/Patrickjaillet/GLSL-Hyper-Golfer/releases/download/1.0.0/glsl-hyper-golfer-1.0.0.zip",
       "repositoryUrl": "https://github.com/Patrickjaillet/GLSL-Hyper-Golfer",
@@ -95,12 +104,16 @@
               "name": "glsl-hyper-golfer-1.0.0.zip",
               "url": "https://github.com/Patrickjaillet/GLSL-Hyper-Golfer/releases/download/1.0.0/glsl-hyper-golfer-1.0.0.zip",
               "size": 283602,
-              "downloadCount": 0
+              "downloadCount": 3
             }
           ]
         }
       ],
-      "totalDownloads": 0
+      "totalDownloads": 3,
+      "engagement": {
+        "likes": 0,
+        "comments": 0
+      }
     },
     {
       "id": "numis-euro",
@@ -141,18 +154,22 @@
               "name": "NumisEuro-5.0.0-portable.zip",
               "url": "https://github.com/Patrickjaillet/Numis-Euro/releases/download/install/NumisEuro-5.0.0-portable.zip",
               "size": 1351673,
-              "downloadCount": 3
+              "downloadCount": 6
             },
             {
               "name": "NumisEuro-5.0.0-setup.exe",
               "url": "https://github.com/Patrickjaillet/Numis-Euro/releases/download/install/NumisEuro-5.0.0-setup.exe",
               "size": 3157039,
-              "downloadCount": 4
+              "downloadCount": 8
             }
           ]
         }
       ],
-      "totalDownloads": 7
+      "totalDownloads": 14,
+      "engagement": {
+        "likes": 0,
+        "comments": 0
+      }
     },
     {
       "id": "shaddem",
@@ -201,7 +218,7 @@
               "name": "Shaddem.v1.0.0.exe",
               "url": "https://github.com/Patrickjaillet/Shaddem/releases/download/sd100/Shaddem.v1.0.0.exe",
               "size": 27538220,
-              "downloadCount": 0
+              "downloadCount": 3
             }
           ]
         },
@@ -219,7 +236,11 @@
           ]
         }
       ],
-      "totalDownloads": 0
+      "totalDownloads": 3,
+      "engagement": {
+        "likes": 0,
+        "comments": 0
+      }
     },
     {
       "id": "shaderfmt",
@@ -260,12 +281,16 @@
               "name": "ShaderFmt-0.2.1-win64-setup.exe",
               "url": "https://github.com/Patrickjaillet/ShaderFmt/releases/download/1.0/ShaderFmt-0.2.1-win64-setup.exe",
               "size": 15984919,
-              "downloadCount": 3
+              "downloadCount": 6
             }
           ]
         }
       ],
-      "totalDownloads": 3
+      "totalDownloads": 6,
+      "engagement": {
+        "likes": 0,
+        "comments": 0
+      }
     },
     {
       "id": "z-gl-shadertoy",
@@ -504,13 +529,13 @@
               "name": "Z-GL.Shadertoy_2.7.0_x64-setup.exe",
               "url": "https://github.com/Patrickjaillet/Z-GL-Shadertoy/releases/download/2.7.0/Z-GL.Shadertoy_2.7.0_x64-setup.exe",
               "size": 5400341,
-              "downloadCount": 8
+              "downloadCount": 11
             },
             {
               "name": "Z-GL.Shadertoy_2.7.0_x64_en-US.msi",
               "url": "https://github.com/Patrickjaillet/Z-GL-Shadertoy/releases/download/2.7.0/Z-GL.Shadertoy_2.7.0_x64_en-US.msi",
               "size": 6287360,
-              "downloadCount": 4
+              "downloadCount": 7
             }
           ]
         },
@@ -573,7 +598,11 @@
           ]
         }
       ],
-      "totalDownloads": 19
+      "totalDownloads": 25,
+      "engagement": {
+        "likes": 0,
+        "comments": 0
+      }
     }
   ]
 }

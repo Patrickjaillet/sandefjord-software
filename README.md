@@ -71,20 +71,13 @@ script only loads when a visitor clicks "Show comments", so it never
 affects the page's initial load performance. Likes reuse the 👍 reaction
 on each software's discussion instead of a separate counter.
 
-**Setup status** — Discussions is enabled on this repo, and
-`GISCUS_REPO_ID`/`GISCUS_CATEGORY_ID` in `src/js/main.js` are already
-filled in (repo node ID and the built-in "General" category — GitHub's
-API has no way to create a custom category, only the web UI does, so
-"General" was used instead of a dedicated one to avoid an extra manual
-step). **One step is still required and can only be done by a repo
-admin in the browser:** install the
-[giscus GitHub App](https://github.com/apps/giscus) on
-`Patrickjaillet/sandefjord-software` — installing a GitHub App requires
-interactive OAuth consent, which no API or token can perform on your
-behalf. Until that's done, the widget loads and fails with a clear
-"giscus is not installed on this repository" console message instead of
-displaying comments; everything starts working the moment the app is
-installed, no further code changes needed.
+**Setup status** — done and live: Discussions is enabled on this repo,
+`GISCUS_REPO_ID`/`GISCUS_CATEGORY_ID` in `src/js/main.js` hold the real
+repo node ID and the built-in "General" category (GitHub's API has no
+way to create a custom category, only the web UI does, so "General" is
+used instead of a dedicated one), and the
+[giscus GitHub App](https://github.com/apps/giscus) is installed on
+`Patrickjaillet/sandefjord-software`.
 
 Each software's comments map to its `id` (stable across renames), not its
 URL, so a discussion always stays attached to the right software.

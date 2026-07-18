@@ -141,16 +141,6 @@ function insertChangelogEntry(changelogText, bullet) {
   return `${changelogText.slice(0, insertAt)}\n### Added\n- ${bullet}\n${changelogText.slice(insertAt)}`;
 }
 
-function showToast(message, isError) {
-  const existing = document.querySelector(".toast");
-  if (existing) existing.remove();
-  const toast = document.createElement("div");
-  toast.className = `toast${isError ? " error" : ""}`;
-  toast.textContent = message;
-  document.body.appendChild(toast);
-  setTimeout(() => toast.remove(), 5000);
-}
-
 function slugify(name) {
   return name
     .toLowerCase()
@@ -171,41 +161,72 @@ function hasStoredToken() {
   return !!localStorage.getItem(TOKEN_STORAGE_KEY);
 }
 
+let lastCommits = [];
+let activeView = "dashboard";
+let dashboardSearch = "";
+
 async function initAdmin() {
-  renderLogin();
+  renderLoginScreen();
 }
 
-function renderLogin() {
+function fjordLinesSvg() {
+  return `
+    <svg class="fjord-lines" viewBox="0 0 640 260" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path d="M0 40 C 120 10, 260 80, 400 40 S 620 10, 640 50" />
+      <path d="M0 90 C 130 60, 250 130, 400 90 S 610 60, 640 100" />
+      <path d="M0 140 C 140 110, 260 180, 410 140 S 600 110, 640 150" />
+      <path d="M0 190 C 150 160, 270 230, 420 190 S 590 160, 640 200" />
+    </svg>`;
+}
+
+function renderLoginScreen() {
   const stored = hasStoredToken();
   app().innerHTML = `
-    <div class="admin-login">
-      <h1>${stored ? "Unlock admin" : "Set up admin access"}</h1>
-      <p class="field-hint">
-        ${
-          stored
-            ? "Enter your passphrase to decrypt your stored GitHub token for this session."
-            : "Paste a GitHub token (fine-grained, contents:write on this repo, or classic with the repo scope) and choose a passphrase. The token is encrypted and stored only in this browser."
-        }
-      </p>
-      <form id="login-form">
-        ${
-          stored
-            ? ""
-            : `<div class="field">
-                 <label for="pat-input">GitHub token</label>
-                 <input type="password" id="pat-input" autocomplete="off" required>
-               </div>`
-        }
-        <div class="field">
-          <label for="passphrase-input">Passphrase</label>
-          <input type="password" id="passphrase-input" autocomplete="off" required>
+    <div class="admin-login-screen">
+      <div class="admin-login-brand">
+        <div class="admin-login-brand-mark">
+          <img src="assets/icons/favicon.svg" alt="">
+          <span>SANDEFJORD SOFTWARE</span>
         </div>
-        <div class="form-actions">
-          <button type="submit" class="button button-primary">${stored ? "Unlock" : "Save & continue"}</button>
-          ${stored ? `<button type="button" class="button button-secondary" id="reset-token">Use a different token</button>` : ""}
+        <div class="admin-login-brand-copy">
+          <h1>Run the catalog from here.</h1>
+          <p>Add software, curate what's featured, and publish edits straight to the live site — no server, just a signed commit.</p>
         </div>
-      </form>
-      <p id="login-error" class="field-hint"></p>
+        <div class="admin-login-brand-foot">patrickjaillet.github.io/sandefjord-software</div>
+        ${fjordLinesSvg()}
+      </div>
+      <div class="admin-login-pane">
+        <div class="admin-login-card">
+          <a class="admin-login-back" href="index.html">&larr; Back to site</a>
+          <h2>${stored ? "Unlock admin" : "Set up admin access"}</h2>
+          <p class="field-hint">
+            ${
+              stored
+                ? "Enter your passphrase to decrypt your stored GitHub token for this session."
+                : "Paste a GitHub token (fine-grained, contents:write on this repo, or classic with the repo scope) and choose a passphrase. The token is encrypted and stored only in this browser."
+            }
+          </p>
+          <form id="login-form">
+            ${
+              stored
+                ? ""
+                : `<div class="field">
+                     <label for="pat-input">GitHub token</label>
+                     <input type="password" id="pat-input" autocomplete="off" required>
+                   </div>`
+            }
+            <div class="field">
+              <label for="passphrase-input">Passphrase</label>
+              <input type="password" id="passphrase-input" autocomplete="off" required>
+            </div>
+            <div class="form-actions" style="background:none;position:static;padding:0;">
+              <button type="submit" class="button button-primary" id="login-submit">${stored ? "Unlock" : "Save & continue"}</button>
+              ${stored ? `<button type="button" class="button button-secondary" id="reset-token">Use a different token</button>` : ""}
+            </div>
+          </form>
+          <p id="login-error" class="admin-login-error"></p>
+        </div>
+      </div>
     </div>`;
 
   document.getElementById("login-form").addEventListener("submit", handleLoginSubmit);
@@ -213,7 +234,7 @@ function renderLogin() {
   if (resetBtn) {
     resetBtn.addEventListener("click", () => {
       localStorage.removeItem(TOKEN_STORAGE_KEY);
-      renderLogin();
+      renderLoginScreen();
     });
   }
 }
@@ -221,9 +242,13 @@ function renderLogin() {
 async function handleLoginSubmit(event) {
   event.preventDefault();
   const errorEl = document.getElementById("login-error");
+  const submitBtn = document.getElementById("login-submit");
   errorEl.textContent = "";
   const passphrase = document.getElementById("passphrase-input").value;
   const stored = hasStoredToken();
+
+  submitBtn.disabled = true;
+  submitBtn.textContent = "Verifying...";
 
   try {
     let token;
@@ -239,6 +264,8 @@ async function handleLoginSubmit(event) {
     if (user.login !== ALLOWED_LOGIN) {
       authToken = null;
       errorEl.textContent = `This token belongs to "${user.login}", not "${ALLOWED_LOGIN}". Access denied.`;
+      submitBtn.disabled = false;
+      submitBtn.textContent = stored ? "Unlock" : "Save & continue";
       return;
     }
     authUser = user;
@@ -254,12 +281,14 @@ async function handleLoginSubmit(event) {
     errorEl.textContent = stored
       ? "Wrong passphrase, or the stored token is no longer valid."
       : `Could not verify this token: ${error.message}`;
+    submitBtn.disabled = false;
+    submitBtn.textContent = stored ? "Unlock" : "Save & continue";
     console.error(error);
   }
 }
 
 async function loadDashboard() {
-  app().innerHTML = `<p class="loading-text">Loading catalog...</p>`;
+  app().innerHTML = `<div class="admin-boot"><img src="assets/icons/favicon.svg" alt=""><p>Loading catalog...</p></div>`;
   try {
     const [software, siteContent, commits] = await Promise.all([
       getFile(SOFTWARE_PATH),
@@ -268,89 +297,177 @@ async function loadDashboard() {
     ]);
     softwareFile = { sha: software.sha, data: JSON.parse(software.text) };
     siteContentFile = { sha: siteContent.sha, data: JSON.parse(siteContent.text) };
-    renderDashboard(commits);
+    lastCommits = commits;
+    activeView = "dashboard";
+    renderShell();
   } catch (error) {
-    app().innerHTML = `<div class="empty-state"><p>Failed to load catalog: ${escapeHtml(error.message)}</p></div>`;
+    app().innerHTML = `<div class="admin-boot"><p>Failed to load catalog: ${escapeHtml(error.message)}</p></div>`;
     console.error(error);
   }
 }
 
-function renderDashboard(commits) {
-  const list = [...softwareFile.data.software].sort(
-    (a, b) => (a.order ?? 999) - (b.order ?? 999) || a.name.localeCompare(b.name)
-  );
+function initials(name) {
+  return (name || "?").slice(0, 2).toUpperCase();
+}
 
-  const rows = list.length
-    ? list
-        .map(
-          (item, index) => `
-        <tr>
-          <td>${escapeHtml(item.name)}${item.hidden ? ` <span class="badge-hidden">Hidden</span>` : ""}</td>
-          <td>${escapeHtml(item.category)}</td>
-          <td class="mono">v${escapeHtml(item.version)}</td>
-          <td>${item.githubRepoId ? "GitHub sync" : "Manual"}</td>
-          <td class="actions">
-            <button class="button button-small" data-action="reorder-up" data-id="${item.id}" ${index === 0 ? "disabled" : ""}>&uarr;</button>
-            <button class="button button-small" data-action="reorder-down" data-id="${item.id}" ${index === list.length - 1 ? "disabled" : ""}>&darr;</button>
-            <button class="button button-small" data-action="edit" data-id="${item.id}">Edit</button>
-            <button class="button button-small button-secondary" data-action="toggle-hidden" data-id="${item.id}">${item.hidden ? "Show" : "Hide"}</button>
-            <button class="button button-small button-danger" data-action="delete" data-id="${item.id}">Delete</button>
-          </td>
-        </tr>`
-        )
-        .join("")
-    : `<tr><td colspan="5">No software yet.</td></tr>`;
-
-  const activityHtml = commits.length
-    ? commits
-        .map(
-          (commit) => `
-        <li>
-          <a href="${commit.html_url}" target="_blank" rel="noopener">${escapeHtml(commit.commit.message.split("\n")[0])}</a>
-          <div class="activity-meta">${escapeHtml(commit.commit.author?.name ?? "unknown")} &middot; ${escapeHtml(new Date(commit.commit.author?.date ?? Date.now()).toLocaleString())}</div>
-        </li>`
-        )
-        .join("")
-    : `<li>No recent activity.</li>`;
+function renderShell() {
+  const navItems = [
+    { id: "dashboard", label: "Dashboard", icon: "&#8962;" },
+    { id: "site-content", label: "Homepage text", icon: "&#9998;" },
+  ];
 
   app().innerHTML = `
-    <div class="admin-toolbar">
-      <div>
-        <span class="admin-badge">${escapeHtml(authUser?.login ?? "")}</span>
-        <span class="field-hint">Signed in — writes commit directly to <code>main</code>.</span>
-      </div>
-      <div class="form-actions">
-        <button class="button button-primary" id="add-software">+ Add software</button>
-        <button class="button button-secondary" id="edit-site-content">Edit homepage text</button>
-        <button class="button button-secondary" id="logout">Sign out</button>
-      </div>
+    <div class="admin-shell">
+      <aside class="admin-sidebar">
+        <div class="admin-sidebar-brand">
+          <img src="assets/icons/favicon.svg" alt="" width="24" height="24">
+          <span>Admin</span>
+        </div>
+        <ul class="admin-nav">
+          ${navItems
+            .map(
+              (item) =>
+                `<li><button type="button" class="admin-nav-item${activeView === item.id ? " active" : ""}" data-view="${item.id}"><span class="admin-nav-icon">${item.icon}</span>${item.label}</button></li>`
+            )
+            .join("")}
+        </ul>
+        <div class="admin-sidebar-foot">
+          <div class="admin-sidebar-user">
+            <span class="admin-avatar">${escapeHtml(initials(authUser?.login))}</span>
+            <span>${escapeHtml(authUser?.login ?? "")}</span>
+          </div>
+          <button type="button" class="admin-sidebar-link" id="view-site-link">View live site &#8599;</button>
+          <button type="button" class="admin-sidebar-link" id="logout">Sign out</button>
+        </div>
+      </aside>
+      <div class="admin-main" id="admin-main"></div>
     </div>
-
-    <section class="admin-section">
-      <h2>Software (${list.length})</h2>
-      <table class="admin-table">
-        <thead>
-          <tr><th>Name</th><th>Category</th><th>Version</th><th>Source</th><th>Actions</th></tr>
-        </thead>
-        <tbody>${rows}</tbody>
-      </table>
-    </section>
-
-    <section class="admin-section">
-      <h2>Recent activity</h2>
-      <ul class="activity-log">${activityHtml}</ul>
-    </section>
   `;
 
-  document.getElementById("add-software").addEventListener("click", () => renderEditForm(null));
-  document.getElementById("edit-site-content").addEventListener("click", renderSiteContentForm);
+  document.querySelectorAll(".admin-nav-item").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      activeView = btn.dataset.view;
+      renderShell();
+    });
+  });
   document.getElementById("logout").addEventListener("click", () => {
     authToken = null;
     authUser = null;
-    renderLogin();
+    renderLoginScreen();
+  });
+  document.getElementById("view-site-link").addEventListener("click", () => window.open("index.html", "_blank"));
+
+  if (activeView === "dashboard") renderDashboardView();
+  else if (activeView === "site-content") renderSiteContentView();
+  else if (activeView === "edit") renderEditFormView(editingItemId);
+}
+
+function renderDashboardView() {
+  const main = document.getElementById("admin-main");
+  const all = softwareFile.data.software;
+  const list = [...all]
+    .filter((item) => {
+      if (!dashboardSearch) return true;
+      const haystack = `${item.name} ${item.id} ${item.category}`.toLowerCase();
+      return haystack.includes(dashboardSearch.toLowerCase());
+    })
+    .sort((a, b) => (a.order ?? 999) - (b.order ?? 999) || a.name.localeCompare(b.name));
+
+  const visibleCount = all.filter((i) => !i.hidden).length;
+  const hiddenCount = all.length - visibleCount;
+  const syncedCount = all.filter((i) => i.githubRepoId).length;
+
+  const rows = list.length
+    ? list
+        .map((item, index) => {
+          const fullIndex = [...all].sort((a, b) => (a.order ?? 999) - (b.order ?? 999) || a.name.localeCompare(b.name)).findIndex((e) => e.id === item.id);
+          return `
+        <tr>
+          <td>
+            <div class="admin-row-name">
+              <img class="admin-row-icon" src="${item.icon}" alt="">
+              <div>
+                <div class="admin-row-title">${escapeHtml(item.name)}${item.hidden ? `<span class="badge-hidden">Hidden</span>` : ""}</div>
+                <div class="admin-row-id">${escapeHtml(item.id)}</div>
+              </div>
+            </div>
+          </td>
+          <td><span class="category-pill">${escapeHtml(item.category)}</span></td>
+          <td class="mono">v${escapeHtml(item.version)}</td>
+          <td><span class="source-pill">${item.githubRepoId ? "&#128279; GitHub sync" : "&#9998; Manual"}</span></td>
+          <td class="actions">
+            <button class="icon-button" data-action="reorder-up" data-id="${item.id}" title="Move up" ${fullIndex === 0 ? "disabled" : ""}>&uarr;</button>
+            <button class="icon-button" data-action="reorder-down" data-id="${item.id}" title="Move down" ${fullIndex === all.length - 1 ? "disabled" : ""}>&darr;</button>
+            <button class="icon-button" data-action="edit" data-id="${item.id}" title="Edit">&#9998;</button>
+            <button class="icon-button" data-action="toggle-hidden" data-id="${item.id}" title="${item.hidden ? "Show on site" : "Hide from site"}" style="width:auto;padding:0 0.5rem;font-size:var(--step--1);">${item.hidden ? "Show" : "Hide"}</button>
+            <button class="icon-button danger" data-action="delete" data-id="${item.id}" title="Delete">&#128465;</button>
+          </td>
+        </tr>`;
+        })
+        .join("")
+    : `<tr><td colspan="5" class="admin-empty">No software matches.</td></tr>`;
+
+  const activityHtml = lastCommits.length
+    ? lastCommits
+        .map(
+          (commit) => `
+        <li>
+          <span class="activity-dot"></span>
+          <div>
+            <a href="${commit.html_url}" target="_blank" rel="noopener">${escapeHtml(commit.commit.message.split("\n")[0])}</a>
+            <div class="activity-meta">${escapeHtml(commit.commit.author?.name ?? "unknown")} &middot; ${escapeHtml(new Date(commit.commit.author?.date ?? Date.now()).toLocaleString())}</div>
+          </div>
+        </li>`
+        )
+        .join("")
+    : `<li class="admin-empty">No recent activity.</li>`;
+
+  main.innerHTML = `
+    <div class="admin-topbar">
+      <div>
+        <h1>Dashboard</h1>
+        <div class="admin-topbar-sub">Writes commit directly to <code>main</code> and go live immediately.</div>
+      </div>
+      <button class="button button-primary" id="add-software">+ Add software</button>
+    </div>
+
+    <div class="stat-grid">
+      <div class="stat-card"><div class="stat-card-value">${all.length}</div><div class="stat-card-label">Total software</div></div>
+      <div class="stat-card"><div class="stat-card-value">${visibleCount}</div><div class="stat-card-label">Visible</div></div>
+      <div class="stat-card"><div class="stat-card-value">${hiddenCount}</div><div class="stat-card-label">Hidden</div></div>
+      <div class="stat-card"><div class="stat-card-value">${syncedCount}</div><div class="stat-card-label">GitHub-synced</div></div>
+    </div>
+
+    <div class="admin-card">
+      <div class="admin-toolbar">
+        <input type="search" class="admin-search" id="dashboard-search" placeholder="Search software..." value="${escapeHtml(dashboardSearch)}">
+      </div>
+      <div class="admin-table-wrap">
+        <table class="admin-table">
+          <thead><tr><th>Software</th><th>Category</th><th>Version</th><th>Source</th><th>Actions</th></tr></thead>
+          <tbody>${rows}</tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="admin-card">
+      <h2>Recent activity</h2>
+      <ul class="activity-log">${activityHtml}</ul>
+    </div>
+  `;
+
+  document.getElementById("add-software").addEventListener("click", () => {
+    editingItemId = null;
+    activeView = "edit";
+    renderShell();
   });
 
-  app().querySelectorAll("[data-action]").forEach((button) => {
+  document.getElementById("dashboard-search").addEventListener("input", (event) => {
+    dashboardSearch = event.target.value;
+    renderDashboardView();
+  });
+
+  main.querySelectorAll("[data-action]").forEach((button) => {
     button.addEventListener("click", () => handleDashboardAction(button.dataset.action, button.dataset.id));
   });
 }
@@ -360,20 +477,26 @@ async function handleDashboardAction(action, id) {
   if (!item) return;
 
   if (action === "edit") {
-    renderEditForm(item);
+    editingItemId = id;
+    activeView = "edit";
+    renderShell();
     return;
   }
 
   if (action === "toggle-hidden") {
     item.hidden = !item.hidden;
-    await saveCatalog(`chore(admin): ${item.hidden ? "hide" : "show"} ${item.name}`);
+    await saveCatalog(`${item.hidden ? "Hide" : "Show"} ${item.name} on the site`);
     return;
   }
 
   if (action === "delete") {
-    if (!confirm(`Delete "${item.name}" from the catalog? This cannot be undone from the admin panel.`)) return;
+    const ok = await confirmModal(
+      `Delete "${item.name}"?`,
+      "This removes it from the catalog immediately. Uploaded assets stay in the repo but this cannot be undone from the admin panel."
+    );
+    if (!ok) return;
     softwareFile.data.software = softwareFile.data.software.filter((entry) => entry.id !== id);
-    await saveCatalog(`chore(admin): remove ${item.name} from the catalog`);
+    await saveCatalog(`Remove ${item.name} from the catalog`);
     return;
   }
 
@@ -388,14 +511,52 @@ async function handleDashboardAction(action, id) {
     const a = list[index];
     const b = list[swapWith];
     [a.order, b.order] = [b.order, a.order];
-    await saveCatalog(`chore(admin): reorder ${a.name} and ${b.name}`);
+    await saveCatalog(`Reorder ${a.name} and ${b.name}`);
   }
 }
 
-async function saveCatalog(commitMessage) {
+function confirmModal(title, message) {
+  return new Promise((resolve) => {
+    const backdrop = document.createElement("div");
+    backdrop.className = "modal-backdrop";
+    backdrop.innerHTML = `
+      <div class="modal-card">
+        <h3>${escapeHtml(title)}</h3>
+        <p>${escapeHtml(message)}</p>
+        <div class="modal-actions">
+          <button type="button" class="button button-secondary" id="modal-cancel">Cancel</button>
+          <button type="button" class="button button-danger" id="modal-confirm">Delete</button>
+        </div>
+      </div>`;
+    document.body.appendChild(backdrop);
+
+    function close(result) {
+      backdrop.remove();
+      resolve(result);
+    }
+
+    backdrop.querySelector("#modal-cancel").addEventListener("click", () => close(false));
+    backdrop.querySelector("#modal-confirm").addEventListener("click", () => close(true));
+    backdrop.addEventListener("click", (event) => {
+      if (event.target === backdrop) close(false);
+    });
+  });
+}
+
+function showToast(message, isError) {
+  const existing = document.querySelector(".toast");
+  if (existing) existing.remove();
+  const toast = document.createElement("div");
+  toast.className = `toast${isError ? " error" : ""}`;
+  toast.innerHTML = `<span>${isError ? "&#9888;" : "&#10003;"}</span><span>${escapeHtml(message)}</span>`;
+  document.body.appendChild(toast);
+  setTimeout(() => toast.remove(), 5000);
+}
+
+async function saveCatalog(actionDescription) {
   try {
     const changelog = await getFile(CHANGELOG_PATH);
-    const updatedChangelog = insertChangelogEntry(changelog.text, commitMessage.replace(/^chore\(admin\): /, ""));
+    const updatedChangelog = insertChangelogEntry(changelog.text, actionDescription);
     const softwareJson = `${JSON.stringify(softwareFile.data, null, 2)}\n`;
 
     await commitFiles(
@@ -404,7 +565,7 @@ async function saveCatalog(commitMessage) {
         { path: `docs/${SOFTWARE_PATH}`, content: softwareJson },
         { path: CHANGELOG_PATH, content: updatedChangelog },
       ],
-      commitMessage
+      `chore(admin): ${actionDescription.charAt(0).toLowerCase()}${actionDescription.slice(1)}`
     );
 
     showToast("Saved and published.");
@@ -415,9 +576,10 @@ async function saveCatalog(commitMessage) {
   }
 }
 
-function renderEditForm(item) {
-  const isNew = !item;
-  const form = item ?? {
+let editingItemId = null;
+
+function emptySoftwareForm() {
+  return {
     id: "",
     name: "",
     shortDescription: "",
@@ -435,98 +597,150 @@ function renderEditForm(item) {
     versionHistory: [],
     githubRepoId: null,
   };
+}
+
+function renderPreviewCard(state) {
+  return `
+    <a class="software-card admin-preview-card" href="#" onclick="return false;" style="box-shadow:none;">
+      <div class="software-card-top">
+        <img class="software-card-icon" src="${state.iconSrc}" alt="" loading="lazy">
+        <div>
+          <span class="software-card-category">${escapeHtml(state.category || "Category")}</span>
+          <h2 class="software-card-title">${escapeHtml(state.name || "Untitled")}</h2>
+        </div>
+      </div>
+      <p class="software-card-desc">${escapeHtml(state.shortDescription || "Short description goes here.")}</p>
+      ${
+        state.tags.length
+          ? `<div class="software-card-tags">${state.tags.slice(0, 4).map((t) => `<span class="tag-chip">${escapeHtml(t)}</span>`).join("")}</div>`
+          : ""
+      }
+      <div class="software-card-footer">
+        <span class="version-tag">v${escapeHtml(state.version || "0.0.0")}</span>
+        <span class="software-card-link">View details</span>
+      </div>
+    </a>`;
+}
+
+function renderEditFormView(id) {
+  const main = document.getElementById("admin-main");
+  const item = id ? softwareFile.data.software.find((entry) => entry.id === id) : null;
+  const isNew = !item;
+  const form = item ? { ...item } : emptySoftwareForm();
 
   pendingIconUpload = null;
   pendingScreenshotUploads = [];
-
+  const currentScreenshots = [...(form.screenshots || [])];
   const latestChangelog = (form.changelog || [])[0];
 
-  app().innerHTML = `
-    <button class="button button-secondary" id="back-to-dashboard">&larr; Back</button>
-    <h1>${isNew ? "Add software" : `Edit ${escapeHtml(form.name)}`}</h1>
+  main.innerHTML = `
+    <div class="admin-topbar">
+      <div>
+        <button class="button button-secondary button-small" id="back-to-dashboard">&larr; Back</button>
+        <h1 style="margin-top:0.75rem;">${isNew ? "Add software" : `Edit ${escapeHtml(form.name)}`}</h1>
+      </div>
+    </div>
 
     <div class="admin-form-layout">
       <form id="software-form">
-        <div class="field-row">
-          <div class="field">
-            <label for="f-name">Name</label>
-            <input type="text" id="f-name" value="${escapeHtml(form.name)}" required>
+        <div class="admin-card">
+          <h2>Basic info</h2>
+          <div class="field-row">
+            <div class="field">
+              <label for="f-name">Name</label>
+              <input type="text" id="f-name" value="${escapeHtml(form.name)}" required>
+            </div>
+            <div class="field">
+              <label for="f-id">ID (slug, used in the URL)</label>
+              <input type="text" id="f-id" value="${escapeHtml(form.id)}" ${isNew ? "" : "readonly"} required>
+            </div>
           </div>
-          <div class="field">
-            <label for="f-id">ID (slug, used in the URL)</label>
-            <input type="text" id="f-id" value="${escapeHtml(form.id)}" ${isNew ? "" : "readonly"} required>
-          </div>
-        </div>
-
-        <div class="field">
-          <label for="f-short">Short description (card summary)</label>
-          <textarea id="f-short" rows="2">${escapeHtml(form.shortDescription)}</textarea>
-        </div>
-
-        <div class="field">
-          <label for="f-desc">Full description</label>
-          <textarea id="f-desc" rows="6">${escapeHtml(form.description)}</textarea>
-        </div>
-
-        <div class="field-row">
-          <div class="field">
-            <label for="f-category">Category</label>
-            <input type="text" id="f-category" value="${escapeHtml(form.category)}">
-          </div>
-          <div class="field">
-            <label for="f-tags">Tags (comma-separated)</label>
-            <input type="text" id="f-tags" value="${escapeHtml((form.tags || []).join(", "))}">
+          <div class="field-row">
+            <div class="field">
+              <label for="f-category">Category</label>
+              <input type="text" id="f-category" value="${escapeHtml(form.category)}">
+            </div>
+            <div class="field">
+              <label for="f-tags">Tags (comma-separated)</label>
+              <input type="text" id="f-tags" value="${escapeHtml((form.tags || []).join(", "))}">
+            </div>
           </div>
         </div>
 
-        <div class="field">
-          <label for="f-requirements">System requirements</label>
-          <input type="text" id="f-requirements" value="${escapeHtml(form.systemRequirements)}">
+        <div class="admin-card">
+          <h2>Content</h2>
+          <div class="field">
+            <label for="f-short">Short description (card summary)</label>
+            <textarea id="f-short" rows="2">${escapeHtml(form.shortDescription)}</textarea>
+          </div>
+          <div class="field">
+            <label for="f-desc">Full description</label>
+            <textarea id="f-desc" rows="6">${escapeHtml(form.description)}</textarea>
+          </div>
+          <div class="field">
+            <label for="f-requirements">System requirements</label>
+            <input type="text" id="f-requirements" value="${escapeHtml(form.systemRequirements)}">
+          </div>
         </div>
 
-        <div class="field">
-          <label for="f-download">Download URL ${form.githubRepoId ? "(auto-managed from GitHub Releases)" : ""}</label>
-          <input type="url" id="f-download" value="${escapeHtml(form.downloadUrl)}" ${form.githubRepoId ? "readonly" : ""}>
+        <div class="admin-card">
+          <h2>Media</h2>
+          <div class="field">
+            <label>Icon</label>
+            <div class="icon-preview">
+              <img id="icon-preview-img" src="${form.icon}" alt="">
+              <div class="upload-zone" style="flex:1;">
+                <input type="file" id="f-icon" accept="image/*">
+                <span class="upload-zone-hint">Click or drop an image to replace the icon</span>
+              </div>
+            </div>
+          </div>
+          <div class="field">
+            <label>Screenshots</label>
+            <div class="upload-zone">
+              <input type="file" id="f-screenshots" accept="image/*" multiple>
+              <span class="upload-zone-hint">Click or drop images to add screenshots</span>
+            </div>
+            <ul class="asset-grid" id="screenshot-list">
+              ${currentScreenshots
+                .map(
+                  (src, i) =>
+                    `<li class="asset-tile" data-index="${i}"><img src="${src}" alt=""><button type="button" class="asset-tile-remove" data-remove-screenshot="${i}" title="Remove">&times;</button></li>`
+                )
+                .join("")}
+            </ul>
+          </div>
+        </div>
+
+        <div class="admin-card">
+          <h2>Publishing</h2>
+          <div class="field">
+            <label for="f-download">Download URL ${form.githubRepoId ? "(auto-managed from GitHub Releases)" : ""}</label>
+            <input type="url" id="f-download" value="${escapeHtml(form.downloadUrl)}" ${form.githubRepoId ? "readonly" : ""}>
+          </div>
+          <div class="field-row">
+            <div class="field">
+              <label for="f-order">Homepage order (lower shows first)</label>
+              <input type="number" id="f-order" value="${form.order ?? 999}">
+            </div>
+          </div>
+          <div class="field checkbox-field">
+            <input type="checkbox" id="f-hidden" ${form.hidden ? "checked" : ""}>
+            <label for="f-hidden">Hidden from homepage &amp; downloads listing</label>
+          </div>
         </div>
 
         ${
           !isNew && latestChangelog
-            ? `<div class="field">
-                 <label for="f-changelog-notes">Current version (v${escapeHtml(latestChangelog.version)}) changelog notes — one bullet per line</label>
-                 <textarea id="f-changelog-notes" rows="4">${escapeHtml((latestChangelog.notes || []).join("\n"))}</textarea>
+            ? `<div class="admin-card">
+                 <h2>Changelog</h2>
+                 <div class="field">
+                   <label for="f-changelog-notes">Current version (v${escapeHtml(latestChangelog.version)}) — one bullet per line</label>
+                   <textarea id="f-changelog-notes" rows="5">${escapeHtml((latestChangelog.notes || []).join("\n"))}</textarea>
+                 </div>
                </div>`
             : ""
         }
-
-        <div class="field">
-          <label for="f-order">Homepage order (lower shows first)</label>
-          <input type="number" id="f-order" value="${form.order ?? 999}">
-        </div>
-
-        <div class="field checkbox-field">
-          <input type="checkbox" id="f-hidden" ${form.hidden ? "checked" : ""}>
-          <label for="f-hidden" style="margin:0;">Hidden from homepage &amp; downloads listing</label>
-        </div>
-
-        <div class="field">
-          <label for="f-icon">Icon (replaces current)</label>
-          <input type="file" id="f-icon" accept="image/*">
-          <div class="field-hint">Current: <code>${escapeHtml(form.icon)}</code></div>
-        </div>
-
-        <div class="field">
-          <label for="f-screenshots">Add screenshots</label>
-          <input type="file" id="f-screenshots" accept="image/*" multiple>
-          <ul class="asset-list" id="screenshot-list">
-            ${(form.screenshots || [])
-              .map(
-                (src, i) =>
-                  `<li><img src="${src}" alt=""><span>${escapeHtml(src.split("/").pop())}</span>
-                     <button type="button" class="button button-small button-danger" data-remove-screenshot="${i}">&times;</button></li>`
-              )
-              .join("")}
-          </ul>
-        </div>
 
         <div class="form-actions">
           <button type="submit" class="button button-primary">Commit changes</button>
@@ -535,38 +749,36 @@ function renderEditForm(item) {
       </form>
 
       <aside class="admin-preview">
-        <h2>Live preview</h2>
-        <div id="preview-card"></div>
+        <div class="admin-card">
+          <h2>Live preview</h2>
+          <div id="preview-card"></div>
+        </div>
       </aside>
     </div>
   `;
 
-  const currentScreenshots = [...(form.screenshots || [])];
+  const previewState = {
+    name: form.name,
+    shortDescription: form.shortDescription,
+    category: form.category,
+    tags: form.tags || [],
+    version: form.version,
+    iconSrc: form.icon,
+  };
 
-  const previewState = { ...form };
   function updatePreview() {
-    previewState.name = document.getElementById("f-name").value || "Untitled";
+    previewState.name = document.getElementById("f-name").value;
     previewState.shortDescription = document.getElementById("f-short").value;
     previewState.category = document.getElementById("f-category").value;
-    previewState.version = form.version || "0.0.0";
-    document.getElementById("preview-card").innerHTML = `
-      <a class="software-card" href="#" onclick="return false;">
-        <div class="software-card-top">
-          <img class="software-card-icon" src="${form.icon}" alt="" loading="lazy">
-          <div>
-            <span class="software-card-category">${escapeHtml(previewState.category)}</span>
-            <h2 class="software-card-title">${escapeHtml(previewState.name)}</h2>
-          </div>
-        </div>
-        <p class="software-card-desc">${escapeHtml(previewState.shortDescription)}</p>
-        <div class="software-card-footer">
-          <span class="version-tag">v${escapeHtml(previewState.version)}</span>
-          <span class="software-card-link">View details</span>
-        </div>
-      </a>`;
+    previewState.tags = document
+      .getElementById("f-tags")
+      .value.split(",")
+      .map((t) => t.trim())
+      .filter(Boolean);
+    document.getElementById("preview-card").innerHTML = renderPreviewCard(previewState);
   }
 
-  ["f-name", "f-short", "f-category"].forEach((id) => {
+  ["f-name", "f-short", "f-category", "f-tags"].forEach((id) => {
     document.getElementById(id).addEventListener("input", updatePreview);
   });
   updatePreview();
@@ -575,34 +787,51 @@ function renderEditForm(item) {
     if (isNew) document.getElementById("f-id").value = slugify(event.target.value);
   });
 
-  document.getElementById("back-to-dashboard").addEventListener("click", () => renderDashboard([]));
-  document.getElementById("cancel-edit").addEventListener("click", loadDashboard);
+  document.getElementById("back-to-dashboard").addEventListener("click", () => {
+    activeView = "dashboard";
+    renderShell();
+  });
+  document.getElementById("cancel-edit").addEventListener("click", () => {
+    activeView = "dashboard";
+    renderShell();
+  });
 
   document.getElementById("f-icon").addEventListener("change", async (event) => {
     const file = event.target.files[0];
     if (!file) return;
     const ext = file.name.split(".").pop();
     const iconId = document.getElementById("f-id").value || "new-app";
-    pendingIconUpload = { path: `assets/icons/${iconId}.${ext}`, base64: await fileToBase64(file) };
+    const base64 = await fileToBase64(file);
+    pendingIconUpload = { path: `assets/icons/${iconId}.${ext}`, base64 };
+    document.getElementById("icon-preview-img").src = `data:image/*;base64,${base64}`;
+    previewState.iconSrc = `data:image/*;base64,${base64}`;
+    updatePreview();
   });
 
   document.getElementById("f-screenshots").addEventListener("change", async (event) => {
     const files = [...event.target.files];
     const iconId = document.getElementById("f-id").value || "new-app";
+    const list = document.getElementById("screenshot-list");
     for (const file of files) {
       const ext = file.name.split(".").pop();
       const path = `assets/screenshots/${iconId}-${Date.now()}-${pendingScreenshotUploads.length}.${ext}`;
       const base64 = await fileToBase64(file);
       pendingScreenshotUploads.push({ path, base64 });
       currentScreenshots.push(path);
-      const list = document.getElementById("screenshot-list");
       const li = document.createElement("li");
-      li.innerHTML = `<span>${escapeHtml(path.split("/").pop())}</span> <span class="field-hint">(new)</span>`;
+      li.className = "asset-tile";
+      const index = currentScreenshots.length - 1;
+      li.dataset.index = index;
+      li.innerHTML = `<img src="data:image/*;base64,${base64}" alt=""><span class="asset-tile-new">New</span><button type="button" class="asset-tile-remove" data-remove-screenshot="${index}" title="Remove">&times;</button>`;
       list.appendChild(li);
+      li.querySelector("[data-remove-screenshot]").addEventListener("click", () => {
+        currentScreenshots.splice(index, 1);
+        li.remove();
+      });
     }
   });
 
-  app().querySelectorAll("[data-remove-screenshot]").forEach((button) => {
+  main.querySelectorAll("[data-remove-screenshot]").forEach((button) => {
     button.addEventListener("click", () => {
       const index = Number(button.dataset.removeScreenshot);
       currentScreenshots.splice(index, 1);
@@ -659,13 +888,15 @@ function renderEditForm(item) {
       softwareFile.data.software[index] = updated;
     }
 
-    await saveSoftwareWithAssets(
-      isNew ? `feat(admin): add ${updated.name} to the catalog` : `chore(admin): update ${updated.name}`
-    );
+    const submitBtn = event.target.querySelector("button[type=submit]");
+    submitBtn.disabled = true;
+    submitBtn.textContent = "Saving...";
+
+    await saveSoftwareWithAssets(isNew ? `Add ${updated.name} to the catalog` : `Update ${updated.name}`);
   });
 }
 
-async function saveSoftwareWithAssets(commitMessage) {
+async function saveSoftwareWithAssets(actionDescription) {
   const assetFiles = [];
   if (pendingIconUpload) assetFiles.push(pendingIconUpload, { ...pendingIconUpload, path: `docs/${pendingIconUpload.path}` });
   for (const upload of pendingScreenshotUploads) {
@@ -674,7 +905,7 @@ async function saveSoftwareWithAssets(commitMessage) {
 
   try {
     const changelog = await getFile(CHANGELOG_PATH);
-    const updatedChangelog = insertChangelogEntry(changelog.text, commitMessage.replace(/^\w+\(admin\): /, ""));
+    const updatedChangelog = insertChangelogEntry(changelog.text, actionDescription);
     const softwareJson = `${JSON.stringify(softwareFile.data, null, 2)}\n`;
 
     await commitFiles(
@@ -684,7 +915,7 @@ async function saveSoftwareWithAssets(commitMessage) {
         { path: CHANGELOG_PATH, content: updatedChangelog },
         ...assetFiles,
       ],
-      commitMessage
+      `chore(admin): ${actionDescription.charAt(0).toLowerCase()}${actionDescription.slice(1)}`
     );
 
     showToast("Saved and published.");
@@ -697,36 +928,44 @@ async function saveSoftwareWithAssets(commitMessage) {
   }
 }
 
-function renderSiteContentForm() {
+function renderSiteContentView() {
+  const main = document.getElementById("admin-main");
   const content = siteContentFile.data;
 
-  app().innerHTML = `
-    <button class="button button-secondary" id="back-to-dashboard">&larr; Back</button>
-    <h1>Homepage text</h1>
-    <p class="field-hint">Copyright, creator, and repository details on the About page are fixed identity/legal facts and are not editable here.</p>
+  main.innerHTML = `
+    <div class="admin-topbar">
+      <div>
+        <h1>Homepage text</h1>
+        <div class="admin-topbar-sub">Copyright, creator, and repository details on the About page are fixed identity/legal facts and are not editable here.</div>
+      </div>
+    </div>
 
-    <form id="site-content-form">
-      <div class="field">
-        <label for="sc-eyebrow">Eyebrow</label>
-        <input type="text" id="sc-eyebrow" value="${escapeHtml(content.heroEyebrow ?? "")}">
-      </div>
-      <div class="field">
-        <label for="sc-title">Title</label>
-        <input type="text" id="sc-title" value="${escapeHtml(content.heroTitle ?? "")}">
-      </div>
-      <div class="field">
-        <label for="sc-lede">Lede</label>
-        <textarea id="sc-lede" rows="3">${escapeHtml(content.heroLede ?? "")}</textarea>
-      </div>
-      <div class="form-actions">
-        <button type="submit" class="button button-primary">Commit changes</button>
-        <button type="button" class="button button-secondary" id="cancel-site-content">Cancel</button>
-      </div>
-    </form>
+    <div class="admin-card" style="max-width:640px;">
+      <form id="site-content-form">
+        <div class="field">
+          <label for="sc-eyebrow">Eyebrow</label>
+          <input type="text" id="sc-eyebrow" value="${escapeHtml(content.heroEyebrow ?? "")}">
+        </div>
+        <div class="field">
+          <label for="sc-title">Title</label>
+          <input type="text" id="sc-title" value="${escapeHtml(content.heroTitle ?? "")}">
+        </div>
+        <div class="field">
+          <label for="sc-lede">Lede</label>
+          <textarea id="sc-lede" rows="3">${escapeHtml(content.heroLede ?? "")}</textarea>
+        </div>
+        <div class="form-actions" style="position:static;background:none;padding:0;">
+          <button type="submit" class="button button-primary">Commit changes</button>
+          <button type="button" class="button button-secondary" id="cancel-site-content">Cancel</button>
+        </div>
+      </form>
+    </div>
   `;
 
-  document.getElementById("back-to-dashboard").addEventListener("click", () => renderDashboard([]));
-  document.getElementById("cancel-site-content").addEventListener("click", loadDashboard);
+  document.getElementById("cancel-site-content").addEventListener("click", () => {
+    activeView = "dashboard";
+    renderShell();
+  });
 
   document.getElementById("site-content-form").addEventListener("submit", async (event) => {
     event.preventDefault();
@@ -735,6 +974,10 @@ function renderSiteContentForm() {
       heroTitle: document.getElementById("sc-title").value.trim(),
       heroLede: document.getElementById("sc-lede").value.trim(),
     };
+
+    const submitBtn = event.target.querySelector("button[type=submit]");
+    submitBtn.disabled = true;
+    submitBtn.textContent = "Saving...";
 
     try {
       const changelog = await getFile(CHANGELOG_PATH);
@@ -753,6 +996,8 @@ function renderSiteContentForm() {
     } catch (error) {
       showToast(`Failed to save: ${error.message}`, true);
       console.error(error);
+      submitBtn.disabled = false;
+      submitBtn.textContent = "Commit changes";
     }
   });
 }

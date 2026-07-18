@@ -16,6 +16,50 @@ function visibleSoftware(data) {
     .sort((a, b) => (a.order ?? 999) - (b.order ?? 999) || a.name.localeCompare(b.name));
 }
 
+function matchesFilters(item, search, category) {
+  if (category !== "All" && item.category !== category) return false;
+  if (!search) return true;
+  const haystack = `${item.name} ${item.shortDescription} ${(item.tags || []).join(" ")}`.toLowerCase();
+  return haystack.includes(search.toLowerCase());
+}
+
+function setupCatalogToolbar(software, onChange) {
+  const searchInput = document.getElementById("catalog-search");
+  const filtersEl = document.getElementById("category-filters");
+  if (!searchInput || !filtersEl) {
+    onChange("", "All");
+    return;
+  }
+
+  const categories = ["All", ...new Set(software.map((item) => item.category))].sort(
+    (a, b) => (a === "All" ? -1 : b === "All" ? 1 : a.localeCompare(b))
+  );
+
+  let activeCategory = "All";
+
+  filtersEl.innerHTML = categories
+    .map(
+      (category, i) =>
+        `<button type="button" class="category-filter-btn${i === 0 ? " active" : ""}" data-category="${escapeHtml(category)}">${escapeHtml(category)}</button>`
+    )
+    .join("");
+
+  function triggerChange() {
+    onChange(searchInput.value.trim(), activeCategory);
+  }
+
+  filtersEl.querySelectorAll(".category-filter-btn").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      filtersEl.querySelectorAll(".category-filter-btn").forEach((b) => b.classList.remove("active"));
+      btn.classList.add("active");
+      activeCategory = btn.dataset.category;
+      triggerChange();
+    });
+  });
+
+  searchInput.addEventListener("input", triggerChange);
+}
+
 async function renderHero() {
   try {
     const response = await fetch(SITE_CONTENT_URL);
@@ -36,6 +80,22 @@ function escapeHtml(value) {
   const div = document.createElement("div");
   div.textContent = value ?? "";
   return div.innerHTML;
+}
+
+function formatInlineMarkdown(text) {
+  return escapeHtml(text)
+    .replace(/`([^`]+)`/g, "<code>$1</code>")
+    .replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>");
+}
+
+function renderChangelogNotes(notes) {
+  return notes
+    .map((note) => {
+      const heading = note.match(/^#{2,4}\s+(.*)/) || note.match(/^\*([^*]+)\*\*$/);
+      if (heading) return `<li class="changelog-note-heading">${formatInlineMarkdown(heading[1])}</li>`;
+      return `<li>${formatInlineMarkdown(note)}</li>`;
+    })
+    .join("");
 }
 
 function getQueryParam(name) {
@@ -76,6 +136,37 @@ function setSoftwareMeta(item) {
   canonical.setAttribute("href", url);
 }
 
+function renderSoftwareCards(container, software) {
+  if (!software.length) {
+    container.innerHTML = `<div class="empty-state"><p>No software matches your search.</p></div>`;
+    return;
+  }
+  container.innerHTML = software
+    .map(
+      (item) => `
+      <a class="software-card" href="software.html?id=${encodeURIComponent(item.id)}">
+        <div class="software-card-top">
+          <img class="software-card-icon" src="${item.icon}" alt="" loading="lazy">
+          <div>
+            <span class="software-card-category">${escapeHtml(item.category)}</span>
+            <h2 class="software-card-title">${escapeHtml(item.name)}</h2>
+          </div>
+        </div>
+        <p class="software-card-desc">${escapeHtml(item.shortDescription)}</p>
+        ${
+          (item.tags || []).length
+            ? `<div class="software-card-tags">${item.tags.slice(0, 4).map((tag) => `<span class="tag-chip">${escapeHtml(tag)}</span>`).join("")}</div>`
+            : ""
+        }
+        <div class="software-card-footer">
+          <span class="version-tag">v${escapeHtml(item.version)}</span>
+          <span class="software-card-link">View details</span>
+        </div>
+      </a>`
+    )
+    .join("");
+}
+
 async function renderHomepage() {
   const container = document.getElementById("software-list");
   try {
@@ -88,25 +179,10 @@ async function renderHomepage() {
         </div>`;
       return;
     }
-    container.innerHTML = software
-      .map(
-        (item) => `
-        <a class="software-card" href="software.html?id=${encodeURIComponent(item.id)}">
-          <div class="software-card-top">
-            <img class="software-card-icon" src="${item.icon}" alt="" loading="lazy">
-            <div>
-              <span class="software-card-category">${escapeHtml(item.category)}</span>
-              <h2 class="software-card-title">${escapeHtml(item.name)}</h2>
-            </div>
-          </div>
-          <p class="software-card-desc">${escapeHtml(item.shortDescription)}</p>
-          <div class="software-card-footer">
-            <span class="version-tag">v${escapeHtml(item.version)}</span>
-            <span class="software-card-link">View details</span>
-          </div>
-        </a>`
-      )
-      .join("");
+    renderSoftwareCards(container, software);
+    setupCatalogToolbar(software, (search, category) => {
+      renderSoftwareCards(container, software.filter((item) => matchesFilters(item, search, category)));
+    });
   } catch (error) {
     container.innerHTML = `<div class="empty-state"><p>Unable to load the software list right now.</p></div>`;
     console.error(error);
@@ -130,7 +206,10 @@ async function renderSoftwareDetail() {
 
     const screenshotsHtml = (item.screenshots || []).length
       ? (item.screenshots)
-          .map((src) => `<img class="screenshot" src="${src}" alt="${escapeHtml(item.name)} screenshot" loading="lazy">`)
+          .map(
+            (src, i) =>
+              `<img class="screenshot" src="${src}" alt="${escapeHtml(item.name)} screenshot" loading="lazy" tabindex="0" data-lightbox-index="${i}">`
+          )
           .join("")
       : `<div class="empty-state"><p>Screenshots will be added soon.</p></div>`;
 
@@ -141,7 +220,7 @@ async function renderSoftwareDetail() {
             (entry) => `
             <li class="changelog-entry">
               <span class="changelog-meta">v${escapeHtml(entry.version)} &middot; ${escapeHtml(entry.date)}</span>
-              <ul>${entry.notes.map((note) => `<li>${escapeHtml(note)}</li>`).join("")}</ul>
+              <ul>${renderChangelogNotes(entry.notes)}</ul>
             </li>`
           )
           .join("")
@@ -223,10 +302,93 @@ async function renderSoftwareDetail() {
         </aside>
       </div>
     `;
+
+    setupLightbox(container, item.screenshots || [], item.name);
   } catch (error) {
     container.innerHTML = `<div class="empty-state"><p>Unable to load software details right now.</p></div>`;
     console.error(error);
   }
+}
+
+function setupLightbox(container, screenshots, name) {
+  if (!screenshots.length) return;
+
+  let overlay = document.getElementById("lightbox-overlay");
+  if (!overlay) {
+    overlay = document.createElement("div");
+    overlay.id = "lightbox-overlay";
+    overlay.className = "lightbox-overlay";
+    overlay.innerHTML = `
+      <button type="button" class="lightbox-close" aria-label="Close">&times;</button>
+      <button type="button" class="lightbox-nav lightbox-prev" aria-label="Previous screenshot">&larr;</button>
+      <img class="lightbox-image" alt="">
+      <button type="button" class="lightbox-nav lightbox-next" aria-label="Next screenshot">&rarr;</button>
+    `;
+    document.body.appendChild(overlay);
+  }
+
+  const image = overlay.querySelector(".lightbox-image");
+  let currentIndex = 0;
+
+  function show(index) {
+    currentIndex = (index + screenshots.length) % screenshots.length;
+    image.src = screenshots[currentIndex];
+    image.alt = `${name} screenshot ${currentIndex + 1}`;
+  }
+
+  function open(index) {
+    show(index);
+    overlay.classList.add("open");
+    document.addEventListener("keydown", onKeydown);
+  }
+
+  function close() {
+    overlay.classList.remove("open");
+    document.removeEventListener("keydown", onKeydown);
+  }
+
+  function onKeydown(event) {
+    if (event.key === "Escape") close();
+    if (event.key === "ArrowLeft") show(currentIndex - 1);
+    if (event.key === "ArrowRight") show(currentIndex + 1);
+  }
+
+  overlay.querySelector(".lightbox-close").onclick = close;
+  overlay.querySelector(".lightbox-prev").onclick = () => show(currentIndex - 1);
+  overlay.querySelector(".lightbox-next").onclick = () => show(currentIndex + 1);
+  overlay.onclick = (event) => {
+    if (event.target === overlay) close();
+  };
+
+  container.querySelectorAll("[data-lightbox-index]").forEach((el) => {
+    el.style.cursor = "zoom-in";
+    el.addEventListener("click", () => open(Number(el.dataset.lightboxIndex)));
+    el.addEventListener("keydown", (event) => {
+      if (event.key === "Enter" || event.key === " ") {
+        event.preventDefault();
+        open(Number(el.dataset.lightboxIndex));
+      }
+    });
+  });
+}
+
+function renderDownloadsRows(tbody, software) {
+  if (!software.length) {
+    tbody.innerHTML = `<tr><td colspan="5">No software matches your search.</td></tr>`;
+    return;
+  }
+  tbody.innerHTML = software
+    .map(
+      (item) => `
+      <tr>
+        <td><a href="software.html?id=${encodeURIComponent(item.id)}">${escapeHtml(item.name)}</a></td>
+        <td>${escapeHtml(item.category)}</td>
+        <td class="mono"><span class="version-tag">v${escapeHtml(item.version)}</span></td>
+        <td>${escapeHtml(item.systemRequirements)}</td>
+        <td><a class="button" href="${item.downloadUrl}" target="_blank" rel="noopener">Download</a></td>
+      </tr>`
+    )
+    .join("");
 }
 
 async function renderDownloadsPage() {
@@ -238,18 +400,10 @@ async function renderDownloadsPage() {
       tbody.innerHTML = `<tr><td colspan="5">No software published yet.</td></tr>`;
       return;
     }
-    tbody.innerHTML = software
-      .map(
-        (item) => `
-        <tr>
-          <td><a href="software.html?id=${encodeURIComponent(item.id)}">${escapeHtml(item.name)}</a></td>
-          <td>${escapeHtml(item.category)}</td>
-          <td class="mono"><span class="version-tag">v${escapeHtml(item.version)}</span></td>
-          <td>${escapeHtml(item.systemRequirements)}</td>
-          <td><a class="button" href="${item.downloadUrl}" target="_blank" rel="noopener">Download</a></td>
-        </tr>`
-      )
-      .join("");
+    renderDownloadsRows(tbody, software);
+    setupCatalogToolbar(software, (search, category) => {
+      renderDownloadsRows(tbody, software.filter((item) => matchesFilters(item, search, category)));
+    });
   } catch (error) {
     tbody.innerHTML = `<tr><td colspan="5">Unable to load downloads right now.</td></tr>`;
     console.error(error);

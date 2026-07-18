@@ -5,6 +5,10 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased]
 
 ### Added
+- Homepage and downloads page: live search and category filter pills over the software catalog
+- Tag chips on software cards and the software detail page
+- Click-to-enlarge screenshot lightbox (keyboard and mouse navigation) on the software detail page
+- Lightweight changelog markdown rendering (`##`/`###` headers, `**bold**`, `` `code` ``) instead of showing raw release-note syntax as plain text
 - Automated weekly content review (`scripts/check-content.mjs`, `.github/workflows/content-check.yml`): checks every software entry's download links (current version and latest release assets) and whether its linked repository was archived, opening or updating a `content-review`-labeled GitHub issue when problems are found and closing it automatically once resolved
 - Client-side admin panel (`admin.html`) for managing the catalog without a backend: GitHub token login (encrypted at rest in the browser with a passphrase, restricted to the `Patrickjaillet` account), a dashboard to add/edit/hide/delete/reorder software, icon and screenshot uploads, per-version changelog note editing, homepage hero text editing, a live preview before publishing, a recent-activity log from the Git commit history, and confirmation prompts before destructive actions; every write commits atomically (via the Git Data API) to `data/software.json` and appends a line to `CHANGELOG.md` in the same commit, which redeploys the site
 - `hidden`, `order`, and `tags` fields on software entries, and support for software added manually (without a linked GitHub repo) that the release sync now preserves instead of dropping
@@ -37,6 +41,9 @@ All notable changes to this project will be documented in this file.
 
 ### Fixed
 - Admin panel writes now also commit to `docs/` (what GitHub Pages actually serves), not just the `data/` source files — previously an admin change wouldn't appear on the live site until the next scheduled sync
+- Two admin CSS media queries (login branding panel, sidebar-to-topbar collapse) were silently overridden by an unconditional rule later in the stylesheet, so nothing actually collapsed below the breakpoint; on mobile this hid the sidebar entirely with no way to switch views or sign out — reordered the rules and turned the sidebar into a horizontal top bar below 860px instead of hiding it
 
 ### Changed
 - Compressed the Z-GL Shadertoy screenshot from a 1.49 MB PNG to a 189 KB JPEG resized to its actual display width
+- Redesigned the admin panel: split-screen branded login, sidebar + main layout, dashboard stat cards, a table with icon thumbnails/category pills/source badges, edit forms reorganized into sections with icon and screenshot preview thumbnails, a custom confirmation modal in place of the browser's `confirm()`, and toasts with a status icon
+- Software cards gained elevation/hover lift and a subtle border on the icon; screenshots lift on hover as an affordance for the new lightbox

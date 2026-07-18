@@ -60,6 +60,8 @@ Official Repository: https://github.com/Patrickjaillet/sandefjord-software
 - [x] Concevoir le template de fiche logiciel (galerie captures d'écran, specs, configuration requise Windows 10/11) → layout 2 colonnes (`software.html`), aside technique sticky + changelog en timeline
 - [x] Design responsive (desktop prioritaire, mobile correct) → grilles en `auto-fill`, breakpoints `@media (max-width: 800px / 640px / 560px)`
 - [x] Pas d'animation 3D / Three.js — interactions CSS simples uniquement → aucune dépendance JS d'animation, `prefers-reduced-motion` respecté
+- [x] Passe de polish UI/UX (post-lancement) : ombres/élévation et hover sur les cartes, recherche + filtres par catégorie sur l'accueil et les téléchargements, tags affichés en chips, lightbox clavier/souris pour les captures d'écran, rendu markdown léger (titres, **gras**, `code`) dans le changelog au lieu du texte brut
+- [x] Refonte complète du panneau admin (jugé "trop simplifié et moche") : écran de connexion en deux volets avec identité de marque, layout sidebar + contenu, cartes de statistiques, tableau avec vignettes/pills/icônes, formulaire réorganisé en sections avec aperçus d'images, modale de confirmation personnalisée (remplace `confirm()`), toasts avec icône, sidebar qui se transforme en barre horizontale sous 860px (bug corrigé : elle était entièrement masquée sur mobile, rendant la navigation et la déconnexion inaccessibles)
 
 ## Phase 3 — Intégration GitHub Releases & mise à jour automatique
 

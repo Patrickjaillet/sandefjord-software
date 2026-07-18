@@ -62,6 +62,62 @@ no manual admin step required to add a new app to the site.
   `SITE_DISPATCH_TOKEN` secret (PAT with `contents:write` on this repo) set
   on the software repository.
 
+## Comments, likes, and sharing
+
+Each software detail page has a comments section powered by
+[giscus](https://giscus.app), backed by GitHub Discussions on this repo —
+no separate backend or database. Comments are lazy-loaded: the widget's
+script only loads when a visitor clicks "Show comments", so it never
+affects the page's initial load performance. Likes reuse the 👍 reaction
+on each software's discussion instead of a separate counter.
+
+**One-time setup required** (not done yet — the site ships with
+placeholder IDs until this is complete):
+
+1. In this repo's Settings → General → Features, enable **Discussions**.
+2. Create a discussion category named **Software Comments** (Settings →
+   Discussions → the pencil/edit icon next to categories, or the "New
+   category" flow), format "Announcement" or "Q&A" both work fine.
+3. Install the [giscus GitHub App](https://github.com/apps/giscus) on
+   this repo (requires interactive authorization in the GitHub UI — it
+   can't be done via API/token).
+4. Go to [giscus.app](https://giscus.app), enter this repo, pick the
+   "Software Comments" category and the "specific term" mapping, and copy
+   the generated `data-repo-id` and `data-category-id` values.
+5. Paste those two values into `GISCUS_REPO_ID` and `GISCUS_CATEGORY_ID`
+   near the top of `src/js/main.js` (`setupComments()`), then
+   `npm run build` and commit.
+
+Each software's comments map to its `id` (stable across renames), not its
+URL, so a discussion always stays attached to the right software.
+
+**Moderation** happens entirely through GitHub's own Discussions UI —
+no separate moderation tool:
+
+- **Hide a comment** — open the discussion (linked from the "Comments"
+  section note, or `github.com/Patrickjaillet/sandefjord-software/discussions`),
+  click the `···` menu on the comment, choose "Hide comment", and pick a
+  reason (spam, off-topic, abuse, etc.).
+- **Delete a comment** — same `···` menu, "Delete".
+- **Lock a discussion** to stop new comments on a specific software
+  (keeping the existing thread visible) from the discussion's `···` menu
+  → "Lock conversation".
+- Repeated abuse from one account can be blocked from commenting on the
+  repo entirely via Settings → Moderation options → Interaction limits,
+  or by blocking the user from the organization/account.
+
+**Sharing** — every software has a "Share" row (copy link, native
+Web Share API on supported devices, and plain links to X, Reddit,
+LinkedIn, and email). No third-party SDK, no tracking script, and no
+share-count is shown (the count APIs from those platforms are deprecated
+or unreliable) — only the share action itself.
+
+`scripts/sync-engagement.mjs` (`npm run sync-engagement`) fetches each
+software's like/comment counts from its Discussion via the GitHub GraphQL
+API and stores them in `data/software.json` as `engagement`, the same way
+`sync-releases.mjs` refreshes release data. `.github/workflows/sync.yml`
+runs it automatically on the existing 6-hour cron — no separate workflow.
+
 ## Admin panel
 
 `admin.html` is a client-side CMS: GitHub Pages has no backend, so it

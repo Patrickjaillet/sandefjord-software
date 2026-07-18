@@ -6,6 +6,7 @@
   "type": "module",
   "scripts": {
     "sync": "node scripts/sync-releases.mjs",
+    "sync-engagement": "node scripts/sync-engagement.mjs",
     "build": "node scripts/build.mjs",
     "check-content": "node scripts/check-content.mjs"
   },

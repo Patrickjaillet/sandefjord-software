@@ -201,6 +201,7 @@ function renderSimilarSoftware(item, software) {
               </div>
             </div>
             <p class="software-card-desc">${escapeHtml(entry.shortDescription)}</p>
+            ${renderEngagementBadge(entry) ? `<div class="software-card-meta">${renderEngagementBadge(entry)}</div>` : ""}
             <div class="software-card-footer">
               <span class="version-tag">v${escapeHtml(entry.version)}</span>
               <span class="software-card-link">View details</span>
@@ -241,6 +242,10 @@ const COPY_ICON_SVG = `<svg ${SHARE_ICON_ATTRS}><rect x="7" y="7" width="10" hei
 const SHARE_ICON_SVG = `<svg ${SHARE_ICON_ATTRS}><circle cx="15" cy="5" r="2"/><circle cx="5" cy="10" r="2"/><circle cx="15" cy="15" r="2"/><path d="M6.7 9 13.3 5.9M6.7 11l6.6 3.1"/></svg>`;
 const X_ICON_SVG = `<svg ${SHARE_ICON_ATTRS}><path d="M5 5l10 10M15 5 5 15"/></svg>`;
 const EMAIL_ICON_SVG = `<svg ${SHARE_ICON_ATTRS}><rect x="3" y="5" width="14" height="10" rx="1.5"/><path d="M3 6l7 5 7-5"/></svg>`;
+const REDDIT_ICON_SVG = `<svg ${SHARE_ICON_ATTRS}><circle cx="10" cy="12" r="6"/><circle cx="7.5" cy="12" r="1" fill="currentColor" stroke="none"/><circle cx="12.5" cy="12" r="1" fill="currentColor" stroke="none"/><path d="M7 14.5c1 .8 5 .8 6 0"/><path d="M10 6V3.5M10 3.5h2.5M14 8l1.5-1"/></svg>`;
+const LINKEDIN_ICON_SVG = `<svg ${SHARE_ICON_ATTRS}><rect x="3" y="3" width="14" height="14" rx="2"/><line x1="7" y1="9" x2="7" y2="14"/><circle cx="7" cy="6.3" r="0.9" fill="currentColor" stroke="none"/><path d="M10.5 14V9M10.5 11c0-1.1.9-2 2-2s2 .9 2 2v3"/></svg>`;
+const LIKE_ICON_SVG = `<svg ${SHARE_ICON_ATTRS} width="14" height="14"><path d="M8 17H4V9h4m0 8 2.5-9h4.4c1 0 1.7.9 1.4 1.8L14.5 15c-.2.6-.7 1-1.3 1H8Z"/></svg>`;
+const COMMENT_ICON_SVG = `<svg ${SHARE_ICON_ATTRS} width="14" height="14"><path d="M3 4h14v9H8l-3 3v-3H3Z"/></svg>`;
 
 function shareUrl(item) {
   return `${SITE_URL}/software.html?id=${encodeURIComponent(item.id)}`;
@@ -276,6 +281,48 @@ function setupShareButtons(container, item) {
       navigator.share({ title: item.name, text: item.shortDescription, url: shareUrl(item) }).catch(() => {});
     });
   }
+}
+
+// Comments are powered by giscus (https://giscus.app), backed by GitHub
+// Discussions on this repo. Discussions must be enabled on the repo, the
+// giscus GitHub App installed, and a dedicated category created before
+// these two IDs exist — get them from giscus.app's config generator once
+// that's done, and replace the placeholders below.
+const GISCUS_REPO = "Patrickjaillet/sandefjord-software";
+const GISCUS_REPO_ID = "REPLACE_WITH_GISCUS_REPO_ID";
+const GISCUS_CATEGORY = "Software Comments";
+const GISCUS_CATEGORY_ID = "REPLACE_WITH_GISCUS_CATEGORY_ID";
+
+function setupComments(container, item) {
+  const button = container.querySelector("[data-show-comments]");
+  const mount = container.querySelector("[data-comments-mount]");
+  if (!button || !mount) return;
+
+  button.addEventListener(
+    "click",
+    () => {
+      button.setAttribute("aria-expanded", "true");
+      button.hidden = true;
+      mount.hidden = false;
+
+      const script = document.createElement("script");
+      script.src = "https://giscus.app/client.js";
+      script.async = true;
+      script.crossOrigin = "anonymous";
+      script.setAttribute("data-repo", GISCUS_REPO);
+      script.setAttribute("data-repo-id", GISCUS_REPO_ID);
+      script.setAttribute("data-category", GISCUS_CATEGORY);
+      script.setAttribute("data-category-id", GISCUS_CATEGORY_ID);
+      script.setAttribute("data-mapping", "specific");
+      script.setAttribute("data-term", item.id);
+      script.setAttribute("data-reactions-enabled", "1");
+      script.setAttribute("data-emit-metadata", "0");
+      script.setAttribute("data-theme", "light");
+      script.setAttribute("data-lang", "en");
+      mount.appendChild(script);
+    },
+    { once: true }
+  );
 }
 
 const CATEGORY_ICON_ATTRS = `viewBox="0 0 16 16" width="12" height="12" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"`;
@@ -445,6 +492,12 @@ function setSoftwareMeta(item) {
   canonical.setAttribute("href", url);
 }
 
+function renderEngagementBadge(item) {
+  const engagement = item.engagement;
+  if (!engagement) return "";
+  return `<span class="engagement-badge" title="${engagement.likes} likes, ${engagement.comments} comments">${LIKE_ICON_SVG}${formatCompactNumber(engagement.likes)}${COMMENT_ICON_SVG}${formatCompactNumber(engagement.comments)}</span>`;
+}
+
 function renderSoftwareCards(container, software) {
   if (!software.length) {
     container.innerHTML = emptyState({
@@ -495,6 +548,7 @@ function renderSoftwareCards(container, software) {
           ${size ? `<span class="software-card-size">${size}</span>` : ""}
           ${updatedDate ? `<span class="software-card-updated">Updated ${formatDisplayDate(updatedDate)}</span>` : ""}
           ${recent ? `<span class="software-card-recent-badge">Updated recently</span>` : ""}
+          ${renderEngagementBadge(item)}
         </div>
         <div class="software-card-footer">
           <span class="version-tag">v${escapeHtml(item.version)}</span>
@@ -728,6 +782,12 @@ async function renderSoftwareDetail() {
               <a class="share-icon-button" data-static-share href="https://twitter.com/intent/tweet?url=${encodeURIComponent(shareUrl(item))}&text=${encodeURIComponent(`${item.name} — ${item.shortDescription}`)}" target="_blank" rel="noopener" aria-label="Share on X">
                 ${X_ICON_SVG}
               </a>
+              <a class="share-icon-button" data-static-share href="https://www.reddit.com/submit?url=${encodeURIComponent(shareUrl(item))}&title=${encodeURIComponent(item.name)}" target="_blank" rel="noopener" aria-label="Share on Reddit">
+                ${REDDIT_ICON_SVG}
+              </a>
+              <a class="share-icon-button" data-static-share href="https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(shareUrl(item))}" target="_blank" rel="noopener" aria-label="Share on LinkedIn">
+                ${LINKEDIN_ICON_SVG}
+              </a>
               <a class="share-icon-button" data-static-share href="mailto:?subject=${encodeURIComponent(item.name)}&body=${encodeURIComponent(`${item.shortDescription}\n\n${shareUrl(item)}`)}" aria-label="Share by email">
                 ${EMAIL_ICON_SVG}
               </a>
@@ -736,12 +796,20 @@ async function renderSoftwareDetail() {
         </aside>
       </div>
 
+      <section class="comments-section">
+        <h2>Comments</h2>
+        <p class="comments-note">Comments are powered by <a href="https://github.com/Patrickjaillet/sandefjord-software/discussions" target="_blank" rel="noopener">GitHub Discussions</a>. A GitHub account is required to post — <a href="https://github.com/signup" target="_blank" rel="noopener">sign up for free</a> if you don't have one.</p>
+        <button type="button" class="button button-secondary" data-show-comments aria-expanded="false">Show comments</button>
+        <div class="giscus" data-comments-mount hidden></div>
+      </section>
+
       ${similarSoftwareHtml}
     `;
 
     setupLightbox(container, screenshots, item.name);
     setupDownloadButton(container);
     setupShareButtons(container, item);
+    setupComments(container, item);
   } catch (error) {
     container.innerHTML = emptyState({
       icon: "warning",
@@ -823,7 +891,7 @@ function setupLightbox(container, screenshots, name) {
 
 function renderDownloadsRows(tbody, software) {
   if (!software.length) {
-    tbody.innerHTML = emptyStateRow(5, {
+    tbody.innerHTML = emptyStateRow(6, {
       icon: "search",
       title: "No software matches",
       message: "Try a different search term or category filter.",
@@ -838,6 +906,7 @@ function renderDownloadsRows(tbody, software) {
         <td class="downloads-category">${categoryBadge(item.category)}</td>
         <td class="mono"><span class="version-tag">v${escapeHtml(item.version)}</span></td>
         <td>${escapeHtml(item.systemRequirements)}</td>
+        <td>${renderEngagementBadge(item)}</td>
         <td><a class="button" href="${item.downloadUrl}" target="_blank" rel="noopener">Download</a></td>
       </tr>`
     )
@@ -853,6 +922,7 @@ function renderSkeletonRows(tbody, count) {
         <td><span class="skeleton skeleton-line" style="width: 60%;"></span></td>
         <td><span class="skeleton skeleton-line" style="width: 3rem;"></span></td>
         <td><span class="skeleton skeleton-line" style="width: 80%;"></span></td>
+        <td><span class="skeleton skeleton-line" style="width: 3.5rem;"></span></td>
         <td><span class="skeleton skeleton-line" style="width: 4.5rem;"></span></td>
       </tr>`
     )
@@ -866,7 +936,7 @@ async function renderDownloadsPage() {
     const data = await fetchSoftwareCatalog();
     const software = visibleSoftware(data);
     if (!software.length) {
-      tbody.innerHTML = emptyStateRow(5, {
+      tbody.innerHTML = emptyStateRow(6, {
         icon: "box",
         title: "No software published yet",
         message: "New applications appear here automatically as soon as they are released.",
@@ -878,7 +948,7 @@ async function renderDownloadsPage() {
       renderDownloadsRows(tbody, software.filter((item) => matchesFilters(item, search, category)));
     });
   } catch (error) {
-    tbody.innerHTML = emptyStateRow(5, {
+    tbody.innerHTML = emptyStateRow(6, {
       icon: "warning",
       title: "Unable to load downloads",
       message: "Something went wrong fetching the catalog. Please try refreshing the page.",

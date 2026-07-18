@@ -9,6 +9,7 @@ on:
 
 permissions:
   contents: write
+  discussions: read
 
 jobs:
   sync-and-deploy:
@@ -27,6 +28,11 @@ jobs:
 
       - name: Sync software catalog from GitHub Releases
         run: npm run sync
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Sync engagement (likes/comments from GitHub Discussions)
+        run: npm run sync-engagement
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 

@@ -5,6 +5,7 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased]
 
 ### Added
+- Community engagement: a lazy-loaded comments widget per software (giscus, backed by GitHub Discussions — no separate backend), reusing 👍 reactions as a like count; like/comment counts now show on software cards (homepage, "You might also like") and a new column in the downloads table; share buttons extended with Reddit and LinkedIn alongside X and email; `scripts/sync-engagement.mjs` fetches the counts on the existing 6-hour cron. Requires a one-time manual setup (enabling Discussions, installing the giscus GitHub App) documented in the README — ships with placeholder IDs until that's done
 - "What's New" page (`whats-new.html`) listing every release from every application chronologically, plus an RSS feed (`rss.xml`, generated at build time) with feed autodiscovery on the homepage and the new page; linked from the main nav and the footer
 - "Copy link" and share buttons on the product page: clipboard copy, the native Web Share API where supported, and simple fallback links (X, email) with no third-party SDK
 - Polished empty states (search returns nothing, no screenshots yet, empty catalog, load errors) with a small SVG illustration and an engaging message, replacing plain "No results" text everywhere it appeared (homepage, downloads, product page, What's New)

@@ -14,11 +14,12 @@
   <meta property="og:image" content="https://patrickjaillet.github.io/sandefjord-software/assets/social-preview.png">
   <link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="css/style.css">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://giscus.app; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self' https://giscus.app; frame-src https://giscus.app; base-uri 'self'; form-action 'self'; object-src 'none';">
 </head>
-<body>
+<body data-page="about">
   <!--include:header-->
 
-  <main class="container about-page">
+  <main class="container about-page" id="main-content">
     <span class="eyebrow">About</span>
     <h1>Sandefjord Software</h1>
     <p class="lede">Small Windows applications, built and maintained by a single developer.</p>
@@ -42,6 +43,10 @@
       <dt>Copyright</dt>
       <dd>&copy; 2026 Sandefjord Development. All rights reserved.</dd>
     </dl>
+
+    <p class="sponsors-link" id="sponsors-link" hidden>
+      <a href="https://github.com/sponsors/Patrickjaillet" target="_blank" rel="noopener">Support this project on GitHub Sponsors</a>
+    </p>
   </main>
 
   <!--include:footer-->

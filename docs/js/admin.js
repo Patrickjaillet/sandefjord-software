@@ -428,7 +428,10 @@ function renderDashboardView() {
         <h1>Dashboard</h1>
         <div class="admin-topbar-sub">Writes commit directly to <code>main</code> and go live immediately.</div>
       </div>
-      <button class="button button-primary" id="add-software">+ Add software</button>
+      <div class="admin-topbar-actions">
+        <button class="button button-secondary" id="force-sync">Force sync now</button>
+        <button class="button button-primary" id="add-software">+ Add software</button>
+      </div>
     </div>
 
     <div class="stat-grid">
@@ -460,6 +463,25 @@ function renderDashboardView() {
     editingItemId = null;
     activeView = "edit";
     renderShell();
+  });
+
+  document.getElementById("force-sync").addEventListener("click", async (event) => {
+    const button = event.currentTarget;
+    button.disabled = true;
+    const originalText = button.textContent;
+    button.textContent = "Triggering...";
+    try {
+      await ghApi(`/repos/${REPO_OWNER}/${REPO_NAME}/actions/workflows/sync.yml/dispatches`, {
+        method: "POST",
+        body: JSON.stringify({ ref: BRANCH }),
+      });
+      showToast("Sync triggered — the catalog will refresh in a minute or two.");
+    } catch (error) {
+      showToast(`Failed to trigger sync: ${error.message}`, true);
+    } finally {
+      button.disabled = false;
+      button.textContent = originalText;
+    }
   });
 
   document.getElementById("dashboard-search").addEventListener("input", (event) => {
@@ -699,16 +721,9 @@ function renderEditFormView(id) {
             <label>Screenshots</label>
             <div class="upload-zone">
               <input type="file" id="f-screenshots" accept="image/*" multiple>
-              <span class="upload-zone-hint">Click or drop images to add screenshots</span>
+              <span class="upload-zone-hint">Click or drop images to add screenshots — drag tiles to reorder</span>
             </div>
-            <ul class="asset-grid" id="screenshot-list">
-              ${currentScreenshots
-                .map(
-                  (src, i) =>
-                    `<li class="asset-tile" data-index="${i}"><img src="${src}" alt=""><button type="button" class="asset-tile-remove" data-remove-screenshot="${i}" title="Remove">&times;</button></li>`
-                )
-                .join("")}
-            </ul>
+            <ul class="asset-grid" id="screenshot-list"></ul>
           </div>
         </div>
 
@@ -808,35 +823,72 @@ function renderEditFormView(id) {
     updatePreview();
   });
 
+  const screenshotPreviewByPath = {};
+  const screenshotList = document.getElementById("screenshot-list");
+  let screenshotDragIndex = null;
+
+  function renderScreenshotTiles() {
+    screenshotList.innerHTML = currentScreenshots
+      .map((path, i) => {
+        const preview = screenshotPreviewByPath[path];
+        return `
+        <li class="asset-tile" draggable="true" data-index="${i}">
+          <img src="${preview || path}" alt="">
+          ${preview ? `<span class="asset-tile-new">New</span>` : ""}
+          <button type="button" class="asset-tile-remove" data-remove-screenshot="${i}" title="Remove">&times;</button>
+        </li>`;
+      })
+      .join("");
+
+    screenshotList.querySelectorAll("[data-remove-screenshot]").forEach((button) => {
+      button.addEventListener("click", () => {
+        currentScreenshots.splice(Number(button.dataset.removeScreenshot), 1);
+        renderScreenshotTiles();
+      });
+    });
+
+    screenshotList.querySelectorAll(".asset-tile").forEach((tile) => {
+      tile.addEventListener("dragstart", () => {
+        screenshotDragIndex = Number(tile.dataset.index);
+        tile.classList.add("is-dragging");
+      });
+      tile.addEventListener("dragend", () => {
+        tile.classList.remove("is-dragging");
+      });
+      tile.addEventListener("dragover", (event) => {
+        event.preventDefault();
+        tile.classList.add("is-drop-target");
+      });
+      tile.addEventListener("dragleave", () => {
+        tile.classList.remove("is-drop-target");
+      });
+      tile.addEventListener("drop", (event) => {
+        event.preventDefault();
+        tile.classList.remove("is-drop-target");
+        const dropIndex = Number(tile.dataset.index);
+        if (screenshotDragIndex === null || screenshotDragIndex === dropIndex) return;
+        const [moved] = currentScreenshots.splice(screenshotDragIndex, 1);
+        currentScreenshots.splice(dropIndex, 0, moved);
+        screenshotDragIndex = null;
+        renderScreenshotTiles();
+      });
+    });
+  }
+
+  renderScreenshotTiles();
+
   document.getElementById("f-screenshots").addEventListener("change", async (event) => {
     const files = [...event.target.files];
     const iconId = document.getElementById("f-id").value || "new-app";
-    const list = document.getElementById("screenshot-list");
     for (const file of files) {
       const ext = file.name.split(".").pop();
       const path = `assets/screenshots/${iconId}-${Date.now()}-${pendingScreenshotUploads.length}.${ext}`;
       const base64 = await fileToBase64(file);
       pendingScreenshotUploads.push({ path, base64 });
+      screenshotPreviewByPath[path] = `data:image/*;base64,${base64}`;
       currentScreenshots.push(path);
-      const li = document.createElement("li");
-      li.className = "asset-tile";
-      const index = currentScreenshots.length - 1;
-      li.dataset.index = index;
-      li.innerHTML = `<img src="data:image/*;base64,${base64}" alt=""><span class="asset-tile-new">New</span><button type="button" class="asset-tile-remove" data-remove-screenshot="${index}" title="Remove">&times;</button>`;
-      list.appendChild(li);
-      li.querySelector("[data-remove-screenshot]").addEventListener("click", () => {
-        currentScreenshots.splice(index, 1);
-        li.remove();
-      });
     }
-  });
-
-  main.querySelectorAll("[data-remove-screenshot]").forEach((button) => {
-    button.addEventListener("click", () => {
-      const index = Number(button.dataset.removeScreenshot);
-      currentScreenshots.splice(index, 1);
-      button.closest("li").remove();
-    });
+    renderScreenshotTiles();
   });
 
   document.getElementById("software-form").addEventListener("submit", async (event) => {

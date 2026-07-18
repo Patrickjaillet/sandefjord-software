@@ -7,6 +7,9 @@ for (const path of PAGES) {
   test(`accessibility: ${path} has no axe violations`, async ({ page }) => {
     await page.goto(path);
     await page.waitForSelector(".loading-text", { state: "detached" }).catch(() => {});
+    // Let the card-in entrance animation finish so axe doesn't catch a
+    // mid-fade frame and flag a false-positive contrast violation.
+    await page.waitForTimeout(500);
 
     const results = await new AxeBuilder({ page })
       .withTags(["wcag2a", "wcag2aa", "wcag21a", "wcag21aa", "best-practice"])
@@ -20,6 +23,7 @@ test("accessibility: a software detail page has no axe violations", async ({ pag
   await page.goto("/");
   await page.locator(".software-card").first().click();
   await page.waitForSelector(".skeleton-card, .software-detail-layout[aria-hidden]", { state: "detached" }).catch(() => {});
+  await page.waitForTimeout(500);
 
   const results = await new AxeBuilder({ page })
     .withTags(["wcag2a", "wcag2aa", "wcag21a", "wcag21aa", "best-practice"])

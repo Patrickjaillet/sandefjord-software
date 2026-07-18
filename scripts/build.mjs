@@ -5,6 +5,23 @@ const SRC_DIR = "src";
 const OUT_DIR = "docs";
 const PARTIALS_DIR = path.join(SRC_DIR, "partials");
 const SITE_URL = "https://patrickjaillet.github.io/sandefjord-software";
+const SPONSORS_ACCOUNT = "Patrickjaillet";
+const SITE_CONTENT_FILE = path.join("data", "site-content.json");
+
+async function hasSponsorsProfile() {
+  try {
+    const response = await fetch(`https://github.com/sponsors/${SPONSORS_ACCOUNT}`, { redirect: "follow" });
+    return response.url.includes(`/sponsors/${SPONSORS_ACCOUNT}`);
+  } catch {
+    return false;
+  }
+}
+
+async function updateSponsorsFlag() {
+  const siteContent = JSON.parse(await readFile(SITE_CONTENT_FILE, "utf8"));
+  siteContent.hasSponsorsProfile = await hasSponsorsProfile();
+  await writeFile(SITE_CONTENT_FILE, `${JSON.stringify(siteContent, null, 2)}\n`, "utf8");
+}
 
 async function loadPartials() {
   const files = await readdir(PARTIALS_DIR);
@@ -143,6 +160,7 @@ async function build() {
   const partials = await loadPartials();
   await buildPages(partials);
   await cp("assets", path.join(OUT_DIR, "assets"), { recursive: true });
+  await updateSponsorsFlag();
   await cp("data", path.join(OUT_DIR, "data"), { recursive: true });
   await buildSitemap();
   await buildRssFeed();

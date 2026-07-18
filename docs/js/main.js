@@ -131,6 +131,18 @@ async function renderHero() {
   setupFjordParallax();
 }
 
+async function renderAboutPage() {
+  try {
+    const response = await fetch(SITE_CONTENT_URL);
+    if (!response.ok) return;
+    const content = await response.json();
+    const sponsorsLink = document.getElementById("sponsors-link");
+    if (sponsorsLink && content.hasSponsorsProfile) sponsorsLink.hidden = false;
+  } catch (error) {
+    console.error(error);
+  }
+}
+
 function setupFjordParallax() {
   const svg = document.getElementById("fjord-lines");
   if (!svg) return;
@@ -519,6 +531,67 @@ function renderLatestUpdates(software) {
   `;
 }
 
+const RECENTLY_VIEWED_KEY = "sandefjord_recently_viewed_v1";
+const RECENTLY_VIEWED_MAX = 8;
+
+function recordRecentlyViewed(id) {
+  try {
+    const stored = JSON.parse(localStorage.getItem(RECENTLY_VIEWED_KEY) || "[]");
+    const next = [id, ...stored.filter((existingId) => existingId !== id)].slice(0, RECENTLY_VIEWED_MAX);
+    localStorage.setItem(RECENTLY_VIEWED_KEY, JSON.stringify(next));
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+function getRecentlyViewedIds() {
+  try {
+    return JSON.parse(localStorage.getItem(RECENTLY_VIEWED_KEY) || "[]");
+  } catch {
+    return [];
+  }
+}
+
+function renderRecentlyViewed(software) {
+  const container = document.getElementById("recently-viewed");
+  if (!container) return;
+
+  const items = getRecentlyViewedIds()
+    .map((id) => software.find((entry) => entry.id === id))
+    .filter(Boolean)
+    .slice(0, 4);
+
+  if (!items.length) {
+    container.innerHTML = "";
+    return;
+  }
+
+  container.innerHTML = `
+    <span class="eyebrow">Recently viewed</span>
+    <div class="software-grid recently-viewed-grid">
+      ${items
+        .map(
+          (item, i) => `
+        <a class="software-card" style="--card-i: ${i}" href="software.html?id=${encodeURIComponent(item.id)}">
+          <div class="software-card-top">
+            <img class="software-card-icon" src="${item.icon}" alt="" loading="lazy">
+            <div>
+              <span class="software-card-category">${categoryBadge(item.category)}</span>
+              <h2 class="software-card-title">${escapeHtml(item.name)}</h2>
+            </div>
+          </div>
+          <p class="software-card-desc">${escapeHtml(item.shortDescription)}</p>
+          <div class="software-card-footer">
+            <span class="version-tag">v${escapeHtml(item.version)}</span>
+            <span class="software-card-link">View details</span>
+          </div>
+        </a>`
+        )
+        .join("")}
+    </div>
+  `;
+}
+
 function escapeHtml(value) {
   const div = document.createElement("div");
   div.textContent = value ?? "";
@@ -577,6 +650,60 @@ function setSoftwareMeta(item) {
     document.head.appendChild(canonical);
   }
   canonical.setAttribute("href", url);
+}
+
+const SCHEMA_APPLICATION_CATEGORY = {
+  "Developer Tools": "DeveloperApplication",
+  Utilities: "UtilitiesApplication",
+};
+
+function setStructuredData(item) {
+  const url = `${SITE_URL}/software.html?id=${encodeURIComponent(item.id)}`;
+  const image = item.screenshots && item.screenshots.length
+    ? `${SITE_URL}/${item.screenshots[0]}`
+    : `${SITE_URL}/assets/social-preview.png`;
+
+  const data = {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    name: item.name,
+    description: item.shortDescription || item.description,
+    applicationCategory: SCHEMA_APPLICATION_CATEGORY[item.category] || item.category,
+    operatingSystem: "Windows",
+    softwareVersion: item.version,
+    url,
+    image,
+    downloadUrl: item.downloadUrl,
+    offers: {
+      "@type": "Offer",
+      price: "0",
+      priceCurrency: "USD",
+    },
+  };
+
+  if (item.engagement) {
+    data.interactionStatistic = [
+      {
+        "@type": "InteractionCounter",
+        interactionType: "https://schema.org/LikeAction",
+        userInteractionCount: item.engagement.likes,
+      },
+      {
+        "@type": "InteractionCounter",
+        interactionType: "https://schema.org/CommentAction",
+        userInteractionCount: item.engagement.comments,
+      },
+    ];
+  }
+
+  let script = document.getElementById("structured-data");
+  if (!script) {
+    script = document.createElement("script");
+    script.type = "application/ld+json";
+    script.id = "structured-data";
+    document.head.appendChild(script);
+  }
+  script.textContent = JSON.stringify(data);
 }
 
 function renderEngagementBadge(item) {
@@ -683,6 +810,7 @@ async function renderHomepage() {
     }
     renderFeaturedSoftware(software);
     renderLatestUpdates(software);
+    renderRecentlyViewed(software);
     renderSoftwareCards(container, software);
     setupCatalogToolbar(software, (search, category, sortKey) => {
       const filtered = software.filter((item) => matchesFilters(item, search, category));
@@ -721,7 +849,7 @@ function renderSkeletonDetail(container) {
 }
 
 async function renderSoftwareDetail() {
-  const container = document.getElementById("software-detail");
+  const container = document.getElementById("main-content");
   const id = getQueryParam("id");
   renderSkeletonDetail(container);
   try {
@@ -736,6 +864,8 @@ async function renderSoftwareDetail() {
       });
       return;
     }
+
+    recordRecentlyViewed(item.id);
 
     const screenshots = item.screenshots || [];
     const screenshotsHtml = screenshots.length
@@ -795,6 +925,7 @@ async function renderSoftwareDetail() {
 
     document.title = `${item.name} — Sandefjord Software`;
     setSoftwareMeta(item);
+    setStructuredData(item);
 
     const asset = primaryAsset(item);
     const assetSize = formatFileSize(asset ? asset.size : null);
@@ -855,8 +986,14 @@ async function renderSoftwareDetail() {
             <dt>Category</dt>
             <dd>${categoryBadge(item.category)}</dd>
             ${(item.tags || []).length ? `<dt>Tags</dt><dd>${item.tags.map(escapeHtml).join(", ")}</dd>` : ""}
-            <dt>Repository</dt>
+            ${
+              item.repositoryUrl
+                ? `<dt>Repository</dt>
             <dd><a href="${item.repositoryUrl}" target="_blank" rel="noopener">View on GitHub</a></dd>
+            <dt>Support</dt>
+            <dd><a href="${item.repositoryUrl}/issues/new" target="_blank" rel="noopener">Report an issue</a></dd>`
+                : ""
+            }
           </dl>
 
           <div class="share-section">
@@ -1094,3 +1231,17 @@ async function renderWhatsNewPage() {
     console.error(error);
   }
 }
+
+const PAGE_INIT = {
+  home: () => {
+    renderHomepage();
+    renderHero();
+  },
+  "software-detail": renderSoftwareDetail,
+  downloads: renderDownloadsPage,
+  "whats-new": renderWhatsNewPage,
+  about: renderAboutPage,
+};
+
+const pageInit = PAGE_INIT[document.body.dataset.page];
+if (pageInit) pageInit();

@@ -12,9 +12,11 @@
   <meta property="og:image" content="https://patrickjaillet.github.io/sandefjord-software/assets/social-preview.png">
   <link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="css/style.css">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://giscus.app; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self' https://giscus.app; frame-src https://giscus.app; base-uri 'self'; form-action 'self'; object-src 'none';">
 </head>
-<body>
-  <header class="site-header">
+<body data-page="software-detail">
+  <a class="skip-link" href="#main-content">Skip to content</a>
+<header class="site-header">
   <div class="container header-inner">
     <a class="brand" href="index.html">
       <span class="brand-primary">SANDEFJORD</span>
@@ -30,7 +32,7 @@
 </header>
 
 
-  <main class="container" id="software-detail">
+  <main class="container" id="main-content">
     <p class="loading-text">Loading software details...</p>
   </main>
 
@@ -53,6 +55,5 @@
 
 
   <script src="js/main.js"></script>
-  <script>renderSoftwareDetail();</script>
 </body>
 </html>

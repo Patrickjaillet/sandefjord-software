@@ -5,6 +5,14 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased]
 
 ### Added
+- JSON-LD `SoftwareApplication` structured data on every product page (name, description, category, version, OS, free `Offer`, and like/comment `interactionStatistic` when available) for richer search results
+- A "Skip to content" link, visible on keyboard focus, as the first element on every public page
+- A strict Content-Security-Policy on all public pages (`default-src 'self'`, with `https://giscus.app` allow-listed for the comments widget); removed all inline `<script>` tags in favor of a `data-page` attribute dispatched from `main.js`, so no `'unsafe-inline'` is needed for scripts — the admin panel is intentionally excluded
+- Drag-and-drop screenshot reordering in the admin edit form (previously only the upload order was kept)
+- "Force sync now" button on the admin dashboard, triggering `sync.yml` via `workflow_dispatch` instead of waiting for the 6-hour cron
+- Conditional "Support this project" GitHub Sponsors link on the About page, shown only when a Sponsors profile actually exists (checked at build time to avoid a dead link)
+- "Recently viewed" section on the homepage, backed entirely by the visitor's own `localStorage` — nothing sent anywhere, hidden until something's been viewed
+- "Report an issue" link on the product page, pointing directly to the software's own repo issue tracker
 - Continuous integration on every Pull Request (`.github/workflows/ci.yml`): build + `check-content`, a Playwright test suite (`tests/e2e/`) covering homepage search/filter/sort and the `/` search shortcut, the downloads table, and a software detail page, an automated accessibility scan (`@axe-core/playwright`) on every main public page, and a Lighthouse CI budget (`.lighthouserc.json`) asserting on the same categories audited in Phase 5
 - SHA-256 checksum for each software's current download, computed and cached by `scripts/sync-releases.mjs` (`downloadSha256`), shown next to the download button on the product page with a "Copy" button
 - Sort control (recently updated / most downloaded / name A-Z) on the homepage and downloads page, alongside the existing search and category filter
@@ -61,6 +69,8 @@ All notable changes to this project will be documented in this file.
 - Base `README.md` and `CHANGELOG.md`
 
 ### Fixed
+- The accessibility test suite could intermittently fail with a false-positive color-contrast violation: axe sometimes scanned a page while the `card-in` entrance animation on `.software-card` was still mid-fade (near-zero opacity), which skews the computed contrast ratio — added a short settle wait after page load/navigation in `tests/e2e/accessibility.spec.js` before scanning
+- Admin screenshot removal used stale indices captured in each button's click listener at render time, so removing more than one screenshot in a row (or removing one after reordering) could delete the wrong tile — fixed by re-rendering the whole screenshot list from the underlying array after every add/remove/reorder instead of patching the DOM in place
 - CI's Lighthouse job failed with "Invalid action input 'staticDistDir'" — `treosh/lighthouse-ci-action@v11` dropped the `staticDistDir`/`urls` action inputs; moved both into `.lighthouserc.json`'s `ci.collect` (`staticDistDir` + explicit `url` list), which is how that version expects them
 - Keyboard focus on screenshot thumbnails (and any other `tabindex`-only element) fell back to the browser's default focus ring instead of the site's teal outline — the global focus-visible rule only covered `a`/`button`; extended it to `input` and any `[tabindex]` element
 - The hidden native "Share" button on the product page stayed visible regardless of `navigator.share` support, because `.share-icon-button { display: inline-flex }` overrode the browser's default `[hidden]` rule — added an explicit `[hidden] { display: none }` override

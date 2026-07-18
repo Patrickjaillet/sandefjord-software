@@ -16,9 +16,11 @@
   <link rel="alternate" type="application/rss+xml" title="Sandefjord Software — What's New" href="rss.xml">
   <link rel="alternate" type="application/feed+json" title="Sandefjord Software — What's New" href="feed.json">
   <link rel="stylesheet" href="css/style.css">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://giscus.app; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self' https://giscus.app; frame-src https://giscus.app; base-uri 'self'; form-action 'self'; object-src 'none';">
 </head>
-<body>
-  <header class="site-header">
+<body data-page="whats-new">
+  <a class="skip-link" href="#main-content">Skip to content</a>
+<header class="site-header">
   <div class="container header-inner">
     <a class="brand" href="index.html">
       <span class="brand-primary">SANDEFJORD</span>
@@ -34,7 +36,7 @@
 </header>
 
 
-  <main class="container">
+  <main class="container" id="main-content">
     <nav class="breadcrumb" aria-label="Breadcrumb">
       <a href="index.html">Home</a><span class="breadcrumb-sep" aria-hidden="true">/</span><span aria-current="page">What's New</span>
     </nav>
@@ -66,6 +68,5 @@
 
 
   <script src="js/main.js"></script>
-  <script>renderWhatsNewPage();</script>
 </body>
 </html>

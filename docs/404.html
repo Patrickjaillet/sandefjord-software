@@ -7,9 +7,11 @@
   <meta name="robots" content="noindex">
   <link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="css/style.css">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self'; base-uri 'self'; form-action 'self'; object-src 'none';">
 </head>
-<body>
-  <header class="site-header">
+<body data-page="404">
+  <a class="skip-link" href="#main-content">Skip to content</a>
+<header class="site-header">
   <div class="container header-inner">
     <a class="brand" href="index.html">
       <span class="brand-primary">SANDEFJORD</span>
@@ -25,7 +27,7 @@
 </header>
 
 
-  <main class="container not-found-page">
+  <main class="container not-found-page" id="main-content">
     <span class="eyebrow">Not found</span>
     <h1>404</h1>
     <p>This page has drifted. It may have been moved or never existed.</p>

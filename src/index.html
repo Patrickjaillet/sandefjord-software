@@ -16,11 +16,12 @@
   <link rel="alternate" type="application/rss+xml" title="Sandefjord Software — What's New" href="rss.xml">
   <link rel="alternate" type="application/feed+json" title="Sandefjord Software — What's New" href="feed.json">
   <link rel="stylesheet" href="css/style.css">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://giscus.app; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self' https://giscus.app; frame-src https://giscus.app; base-uri 'self'; form-action 'self'; object-src 'none';">
 </head>
-<body>
+<body data-page="home">
   <!--include:header-->
 
-  <main class="container">
+  <main class="container" id="main-content">
     <section class="hero">
       <div class="hero-content" id="hero-content">
         <span class="eyebrow" id="hero-eyebrow">Windows applications</span>
@@ -44,6 +45,8 @@
 
     <section id="latest-updates" class="latest-updates" aria-label="Latest updates"></section>
 
+    <section id="recently-viewed" class="recently-viewed" aria-label="Recently viewed"></section>
+
     <div class="catalog-toolbar">
       <input type="search" id="catalog-search" class="catalog-search" placeholder="Search software... (press /)" aria-label="Search software">
       <div class="category-filters" id="category-filters"></div>
@@ -58,6 +61,5 @@
   <!--include:footer-->
 
   <script src="js/main.js"></script>
-  <script>renderHomepage(); renderHero();</script>
 </body>
 </html>

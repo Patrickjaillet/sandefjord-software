@@ -23,49 +23,49 @@
     {
       "id": "microshader-1.2.5",
       "url": "https://patrickjaillet.github.io/sandefjord-software/software.html?id=microshader",
-      "title": "MicroShader v1.2.5",
+      "title": "µShader v1.2.5",
       "content_text": "## New golf pass: common subexpression elimination When two declarations in a row initialize with a token-identical pure expression, the later ones now reference the first variable instead of recomputing it, e.g. `float a=dot(p,p),b=dot(p,p);` becomes `float a=dot(p,p),b=a;`. Deliberately scoped narrow for safety: only whole declaration initializers, only pure builtins/constructors (never a user function), and the candidate cache is cleared on every block boundary and any non-matching statement. Two real bugs were found and fixed during development, both now covered by regression tests: A variable-name lookup that read the pre-rename identifier instead of the actual rendered name. A cache-invalidation check that missed a brace following `)` or `else` rather than `;`. New \"Common subexpressions\" toggle in the Passes panel, matching per-pass counter in the stats panel. Unsigned installer - Windows SmartScreen may show an \"unknown publisher\" warning; click \"More info\" -> \"Run anyway\". Verified on Windows 10 (LTSC 2019, build 17763); not independently verified on Windows 11.",
       "date_published": "2026-07-18T00:00:00.000Z"
     },
     {
       "id": "microshader-1.2.4",
       "url": "https://patrickjaillet.github.io/sandefjord-software/software.html?id=microshader",
-      "title": "MicroShader v1.2.4",
+      "title": "µShader v1.2.4",
       "content_text": "## New golf pass: algebraic identity simplification First step toward the most powerful GLSL golfing engine possible while never changing shader behavior (tracked going forward under ROADMAP.md Phase 11). Removes x*1, 1*x, x/1, x+0, 0+x, x-0 for a bare identifier x. Rewrites pow(x,2.) to x*x for a bare identifier/number x. Restricted to single-identifier operands so it can never duplicate or drop something with a side effect. New \"Algebraic identities\" toggle in the Passes panel, new per-pass counter in the stats panel. Covered by a new fixture (fixtures/algebraic_identities.glsl) and 4 new Rust unit tests. Unsigned installer - Windows SmartScreen may show an \"unknown publisher\" warning; click \"More info\" -> \"Run anyway\". Verified on Windows 10 (LTSC 2019, build 17763); not independently verified on Windows 11.",
       "date_published": "2026-07-18T00:00:00.000Z"
     },
     {
       "id": "microshader-1.2.3",
       "url": "https://patrickjaillet.github.io/sandefjord-software/software.html?id=microshader",
-      "title": "MicroShader v1.2.3",
+      "title": "µShader v1.2.3",
       "content_text": "## Phase 10 follow-up: two more gaps closed Checkboxes (all 16, across golf-pass toggles, \"Aggressive golf\", \"Formatted view\", \"Compare\") are now a bespoke flat 12px square matching the Phase 10 spec, instead of the default ImGui shape. The \"Protected names\" field now shows a 1px accent focus ring while being edited. Unsigned installer - Windows SmartScreen may show an \"unknown publisher\" warning; click \"More info\" -> \"Run anyway\". Verified on Windows 10 (LTSC 2019, build 17763); not independently verified on Windows 11.",
       "date_published": "2026-07-18T00:00:00.000Z"
     },
     {
       "id": "microshader-1.2.2",
       "url": "https://patrickjaillet.github.io/sandefjord-software/software.html?id=microshader",
-      "title": "MicroShader v1.2.2",
+      "title": "µShader v1.2.2",
       "content_text": "## Small Phase 10 follow-up \"Run golf\" is now the one accent-filled primary button in the UI, matching Phase 10's design intent that it be the single clearly-primary surface. ROADMAP.md's Phase 10 sub-sections (10.1-10.7) retrofitted with checkboxes and honest per-item notes on what matches the original spec exactly versus what was pragmatically approximated. Unsigned installer - Windows SmartScreen may show an \"unknown publisher\" warning; click \"More info\" -> \"Run anyway\". Verified on Windows 10 (LTSC 2019, build 17763); not independently verified on Windows 11.",
       "date_published": "2026-07-18T00:00:00.000Z"
     },
     {
       "id": "microshader-1.2.1",
       "url": "https://patrickjaillet.github.io/sandefjord-software/software.html?id=microshader",
-      "title": "MicroShader v1.2.1",
+      "title": "µShader v1.2.1",
       "content_text": "## Phase 10: dark UI/UX overhaul Full replacement of the white theme with a dark, Adobe Premiere Pro-style editing workspace: Named color-token table backing every UI color. Compact chrome: 2px corner radius, flat accent-underlined tabs, thin scrollbars. Custom borderless window frame with its own title bar (icon, minimize/maximize/close). Dark text-editor palette for Source/Golfed panels. Viewport restyled as a Program Monitor: black letterboxing, compile-status dot, timecode readout. Icons now shift color between idle/hover/active states. About popup rebuilt as a dark card. New design references under docs/design/, WCAG AA contrast-checked. Also fixes a crash when minimizing the window (found and fixed during verification of this release). Unsigned installer - Windows SmartScreen may show an \"unknown publisher\" warning; click \"More info\" -> \"Run anyway\". Verified on Windows 10 (LTSC 2019, build 17763); not independently verified on Windows 11.",
       "date_published": "2026-07-18T00:00:00.000Z"
     },
     {
       "id": "microshader-1.2.0",
       "url": "https://patrickjaillet.github.io/sandefjord-software/software.html?id=microshader",
-      "title": "MicroShader v1.2.0",
+      "title": "µShader v1.2.0",
       "content_text": "## Changes since v1.0.0 Viewport recording: capture the running shader to an animated GIF, or to MP4/WebM. MP4/WebM now encode through a bundled ffmpeg.exe (no separate install or PATH entry needed) - see THIRD_PARTY_NOTICES.md for the FFmpeg (GPL) attribution this requires. Fixed: Open/Save for .glsl files silently failed on non-ASCII paths. Fixed: a stray console window appeared behind the main window on launch. Fixed: docked panels exposed a \"Hide tab bar\" menu that could hide a panel's tab. Unsigned installer - Windows SmartScreen may show an \"unknown publisher\" warning; click \"More info\" -> \"Run anyway\". Verified on Windows 10 (LTSC 2019, build 17763); not independently verified on Windows 11.",
       "date_published": "2026-07-18T00:00:00.000Z"
     },
     {
       "id": "microshader-1.0.0",
       "url": "https://patrickjaillet.github.io/sandefjord-software/software.html?id=microshader",
-      "title": "MicroShader v1.0.0",
+      "title": "µShader v1.0.0",
       "content_text": "First stable release of uShader, a native Windows 10/11 GLSL shader golfer. ## Highlights Golfing engine: identifier renaming, numeric literal shortening, and whitespace stripping always run; an aggressive mode adds 14 further transformation passes (dead-code elimination, constant folding, declaration merging, function inlining, and more), each individually toggleable, plus a protected-names list. Live viewport with the standard Shadertoy uniform set (`iTime`, `iResolution`, `iMouse`, `iDate`, `iFrame`, `iFrameRate`), and a Compare mode that renders the source and golfed shaders side by side. GLSL-aware text editor with syntax highlighting and error-line highlighting on compile failure, plus a \"Formatted view\" toggle for the golfed output. Reduction stats: char/byte counts, reduction percentage, per-pass counters, and size-budget badges. Import/export: open and save `.glsl` files, copy the golfed output, export in Shadertoy format, and capture the viewport to PNG. About panel with logo, copyright, and links. ## Installing Download `uShader-Setup-1.0.0.9.exe` below and run it. The installer is unsigned (no code-signing certificate available), so Windows SmartScreen may show an \"unknown publisher\" warning — click \"More info\" -> \"Run anyway\". Requires Windows 10 or 11 (64-bit). Verified on Windows 10 (LTSC 2019, build 17763); not yet independently verified on Windows 11. See [CHANGELOG.md](https://github.com/Patrickjaillet/MicroShader/blob/main/CHANGELOG.md) for the full per-phase history.",
       "date_published": "2026-07-18T00:00:00.000Z"
     },

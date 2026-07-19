@@ -5,6 +5,7 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased]
 
 ### Added
+- Update µShader
 - JSON-LD `SoftwareApplication` structured data on every product page (name, description, category, version, OS, free `Offer`, and like/comment `interactionStatistic` when available) for richer search results
 - A "Skip to content" link, visible on keyboard focus, as the first element on every public page
 - A strict Content-Security-Policy on all public pages (`default-src 'self'`, with `https://giscus.app` allow-listed for the comments widget); removed all inline `<script>` tags in favor of a `data-page` attribute dispatched from `main.js`, so no `'unsafe-inline'` is needed for scripts — the admin panel is intentionally excluded

@@ -122,7 +122,7 @@
     {
       "id": "microshader",
       "githubRepoId": 1304997535,
-      "name": "MicroShader",
+      "name": "µShader",
       "shortDescription": "GLSL Golfing engine",
       "description": "GLSL Golfing engine",
       "version": "1.2.5",
@@ -151,7 +151,8 @@
             "New \"Common subexpressions\" toggle in the Passes panel, matching per-pass counter in the stats panel.",
             "Unsigned installer - Windows SmartScreen may show an \"unknown publisher\" warning; click \"More info\" -> \"Run anyway\". Verified on Windows 10 (LTSC 2019, build 17763); not independently verified on Windows 11."
           ],
-          "prerelease": false
+          "prerelease": false,
+          "manuallyEdited": true
         },
         {
           "version": "1.2.4",

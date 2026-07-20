@@ -7,6 +7,13 @@
   "language": "en",
   "items": [
     {
+      "id": "microshader-2.0.1",
+      "url": "https://patrickjaillet.github.io/sandefjord-software/software.html?id=microshader",
+      "title": "µShader v2.0.1",
+      "content_text": "Drag-and-drop .glsl files onto the main window to open each as a new tab. Recent Files list under the File menu, persisted to %APPDATA%\\ushader\\, with automatic pruning of missing entries.",
+      "date_published": "2026-07-19T00:00:00.000Z"
+    },
+    {
       "id": "aiprompt-1.0.0",
       "url": "https://patrickjaillet.github.io/sandefjord-software/software.html?id=aiprompt",
       "title": "AIPrompt v1.0.0",

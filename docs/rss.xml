@@ -6,6 +6,13 @@
   <description>Every release from every Sandefjord Software application, newest first.</description>
   <language>en</language>
   <item>
+    <title>µShader v2.0.1</title>
+    <link>https://patrickjaillet.github.io/sandefjord-software/software.html?id=microshader</link>
+    <guid isPermaLink="false">microshader-2.0.1</guid>
+    <pubDate>Sun, 19 Jul 2026 00:00:00 GMT</pubDate>
+    <description>Drag-and-drop .glsl files onto the main window to open each as a new tab. Recent Files list under the File menu, persisted to %APPDATA%\ushader\, with automatic pruning of missing entries.</description>
+  </item>
+  <item>
     <title>AIPrompt v1.0.0</title>
     <link>https://patrickjaillet.github.io/sandefjord-software/software.html?id=aiprompt</link>
     <guid isPermaLink="false">aiprompt-1.0.0</guid>

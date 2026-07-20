@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-20T12:39:46.177Z",
+  "generatedAt": "2026-07-20T18:35:28.508Z",
   "software": [
     {
       "id": "aiprompt",
@@ -55,13 +55,13 @@
               "name": "AIPromptSetup_x64.exe",
               "url": "https://github.com/Patrickjaillet/AIPrompt/releases/download/v1.0.0/AIPromptSetup_x64.exe",
               "size": 55748238,
-              "downloadCount": 7,
+              "downloadCount": 8,
               "sha256": "d01ac86946215cac8f554ae9fb57e07a2658c755423b74c6deade41f4d37ab8e"
             }
           ]
         }
       ],
-      "totalDownloads": 7,
+      "totalDownloads": 8,
       "engagement": {
         "likes": 0,
         "comments": 0

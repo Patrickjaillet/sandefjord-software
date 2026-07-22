@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-22T17:56:54.651Z",
+  "generatedAt": "2026-07-22T18:22:54.506Z",
   "software": [
     {
       "id": "aiprompt",
@@ -170,13 +170,13 @@
               "name": "MDProEditor-Setup-0.8.0.exe",
               "url": "https://github.com/Patrickjaillet/MD-Pro-Editor/releases/download/v0.8.0/MDProEditor-Setup-0.8.0.exe",
               "size": 36776216,
-              "downloadCount": 1,
+              "downloadCount": 2,
               "sha256": "76cd0fc236d78015b64ae08b339768220a01fb9398675f02d010a058673bcccb"
             }
           ]
         }
       ],
-      "totalDownloads": 1,
+      "totalDownloads": 2,
       "engagement": {
         "likes": 0,
         "comments": 0
@@ -433,7 +433,7 @@
               "name": "uShader-Setup-3.0.1.0.exe",
               "url": "https://github.com/Patrickjaillet/MicroShader/releases/download/v3.0.1/uShader-Setup-3.0.1.0.exe",
               "size": 2645900,
-              "downloadCount": 1,
+              "downloadCount": 2,
               "sha256": "e0098b2bd0d8cc44d81ad09161cd82379b7a770c93d7970193dfa5c5c40f0e9a"
             }
           ]
@@ -556,7 +556,7 @@
           ]
         }
       ],
-      "totalDownloads": 10,
+      "totalDownloads": 11,
       "engagement": {
         "likes": 0,
         "comments": 0
@@ -813,7 +813,7 @@
               "name": "Z-GL.Shadertoy_2.13.0_x64-setup.exe",
               "url": "https://github.com/Patrickjaillet/Z-GL-Shadertoy/releases/download/v2.13.0/Z-GL.Shadertoy_2.13.0_x64-setup.exe",
               "size": 7106657,
-              "downloadCount": 1,
+              "downloadCount": 2,
               "sha256": "55ccf892ffe37b5cb3d12d68eed018cea3a3249f6798889603bc8f3a87cd9af0"
             },
             {
@@ -844,7 +844,7 @@
           ]
         }
       ],
-      "totalDownloads": 2,
+      "totalDownloads": 3,
       "engagement": {
         "likes": 0,
         "comments": 0

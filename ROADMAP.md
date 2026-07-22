@@ -18,10 +18,9 @@ Official Repository: https://github.com/Patrickjaillet/sandefjord-software
 ## Conventions de développement
 
 - [ ] General language only English
-- [ ] Theme only White or system for application
+- [ ] Theme only White
 - [ ] Source language entirely in English (variable names, functions, classes)
 - [ ] No comments in the source code
-- [ ] Strict Windows 10/11 compatibility only
 - [ ] Every added feature must be reflected in this ROADMAP.md
 - [ ] Automatic software version serialization for each Phase and each build
 - [ ] Every modification must be reflected for the end-user in the CHANGELOG.md
@@ -30,7 +29,6 @@ Official Repository: https://github.com/Patrickjaillet/sandefjord-software
 - [ ] Never integrate Claude AI into GitHub, the files, or the GitHub contributors list
 - [ ] Creation of all files and documents required for the GitHub repository
 - [ ] Integrate copyright / Creator / Email / Website information into an "About" tab
-- [ ] Create icons for both the "Inno Setup" installer and the software
 - [ ] MIT license
 
 ---

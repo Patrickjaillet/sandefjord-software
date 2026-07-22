@@ -162,6 +162,7 @@ function hasStoredToken() {
 }
 
 let lastCommits = [];
+let lastDeployRun = null;
 let activeView = "dashboard";
 let dashboardSearch = "";
 
@@ -290,18 +291,46 @@ async function handleLoginSubmit(event) {
 async function loadDashboard() {
   app().innerHTML = `<div class="admin-boot"><img src="assets/icons/favicon.svg" alt=""><p>Loading catalog...</p></div>`;
   try {
-    const [software, siteContent, commits] = await Promise.all([
+    const [software, siteContent, commits, deployRuns] = await Promise.all([
       getFile(SOFTWARE_PATH),
       getFile(SITE_CONTENT_PATH),
       ghApi(`/repos/${REPO_OWNER}/${REPO_NAME}/commits?per_page=8`).catch(() => []),
+      ghApi(`/repos/${REPO_OWNER}/${REPO_NAME}/actions/workflows/deploy.yml/runs?per_page=1`).catch(() => null),
     ]);
     softwareFile = { sha: software.sha, data: JSON.parse(software.text) };
     siteContentFile = { sha: siteContent.sha, data: JSON.parse(siteContent.text) };
     lastCommits = commits;
+    lastDeployRun = deployRuns?.workflow_runs?.[0] ?? null;
     activeView = "dashboard";
     renderShell();
   } catch (error) {
     app().innerHTML = `<div class="admin-boot"><p>Failed to load catalog: ${escapeHtml(error.message)}</p></div>`;
+    console.error(error);
+  }
+}
+
+function deployStatusPill() {
+  if (!lastDeployRun) return `<span class="deploy-status-pill deploy-status-unknown">No deploy runs yet</span>`;
+
+  const { status, conclusion, html_url, updated_at } = lastDeployRun;
+  const when = new Date(updated_at).toLocaleString();
+
+  if (status !== "completed") {
+    return `<a class="deploy-status-pill deploy-status-pending" href="${html_url}" target="_blank" rel="noopener">Deploy in progress&hellip;</a>`;
+  }
+  if (conclusion === "success") {
+    return `<a class="deploy-status-pill deploy-status-success" href="${html_url}" target="_blank" rel="noopener">Live &middot; deployed ${escapeHtml(when)}</a>`;
+  }
+  return `<a class="deploy-status-pill deploy-status-failure" href="${html_url}" target="_blank" rel="noopener">Last deploy failed &middot; ${escapeHtml(when)}</a>`;
+}
+
+async function refreshDeployStatus() {
+  try {
+    const runs = await ghApi(`/repos/${REPO_OWNER}/${REPO_NAME}/actions/workflows/deploy.yml/runs?per_page=1`);
+    lastDeployRun = runs?.workflow_runs?.[0] ?? null;
+    const holder = document.getElementById("deploy-status-holder");
+    if (holder) holder.innerHTML = deployStatusPill();
+  } catch (error) {
     console.error(error);
   }
 }
@@ -427,9 +456,11 @@ function renderDashboardView() {
       <div>
         <h1>Dashboard</h1>
         <div class="admin-topbar-sub">Writes commit directly to <code>main</code> and go live immediately.</div>
+        <div id="deploy-status-holder" class="deploy-status-holder">${deployStatusPill()}</div>
       </div>
       <div class="admin-topbar-actions">
         <button class="button button-secondary" id="force-sync">Force sync now</button>
+        <button class="button button-secondary" id="redeploy-site">Update site on GitHub</button>
         <button class="button button-primary" id="add-software">+ Add software</button>
       </div>
     </div>
@@ -478,6 +509,32 @@ function renderDashboardView() {
       showToast("Sync triggered — the catalog will refresh in a minute or two.");
     } catch (error) {
       showToast(`Failed to trigger sync: ${error.message}`, true);
+    } finally {
+      button.disabled = false;
+      button.textContent = originalText;
+    }
+  });
+
+  document.getElementById("redeploy-site").addEventListener("click", async (event) => {
+    const button = event.currentTarget;
+    button.disabled = true;
+    const originalText = button.textContent;
+    button.textContent = "Deploying...";
+    try {
+      await ghApi(`/repos/${REPO_OWNER}/${REPO_NAME}/actions/workflows/deploy.yml/dispatches`, {
+        method: "POST",
+        body: JSON.stringify({ ref: BRANCH }),
+      });
+      showToast("Deploy triggered — the live site will update in a minute or two.");
+      // Poll a few times for the new run to appear and finish, so the status
+      // pill reflects reality without requiring a manual page reload.
+      for (const delay of [4000, 8000, 15000, 25000, 40000]) {
+        await new Promise((resolve) => setTimeout(resolve, delay));
+        await refreshDeployStatus();
+        if (lastDeployRun?.status === "completed") break;
+      }
+    } catch (error) {
+      showToast(`Failed to trigger deploy: ${error.message}`, true);
     } finally {
       button.disabled = false;
       button.textContent = originalText;

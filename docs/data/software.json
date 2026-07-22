@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-22T12:29:30.581Z",
+  "generatedAt": "2026-07-18T12:58:24.682Z",
   "software": [
     {
       "id": "aiprompt",
@@ -55,17 +55,13 @@
               "name": "AIPromptSetup_x64.exe",
               "url": "https://github.com/Patrickjaillet/AIPrompt/releases/download/v1.0.0/AIPromptSetup_x64.exe",
               "size": 55748238,
-              "downloadCount": 8,
+              "downloadCount": 5,
               "sha256": "d01ac86946215cac8f554ae9fb57e07a2658c755423b74c6deade41f4d37ab8e"
             }
           ]
         }
       ],
-      "totalDownloads": 8,
-      "engagement": {
-        "likes": 0,
-        "comments": 0
-      }
+      "totalDownloads": 5
     },
     {
       "id": "glsl-hyper-golfer",
@@ -107,17 +103,13 @@
               "name": "glsl-hyper-golfer-1.0.0.zip",
               "url": "https://github.com/Patrickjaillet/GLSL-Hyper-Golfer/releases/download/1.0.0/glsl-hyper-golfer-1.0.0.zip",
               "size": 283602,
-              "downloadCount": 5,
+              "downloadCount": 3,
               "sha256": "d32e6d0c33089c2cf0a0e025d7c048d9c99f6f66f675646e7164e9e97fa854c4"
             }
           ]
         }
       ],
-      "totalDownloads": 5,
-      "engagement": {
-        "likes": 0,
-        "comments": 0
-      }
+      "totalDownloads": 3
     },
     {
       "id": "numis-euro",
@@ -159,23 +151,19 @@
               "name": "NumisEuro-5.0.0-portable.zip",
               "url": "https://github.com/Patrickjaillet/Numis-Euro/releases/download/install/NumisEuro-5.0.0-portable.zip",
               "size": 1351673,
-              "downloadCount": 7
+              "downloadCount": 6
             },
             {
               "name": "NumisEuro-5.0.0-setup.exe",
               "url": "https://github.com/Patrickjaillet/Numis-Euro/releases/download/install/NumisEuro-5.0.0-setup.exe",
               "size": 3157039,
-              "downloadCount": 10,
+              "downloadCount": 8,
               "sha256": "0aedc907c264deaf431266b01ba08290924d8d2136515b67de9f906d2f1a35ee"
             }
           ]
         }
       ],
-      "totalDownloads": 17,
-      "engagement": {
-        "likes": 1,
-        "comments": 0
-      }
+      "totalDownloads": 14
     },
     {
       "id": "shaddem",
@@ -225,7 +213,7 @@
               "name": "Shaddem.v1.0.0.exe",
               "url": "https://github.com/Patrickjaillet/Shaddem/releases/download/sd100/Shaddem.v1.0.0.exe",
               "size": 27538220,
-              "downloadCount": 5,
+              "downloadCount": 3,
               "sha256": "7c6fcce0ce1146753ade3b7e5b7124afbb8382ad8c4230c400bb7be23c0e9216"
             }
           ]
@@ -244,11 +232,7 @@
           ]
         }
       ],
-      "totalDownloads": 5,
-      "engagement": {
-        "likes": 0,
-        "comments": 0
-      }
+      "totalDownloads": 3
     },
     {
       "id": "shaderfmt",
@@ -290,505 +274,323 @@
               "name": "ShaderFmt-0.2.1-win64-setup.exe",
               "url": "https://github.com/Patrickjaillet/ShaderFmt/releases/download/1.0/ShaderFmt-0.2.1-win64-setup.exe",
               "size": 15984919,
-              "downloadCount": 8,
+              "downloadCount": 6,
               "sha256": "a9d3ac88666c08b5c9d9192a509fd1e450cbff215d9593cf2dc8e102d6c6db81"
             }
           ]
         }
       ],
-      "totalDownloads": 8,
-      "engagement": {
-        "likes": 0,
-        "comments": 0
-      }
+      "totalDownloads": 6
     },
     {
       "id": "z-gl-shadertoy",
-      "githubRepoId": 1307878202,
+      "githubRepoId": 1273603704,
       "name": "Z-GL-Shadertoy",
-      "shortDescription": "real-time GLSL shader editor, compatible with the ShaderToy format. Write GLSL code and see the result rendered instantly in a WebGL preview",
-      "description": "real-time GLSL shader editor, compatible with the ShaderToy format. Write GLSL code and see the result rendered instantly in a WebGL preview.",
-      "version": "2.13.0",
+      "shortDescription": "Real-time, 100% offline desktop editor fully dedicated to the Shadertoy GLSL shader format.",
+      "description": "Z-GL Shadertoy is a desktop GLSL shader editor dedicated entirely to the Shadertoy format: write a mainImage function, use the standard uniforms (iTime, iResolution, iMouse, iChannel0-3...), wire up Buffer A-D / Cube / Sound passes, and import or export directly from and to shadertoy.com, all without an internet connection or any WebAssembly module. The Monaco-based editor provides GLSL ES syntax highlighting, autocomplete, hover documentation, live error markers, and a minimap; every top-level #define or const float/int becomes a draggable slider with undo/redo. It renders the full Shadertoy multipass pipeline (Image, Buffer A-D with inter-frame feedback, Cube A-F, Sound) with every standard uniform and channel type (static image, video, webcam, audio/FFT, cubemap, feedback, keyboard texture, procedural noise). Built-in tools include a raymarching assistant, an SDF library with visualizer and composer, LUT color grading, a modulation panel, and a colorblindness simulation mode. ZIP import/export round-trips directly with shadertoy.com, alongside PNG/video capture, plain or minified GLSL, a Three.js snippet, a standalone HTML page, and shareable links. Ships as a native Windows desktop app (via Tauri) with a borderless window, Mica/Acrylic effects, tray icon, recent files, and external file watching.",
+      "version": "2.7.0",
       "prerelease": false,
-      "category": "Utilities",
+      "category": "Developer Tools",
       "tags": [],
       "hidden": false,
       "order": 999,
       "icon": "assets/icons/default-app.svg",
-      "screenshots": [],
+      "screenshots": [
+        "assets/screenshots/z-gl-shadertoy-1.jpg"
+      ],
       "systemRequirements": "Windows 10/11, 64-bit",
-      "downloadUrl": "https://github.com/Patrickjaillet/Z-GL-Shadertoy/releases/download/v2.13.0/Z-GL.Shadertoy_2.13.0_x64-setup.exe",
-      "downloadSha256": "55ccf892ffe37b5cb3d12d68eed018cea3a3249f6798889603bc8f3a87cd9af0",
+      "downloadUrl": "https://github.com/Patrickjaillet/Z-GL-Shadertoy/releases/download/2.7.0/Z-GL.Shadertoy_2.7.0_x64-setup.exe",
+      "downloadSha256": "b4d61499918b4df8eb067840dc0bfb057fb82af4a674aa0f7afbbc6251d21897",
       "repositoryUrl": "https://github.com/Patrickjaillet/Z-GL-Shadertoy",
       "changelog": [
         {
-          "version": "2.13.0",
-          "date": "2026-07-21",
+          "version": "2.7.0",
+          "date": "2026-06-30",
           "notes": [
-            "## What's changed",
-            "This release removes several features that added maintenance surface without matching real usage:",
-            "**Share links** — the share-link toolbar button and its versioned multi-pass variant.",
-            "**Crash reporting** — the opt-in crash-report prompt and its underlying error-log forwarding.",
-            "**Post-processing pipeline** — bloom, tone mapping, vignette, CRT filter, FXAA, TAA, film grain, and LUT color grading, along with the features built on top of it (FX Stack, Style Layers, Shape Mask, Color Remap, color-blindness simulation).",
-            "**Performance panel** — the toolbar button and its popup (frame budget, FPS cap, resolution, profiling, GPU capabilities).",
-            "**Tools menu** — the toolbar's overflow menu and its pinned-tools system, along with pop-out viewport, the standalone shader-docs panel (F1 still opens the full Help Center), the workspace panel, the Ray Marching Assistant, SDF Visualizer, SDF Composer, presentation mode, and the local \"open shader file\" / \"import ZIP\" actions.",
-            "**Preset library** — the preset-browsing drawer, its save/wizard dialogs, and its ShaderToy-import row. Loading presets via the embed API and importing local shader/preset files continue to work.",
-            "**Layout presets** — the layout toolbar button, built-in presets (Coder / Performer / Animator / Minimal), custom saved layouts, and the detach-panel feature. Manual panel/inspector resizing and the Uniforms/Channels tab switcher are unaffected.",
-            "See CHANGELOG.md for full details.",
-            "## Installation",
-            "Download and run the installer for your platform:",
-            "**`Z-GL Shadertoy_2.13.0_x64-setup.exe`** — NSIS installer (recommended)",
-            "**`Z-GL Shadertoy_2.13.0_x64_en-US.msi`** — MSI installer"
-          ],
-          "prerelease": false
-        },
-        {
-          "version": "2.12.0",
-          "date": "2026-07-21",
-          "notes": [
-            "Full UI redesign of z-gl in the style of professional motion-graphics compositing software:",
-            "Fixed 800x450 composition viewport, no fluid resizing.",
-            "Single fixed dark theme (old multi-theme system fully removed).",
-            "Sliders redesigned as scrubbable numeric fields.",
-            "App-wide text/border contrast pass for readability.",
-            "Compositor-style skin on the sidebar, inspector, toolbar, and panel tabs.",
-            "See [CHANGELOG.md](https://github.com/Patrickjaillet/Z-GL-Shadertoy/blob/main/CHANGELOG.md) for full details.",
-            "## Downloads",
-            "**Z-GL Shadertoy_2.12.0_x64-setup.exe** — NSIS installer (recommended)",
-            "**Z-GL Shadertoy_2.12.0_x64_en-US.msi** — MSI installer"
-          ],
-          "prerelease": false
-        }
-      ],
-      "versionHistory": [
-        {
-          "version": "2.13.0",
-          "date": "2026-07-21",
-          "prerelease": false,
-          "assets": [
-            {
-              "name": "Z-GL.Shadertoy_2.13.0_x64-setup.exe",
-              "url": "https://github.com/Patrickjaillet/Z-GL-Shadertoy/releases/download/v2.13.0/Z-GL.Shadertoy_2.13.0_x64-setup.exe",
-              "size": 7106657,
-              "downloadCount": 1,
-              "sha256": "55ccf892ffe37b5cb3d12d68eed018cea3a3249f6798889603bc8f3a87cd9af0"
-            },
-            {
-              "name": "Z-GL.Shadertoy_2.13.0_x64_en-US.msi",
-              "url": "https://github.com/Patrickjaillet/Z-GL-Shadertoy/releases/download/v2.13.0/Z-GL.Shadertoy_2.13.0_x64_en-US.msi",
-              "size": 7794688,
-              "downloadCount": 0
-            }
-          ]
-        },
-        {
-          "version": "2.12.0",
-          "date": "2026-07-21",
-          "prerelease": false,
-          "assets": [
-            {
-              "name": "Z-GL.Shadertoy_2.12.0_x64-setup.exe",
-              "url": "https://github.com/Patrickjaillet/Z-GL-Shadertoy/releases/download/v2.12.0/Z-GL.Shadertoy_2.12.0_x64-setup.exe",
-              "size": 7209918,
-              "downloadCount": 1
-            },
-            {
-              "name": "Z-GL.Shadertoy_2.12.0_x64_en-US.msi",
-              "url": "https://github.com/Patrickjaillet/Z-GL-Shadertoy/releases/download/v2.12.0/Z-GL.Shadertoy_2.12.0_x64_en-US.msi",
-              "size": 7897088,
-              "downloadCount": 0
-            }
-          ]
-        }
-      ],
-      "totalDownloads": 2,
-      "engagement": {
-        "likes": 0,
-        "comments": 0
-      }
-    },
-    {
-      "id": "microshader",
-      "githubRepoId": 1304997535,
-      "name": "µShader",
-      "shortDescription": "GLSL Golfing engine",
-      "description": "GLSL Golfing engine",
-      "version": "3.0.1",
-      "prerelease": false,
-      "category": "Utilities",
-      "tags": [],
-      "hidden": false,
-      "order": 999,
-      "icon": "assets/icons/default-app.svg",
-      "screenshots": [],
-      "systemRequirements": "Windows 10/11, 64-bit",
-      "downloadUrl": "https://github.com/Patrickjaillet/MicroShader/releases/download/v3.0.1/uShader-Setup-3.0.1.0.exe",
-      "downloadSha256": "e0098b2bd0d8cc44d81ad09161cd82379b7a770c93d7970193dfa5c5c40f0e9a",
-      "repositoryUrl": "https://github.com/Patrickjaillet/MicroShader",
-      "changelog": [
-        {
-          "version": "3.0.1",
-          "date": "2026-07-22",
-          "notes": [
-            "UX feedback fix: the Controls panel becomes a persistent right-side",
-            "inspector instead of a full-screen tab, and two actions that were",
-            "previously keyboard/command-palette-only get visible buttons.",
-            "### Changed",
-            "The \"Controls\" tab is removed; `Win32GolfControls` now renders as a",
-            "fixed-width (300px) inspector docked to the right edge, visible on",
-            "every tab except Viewport (which keeps the full window width,",
-            "needed for Compare mode's split render). All other tab content",
-            "(editors, Diff, Trace, Stats, Appearance, About) narrows to make",
-            "room; the Source/Golfed minimap repositions to stay left of the",
-            "inspector instead of the raw window edge.",
-            "The pass-checkbox list switched from two columns to one: the",
-            "two-column layout was sized for a full-width tab and truncated",
-            "labels like \"Common subexpressions\" once squeezed into the 300px",
-            "inspector. Single column uses the inspector's full available height",
-            "instead, with no truncation.",
+            "## [2.7.0] — June 30, 2026",
             "### Added",
-            "A \"Golf\" button at the top of the inspector runs the same",
-            "recompile action as `F5` or the command palette's \"Run golf\" entry",
-            "— previously keyboard/palette-only.",
-            "A \"Formatted view\" toggle button in the top-right of the Golfed",
-            "tab's content area, mirroring the existing `Ctrl+Shift+F` chord —",
-            "previously also keyboard/palette-only.",
-            "Both new buttons (`src/ui/win32_tool_button.h/.cpp`, a small",
-            "reusable owner-drawn button) are registered for UI Automation like",
-            "every other Phase 26 control, verified live with the same",
-            "`System.Windows.Automation` client used throughout that phase."
-          ],
-          "prerelease": false
-        },
-        {
-          "version": "3.0.0",
-          "date": "2026-07-22",
-          "notes": [
-            "*Breaking change**: µShader's UI framework is now native Win32 +",
-            "Direct2D/DirectWrite/GDI+ + WGL-hosted OpenGL — Dear ImGui, SDL3, and",
-            "the ImGuiColorTextEdit widget are fully removed from the build.",
-            "`ushader.exe` is the Win32 shell built through Phases 22–26; the old",
-            "SDL3/ImGui app is gone, not just superseded. This closes the",
-            "Phase 22–27 migration arc.",
-            "This release ships a deliberately smaller, curated feature set, not",
-            "full parity with the retired app — see \"Removed / not yet ported\"",
-            "below and `ROADMAP.md` Phase 28 for the tracked follow-up plan.",
-            "### Changed",
-            "`CMakeLists.txt`: removed the `SDL3`, `imgui`, and",
-            "`imguicolortextedit` `FetchContent` dependencies and library",
-            "targets; links `user32`, `gdi32`, `gdiplus`, `d2d1`, `dwrite`, and",
-            "`opengl32` directly (all in-box on every Windows 10/11 edition,",
-            "including LTSC 2019 — no separate runtime to install).",
-            "The former `ushader_win32_shell` CMake target is renamed `ushader`,",
-            "reclaiming the name from the deleted SDL3 app; its subsystem changed",
-            "from `/SUBSYSTEM:CONSOLE` (a development-time console window) to",
-            "`/SUBSYSTEM:WINDOWS` — verified live that no console window appears.",
-            "`theme_tokens.h`'s color constants moved off `ImVec4` (the one",
-            "remaining header-level ImGui dependency the Win32 shell had picked",
-            "up) onto a local `tokens::Color4` struct with the same field layout.",
-            "`installer/ushader.iss`, `README.md`, and `THIRD_PARTY_NOTICES.md`",
-            "rewritten to describe the actual shipped shell and its real",
-            "dependencies (previously: FFmpeg, `gif-h`, Inter/Lucide fonts — all",
-            "removed, see below).",
-            "### Removed / not yet ported",
-            "Six features from the retired ImGui app did not make it into the",
-            "Win32 shell during Phase 26 and were deferred rather than bundled",
-            "into this release — tracked in `ROADMAP.md` Phase 28, not silently",
-            "dropped:",
-            "Golfing profiles (`.ushaderprofile` save/load, `Maximum`/`Safe`/",
-            "`None` built-ins) — the CLI's `--profile` flag and the published",
-            "schema are unaffected, this is only the GUI-side save/load UI.",
-            "Multi-document workspace (multiple open shaders as separate tabs)",
-            "and the session-restore-on-launch behavior that depended on it.",
-            "One-click \"Copy as Shadertoy / Bonzomatic / bare main()\" clipboard",
-            "exports.",
-            "Importing a Shader Minifier–style exclude-name list.",
-            "Self-contained HTML session report export.",
-            "Viewport capture/recording: PNG screenshots, and GIF/MP4/WebM",
-            "recording (the latter bundled `ffmpeg.exe` and `gif-h`, both now",
-            "removed along with the feature).",
+            "*Sidebar & panels**",
+            "New sidebar tabs: switch between Uniforms, Modulation, Style, and Version History without opening a separate floating panel",
+            "The right-hand inspector is now contextual — it automatically shows info about the active pass (assigned channels, resolution) or whichever slider you're hovering (current value, range, active modulator), instead of always showing Performance",
+            "A dedicated \"Pinned\" section now appears at the top of the sidebar listing every pinned slider together",
+            "Open panels in the bottom dock now get a subtle accent color by category",
+            "*Viewport**",
+            "New time scrubber: hover the bottom of the canvas to drag through the shader's elapsed time, with a one-click reset",
+            "The FPS counter changes color depending on performance (green/orange/red), and clicking it opens the Performance panel directly",
+            "Click the time readout to pause and scrub at the same time",
+            "*Editor**",
+            "The command palette (`Ctrl+Shift+P`) now also opens with `Ctrl+K`, and can find commands by their keyboard shortcut, not just their name",
+            "Your saved presets now show up directly in the command palette (\"Load: …\")",
+            "Hovering a `vec3(...)`/`vec4(...)` color literal in the editor now shows a live color swatch",
+            "Hovering `iChannel0`–`iChannel3` shows what's currently assigned to that channel",
+            "Hovering a custom function with a `// @brief …` comment shows its description",
+            "`Ctrl+click` a slider's name anywhere in the code to jump straight to it in the sidebar",
+            "Drag a slider from the sidebar into the editor to insert its variable name at the cursor",
+            "A small dot now marks every line in the editor's gutter that has a slider attached to it",
+            "Right-click a slider group header for quick actions: reset the whole group, copy it as JSON, or pin everything in it",
+            "`Alt+click` a group header to focus on just that group and collapse the rest",
+            "*Status bar & toolbar**",
+            "The status bar now shows the active pass and auto-save status, and the error counter shakes briefly when a new error appears",
+            "The active layout preset (\"Coder\" / \"Performer\" / \"Animator\") now shows its name on the layout button instead of a generic icon",
+            "The pause button is now clearly highlighted while playback is paused",
+            "### Improved",
+            "Buffer pass tabs (Buf A–D, Cube, Sound, Comp) now use distinct accent colors so it's easier to tell them apart at a glance",
+            "Sparklines are sharper and freeze automatically while you're dragging a slider, so the value is easier to read; a new compact mode hides them entirely to save space",
+            "Small animation polish throughout: editor compile flash, slider value changes, toast notifications",
             "### Fixed",
-            "`assets/fonts/` (`Inter.ttf`, `lucide.ttf`) removed — unused once",
-            "the ImGui shell that loaded them was gone; this phase's own opening",
-            "sentence explicitly named the Lucide font as something that must not",
-            "survive it.",
-            "Several latent build issues surfaced only once SDL3/ImGui's",
-            "incidental include-path and link propagation went away:",
-            "`exclude_list_import_test` needed a real source swap",
-            "(`file_dialog_sdl.cpp` → `file_dialog.cpp`, and",
-            "`import_exclude_list_action` changed from taking `SDL_Window*` to",
-            "`HWND`), three test targets had a dead `SDL3::SDL3` link, and",
-            "`ushaderprofile_schema_test` was missing an explicit `rust_core`",
-            "link it had never needed before. `workspace.h`/`.cpp` and",
-            "`golf_controls.h` had a transitive dependency on the deleted",
-            "`theme.h`, decoupled with a local literal default and by dropping",
-            "dead SDL-specific declarations.",
-            "`scripts/check_contrast.py`'s token-parsing regex updated for the",
-            "`ImVec4` → `Color4` rename — re-verified all four text/background",
-            "pairs still pass WCAG AA (5.87:1 to 13.36:1).",
-            "### Known gap",
-            "The Windows 10 LTSC 2019 hardware/VM acceptance pass from",
-            "`ROADMAP.md` Phase 27 has not been performed — this development",
-            "environment has no LTSC 2019 target. Everything verifiable here",
-            "(clean build, all 8 test executables passing, `wgl_equivalence_test`",
-            "still 5/5 bit-exact, live UI smoke test) is done."
+            "The text on disabled buffer pass tabs (Buf A, Buf B, Cube A, Sound, etc.) was nearly invisible against the dark background — now clearly readable",
+            "The \"⊕ panels\" menu in the sidebar, and the layout preset menu (\"Coder\" / \"Performer\" / \"Animator\"), could open completely off-screen and appear to do nothing — both now display correctly every time",
+            "A handful of leftover French labels in some panels (Projects, Camera, Shape, Warp) are now in English"
           ],
           "prerelease": false
         },
         {
-          "version": "2.0.1",
-          "date": "2026-07-19",
+          "version": "2.6.0",
+          "date": "2026-06-28",
           "notes": [
-            "Drag-and-drop .glsl files onto the main window to open each as a new tab. Recent Files list under the File menu, persisted to %APPDATA%\\ushader\\, with automatic pruning of missing entries."
+            "## [2.6.0] — June 28, 2026",
+            "### Added",
+            "*Post-process effects**",
+            "New effects in the Style panel: glitch, chromatic aberration, vignette, lens distortion, ASCII art",
+            "Layers can be reordered by drag & drop and blended with different blend modes (normal, add, multiply, screen, overlay)",
+            "Live 48×48 preview per layer",
+            "Import `.cube` files for 3D LUT color grading",
+            "*SDF shapes**",
+            "New primitives: 3D torus, capsule, cone, quadratic bézier, heart",
+            "Boolean operations: smooth union, intersection, subtraction, morph blend",
+            "Draw custom Bézier shapes with an interactive curve editor",
+            "Import SVG paths and convert them to SDF masks automatically",
+            "Shapes can be animated (rotation, scale pulse, morph) driven by time",
+            "*Colors & themes**",
+            "Save any combination of slider values + color palette as a reusable custom theme",
+            "Smoothly blend between two themes",
+            "Color palette thumbnail preview in the theme panel",
+            "Click any `vec3(r, g, b)` in the editor to open an inline HSL color picker",
+            "One-click insertion of an Inigo Quilez cosine palette snippet",
+            "Auto-extract the dominant color from the render and apply it as the UI accent color",
+            "Colorblindness simulation is now available as a style layer",
+            "WCAG contrast warning when two colors in the render are too similar",
+            "*3D Camera**",
+            "New Camera panel: position, target, FOV, near/far — all as sliders",
+            "Camera presets: Front, Top, Side, Isometric, 35mm cinematic, Wide 90°",
+            "Record camera keyframes and play them back with smooth easing",
+            "Fly mode: navigate freely with WASD + Q/E",
+            "Clickable XYZ axis gizmo in the viewport corner for instant view snapping",
+            "Pick tool: click anywhere on the canvas to read the UV coordinate",
+            "New warp effects: camera shake and dolly zoom (Vertigo effect)",
+            "`iCameraPos`, `iCameraTarget`, `iCameraFov` available as automatic shader uniforms",
+            "*Shader functions & editor**",
+            "Raymarching wizard: generate a complete raymarching shader in one click (camera, SDF scene, normals, soft shadows, ambient occlusion, shading)",
+            "Detect an existing raymarcher and extend it with the missing pieces (normals, soft shadows, AO)",
+            "Inject PBR material shaders in one click: Metallic/Roughness (GGX), Subsurface Scattering, Iridescence",
+            "Snippet library is now organized by category: Noise · SDF · Lighting · Color · Texture · Math",
+            "New built-in snippets: Soft Shadow, Ambient Occlusion, Blinn-Phong, Simplex Noise 2D, Cellular Noise 3D, Triplanar UV mapping, Reinhard tone mapping, sRGB ↔ Linear conversion",
+            "Right-click any selected code → \"Extract as snippet\" to save it to your personal library",
+            "Right-click a function declaration → \"Document function\" to auto-generate a comment header",
+            "Editor autocomplete now includes all functions from the snippet library",
+            "`#define` sliders show their live value as an inline annotation when it differs from the code",
+            "### Improved",
+            "Shader cache survives page reload — no recompilation if the shader hasn't changed",
+            "Errors no longer cause a visible flash while typing; the shader only switches on successful compile",
+            "Only the shader passes that actually changed are recompiled"
           ],
           "prerelease": false
         },
         {
-          "version": "1.2.5",
-          "date": "2026-07-18",
+          "version": "2.1.3",
+          "date": "2026-06-28",
           "notes": [
-            "## New golf pass: common subexpression elimination",
-            "When two declarations in a row initialize with a token-identical pure expression, the later ones now reference the first variable instead of recomputing it, e.g. `float a=dot(p,p),b=dot(p,p);` becomes `float a=dot(p,p),b=a;`.",
-            "Deliberately scoped narrow for safety: only whole declaration initializers, only pure builtins/constructors (never a user function), and the candidate cache is cleared on every block boundary and any non-matching statement.",
-            "Two real bugs were found and fixed during development, both now covered by regression tests:",
-            "A variable-name lookup that read the pre-rename identifier instead of the actual rendered name.",
-            "A cache-invalidation check that missed a brace following `)` or `else` rather than `;`.",
-            "New \"Common subexpressions\" toggle in the Passes panel, matching per-pass counter in the stats panel.",
-            "Unsigned installer - Windows SmartScreen may show an \"unknown publisher\" warning; click \"More info\" -> \"Run anyway\". Verified on Windows 10 (LTSC 2019, build 17763); not independently verified on Windows 11."
-          ],
-          "prerelease": false,
-          "manuallyEdited": true
-        },
-        {
-          "version": "1.2.4",
-          "date": "2026-07-18",
-          "notes": [
-            "## New golf pass: algebraic identity simplification",
-            "First step toward the most powerful GLSL golfing engine possible while never changing shader behavior (tracked going forward under ROADMAP.md Phase 11).",
-            "Removes x*1, 1*x, x/1, x+0, 0+x, x-0 for a bare identifier x.",
-            "Rewrites pow(x,2.) to x*x for a bare identifier/number x.",
-            "Restricted to single-identifier operands so it can never duplicate or drop something with a side effect.",
-            "New \"Algebraic identities\" toggle in the Passes panel, new per-pass counter in the stats panel.",
-            "Covered by a new fixture (fixtures/algebraic_identities.glsl) and 4 new Rust unit tests.",
-            "Unsigned installer - Windows SmartScreen may show an \"unknown publisher\" warning; click \"More info\" -> \"Run anyway\". Verified on Windows 10 (LTSC 2019, build 17763); not independently verified on Windows 11."
+            "No release notes provided."
           ],
           "prerelease": false
         },
         {
-          "version": "1.2.3",
-          "date": "2026-07-18",
+          "version": "2.1.2",
+          "date": "2026-06-20",
           "notes": [
-            "## Phase 10 follow-up: two more gaps closed",
-            "Checkboxes (all 16, across golf-pass toggles, \"Aggressive golf\", \"Formatted view\", \"Compare\") are now a bespoke flat 12px square matching the Phase 10 spec, instead of the default ImGui shape.",
-            "The \"Protected names\" field now shows a 1px accent focus ring while being edited.",
-            "Unsigned installer - Windows SmartScreen may show an \"unknown publisher\" warning; click \"More info\" -> \"Run anyway\". Verified on Windows 10 (LTSC 2019, build 17763); not independently verified on Windows 11."
+            "## [2.1.2] — 20 juin 2026",
+            "### Fixed — menu Tools",
+            "**Settings ne s'affichait pas** — le toggle JS (`toggleSettingsPanel`) fonctionnait correctement, mais `#settings-panel`/`.floating-panel` n'avait **aucune règle CSS nulle part dans le projet** : `display:block` sur une `<div>` non positionnée, sans `z-index`, sans fond, rendait le panneau invisible/inutilisable avant tout drag manuel. CSS complet injecté (même pattern que `modulation-panel.js`) : positionnement fixe, fond, bordure, z-index, et style des sections (langue/thème/accessibilité). Vérifié en live (capture + `getComputedStyle`).",
+            "**Bouton HDR mort retiré** — contrairement à Settings, aucune implémentation n'a jamais existé (pas de fichier JS, pas de CSS, aucun listener) ; seul le bouton + l'entrée `panel-dock.js` (`root: '#hdr-panel'`) avaient été scaffoldés. Supprimé (markup + entrée du dock), suivant le même traitement que le bouton ISF en 2.1.0. Mentions obsolètes nettoyées au passage dans le tooltip d'onboarding et un commentaire de `panel-dock.js` (citaient aussi « node graph » et « volume rendering », déjà retirés depuis longtemps)."
           ],
           "prerelease": false
         },
         {
-          "version": "1.2.2",
-          "date": "2026-07-18",
+          "version": "2.0.0",
+          "date": "2026-06-18",
           "notes": [
-            "## Small Phase 10 follow-up",
-            "\"Run golf\" is now the one accent-filled primary button in the UI, matching Phase 10's design intent that it be the single clearly-primary surface.",
-            "ROADMAP.md's Phase 10 sub-sections (10.1-10.7) retrofitted with checkboxes and honest per-item notes on what matches the original spec exactly versus what was pragmatically approximated.",
-            "Unsigned installer - Windows SmartScreen may show an \"unknown publisher\" warning; click \"More info\" -> \"Run anyway\". Verified on Windows 10 (LTSC 2019, build 17763); not independently verified on Windows 11."
-          ],
-          "prerelease": false
-        },
-        {
-          "version": "1.2.1",
-          "date": "2026-07-18",
-          "notes": [
-            "## Phase 10: dark UI/UX overhaul",
-            "Full replacement of the white theme with a dark, Adobe Premiere Pro-style editing workspace:",
-            "Named color-token table backing every UI color.",
-            "Compact chrome: 2px corner radius, flat accent-underlined tabs, thin scrollbars.",
-            "Custom borderless window frame with its own title bar (icon, minimize/maximize/close).",
-            "Dark text-editor palette for Source/Golfed panels.",
-            "Viewport restyled as a Program Monitor: black letterboxing, compile-status dot, timecode readout.",
-            "Icons now shift color between idle/hover/active states.",
-            "About popup rebuilt as a dark card.",
-            "New design references under docs/design/, WCAG AA contrast-checked.",
-            "Also fixes a crash when minimizing the window (found and fixed during verification of this release).",
-            "Unsigned installer - Windows SmartScreen may show an \"unknown publisher\" warning; click \"More info\" -> \"Run anyway\". Verified on Windows 10 (LTSC 2019, build 17763); not independently verified on Windows 11."
-          ],
-          "prerelease": false
-        },
-        {
-          "version": "1.2.0",
-          "date": "2026-07-18",
-          "notes": [
-            "## Changes since v1.0.0",
-            "Viewport recording: capture the running shader to an animated GIF, or to MP4/WebM.",
-            "MP4/WebM now encode through a bundled ffmpeg.exe (no separate install or PATH entry needed) - see THIRD_PARTY_NOTICES.md for the FFmpeg (GPL) attribution this requires.",
-            "Fixed: Open/Save for .glsl files silently failed on non-ASCII paths.",
-            "Fixed: a stray console window appeared behind the main window on launch.",
-            "Fixed: docked panels exposed a \"Hide tab bar\" menu that could hide a panel's tab.",
-            "Unsigned installer - Windows SmartScreen may show an \"unknown publisher\" warning; click \"More info\" -> \"Run anyway\". Verified on Windows 10 (LTSC 2019, build 17763); not independently verified on Windows 11."
-          ],
-          "prerelease": false
-        },
-        {
-          "version": "1.0.0",
-          "date": "2026-07-18",
-          "notes": [
-            "First stable release of uShader, a native Windows 10/11 GLSL shader golfer.",
-            "## Highlights",
-            "Golfing engine: identifier renaming, numeric literal shortening, and whitespace stripping always run; an aggressive mode adds 14 further transformation passes (dead-code elimination, constant folding, declaration merging, function inlining, and more), each individually toggleable, plus a protected-names list.",
-            "Live viewport with the standard Shadertoy uniform set (`iTime`, `iResolution`, `iMouse`, `iDate`, `iFrame`, `iFrameRate`), and a Compare mode that renders the source and golfed shaders side by side.",
-            "GLSL-aware text editor with syntax highlighting and error-line highlighting on compile failure, plus a \"Formatted view\" toggle for the golfed output.",
-            "Reduction stats: char/byte counts, reduction percentage, per-pass counters, and size-budget badges.",
-            "Import/export: open and save `.glsl` files, copy the golfed output, export in Shadertoy format, and capture the viewport to PNG.",
-            "About panel with logo, copyright, and links.",
-            "## Installing",
-            "Download `uShader-Setup-1.0.0.9.exe` below and run it. The installer is unsigned (no code-signing certificate available), so Windows SmartScreen may show an \"unknown publisher\" warning — click \"More info\" -> \"Run anyway\".",
-            "Requires Windows 10 or 11 (64-bit). Verified on Windows 10 (LTSC 2019, build 17763); not yet independently verified on Windows 11.",
-            "See [CHANGELOG.md](https://github.com/Patrickjaillet/MicroShader/blob/main/CHANGELOG.md) for the full per-phase history."
+            "<p align=\"center\">",
+            "<img src=\"public/icon.svg\" width=\"72\" alt=\"Z-GL Shadertoy\">",
+            "</p>",
+            "<h1 align=\"center\">Z-GL Shadertoy</h1>",
+            "<p align=\"center\">",
+            "<strong>Éditeur de shaders Shadertoy temps réel — 100 % hors-ligne, zéro WASM, zéro compte, zéro cloud.</strong><br>",
+            "Pour les artistes génératifs, les chercheurs en rendu et toute personne qui écrit des shaders au format Shadertoy.",
+            "</p>",
+            "<p align=\"center\">",
+            "<img alt=\"Plateforme\" src=\"https://img.shields.io/badge/Windows-desktop-blue\">",
+            "<img alt=\"Offline\" src=\"https://img.shields.io/badge/offline-first-green\">",
+            "<img alt=\"Licence\" src=\"https://img.shields.io/badge/licence-propriétaire-red\">",
+            "</p>",
+            "--",
+            "## Qu'est-ce que Z-GL Shadertoy ?",
+            "Z-GL Shadertoy est un éditeur de shaders GLSL desktop, **100 % dédié au format Shadertoy** : écrivez une fonction `mainImage`, utilisez les uniforms standards (`iTime`, `iResolution`, `iMouse`, `iChannel0-3`…), branchez des passes Buffer A-D / Cube / Sound, et importez/exportez directement depuis/vers shadertoy.com — le tout sans connexion internet et sans aucun module WebAssembly.",
+            "L'application n'embarque **aucun** moteur de rendu alternatif (pas de WebGPU, pas de WGSL), aucun éditeur de node-graph, aucun moteur de particules, aucun SDK de plugins/scripting, aucun protocole de contrôle matériel (MIDI/OSC/NDI/Spout/DMX), aucune édition collaborative, aucune télémétrie. C'est un outil simple et focalisé.",
+            "--",
+            "## Fonctionnalités",
+            "### Édition",
+            "**Éditeur Monaco** — coloration syntaxique GLSL ES, autocomplétion, documentation au survol, marqueurs d'erreur en direct, minimap, valeurs d'uniforms inline",
+            "**Sliders automatiques** — chaque `#define` ou `const float/int` de premier niveau devient un slider glissable, avec annulation/rétablissement (Ctrl+Z / Ctrl+Y)",
+            "**Bibliothèque de snippets** — extraits GLSL prêts à insérer (bruit, SDF, post-effets…)",
+            "**Documentation GLSL intégrée** — panneau de référence des fonctions et types GLSL ES",
+            "**Historique de versions** — chaque modification significative est conservée, restaurable depuis le panneau Version History",
+            "**Palette de commandes** — `Ctrl+,` ou le bouton dédié pour accéder à tous les réglages",
+            "### Rendu Shadertoy complet",
+            "**Multipass** — passes Image, Buffer A–D (avec feedback inter-frame), Cube A–F, et Sound",
+            "**Tous les uniforms standards** — `iResolution`, `iTime`, `iTimeDelta`, `iFrame`, `iMouse`, `iDate`, `iSampleRate`, `iChannel0-3`, `iChannelResolution`",
+            "**Tous les types de canaux (iChannel)** — image statique, vidéo, webcam, micro/fichier audio (FFT), cubemap, frame précédente (feedback), texture clavier, bruit procédural",
+            "### Outils d'assistance à l'écriture de shaders",
+            "**Ray March Assistant** — détecte les patterns SDF/raymarching et propose un panneau de réglage (`MAX_STEPS`, `MAX_DIST`, `SURF_DIST`…)",
+            "**SDF Library + Visualizer + Composer** — bibliothèque de 35+ primitives SDF, 4 modes de visualisation (iso-distance, field, normals, step count), compositeur visuel de scène SDF",
+            "**LUT grading** — bibliothèque de LUTs intégrées + éditeur de courbes 1D + import `.cube`",
+            "**Panneau Modulation** — sources de modulation pour piloter dynamiquement vos paramètres",
+            "**Mode Daltonisme** — simulation Protanopie / Deutéranopie / Tritanopie en post-pass (`Ctrl+Shift+B`)",
+            "### Import / Export Shadertoy",
+            "**Import ZIP** — glissez-déposez un export `.zip` depuis shadertoy.com : les passes Image/Buffer A–D/Sound/Cube sont détectées et reconstituées automatiquement",
+            "**Export format ShaderToy** — nettoie les déclarations d'uniforms/precision locales pour un collage direct dans l'éditeur shadertoy.com",
+            "**Export complet** — capture PNG, vidéo MP4/WebM (via `MediaRecorder` natif du navigateur, sans WASM/ffmpeg), GLSL pur/minifié, snippet Three.js, page HTML autonome, projet ZIP `.zgl`, sketch p5.js, format GLSL Sandbox",
+            "**Lien de partage** — sérialise le shader et les valeurs de sliders dans l'URL (hash compressé), y compris en version multi-passes (v2)",
+            "### Bureau natif (Windows, via Tauri)",
+            "Fenêtre sans bordure avec barre de titre personnalisée, effet Mica/Acrylic",
+            "Icône dans la zone de notification (tray), liste des fichiers récents (MRU)",
+            "Boîtes de dialogue natives, glisser-déposer, association de fichiers `.glsl`/`.frag`",
+            "Watch de fichier externe (éditez dans VS Code/Neovim/Zed, prévisualisez en direct)",
+            "Sauvegarde automatique avec récupération après crash",
+            "### Accessibilité et personnalisation",
+            "**Internationalisation** — 9 langues embarquées (EN, FR, DE, JA, ZH, PT-BR, ES, RU, KO), zéro appel réseau",
+            "**Thèmes** — plusieurs thèmes intégrés, panneau Settings dédié",
+            "**Layouts** — dispositions de panneaux sauvegardables",
+            "### Rendu headless (CLI)",
+            "```bash",
+            "# Rendu PNG d'un shader GLSL",
+            "z-gl --headless --shader plasma.frag --out plasma.png",
+            "# Voir toutes les options",
+            "z-gl --headless --help",
+            "```",
+            "--",
+            "## Pour qui ?",
+            "Artistes génératifs qui écrivent ou collectionnent des shaders Shadertoy",
+            "Développeurs qui veulent un éditeur Shadertoy local, rapide, sans navigateur",
+            "Chercheurs en rendu qui veulent itérer sur du GLSL sans dépendance cloud",
+            "--",
+            "## Compatibilité",
+            "**Plateforme** : Windows (app native via Tauri) ou navigateur (Chrome/Edge/Firefox récents)",
+            "**Aucune dépendance réseau** requise pour l'usage courant — tout fonctionne hors-ligne",
+            "**Aucun WASM** — tout le pipeline de rendu, d'export et d'analyse est en JavaScript/GLSL natif",
+            "--",
+            "## Philosophie",
+            "Z-GL Shadertoy fait un seul métier et le fait bien : être le meilleur éditeur Shadertoy local possible. Pas de fonctionnalités annexes qui alourdissent l'app ou complexifient la maintenance — si une fonctionnalité ne sert pas directement l'écriture, le test ou le partage de shaders au format Shadertoy, elle n'a pas sa place ici.",
+            "--",
+            "## ⚙️ Dépannage",
+            "### L'app de production s'ouvre mais ne s'initialise pas",
+            "*Cause :** les appels `import('@tauri-apps/...')` dynamiques ne sont pas regroupés par Vite en production.",
+            "*Solution :** tous les appels à l'API Tauri passent par `window.__TAURI__.*` directement, toujours disponible grâce à `withGlobalTauri: true` dans `tauri.conf.json`.",
+            "### Erreur `EvalError` au démarrage de la version de production",
+            "*Cause :** `@shaderfrog/glsl-parser` utilise `new Function()` en interne ; la CSP de Tauri doit donc inclure `'unsafe-eval'`.",
+            "*Solution :** déjà configuré dans `tauri.conf.json` (`script-src 'self' 'unsafe-eval' ...`).",
+            "### `tauri.conf.json` — `expected value at line 1 column 1`",
+            "*Cause :** PowerShell (`ConvertTo-Json` / `Set-Content`) écrit un BOM UTF-8 que le parseur JSON de Tauri rejette.",
+            "*Solution :** utilisez `[System.IO.File]::WriteAllText` avec un encodage sans BOM (le script `build.ps1` le fait automatiquement).",
+            "### `tauri dev` plante avec `EBUSY: resource busy or locked`",
+            "*Cause :** le watcher de fichiers de Vite tentait de surveiller `src-tauri/target/`, verrouillé par `cargo` pendant la compilation.",
+            "*Solution :** `vite.config.js` ignore désormais `**/src-tauri/**` dans `server.watch.ignored`.",
+            "--",
+            "Voir [CHANGELOG.md](./CHANGELOG.md) pour l'historique complet des versions."
           ],
           "prerelease": false
         }
       ],
       "versionHistory": [
         {
-          "version": "3.0.1",
-          "date": "2026-07-22",
+          "version": "2.7.0",
+          "date": "2026-06-30",
           "prerelease": false,
           "assets": [
             {
-              "name": "uShader-Setup-3.0.1.0.exe",
-              "url": "https://github.com/Patrickjaillet/MicroShader/releases/download/v3.0.1/uShader-Setup-3.0.1.0.exe",
-              "size": 2645900,
-              "downloadCount": 0,
-              "sha256": "e0098b2bd0d8cc44d81ad09161cd82379b7a770c93d7970193dfa5c5c40f0e9a"
+              "name": "Z-GL.Shadertoy_2.7.0_x64-setup.exe",
+              "url": "https://github.com/Patrickjaillet/Z-GL-Shadertoy/releases/download/2.7.0/Z-GL.Shadertoy_2.7.0_x64-setup.exe",
+              "size": 5400341,
+              "downloadCount": 11,
+              "sha256": "b4d61499918b4df8eb067840dc0bfb057fb82af4a674aa0f7afbbc6251d21897"
+            },
+            {
+              "name": "Z-GL.Shadertoy_2.7.0_x64_en-US.msi",
+              "url": "https://github.com/Patrickjaillet/Z-GL-Shadertoy/releases/download/2.7.0/Z-GL.Shadertoy_2.7.0_x64_en-US.msi",
+              "size": 6287360,
+              "downloadCount": 7
             }
           ]
         },
         {
-          "version": "3.0.0",
-          "date": "2026-07-22",
+          "version": "2.6.0",
+          "date": "2026-06-28",
           "prerelease": false,
           "assets": [
             {
-              "name": "uShader-Setup-3.0.0.0.exe",
-              "url": "https://github.com/Patrickjaillet/MicroShader/releases/download/v3.0.0/uShader-Setup-3.0.0.0.exe",
-              "size": 2645450,
+              "name": "Z-GL.Shadertoy_2.6.0_x64-setup.exe",
+              "url": "https://github.com/Patrickjaillet/Z-GL-Shadertoy/releases/download/2.6.0/Z-GL.Shadertoy_2.6.0_x64-setup.exe",
+              "size": 5402681,
+              "downloadCount": 1
+            },
+            {
+              "name": "Z-GL.Shadertoy_2.6.0_x64_en-US.msi",
+              "url": "https://github.com/Patrickjaillet/Z-GL-Shadertoy/releases/download/2.6.0/Z-GL.Shadertoy_2.6.0_x64_en-US.msi",
+              "size": 6291456,
               "downloadCount": 1
             }
           ]
         },
         {
-          "version": "2.0.1",
-          "date": "2026-07-19",
+          "version": "2.1.3",
+          "date": "2026-06-28",
           "prerelease": false,
           "assets": [
             {
-              "name": "uShader-Setup-2.0.1.19.exe",
-              "url": "https://github.com/Patrickjaillet/MicroShader/releases/download/v2.0.1/uShader-Setup-2.0.1.19.exe",
-              "size": 45870147,
-              "downloadCount": 2,
-              "sha256": "9a5ea8e32e4686d1fd83965fe99f48f2d3b2bd82cd597b6e549e68ef6de8472c"
-            }
-          ]
-        },
-        {
-          "version": "1.2.5",
-          "date": "2026-07-18",
-          "prerelease": false,
-          "assets": [
-            {
-              "name": "uShader-Setup-1.2.5.0.exe",
-              "url": "https://github.com/Patrickjaillet/MicroShader/releases/download/v1.2.5/uShader-Setup-1.2.5.0.exe",
-              "size": 46291161,
-              "downloadCount": 2,
-              "sha256": "5628a85ada82b20527484f5ef0b64a71d22c9a54216f6b5137b58b7898877831"
-            }
-          ]
-        },
-        {
-          "version": "1.2.4",
-          "date": "2026-07-18",
-          "prerelease": false,
-          "assets": [
-            {
-              "name": "uShader-Setup-1.2.4.0.exe",
-              "url": "https://github.com/Patrickjaillet/MicroShader/releases/download/v1.2.4/uShader-Setup-1.2.4.0.exe",
-              "size": 46286389,
+              "name": "Z-GL.Shadertoy_2.1.3_x64-setup.exe",
+              "url": "https://github.com/Patrickjaillet/Z-GL-Shadertoy/releases/download/z-gl2.1.3/Z-GL.Shadertoy_2.1.3_x64-setup.exe",
+              "size": 3616174,
               "downloadCount": 1
             }
           ]
         },
         {
-          "version": "1.2.3",
-          "date": "2026-07-18",
+          "version": "2.1.2",
+          "date": "2026-06-20",
           "prerelease": false,
           "assets": [
             {
-              "name": "uShader-Setup-1.2.3.0.exe",
-              "url": "https://github.com/Patrickjaillet/MicroShader/releases/download/v1.2.3/uShader-Setup-1.2.3.0.exe",
-              "size": 46276169,
-              "downloadCount": 1
+              "name": "Z-GL.Shadertoy_2.1.2_x64-setup.exe",
+              "url": "https://github.com/Patrickjaillet/Z-GL-Shadertoy/releases/download/z-gl2.1.2/Z-GL.Shadertoy_2.1.2_x64-setup.exe",
+              "size": 3574928,
+              "downloadCount": 3
             }
           ]
         },
         {
-          "version": "1.2.2",
-          "date": "2026-07-18",
+          "version": "2.0.0",
+          "date": "2026-06-18",
           "prerelease": false,
           "assets": [
             {
-              "name": "uShader-Setup-1.2.2.0.exe",
-              "url": "https://github.com/Patrickjaillet/MicroShader/releases/download/v1.2.2/uShader-Setup-1.2.2.0.exe",
-              "size": 46284390,
-              "downloadCount": 0
-            }
-          ]
-        },
-        {
-          "version": "1.2.1",
-          "date": "2026-07-18",
-          "prerelease": false,
-          "assets": [
-            {
-              "name": "uShader-Setup-1.2.1.0.exe",
-              "url": "https://github.com/Patrickjaillet/MicroShader/releases/download/v1.2.1/uShader-Setup-1.2.1.0.exe",
-              "size": 46281978,
-              "downloadCount": 0
-            }
-          ]
-        },
-        {
-          "version": "1.2.0",
-          "date": "2026-07-18",
-          "prerelease": false,
-          "assets": [
-            {
-              "name": "uShader-Setup-1.2.0.0.exe",
-              "url": "https://github.com/Patrickjaillet/MicroShader/releases/download/v1.2.0/uShader-Setup-1.2.0.0.exe",
-              "size": 46273719,
-              "downloadCount": 1
-            }
-          ]
-        },
-        {
-          "version": "1.0.0",
-          "date": "2026-07-18",
-          "prerelease": false,
-          "assets": [
-            {
-              "name": "uShader-Setup-1.0.0.9.exe",
-              "url": "https://github.com/Patrickjaillet/MicroShader/releases/download/v1.0.0/uShader-Setup-1.0.0.9.exe",
-              "size": 6200902,
+              "name": "Z-GL.Shadertoy_2.0.0_x64-setup.exe",
+              "url": "https://github.com/Patrickjaillet/Z-GL-Shadertoy/releases/download/z-gl/Z-GL.Shadertoy_2.0.0_x64-setup.exe",
+              "size": 3591054,
               "downloadCount": 1
             }
           ]
         }
       ],
-      "totalDownloads": 9,
-      "engagement": {
-        "likes": 0,
-        "comments": 0
-      }
+      "totalDownloads": 25
     }
   ]
 }

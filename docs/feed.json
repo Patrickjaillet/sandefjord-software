@@ -7,6 +7,20 @@
   "language": "en",
   "items": [
     {
+      "id": "z-gl-shadertoy-2.13.0",
+      "url": "https://patrickjaillet.github.io/sandefjord-software/software.html?id=z-gl-shadertoy",
+      "title": "Z-GL-Shadertoy v2.13.0",
+      "content_text": "## What's changed This release removes several features that added maintenance surface without matching real usage: **Share links** — the share-link toolbar button and its versioned multi-pass variant. **Crash reporting** — the opt-in crash-report prompt and its underlying error-log forwarding. **Post-processing pipeline** — bloom, tone mapping, vignette, CRT filter, FXAA, TAA, film grain, and LUT color grading, along with the features built on top of it (FX Stack, Style Layers, Shape Mask, Color Remap, color-blindness simulation). **Performance panel** — the toolbar button and its popup (frame budget, FPS cap, resolution, profiling, GPU capabilities). **Tools menu** — the toolbar's overflow menu and its pinned-tools system, along with pop-out viewport, the standalone shader-docs panel (F1 still opens the full Help Center), the workspace panel, the Ray Marching Assistant, SDF Visualizer, SDF Composer, presentation mode, and the local \"open shader file\" / \"import ZIP\" actions. **Preset library** — the preset-browsing drawer, its save/wizard dialogs, and its ShaderToy-import row. Loading presets via the embed API and importing local shader/preset files continue to work. **Layout presets** — the layout toolbar button, built-in presets (Coder / Performer / Animator / Minimal), custom saved layouts, and the detach-panel feature. Manual panel/inspector resizing and the Uniforms/Channels tab switcher are unaffected. See CHANGELOG.md for full details. ## Installation Download and run the installer for your platform: **`Z-GL Shadertoy_2.13.0_x64-setup.exe`** — NSIS installer (recommended) **`Z-GL Shadertoy_2.13.0_x64_en-US.msi`** — MSI installer",
+      "date_published": "2026-07-21T00:00:00.000Z"
+    },
+    {
+      "id": "z-gl-shadertoy-2.12.0",
+      "url": "https://patrickjaillet.github.io/sandefjord-software/software.html?id=z-gl-shadertoy",
+      "title": "Z-GL-Shadertoy v2.12.0",
+      "content_text": "Full UI redesign of z-gl in the style of professional motion-graphics compositing software: Fixed 800x450 composition viewport, no fluid resizing. Single fixed dark theme (old multi-theme system fully removed). Sliders redesigned as scrubbable numeric fields. App-wide text/border contrast pass for readability. Compositor-style skin on the sidebar, inspector, toolbar, and panel tabs. See [CHANGELOG.md](https://github.com/Patrickjaillet/Z-GL-Shadertoy/blob/main/CHANGELOG.md) for full details. ## Downloads **Z-GL Shadertoy_2.12.0_x64-setup.exe** — NSIS installer (recommended) **Z-GL Shadertoy_2.12.0_x64_en-US.msi** — MSI installer",
+      "date_published": "2026-07-21T00:00:00.000Z"
+    },
+    {
       "id": "microshader-2.0.1",
       "url": "https://patrickjaillet.github.io/sandefjord-software/software.html?id=microshader",
       "title": "µShader v2.0.1",

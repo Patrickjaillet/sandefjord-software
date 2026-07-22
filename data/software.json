@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-22T00:18:27.429Z",
+  "generatedAt": "2026-07-22T06:47:58.330Z",
   "software": [
     {
       "id": "aiprompt",
@@ -297,6 +297,111 @@
         }
       ],
       "totalDownloads": 8,
+      "engagement": {
+        "likes": 0,
+        "comments": 0
+      }
+    },
+    {
+      "id": "z-gl-shadertoy",
+      "githubRepoId": 1307878202,
+      "name": "Z-GL-Shadertoy",
+      "shortDescription": "real-time GLSL shader editor, compatible with the ShaderToy format. Write GLSL code and see the result rendered instantly in a WebGL preview",
+      "description": "real-time GLSL shader editor, compatible with the ShaderToy format. Write GLSL code and see the result rendered instantly in a WebGL preview.",
+      "version": "2.13.0",
+      "prerelease": false,
+      "category": "Utilities",
+      "tags": [],
+      "hidden": false,
+      "order": 999,
+      "icon": "assets/icons/default-app.svg",
+      "screenshots": [],
+      "systemRequirements": "Windows 10/11, 64-bit",
+      "downloadUrl": "https://github.com/Patrickjaillet/Z-GL-Shadertoy/releases/download/v2.13.0/Z-GL.Shadertoy_2.13.0_x64-setup.exe",
+      "downloadSha256": "55ccf892ffe37b5cb3d12d68eed018cea3a3249f6798889603bc8f3a87cd9af0",
+      "repositoryUrl": "https://github.com/Patrickjaillet/Z-GL-Shadertoy",
+      "changelog": [
+        {
+          "version": "2.13.0",
+          "date": "2026-07-21",
+          "notes": [
+            "## What's changed",
+            "This release removes several features that added maintenance surface without matching real usage:",
+            "**Share links** — the share-link toolbar button and its versioned multi-pass variant.",
+            "**Crash reporting** — the opt-in crash-report prompt and its underlying error-log forwarding.",
+            "**Post-processing pipeline** — bloom, tone mapping, vignette, CRT filter, FXAA, TAA, film grain, and LUT color grading, along with the features built on top of it (FX Stack, Style Layers, Shape Mask, Color Remap, color-blindness simulation).",
+            "**Performance panel** — the toolbar button and its popup (frame budget, FPS cap, resolution, profiling, GPU capabilities).",
+            "**Tools menu** — the toolbar's overflow menu and its pinned-tools system, along with pop-out viewport, the standalone shader-docs panel (F1 still opens the full Help Center), the workspace panel, the Ray Marching Assistant, SDF Visualizer, SDF Composer, presentation mode, and the local \"open shader file\" / \"import ZIP\" actions.",
+            "**Preset library** — the preset-browsing drawer, its save/wizard dialogs, and its ShaderToy-import row. Loading presets via the embed API and importing local shader/preset files continue to work.",
+            "**Layout presets** — the layout toolbar button, built-in presets (Coder / Performer / Animator / Minimal), custom saved layouts, and the detach-panel feature. Manual panel/inspector resizing and the Uniforms/Channels tab switcher are unaffected.",
+            "See CHANGELOG.md for full details.",
+            "## Installation",
+            "Download and run the installer for your platform:",
+            "**`Z-GL Shadertoy_2.13.0_x64-setup.exe`** — NSIS installer (recommended)",
+            "**`Z-GL Shadertoy_2.13.0_x64_en-US.msi`** — MSI installer"
+          ],
+          "prerelease": false
+        },
+        {
+          "version": "2.12.0",
+          "date": "2026-07-21",
+          "notes": [
+            "Full UI redesign of z-gl in the style of professional motion-graphics compositing software:",
+            "Fixed 800x450 composition viewport, no fluid resizing.",
+            "Single fixed dark theme (old multi-theme system fully removed).",
+            "Sliders redesigned as scrubbable numeric fields.",
+            "App-wide text/border contrast pass for readability.",
+            "Compositor-style skin on the sidebar, inspector, toolbar, and panel tabs.",
+            "See [CHANGELOG.md](https://github.com/Patrickjaillet/Z-GL-Shadertoy/blob/main/CHANGELOG.md) for full details.",
+            "## Downloads",
+            "**Z-GL Shadertoy_2.12.0_x64-setup.exe** — NSIS installer (recommended)",
+            "**Z-GL Shadertoy_2.12.0_x64_en-US.msi** — MSI installer"
+          ],
+          "prerelease": false
+        }
+      ],
+      "versionHistory": [
+        {
+          "version": "2.13.0",
+          "date": "2026-07-21",
+          "prerelease": false,
+          "assets": [
+            {
+              "name": "Z-GL.Shadertoy_2.13.0_x64-setup.exe",
+              "url": "https://github.com/Patrickjaillet/Z-GL-Shadertoy/releases/download/v2.13.0/Z-GL.Shadertoy_2.13.0_x64-setup.exe",
+              "size": 7106657,
+              "downloadCount": 0,
+              "sha256": "55ccf892ffe37b5cb3d12d68eed018cea3a3249f6798889603bc8f3a87cd9af0"
+            },
+            {
+              "name": "Z-GL.Shadertoy_2.13.0_x64_en-US.msi",
+              "url": "https://github.com/Patrickjaillet/Z-GL-Shadertoy/releases/download/v2.13.0/Z-GL.Shadertoy_2.13.0_x64_en-US.msi",
+              "size": 7794688,
+              "downloadCount": 0
+            }
+          ]
+        },
+        {
+          "version": "2.12.0",
+          "date": "2026-07-21",
+          "prerelease": false,
+          "assets": [
+            {
+              "name": "Z-GL.Shadertoy_2.12.0_x64-setup.exe",
+              "url": "https://github.com/Patrickjaillet/Z-GL-Shadertoy/releases/download/v2.12.0/Z-GL.Shadertoy_2.12.0_x64-setup.exe",
+              "size": 7209918,
+              "downloadCount": 1
+            },
+            {
+              "name": "Z-GL.Shadertoy_2.12.0_x64_en-US.msi",
+              "url": "https://github.com/Patrickjaillet/Z-GL-Shadertoy/releases/download/v2.12.0/Z-GL.Shadertoy_2.12.0_x64_en-US.msi",
+              "size": 7897088,
+              "downloadCount": 0
+            }
+          ]
+        }
+      ],
+      "totalDownloads": 1,
       "engagement": {
         "likes": 0,
         "comments": 0

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-22T06:47:58.330Z",
+  "generatedAt": "2026-07-22T12:29:30.581Z",
   "software": [
     {
       "id": "aiprompt",
@@ -370,7 +370,7 @@
               "name": "Z-GL.Shadertoy_2.13.0_x64-setup.exe",
               "url": "https://github.com/Patrickjaillet/Z-GL-Shadertoy/releases/download/v2.13.0/Z-GL.Shadertoy_2.13.0_x64-setup.exe",
               "size": 7106657,
-              "downloadCount": 0,
+              "downloadCount": 1,
               "sha256": "55ccf892ffe37b5cb3d12d68eed018cea3a3249f6798889603bc8f3a87cd9af0"
             },
             {
@@ -401,7 +401,7 @@
           ]
         }
       ],
-      "totalDownloads": 1,
+      "totalDownloads": 2,
       "engagement": {
         "likes": 0,
         "comments": 0
@@ -413,7 +413,7 @@
       "name": "µShader",
       "shortDescription": "GLSL Golfing engine",
       "description": "GLSL Golfing engine",
-      "version": "2.0.1",
+      "version": "3.0.1",
       "prerelease": false,
       "category": "Utilities",
       "tags": [],
@@ -422,10 +422,119 @@
       "icon": "assets/icons/default-app.svg",
       "screenshots": [],
       "systemRequirements": "Windows 10/11, 64-bit",
-      "downloadUrl": "https://github.com/Patrickjaillet/MicroShader/releases/download/v2.0.1/uShader-Setup-2.0.1.19.exe",
-      "downloadSha256": "9a5ea8e32e4686d1fd83965fe99f48f2d3b2bd82cd597b6e549e68ef6de8472c",
+      "downloadUrl": "https://github.com/Patrickjaillet/MicroShader/releases/download/v3.0.1/uShader-Setup-3.0.1.0.exe",
+      "downloadSha256": "e0098b2bd0d8cc44d81ad09161cd82379b7a770c93d7970193dfa5c5c40f0e9a",
       "repositoryUrl": "https://github.com/Patrickjaillet/MicroShader",
       "changelog": [
+        {
+          "version": "3.0.1",
+          "date": "2026-07-22",
+          "notes": [
+            "UX feedback fix: the Controls panel becomes a persistent right-side",
+            "inspector instead of a full-screen tab, and two actions that were",
+            "previously keyboard/command-palette-only get visible buttons.",
+            "### Changed",
+            "The \"Controls\" tab is removed; `Win32GolfControls` now renders as a",
+            "fixed-width (300px) inspector docked to the right edge, visible on",
+            "every tab except Viewport (which keeps the full window width,",
+            "needed for Compare mode's split render). All other tab content",
+            "(editors, Diff, Trace, Stats, Appearance, About) narrows to make",
+            "room; the Source/Golfed minimap repositions to stay left of the",
+            "inspector instead of the raw window edge.",
+            "The pass-checkbox list switched from two columns to one: the",
+            "two-column layout was sized for a full-width tab and truncated",
+            "labels like \"Common subexpressions\" once squeezed into the 300px",
+            "inspector. Single column uses the inspector's full available height",
+            "instead, with no truncation.",
+            "### Added",
+            "A \"Golf\" button at the top of the inspector runs the same",
+            "recompile action as `F5` or the command palette's \"Run golf\" entry",
+            "— previously keyboard/palette-only.",
+            "A \"Formatted view\" toggle button in the top-right of the Golfed",
+            "tab's content area, mirroring the existing `Ctrl+Shift+F` chord —",
+            "previously also keyboard/palette-only.",
+            "Both new buttons (`src/ui/win32_tool_button.h/.cpp`, a small",
+            "reusable owner-drawn button) are registered for UI Automation like",
+            "every other Phase 26 control, verified live with the same",
+            "`System.Windows.Automation` client used throughout that phase."
+          ],
+          "prerelease": false
+        },
+        {
+          "version": "3.0.0",
+          "date": "2026-07-22",
+          "notes": [
+            "*Breaking change**: µShader's UI framework is now native Win32 +",
+            "Direct2D/DirectWrite/GDI+ + WGL-hosted OpenGL — Dear ImGui, SDL3, and",
+            "the ImGuiColorTextEdit widget are fully removed from the build.",
+            "`ushader.exe` is the Win32 shell built through Phases 22–26; the old",
+            "SDL3/ImGui app is gone, not just superseded. This closes the",
+            "Phase 22–27 migration arc.",
+            "This release ships a deliberately smaller, curated feature set, not",
+            "full parity with the retired app — see \"Removed / not yet ported\"",
+            "below and `ROADMAP.md` Phase 28 for the tracked follow-up plan.",
+            "### Changed",
+            "`CMakeLists.txt`: removed the `SDL3`, `imgui`, and",
+            "`imguicolortextedit` `FetchContent` dependencies and library",
+            "targets; links `user32`, `gdi32`, `gdiplus`, `d2d1`, `dwrite`, and",
+            "`opengl32` directly (all in-box on every Windows 10/11 edition,",
+            "including LTSC 2019 — no separate runtime to install).",
+            "The former `ushader_win32_shell` CMake target is renamed `ushader`,",
+            "reclaiming the name from the deleted SDL3 app; its subsystem changed",
+            "from `/SUBSYSTEM:CONSOLE` (a development-time console window) to",
+            "`/SUBSYSTEM:WINDOWS` — verified live that no console window appears.",
+            "`theme_tokens.h`'s color constants moved off `ImVec4` (the one",
+            "remaining header-level ImGui dependency the Win32 shell had picked",
+            "up) onto a local `tokens::Color4` struct with the same field layout.",
+            "`installer/ushader.iss`, `README.md`, and `THIRD_PARTY_NOTICES.md`",
+            "rewritten to describe the actual shipped shell and its real",
+            "dependencies (previously: FFmpeg, `gif-h`, Inter/Lucide fonts — all",
+            "removed, see below).",
+            "### Removed / not yet ported",
+            "Six features from the retired ImGui app did not make it into the",
+            "Win32 shell during Phase 26 and were deferred rather than bundled",
+            "into this release — tracked in `ROADMAP.md` Phase 28, not silently",
+            "dropped:",
+            "Golfing profiles (`.ushaderprofile` save/load, `Maximum`/`Safe`/",
+            "`None` built-ins) — the CLI's `--profile` flag and the published",
+            "schema are unaffected, this is only the GUI-side save/load UI.",
+            "Multi-document workspace (multiple open shaders as separate tabs)",
+            "and the session-restore-on-launch behavior that depended on it.",
+            "One-click \"Copy as Shadertoy / Bonzomatic / bare main()\" clipboard",
+            "exports.",
+            "Importing a Shader Minifier–style exclude-name list.",
+            "Self-contained HTML session report export.",
+            "Viewport capture/recording: PNG screenshots, and GIF/MP4/WebM",
+            "recording (the latter bundled `ffmpeg.exe` and `gif-h`, both now",
+            "removed along with the feature).",
+            "### Fixed",
+            "`assets/fonts/` (`Inter.ttf`, `lucide.ttf`) removed — unused once",
+            "the ImGui shell that loaded them was gone; this phase's own opening",
+            "sentence explicitly named the Lucide font as something that must not",
+            "survive it.",
+            "Several latent build issues surfaced only once SDL3/ImGui's",
+            "incidental include-path and link propagation went away:",
+            "`exclude_list_import_test` needed a real source swap",
+            "(`file_dialog_sdl.cpp` → `file_dialog.cpp`, and",
+            "`import_exclude_list_action` changed from taking `SDL_Window*` to",
+            "`HWND`), three test targets had a dead `SDL3::SDL3` link, and",
+            "`ushaderprofile_schema_test` was missing an explicit `rust_core`",
+            "link it had never needed before. `workspace.h`/`.cpp` and",
+            "`golf_controls.h` had a transitive dependency on the deleted",
+            "`theme.h`, decoupled with a local literal default and by dropping",
+            "dead SDL-specific declarations.",
+            "`scripts/check_contrast.py`'s token-parsing regex updated for the",
+            "`ImVec4` → `Color4` rename — re-verified all four text/background",
+            "pairs still pass WCAG AA (5.87:1 to 13.36:1).",
+            "### Known gap",
+            "The Windows 10 LTSC 2019 hardware/VM acceptance pass from",
+            "`ROADMAP.md` Phase 27 has not been performed — this development",
+            "environment has no LTSC 2019 target. Everything verifiable here",
+            "(clean build, all 8 test executables passing, `wgl_equivalence_test`",
+            "still 5/5 bit-exact, live UI smoke test) is done."
+          ],
+          "prerelease": false
+        },
         {
           "version": "2.0.1",
           "date": "2026-07-19",
@@ -542,6 +651,33 @@
       ],
       "versionHistory": [
         {
+          "version": "3.0.1",
+          "date": "2026-07-22",
+          "prerelease": false,
+          "assets": [
+            {
+              "name": "uShader-Setup-3.0.1.0.exe",
+              "url": "https://github.com/Patrickjaillet/MicroShader/releases/download/v3.0.1/uShader-Setup-3.0.1.0.exe",
+              "size": 2645900,
+              "downloadCount": 0,
+              "sha256": "e0098b2bd0d8cc44d81ad09161cd82379b7a770c93d7970193dfa5c5c40f0e9a"
+            }
+          ]
+        },
+        {
+          "version": "3.0.0",
+          "date": "2026-07-22",
+          "prerelease": false,
+          "assets": [
+            {
+              "name": "uShader-Setup-3.0.0.0.exe",
+              "url": "https://github.com/Patrickjaillet/MicroShader/releases/download/v3.0.0/uShader-Setup-3.0.0.0.exe",
+              "size": 2645450,
+              "downloadCount": 1
+            }
+          ]
+        },
+        {
           "version": "2.0.1",
           "date": "2026-07-19",
           "prerelease": false,
@@ -648,7 +784,7 @@
           ]
         }
       ],
-      "totalDownloads": 8,
+      "totalDownloads": 9,
       "engagement": {
         "likes": 0,
         "comments": 0

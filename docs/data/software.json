@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-24T06:46:27.008Z",
+  "generatedAt": "2026-07-24T12:26:49.292Z",
   "software": [
     {
       "id": "aiprompt",
@@ -432,8 +432,8 @@
             {
               "name": "uShader-Setup-3.0.1.0.exe",
               "url": "https://github.com/Patrickjaillet/MicroShader/releases/download/v3.0.1/uShader-Setup-3.0.1.0.exe",
-              "size": 2645900,
-              "downloadCount": 4,
+              "size": 2646348,
+              "downloadCount": 1,
               "sha256": "e0098b2bd0d8cc44d81ad09161cd82379b7a770c93d7970193dfa5c5c40f0e9a"
             }
           ]
@@ -556,7 +556,7 @@
           ]
         }
       ],
-      "totalDownloads": 13,
+      "totalDownloads": 10,
       "engagement": {
         "likes": 0,
         "comments": 0
@@ -921,7 +921,7 @@
               "name": "ZipAllSetup-1.1.0724.0.exe",
               "url": "https://github.com/Patrickjaillet/ZipAll/releases/download/v1.1.0/ZipAllSetup-1.1.0724.0.exe",
               "size": 66708097,
-              "downloadCount": 3,
+              "downloadCount": 4,
               "sha256": "9bc805050e0ab12fb386f8c032d49e6248ca87182cacd11dc548b140f012aa98"
             }
           ]
@@ -940,7 +940,7 @@
           ]
         }
       ],
-      "totalDownloads": 3,
+      "totalDownloads": 4,
       "engagement": {
         "likes": 0,
         "comments": 0

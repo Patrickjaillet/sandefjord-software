@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-24T00:18:46.919Z",
+  "generatedAt": "2026-07-24T06:46:27.008Z",
   "software": [
     {
       "id": "aiprompt",
@@ -55,13 +55,13 @@
               "name": "AIPromptSetup_x64.exe",
               "url": "https://github.com/Patrickjaillet/AIPrompt/releases/download/v1.0.0/AIPromptSetup_x64.exe",
               "size": 55748238,
-              "downloadCount": 8,
+              "downloadCount": 9,
               "sha256": "d01ac86946215cac8f554ae9fb57e07a2658c755423b74c6deade41f4d37ab8e"
             }
           ]
         }
       ],
-      "totalDownloads": 8,
+      "totalDownloads": 9,
       "engagement": {
         "likes": 0,
         "comments": 0
@@ -107,13 +107,13 @@
               "name": "glsl-hyper-golfer-1.0.0.zip",
               "url": "https://github.com/Patrickjaillet/GLSL-Hyper-Golfer/releases/download/1.0.0/glsl-hyper-golfer-1.0.0.zip",
               "size": 283602,
-              "downloadCount": 5,
+              "downloadCount": 6,
               "sha256": "d32e6d0c33089c2cf0a0e025d7c048d9c99f6f66f675646e7164e9e97fa854c4"
             }
           ]
         }
       ],
-      "totalDownloads": 5,
+      "totalDownloads": 6,
       "engagement": {
         "likes": 0,
         "comments": 0
@@ -170,13 +170,13 @@
               "name": "MDProEditor-Setup-0.8.0.exe",
               "url": "https://github.com/Patrickjaillet/MD-Pro-Editor/releases/download/v0.8.0/MDProEditor-Setup-0.8.0.exe",
               "size": 36776216,
-              "downloadCount": 2,
+              "downloadCount": 4,
               "sha256": "76cd0fc236d78015b64ae08b339768220a01fb9398675f02d010a058673bcccb"
             }
           ]
         }
       ],
-      "totalDownloads": 2,
+      "totalDownloads": 4,
       "engagement": {
         "likes": 0,
         "comments": 0
@@ -433,7 +433,7 @@
               "name": "uShader-Setup-3.0.1.0.exe",
               "url": "https://github.com/Patrickjaillet/MicroShader/releases/download/v3.0.1/uShader-Setup-3.0.1.0.exe",
               "size": 2645900,
-              "downloadCount": 2,
+              "downloadCount": 4,
               "sha256": "e0098b2bd0d8cc44d81ad09161cd82379b7a770c93d7970193dfa5c5c40f0e9a"
             }
           ]
@@ -556,7 +556,7 @@
           ]
         }
       ],
-      "totalDownloads": 11,
+      "totalDownloads": 13,
       "engagement": {
         "likes": 0,
         "comments": 0
@@ -602,19 +602,19 @@
               "name": "NumisEuro-5.0.0-portable.zip",
               "url": "https://github.com/Patrickjaillet/Numis-Euro/releases/download/install/NumisEuro-5.0.0-portable.zip",
               "size": 1351673,
-              "downloadCount": 7
+              "downloadCount": 8
             },
             {
               "name": "NumisEuro-5.0.0-setup.exe",
               "url": "https://github.com/Patrickjaillet/Numis-Euro/releases/download/install/NumisEuro-5.0.0-setup.exe",
               "size": 3157039,
-              "downloadCount": 10,
+              "downloadCount": 11,
               "sha256": "0aedc907c264deaf431266b01ba08290924d8d2136515b67de9f906d2f1a35ee"
             }
           ]
         }
       ],
-      "totalDownloads": 17,
+      "totalDownloads": 19,
       "engagement": {
         "likes": 1,
         "comments": 0
@@ -668,7 +668,7 @@
               "name": "Shaddem.v1.0.0.exe",
               "url": "https://github.com/Patrickjaillet/Shaddem/releases/download/sd100/Shaddem.v1.0.0.exe",
               "size": 27538220,
-              "downloadCount": 6,
+              "downloadCount": 7,
               "sha256": "7c6fcce0ce1146753ade3b7e5b7124afbb8382ad8c4230c400bb7be23c0e9216"
             }
           ]
@@ -687,7 +687,7 @@
           ]
         }
       ],
-      "totalDownloads": 6,
+      "totalDownloads": 7,
       "engagement": {
         "likes": 0,
         "comments": 0
@@ -733,13 +733,13 @@
               "name": "ShaderFmt-0.2.1-win64-setup.exe",
               "url": "https://github.com/Patrickjaillet/ShaderFmt/releases/download/1.0/ShaderFmt-0.2.1-win64-setup.exe",
               "size": 15984919,
-              "downloadCount": 8,
+              "downloadCount": 9,
               "sha256": "a9d3ac88666c08b5c9d9192a509fd1e450cbff215d9593cf2dc8e102d6c6db81"
             }
           ]
         }
       ],
-      "totalDownloads": 8,
+      "totalDownloads": 9,
       "engagement": {
         "likes": 0,
         "comments": 0
@@ -813,14 +813,14 @@
               "name": "Z-GL.Shadertoy_2.13.0_x64-setup.exe",
               "url": "https://github.com/Patrickjaillet/Z-GL-Shadertoy/releases/download/v2.13.0/Z-GL.Shadertoy_2.13.0_x64-setup.exe",
               "size": 7106657,
-              "downloadCount": 4,
+              "downloadCount": 6,
               "sha256": "55ccf892ffe37b5cb3d12d68eed018cea3a3249f6798889603bc8f3a87cd9af0"
             },
             {
               "name": "Z-GL.Shadertoy_2.13.0_x64_en-US.msi",
               "url": "https://github.com/Patrickjaillet/Z-GL-Shadertoy/releases/download/v2.13.0/Z-GL.Shadertoy_2.13.0_x64_en-US.msi",
               "size": 7794688,
-              "downloadCount": 0
+              "downloadCount": 1
             }
           ]
         },
@@ -844,7 +844,103 @@
           ]
         }
       ],
-      "totalDownloads": 5,
+      "totalDownloads": 8,
+      "engagement": {
+        "likes": 0,
+        "comments": 0
+      }
+    },
+    {
+      "id": "zipall",
+      "githubRepoId": 1310469096,
+      "name": "ZipAll",
+      "shortDescription": "ZipAll — Windows desktop app (C#/.NET/WinForms) to compress folders into .zip archives with exclusion rules",
+      "description": "ZipAll — Windows desktop app (C#/.NET/WinForms) to compress folders into .zip archives with exclusion rules",
+      "version": "1.1.0",
+      "prerelease": false,
+      "category": "Utilities",
+      "tags": [],
+      "hidden": false,
+      "order": 999,
+      "icon": "assets/icons/default-app.svg",
+      "screenshots": [],
+      "systemRequirements": "Windows 10/11, 64-bit",
+      "downloadUrl": "https://github.com/Patrickjaillet/ZipAll/releases/download/v1.1.0/ZipAllSetup-1.1.0724.0.exe",
+      "downloadSha256": "9bc805050e0ab12fb386f8c032d49e6248ca87182cacd11dc548b140f012aa98",
+      "repositoryUrl": "https://github.com/Patrickjaillet/ZipAll",
+      "changelog": [
+        {
+          "version": "1.1.0",
+          "date": "2026-07-24",
+          "notes": [
+            "All four post-1.0 backlog items, implemented and verified end to end.",
+            "## Added",
+            "**Drag & drop** — dropping a folder from Windows Explorer onto the Source group sets it as the source directory and prefills the archive name from the folder name.",
+            "**Password-protected archives** — an optional \"Password-protect\" checkbox and password field produce AES-256 encrypted `.zip` files via [SharpZipLib](https://github.com/icsharpcode/SharpZipLib) (`EncryptedArchiveWriter`/`EncryptedArchiveVerifier`), alongside the existing unencrypted Stored/Deflate path.",
+            "**Command-line mode** — `ZipAll.exe --source <dir> --dest <dir> [options]` compresses headlessly, sharing the same core engine as the GUI, with `--help`, `--mode`, `--password`, repeatable `--exclude-file`/`--exclude-dir`, and `--quiet`. Running the exe with no arguments (or a single folder path) still opens the GUI.",
+            "**Explorer \"Send to\" integration** — an optional installer task adds a `ZipAll` shortcut to the current user's Send To folder; launching the app with a single folder argument pre-fills that folder as the source in the GUI, so exclusions/password can still be reviewed before compressing.",
+            "6 additional unit tests (45 total) covering password round-trips, wrong-password rejection, exclusions, Stored mode, and confirming an unencrypted reader cannot read the encrypted content.",
+            "## Verification",
+            "Manually verified end-to-end on real Windows hardware: installer rebuilt with the new `sendto` task, install/launch/uninstall cycle (including the Send To shortcut) confirmed clean, Send To launch confirmed via screenshot with the source pre-filled, CLI run from a real console with correct exit codes and output for plain and password-protected archives.",
+            "## Known limitations",
+            "Tested on Windows 10 x64 only; Windows 11 and ARM64 remain unverified."
+          ],
+          "prerelease": false
+        },
+        {
+          "version": "1.0.0",
+          "date": "2026-07-24",
+          "notes": [
+            "ZipAll's first stable release: a native Windows desktop app (C#/.NET, WinForms) that zips a folder, with exclusions, a custom archive name, and a choice of destination.",
+            "## Added",
+            "`CONTRIBUTING.md`: contribution ground rules (C#/.NET/WinForms-only, English-only, no source comments, White theme only, Windows-only, BCL-only archive format, self-contained-only dependencies), PR checklist, and bug report template.",
+            "`tests/ZipAll.Core.Tests`: xUnit unit test project (39 tests) covering `WildcardMatcher`, `ExclusionEngine`, `DirectoryWalker`, and `ArchiveWriter`/`ArchiveVerifier`, including empty folders, deeply nested trees, Unicode/special-character file names, and large flat trees.",
+            "`tests/REGRESSION_CHECKLIST.md`: manual regression checklist to run against a built installer before every release.",
+            "A real application screenshot (`docs/screenshot.png`), now embedded in the README.",
+            "## Fixed",
+            "Inno Setup script: a mis-escaped `AppId` GUID and a `[Files]` wildcard entry that excluded every file the self-contained publish produces, both of which broke the installer build.",
+            "`ArchiveWriter.CreateArchiveAsync` read `ZipArchiveEntry.Length`/`CompressedLength` after writing each entry, but those properties always throw `InvalidOperationException` in `ZipArchiveMode.Create` — every archive containing at least one file was broken. Found while writing the new unit test suite; fixed by deriving byte counts from the known file length and the underlying zip stream's position delta instead.",
+            "## Changed",
+            "Version stamp moved to `1.0.0` (`MAJOR` now `1`).",
+            "Installer build and install/uninstall cycle verified end-to-end (silent install, launch, silent uninstall with no residual files).",
+            "Self-contained `win-x86` build published and smoke-tested under WOW64.",
+            "## Known limitations",
+            "Tested on Windows 10 x64 only; Windows 11 and ARM64 have not been verified (no such machine was available during development).",
+            "Zip64 / very large archive support relies on `System.IO.Compression` defaults and has not been explicitly stress-tested with multi-gigabyte archives."
+          ],
+          "prerelease": false
+        }
+      ],
+      "versionHistory": [
+        {
+          "version": "1.1.0",
+          "date": "2026-07-24",
+          "prerelease": false,
+          "assets": [
+            {
+              "name": "ZipAllSetup-1.1.0724.0.exe",
+              "url": "https://github.com/Patrickjaillet/ZipAll/releases/download/v1.1.0/ZipAllSetup-1.1.0724.0.exe",
+              "size": 66708097,
+              "downloadCount": 3,
+              "sha256": "9bc805050e0ab12fb386f8c032d49e6248ca87182cacd11dc548b140f012aa98"
+            }
+          ]
+        },
+        {
+          "version": "1.0.0",
+          "date": "2026-07-24",
+          "prerelease": false,
+          "assets": [
+            {
+              "name": "ZipAllSetup-1.0.0724.0.exe",
+              "url": "https://github.com/Patrickjaillet/ZipAll/releases/download/v1.0.0/ZipAllSetup-1.0.0724.0.exe",
+              "size": 66596725,
+              "downloadCount": 0
+            }
+          ]
+        }
+      ],
+      "totalDownloads": 3,
       "engagement": {
         "likes": 0,
         "comments": 0

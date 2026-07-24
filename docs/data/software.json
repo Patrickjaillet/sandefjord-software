@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-23T18:37:10.214Z",
+  "generatedAt": "2026-07-24T00:18:46.919Z",
   "software": [
     {
       "id": "aiprompt",
@@ -668,7 +668,7 @@
               "name": "Shaddem.v1.0.0.exe",
               "url": "https://github.com/Patrickjaillet/Shaddem/releases/download/sd100/Shaddem.v1.0.0.exe",
               "size": 27538220,
-              "downloadCount": 5,
+              "downloadCount": 6,
               "sha256": "7c6fcce0ce1146753ade3b7e5b7124afbb8382ad8c4230c400bb7be23c0e9216"
             }
           ]
@@ -687,7 +687,7 @@
           ]
         }
       ],
-      "totalDownloads": 5,
+      "totalDownloads": 6,
       "engagement": {
         "likes": 0,
         "comments": 0
@@ -813,7 +813,7 @@
               "name": "Z-GL.Shadertoy_2.13.0_x64-setup.exe",
               "url": "https://github.com/Patrickjaillet/Z-GL-Shadertoy/releases/download/v2.13.0/Z-GL.Shadertoy_2.13.0_x64-setup.exe",
               "size": 7106657,
-              "downloadCount": 3,
+              "downloadCount": 4,
               "sha256": "55ccf892ffe37b5cb3d12d68eed018cea3a3249f6798889603bc8f3a87cd9af0"
             },
             {
@@ -844,7 +844,7 @@
           ]
         }
       ],
-      "totalDownloads": 4,
+      "totalDownloads": 5,
       "engagement": {
         "likes": 0,
         "comments": 0

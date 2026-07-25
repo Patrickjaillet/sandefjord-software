@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-25T06:42:47.234Z",
+  "generatedAt": "2026-07-25T12:16:11.705Z",
   "software": [
     {
       "id": "aiprompt",
@@ -62,6 +62,168 @@
         }
       ],
       "totalDownloads": 9,
+      "engagement": {
+        "likes": 0,
+        "comments": 0
+      }
+    },
+    {
+      "id": "glconverter",
+      "githubRepoId": 1311919011,
+      "name": "GLConverter",
+      "shortDescription": "Code golfing to structured code converter, and vice versa.",
+      "description": "Code golfing to structured code converter, and vice versa.",
+      "version": "0.4.0",
+      "prerelease": false,
+      "category": "Utilities",
+      "tags": [],
+      "hidden": false,
+      "order": 999,
+      "icon": "assets/icons/default-app.svg",
+      "screenshots": [],
+      "systemRequirements": "Windows 10/11, 64-bit",
+      "downloadUrl": "https://github.com/Patrickjaillet/GLConverter/releases/tag/v0.4.0",
+      "repositoryUrl": "https://github.com/Patrickjaillet/GLConverter",
+      "changelog": [
+        {
+          "version": "0.4.0",
+          "date": "2026-07-25",
+          "notes": [
+            "# Changelog",
+            "All notable changes to GLConverter are documented in this file.",
+            "The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),",
+            "and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).",
+            "## [0.4.0] - 2026-07-25",
+            "### Added",
+            "Advanced loop golfing: counting `for` loops are rewritten as reverse",
+            "countdown loops when the loop variable is unused in the body and the",
+            "bound is safe to evaluate once, shortening the loop header.",
+            "Ternary and conditional golfing: `if`/`else` statements are rewritten",
+            "as conditional (ternary) expressions for matching `return` statements",
+            "and matching assignments, and single-branch `if` statements using an",
+            "expression are rewritten with the `&&` short-circuit shortcut.",
+            "Native call golfing: known JavaScript golfing shortcuts are applied",
+            "automatically, including `Boolean(x)` to `!!x`, `indexOf` presence",
+            "checks to `includes`, `Array.prototype` to `[]`, and `.apply(null, x)`",
+            "calls to spread syntax.",
+            "Configurable golfing rules panel: each golfing technique (dead code",
+            "elimination, declaration merging, loop golfing, ternary golfing,",
+            "native call golfing, variable renaming, operator simplification) can",
+            "be toggled on or off independently, with the converted output",
+            "updating immediately.",
+            "Character count display for both the original and converted code.",
+            "Compression score, shown as a percentage of characters saved by the",
+            "conversion.",
+            "## [0.3.0] - 2026-07-25",
+            "### Added",
+            "Golfing conversion pipeline applied to every conversion: minification,",
+            "variable renaming, operator simplification, declaration merging, and",
+            "dead code elimination.",
+            "Minification engine: strips whitespace, newlines, and redundant",
+            "semicolons from the converted output.",
+            "Scope-aware variable renaming engine, assigning short identifiers",
+            "(`a`, `b`, `c`, ...) while avoiding collisions with global references",
+            "and reserved words.",
+            "Operator simplification engine: converts increment/decrement patterns",
+            "and compound arithmetic assignments to their shorter forms, and",
+            "boolean literals to their shortest equivalent.",
+            "Automatic merging of adjacent variable declarations of the same kind.",
+            "Dead code elimination: removes unreachable statements, redundant pure",
+            "expression statements, and literal `if` branches.",
+            "Toggle button to switch the converted panel between \"Minified\" and",
+            "\"Justified\" output modes.",
+            "\"Justified\" mode: readable reformatting of the converted code with",
+            "clean indentation.",
+            "## [0.2.0] - 2026-07-25",
+            "### Added",
+            "Dual-pane code editor built on CodeMirror 6 (Original / Converted).",
+            "White theme applied to the code editors, matching the interface.",
+            "Real-time synchronization: edits in the original pane automatically",
+            "update the converted pane.",
+            "Automatic source language detection, with JavaScript as the priority",
+            "language.",
+            "Source code tokenization and AST parsing powered by Acorn.",
+            "Status bar showing detected language, token count, and character count.",
+            "## [0.1.0] - 2026-07-25",
+            "### Added",
+            "Initial project foundation with Vite and TypeScript.",
+            "GitHub Pages compatible build configuration.",
+            "Three.js background scene integrated into the interface.",
+            "White theme baseline styling.",
+            "Rust and WebAssembly engine skeleton for the future conversion engine.",
+            "Initial `ConversionEngine` core module.",
+            "Continuous deployment workflow to GitHub Pages.",
+            "`LICENSE`, `README.md`, and `CHANGELOG.md`."
+          ],
+          "prerelease": false
+        },
+        {
+          "version": "0.3.0",
+          "date": "2026-07-25",
+          "notes": [
+            "# Changelog",
+            "All notable changes to GLConverter are documented in this file.",
+            "The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),",
+            "and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).",
+            "## [0.3.0] - 2026-07-25",
+            "### Added",
+            "Golfing conversion pipeline applied to every conversion: minification,",
+            "variable renaming, operator simplification, declaration merging, and",
+            "dead code elimination.",
+            "Minification engine: strips whitespace, newlines, and redundant",
+            "semicolons from the converted output.",
+            "Scope-aware variable renaming engine, assigning short identifiers",
+            "(`a`, `b`, `c`, ...) while avoiding collisions with global references",
+            "and reserved words.",
+            "Operator simplification engine: converts increment/decrement patterns",
+            "and compound arithmetic assignments to their shorter forms, and",
+            "boolean literals to their shortest equivalent.",
+            "Automatic merging of adjacent variable declarations of the same kind.",
+            "Dead code elimination: removes unreachable statements, redundant pure",
+            "expression statements, and literal `if` branches.",
+            "Toggle button to switch the converted panel between \"Minified\" and",
+            "\"Justified\" output modes.",
+            "\"Justified\" mode: readable reformatting of the converted code with",
+            "clean indentation.",
+            "## [0.2.0] - 2026-07-25",
+            "### Added",
+            "Dual-pane code editor built on CodeMirror 6 (Original / Converted).",
+            "White theme applied to the code editors, matching the interface.",
+            "Real-time synchronization: edits in the original pane automatically",
+            "update the converted pane.",
+            "Automatic source language detection, with JavaScript as the priority",
+            "language.",
+            "Source code tokenization and AST parsing powered by Acorn.",
+            "Status bar showing detected language, token count, and character count.",
+            "## [0.1.0] - 2026-07-25",
+            "### Added",
+            "Initial project foundation with Vite and TypeScript.",
+            "GitHub Pages compatible build configuration.",
+            "Three.js background scene integrated into the interface.",
+            "White theme baseline styling.",
+            "Rust and WebAssembly engine skeleton for the future conversion engine.",
+            "Initial `ConversionEngine` core module.",
+            "Continuous deployment workflow to GitHub Pages.",
+            "`LICENSE`, `README.md`, and `CHANGELOG.md`."
+          ],
+          "prerelease": false
+        }
+      ],
+      "versionHistory": [
+        {
+          "version": "0.4.0",
+          "date": "2026-07-25",
+          "prerelease": false,
+          "assets": []
+        },
+        {
+          "version": "0.3.0",
+          "date": "2026-07-25",
+          "prerelease": false,
+          "assets": []
+        }
+      ],
+      "totalDownloads": 0,
       "engagement": {
         "likes": 0,
         "comments": 0
@@ -433,7 +595,7 @@
               "name": "uShader-Setup-3.0.1.0.exe",
               "url": "https://github.com/Patrickjaillet/MicroShader/releases/download/v3.0.1/uShader-Setup-3.0.1.0.exe",
               "size": 2646348,
-              "downloadCount": 1,
+              "downloadCount": 2,
               "sha256": "e0098b2bd0d8cc44d81ad09161cd82379b7a770c93d7970193dfa5c5c40f0e9a"
             }
           ]
@@ -556,7 +718,7 @@
           ]
         }
       ],
-      "totalDownloads": 10,
+      "totalDownloads": 11,
       "engagement": {
         "likes": 0,
         "comments": 0
@@ -813,7 +975,7 @@
               "name": "Z-GL.Shadertoy_2.13.0_x64-setup.exe",
               "url": "https://github.com/Patrickjaillet/Z-GL-Shadertoy/releases/download/v2.13.0/Z-GL.Shadertoy_2.13.0_x64-setup.exe",
               "size": 7106657,
-              "downloadCount": 6,
+              "downloadCount": 7,
               "sha256": "55ccf892ffe37b5cb3d12d68eed018cea3a3249f6798889603bc8f3a87cd9af0"
             },
             {
@@ -844,7 +1006,7 @@
           ]
         }
       ],
-      "totalDownloads": 8,
+      "totalDownloads": 9,
       "engagement": {
         "likes": 0,
         "comments": 0

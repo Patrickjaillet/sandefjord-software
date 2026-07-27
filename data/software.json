@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-26T18:18:16.063Z",
+  "generatedAt": "2026-07-27T00:21:19.922Z",
   "software": [
     {
       "id": "aiprompt",
@@ -2141,6 +2141,87 @@
         }
       ],
       "totalDownloads": 10,
+      "engagement": {
+        "likes": 0,
+        "comments": 0
+      }
+    },
+    {
+      "id": "sliders-gl",
+      "githubRepoId": 1312965823,
+      "name": "Sliders-GL",
+      "shortDescription": "No description provided yet.",
+      "description": "No description provided yet.",
+      "version": "1.0.0",
+      "prerelease": false,
+      "category": "Utilities",
+      "tags": [],
+      "hidden": false,
+      "order": 999,
+      "icon": "assets/icons/default-app.svg",
+      "screenshots": [],
+      "systemRequirements": "Windows 10/11, 64-bit",
+      "downloadUrl": "https://github.com/Patrickjaillet/Sliders-GL/releases/download/v1.0.0/Sliders.GL_1.0.0_x64-setup.exe",
+      "downloadSha256": "da7e71239e92284c3ff1dedb98d5d5e4f203191a21409393391266ededb306d6",
+      "repositoryUrl": "https://github.com/Patrickjaillet/Sliders-GL",
+      "changelog": [
+        {
+          "version": "1.0.0",
+          "date": "2026-07-26",
+          "notes": [
+            "# Changelog",
+            "All notable changes to Sliders GL are documented in this file.",
+            "The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),",
+            "and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).",
+            "## [1.0.0] — 2026-07-26",
+            "### Added",
+            "Initial public release of **Sliders GL**, a full rebrand of the",
+            "Z-GL Shadertoy project into a standalone, Blender-style GLSL shader editor.",
+            "Blender-identical UI architecture: topbar, tool shelf, tabbed Properties",
+            "editor, status bar, draggable/collapsible areas, and area-split gizmos.",
+            "Unique light/medium-gray theme.",
+            "Ultra-professional, high-precision sliders for every shader uniform, with",
+            "keyboard fine control and undo/redo.",
+            "Monaco-based GLSL editor with syntax highlighting, inline diagnostics,",
+            "autocomplete, and code formatting.",
+            "ShaderToy-compatible rendering (`mainImage`, `iResolution`, `iTime`,",
+            "`iMouse`, channel uniforms) and direct ShaderToy import by ID or URL.",
+            "Export pipeline: current-frame image export, video recording, standalone",
+            "HTML export, and full project ZIP export.",
+            "Shader library and preset system.",
+            "In-app Help Center with a full reference and keyboard shortcut list.",
+            "\"About\" tab with copyright, contact, and website information.",
+            "Offline-first architecture: all runtimes, fonts, and tooling are bundled",
+            "locally — zero network dependency for core functionality.",
+            "MIT license.",
+            "[1.0.0]: https://github.com/Patrickjaillet/Sliders-GL/releases/tag/v1.0.0"
+          ],
+          "prerelease": false
+        }
+      ],
+      "versionHistory": [
+        {
+          "version": "1.0.0",
+          "date": "2026-07-26",
+          "prerelease": false,
+          "assets": [
+            {
+              "name": "Sliders.GL_1.0.0_x64-setup.exe",
+              "url": "https://github.com/Patrickjaillet/Sliders-GL/releases/download/v1.0.0/Sliders.GL_1.0.0_x64-setup.exe",
+              "size": 7028516,
+              "downloadCount": 0,
+              "sha256": "da7e71239e92284c3ff1dedb98d5d5e4f203191a21409393391266ededb306d6"
+            },
+            {
+              "name": "Sliders.GL_1.0.0_x64_en-US.msi",
+              "url": "https://github.com/Patrickjaillet/Sliders-GL/releases/download/v1.0.0/Sliders.GL_1.0.0_x64_en-US.msi",
+              "size": 7708672,
+              "downloadCount": 0
+            }
+          ]
+        }
+      ],
+      "totalDownloads": 0,
       "engagement": {
         "likes": 0,
         "comments": 0

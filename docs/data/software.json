@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-27T07:01:48.842Z",
+  "generatedAt": "2026-07-27T12:58:58.042Z",
   "software": [
     {
       "id": "aiprompt",
@@ -55,13 +55,13 @@
               "name": "AIPromptSetup_x64.exe",
               "url": "https://github.com/Patrickjaillet/AIPrompt/releases/download/v1.0.0/AIPromptSetup_x64.exe",
               "size": 55748238,
-              "downloadCount": 9,
+              "downloadCount": 10,
               "sha256": "d01ac86946215cac8f554ae9fb57e07a2658c755423b74c6deade41f4d37ab8e"
             }
           ]
         }
       ],
-      "totalDownloads": 9,
+      "totalDownloads": 10,
       "engagement": {
         "likes": 0,
         "comments": 0
@@ -1508,13 +1508,13 @@
               "name": "glsl-hyper-golfer-1.0.0.zip",
               "url": "https://github.com/Patrickjaillet/GLSL-Hyper-Golfer/releases/download/1.0.0/glsl-hyper-golfer-1.0.0.zip",
               "size": 283602,
-              "downloadCount": 7,
+              "downloadCount": 8,
               "sha256": "d32e6d0c33089c2cf0a0e025d7c048d9c99f6f66f675646e7164e9e97fa854c4"
             }
           ]
         }
       ],
-      "totalDownloads": 7,
+      "totalDownloads": 8,
       "engagement": {
         "likes": 0,
         "comments": 0
@@ -1571,13 +1571,13 @@
               "name": "MDProEditor-Setup-0.8.0.exe",
               "url": "https://github.com/Patrickjaillet/MD-Pro-Editor/releases/download/v0.8.0/MDProEditor-Setup-0.8.0.exe",
               "size": 36776216,
-              "downloadCount": 5,
+              "downloadCount": 6,
               "sha256": "76cd0fc236d78015b64ae08b339768220a01fb9398675f02d010a058673bcccb"
             }
           ]
         }
       ],
-      "totalDownloads": 5,
+      "totalDownloads": 6,
       "engagement": {
         "likes": 0,
         "comments": 0
@@ -1834,7 +1834,7 @@
               "name": "uShader-Setup-3.0.1.0.exe",
               "url": "https://github.com/Patrickjaillet/MicroShader/releases/download/v3.0.1/uShader-Setup-3.0.1.0.exe",
               "size": 2646348,
-              "downloadCount": 2,
+              "downloadCount": 3,
               "sha256": "e0098b2bd0d8cc44d81ad09161cd82379b7a770c93d7970193dfa5c5c40f0e9a"
             }
           ]
@@ -1957,7 +1957,7 @@
           ]
         }
       ],
-      "totalDownloads": 11,
+      "totalDownloads": 12,
       "engagement": {
         "likes": 0,
         "comments": 0
@@ -2003,19 +2003,19 @@
               "name": "NumisEuro-5.0.0-portable.zip",
               "url": "https://github.com/Patrickjaillet/Numis-Euro/releases/download/install/NumisEuro-5.0.0-portable.zip",
               "size": 1351673,
-              "downloadCount": 8
+              "downloadCount": 9
             },
             {
               "name": "NumisEuro-5.0.0-setup.exe",
               "url": "https://github.com/Patrickjaillet/Numis-Euro/releases/download/install/NumisEuro-5.0.0-setup.exe",
               "size": 3157039,
-              "downloadCount": 11,
+              "downloadCount": 12,
               "sha256": "0aedc907c264deaf431266b01ba08290924d8d2136515b67de9f906d2f1a35ee"
             }
           ]
         }
       ],
-      "totalDownloads": 19,
+      "totalDownloads": 21,
       "engagement": {
         "likes": 1,
         "comments": 0
@@ -2069,7 +2069,7 @@
               "name": "Shaddem.v1.0.0.exe",
               "url": "https://github.com/Patrickjaillet/Shaddem/releases/download/sd100/Shaddem.v1.0.0.exe",
               "size": 27538220,
-              "downloadCount": 7,
+              "downloadCount": 8,
               "sha256": "7c6fcce0ce1146753ade3b7e5b7124afbb8382ad8c4230c400bb7be23c0e9216"
             }
           ]
@@ -2088,7 +2088,7 @@
           ]
         }
       ],
-      "totalDownloads": 7,
+      "totalDownloads": 8,
       "engagement": {
         "likes": 0,
         "comments": 0
@@ -2134,13 +2134,13 @@
               "name": "ShaderFmt-0.2.1-win64-setup.exe",
               "url": "https://github.com/Patrickjaillet/ShaderFmt/releases/download/1.0/ShaderFmt-0.2.1-win64-setup.exe",
               "size": 15984919,
-              "downloadCount": 10,
+              "downloadCount": 11,
               "sha256": "a9d3ac88666c08b5c9d9192a509fd1e450cbff215d9593cf2dc8e102d6c6db81"
             }
           ]
         }
       ],
-      "totalDownloads": 10,
+      "totalDownloads": 11,
       "engagement": {
         "likes": 0,
         "comments": 0
@@ -2209,19 +2209,19 @@
               "name": "Sliders.GL_1.0.0_x64-setup.exe",
               "url": "https://github.com/Patrickjaillet/Sliders-GL/releases/download/v1.0.0/Sliders.GL_1.0.0_x64-setup.exe",
               "size": 7028516,
-              "downloadCount": 1,
+              "downloadCount": 2,
               "sha256": "da7e71239e92284c3ff1dedb98d5d5e4f203191a21409393391266ededb306d6"
             },
             {
               "name": "Sliders.GL_1.0.0_x64_en-US.msi",
               "url": "https://github.com/Patrickjaillet/Sliders-GL/releases/download/v1.0.0/Sliders.GL_1.0.0_x64_en-US.msi",
               "size": 7708672,
-              "downloadCount": 0
+              "downloadCount": 1
             }
           ]
         }
       ],
-      "totalDownloads": 1,
+      "totalDownloads": 3,
       "engagement": {
         "likes": 0,
         "comments": 0
@@ -2295,14 +2295,14 @@
               "name": "Z-GL.Shadertoy_2.13.0_x64-setup.exe",
               "url": "https://github.com/Patrickjaillet/Z-GL-Shadertoy/releases/download/v2.13.0/Z-GL.Shadertoy_2.13.0_x64-setup.exe",
               "size": 7106657,
-              "downloadCount": 8,
+              "downloadCount": 9,
               "sha256": "55ccf892ffe37b5cb3d12d68eed018cea3a3249f6798889603bc8f3a87cd9af0"
             },
             {
               "name": "Z-GL.Shadertoy_2.13.0_x64_en-US.msi",
               "url": "https://github.com/Patrickjaillet/Z-GL-Shadertoy/releases/download/v2.13.0/Z-GL.Shadertoy_2.13.0_x64_en-US.msi",
               "size": 7794688,
-              "downloadCount": 1
+              "downloadCount": 2
             }
           ]
         },
@@ -2326,7 +2326,7 @@
           ]
         }
       ],
-      "totalDownloads": 10,
+      "totalDownloads": 12,
       "engagement": {
         "likes": 0,
         "comments": 0
@@ -2403,7 +2403,7 @@
               "name": "ZipAllSetup-1.1.0724.0.exe",
               "url": "https://github.com/Patrickjaillet/ZipAll/releases/download/v1.1.0/ZipAllSetup-1.1.0724.0.exe",
               "size": 66708097,
-              "downloadCount": 4,
+              "downloadCount": 5,
               "sha256": "9bc805050e0ab12fb386f8c032d49e6248ca87182cacd11dc548b140f012aa98"
             }
           ]
@@ -2422,7 +2422,7 @@
           ]
         }
       ],
-      "totalDownloads": 4,
+      "totalDownloads": 5,
       "engagement": {
         "likes": 0,
         "comments": 0

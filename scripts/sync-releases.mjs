@@ -6,7 +6,7 @@
 // that topic appear on the site automatically; repositories are matched
 // across renames using their stable GitHub repo id.
 
-import { readFile, writeFile } from "node:fs/promises";
+import { readFile, writeFile, mkdir } from "node:fs/promises";
 import { createHash } from "node:crypto";
 
 const OWNER = "Patrickjaillet";
@@ -14,6 +14,7 @@ const TOPIC = "sandefjord-software";
 const SITE_REPO = "sandefjord-software";
 const DATA_FILE = "data/software.json";
 const DEFAULT_ICON = "assets/icons/default-app.svg";
+const SCREENSHOTS_DIR = "assets/screenshots";
 const API = "https://api.github.com";
 const TOKEN = process.env.GITHUB_TOKEN || process.env.GH_TOKEN;
 
@@ -95,6 +96,44 @@ async function computeSha256(url) {
   return createHash("sha256").update(buffer).digest("hex");
 }
 
+// Each software repo may publish a docs/screenshot.png (convention already
+// used by several apps). If present, mirror it into the site's own
+// screenshots folder and keep it as the catalog's automatic first screenshot.
+async function fetchAutoScreenshot(repo) {
+  const branch = repo.default_branch || "main";
+  const url = `https://raw.githubusercontent.com/${repo.owner.login}/${repo.name}/${branch}/docs/screenshot.png`;
+  const response = await fetch(url);
+  if (!response.ok) return null;
+  return Buffer.from(await response.arrayBuffer());
+}
+
+async function syncAutoScreenshot(repo, id, existingScreenshots) {
+  const autoPath = `${SCREENSHOTS_DIR}/${id}-auto.png`;
+  try {
+    const buffer = await fetchAutoScreenshot(repo);
+    if (!buffer) return existingScreenshots;
+
+    let unchanged = false;
+    try {
+      const current = await readFile(autoPath);
+      unchanged = current.equals(buffer);
+    } catch {
+      // no existing file yet
+    }
+    if (!unchanged) {
+      await mkdir(SCREENSHOTS_DIR, { recursive: true });
+      await writeFile(autoPath, buffer);
+    }
+
+    return existingScreenshots.includes(autoPath)
+      ? existingScreenshots
+      : [autoPath, ...existingScreenshots];
+  } catch (error) {
+    console.warn(`${repo.full_name}: could not fetch auto screenshot: ${error.message}`);
+    return existingScreenshots;
+  }
+}
+
 function notesFromBody(body) {
   if (!body || !body.trim()) return ["No release notes provided."];
   const lines = body
@@ -167,6 +206,10 @@ async function buildEntry(repo, existingByGithubId) {
   const primaryAsset = pickPrimaryAsset(latestStable.assets || []);
   const downloadUrl = primaryAsset ? primaryAsset.browser_download_url : latestStable.html_url;
   const fallbackDescription = repo.description || "No description provided yet.";
+  const descriptionLocked = existing?.descriptionManuallyEdited ?? false;
+
+  const id = existing?.id ?? slugify(repo.name);
+  const screenshots = await syncAutoScreenshot(repo, id, existing?.screenshots ?? []);
 
   let downloadSha256 = primaryAsset ? knownChecksums.get(primaryAsset.browser_download_url) : undefined;
   if (primaryAsset && !downloadSha256) {
@@ -180,11 +223,12 @@ async function buildEntry(repo, existingByGithubId) {
   }
 
   return {
-    id: existing?.id ?? slugify(repo.name),
+    id,
     githubRepoId: repo.id,
     name: existing?.name ?? repo.name,
-    shortDescription: existing?.shortDescription ?? fallbackDescription.slice(0, 140),
-    description: existing?.description ?? fallbackDescription,
+    shortDescription: descriptionLocked ? existing.shortDescription : fallbackDescription.slice(0, 140),
+    description: descriptionLocked ? existing.description : fallbackDescription,
+    ...(descriptionLocked ? { descriptionManuallyEdited: true } : {}),
     version: extractVersion(latestStable),
     prerelease: latestStable.prerelease,
     category: existing?.category ?? "Utilities",
@@ -192,7 +236,7 @@ async function buildEntry(repo, existingByGithubId) {
     hidden: existing?.hidden ?? false,
     order: existing?.order ?? 999,
     icon: existing?.icon ?? DEFAULT_ICON,
-    screenshots: existing?.screenshots ?? [],
+    screenshots,
     systemRequirements: existing?.systemRequirements ?? "Windows 10/11, 64-bit",
     downloadUrl,
     downloadSha256,

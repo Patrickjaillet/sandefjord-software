@@ -970,6 +970,7 @@ function renderEditFormView(id) {
       name: document.getElementById("f-name").value.trim(),
       shortDescription: document.getElementById("f-short").value.trim(),
       description: document.getElementById("f-desc").value.trim(),
+      descriptionManuallyEdited: true,
       category: document.getElementById("f-category").value.trim() || "Utilities",
       tags,
       systemRequirements: document.getElementById("f-requirements").value.trim(),

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-28T12:32:14.029Z",
+  "generatedAt": "2026-07-28T13:38:45.567Z",
   "software": [
     {
       "id": "aiprompt",
@@ -7,6 +7,7 @@
       "name": "AIPrompt",
       "shortDescription": "AI prompt generator, library, and assembler for Windows — with a built-in ROADMAP.md file generator.",
       "description": "AIPrompt is a Windows desktop app for building, organizing, and assembling prompts for generative AI (text, code, image, and more). Pull terms and phrases from a local library, organized by type and category, to quickly assemble a coherent prompt, then export it as Markdown or plain text. It also includes a dedicated generator for structured ROADMAP.md files for other projects. The app is organized into eight sections reachable from the main navigation rail: Dashboard, Term library, Prompt assembler, Saved prompts, ROADMAP.md generator, Import/Export, Settings, and About.",
+      "descriptionManuallyEdited": true,
       "version": "1.0.0",
       "prerelease": false,
       "category": "Utilities",
@@ -73,6 +74,7 @@
       "name": "GLConverter",
       "shortDescription": "Code golfing to structured code converter, and vice versa.",
       "description": "Code golfing to structured code converter, and vice versa.",
+      "descriptionManuallyEdited": true,
       "version": "1.0.1",
       "prerelease": false,
       "category": "Utilities",
@@ -80,7 +82,9 @@
       "hidden": false,
       "order": 999,
       "icon": "assets/icons/default-app.svg",
-      "screenshots": [],
+      "screenshots": [
+        "assets/screenshots/glconverter-auto.png"
+      ],
       "systemRequirements": "Windows 10/11, 64-bit",
       "downloadUrl": "https://github.com/Patrickjaillet/GLConverter/releases/tag/v1.0.1",
       "repositoryUrl": "https://github.com/Patrickjaillet/GLConverter",
@@ -1474,6 +1478,7 @@
       "name": "GLSL-Hyper-Golfer",
       "shortDescription": "GLSL shader minifier with a live WebGL preview — runs entirely client-side, nothing you paste is ever sent anywhere.",
       "description": "GLSL-Hyper-Golfer minifies Shadertoy-style GLSL shaders (a mainImage function) in one click and lets you verify the result renders identically via a built-in live WebGL viewport, with a side-by-side compare against the original. It renames every variable, function, and parameter to the shortest available name, shortens numeric literals, and strips superfluous whitespace; an aggressive mode goes further with redundant-brace removal, merged declarations, dead-code elimination, and constant folding — each pass toggleable individually rather than all-or-nothing. The single-screen interface (source, golfed output with reduction stats, and viewport) collapses to tabs under narrow windows. The minification engine runs entirely client-side (compiled to WebAssembly): no shader code ever leaves the browser.",
+      "descriptionManuallyEdited": true,
       "version": "1.0.0",
       "prerelease": false,
       "category": "Utilities",
@@ -1482,6 +1487,7 @@
       "order": 999,
       "icon": "assets/icons/default-app.svg",
       "screenshots": [
+        "assets/screenshots/glsl-hyper-golfer-auto.png",
         "assets/screenshots/glsl-hyper-golfer-1.png"
       ],
       "systemRequirements": "Windows 10/11, 64-bit",
@@ -1526,6 +1532,7 @@
       "name": "MD-Pro-Editor",
       "shortDescription": "L'editeur Markdown le plus puissant, le plus beau et le plus complet - Windows 10 LTSC/10/11",
       "description": "L'editeur Markdown le plus puissant, le plus beau et le plus complet - Windows 10 LTSC/10/11",
+      "descriptionManuallyEdited": true,
       "version": "0.8.0",
       "prerelease": false,
       "category": "Utilities",
@@ -1534,6 +1541,7 @@
       "order": 999,
       "icon": "assets/icons/default-app.svg",
       "screenshots": [
+        "assets/screenshots/md-pro-editor-auto.png",
         "assets/screenshots/md-pro-editor-1.png"
       ],
       "systemRequirements": "Windows 10/11, 64-bit",
@@ -1591,6 +1599,7 @@
       "name": "MicroShader",
       "shortDescription": "GLSL Golfing engine",
       "description": "GLSL Golfing engine",
+      "descriptionManuallyEdited": true,
       "version": "3.0.1",
       "prerelease": false,
       "category": "Utilities",
@@ -1599,6 +1608,7 @@
       "order": 999,
       "icon": "assets/icons/default-app.svg",
       "screenshots": [
+        "assets/screenshots/microshader-auto.png",
         "assets/screenshots/microshader-1.png"
       ],
       "systemRequirements": "Windows 10/11, 64-bit",
@@ -1973,6 +1983,7 @@
       "name": "Numis-Euro",
       "shortDescription": "Offline euro coin collection manager: catalog coins, track completeness, and manage your numismatic collection.",
       "description": "NumisEuro turns your euro coin collection into a proper digital catalog: add and edit coins with quantities, condition, mint, purchase price and estimated value, certification, seller, location, tags and notes. Browse a sortable table or a thumbnail gallery, and view obverse/reverse plus extra photos per coin with drag-and-drop and a zoomable lightbox. Track completeness with a Country x Denomination matrix, a wishlist, an importable reference catalog, and a missing-coins panel. Organize coins into albums and series, mark favorites and statuses (for sale, duplicate, lent out), and detect duplicates automatically. A dashboard shows collection value, gains, and completeness per country. Runs 100% offline: no account, no telemetry, no internet connection required.",
+      "descriptionManuallyEdited": true,
       "version": "5.0.0",
       "prerelease": false,
       "category": "Collectibles",
@@ -2031,6 +2042,7 @@
       "name": "Shaddem",
       "shortDescription": "Real-time GLSL shader visualizer with a docked workspace: layers, post-processing, audio reactivity, and video export.",
       "description": "Shaddem is a real-time GLSL shader visualizer for Windows with a docked workspace: a Navigation rail (Home, Shaders, Layers, Effects, Audio, Timeline, 3D, Export, Settings), a large central preview, and a contextual Inspector panel, with three switchable layout presets (Simple, Standard, Power User). It loads any number of .glsl fragment shaders from a folder with hot-reload and live compile-error reporting, and stacks multiple shaders as layers with per-layer blend modes and opacity. The post-processing pipeline covers color grading, geometric distortion (fisheye, wave, mirror, vortex, swirl, pixelate, mosaic), glitch/retro effects (RGB split, chromatic aberration, VHS, scanlines, datamosh), bloom, motion blur, feedback accumulation, and shader-to-shader transitions. Real-time FFT audio analysis drives shake, strobe, RGB split, scale, and kick-triggered effects with an on-screen spectrum/waveform overlay. Also included: a timeline/automation system, Wavefront .obj 3D model overlay, a CPU particle system, live shader coding with a snippet library, save/load/random-generate presets, and MP4/GIF video export via ffmpeg.",
+      "descriptionManuallyEdited": true,
       "version": "1.0.0",
       "prerelease": false,
       "category": "Developer Tools",
@@ -2104,6 +2116,7 @@
       "name": "ShaderFmt",
       "shortDescription": "Desktop code formatter and editor for GLSL, HLSL, WGSL, MSL, and Unity ShaderLab shader source code.",
       "description": "ShaderFmt is a desktop code formatter and editor for shader source code: paste or open a shader, format it in place, tweak the result, and copy it out without leaving the editor. Formatting only ever touches whitespace, indentation, and brace placement, never the code's logic. Six shader dialects are auto-detected or selectable manually: GLSL, Shadertoy GLSL, HLSL, WGSL, MSL, and Unity ShaderLab, including embedded CGPROGRAM blocks. Style is fully configurable (indentation, tabs vs. spaces, brace style, keyword spacing, a line-length guide) with one-click presets (Default, Shadertoy, Unreal, Unity) and a live preview. A GLSL-specific check flags qualifiers that don't match the shader's #version without blocking editing, and a live render preview for GLSL/Shadertoy shows the fragment shader running with the standard Shadertoy uniforms wired up. Runs entirely offline.",
+      "descriptionManuallyEdited": true,
       "version": "1.0",
       "prerelease": false,
       "category": "Developer Tools",
@@ -2112,6 +2125,7 @@
       "order": 999,
       "icon": "assets/icons/default-app.svg",
       "screenshots": [
+        "assets/screenshots/shaderfmt-auto.png",
         "assets/screenshots/shaderfmt-1.png"
       ],
       "systemRequirements": "Windows 10/11, 64-bit",
@@ -2156,6 +2170,7 @@
       "name": "Sliders-GL",
       "shortDescription": "No description provided yet.",
       "description": "No description provided yet.",
+      "descriptionManuallyEdited": true,
       "version": "1.0.1",
       "prerelease": false,
       "category": "Utilities",
@@ -2163,7 +2178,9 @@
       "hidden": false,
       "order": 999,
       "icon": "assets/icons/default-app.svg",
-      "screenshots": [],
+      "screenshots": [
+        "assets/screenshots/sliders-gl-auto.png"
+      ],
       "systemRequirements": "Windows 10/11, 64-bit",
       "downloadUrl": "https://github.com/Patrickjaillet/Sliders-GL/releases/download/v1.0.1/Sliders.GL_1.0.1_x64-setup.exe",
       "downloadSha256": "23747efd116dd4a7672c11c284a76200794ecf054141a21a1c30704f0fcaa273",
@@ -2273,6 +2290,7 @@
       "name": "Z-GL-Shadertoy",
       "shortDescription": "real-time GLSL shader editor, compatible with the ShaderToy format. Write GLSL code and see the result rendered instantly in a WebGL preview",
       "description": "real-time GLSL shader editor, compatible with the ShaderToy format. Write GLSL code and see the result rendered instantly in a WebGL preview.",
+      "descriptionManuallyEdited": true,
       "version": "2.13.0",
       "prerelease": false,
       "category": "Utilities",
@@ -2280,7 +2298,9 @@
       "hidden": false,
       "order": 999,
       "icon": "assets/icons/default-app.svg",
-      "screenshots": [],
+      "screenshots": [
+        "assets/screenshots/z-gl-shadertoy-auto.png"
+      ],
       "systemRequirements": "Windows 10/11, 64-bit",
       "downloadUrl": "https://github.com/Patrickjaillet/Z-GL-Shadertoy/releases/download/v2.13.0/Z-GL.Shadertoy_2.13.0_x64-setup.exe",
       "downloadSha256": "55ccf892ffe37b5cb3d12d68eed018cea3a3249f6798889603bc8f3a87cd9af0",
@@ -2378,6 +2398,7 @@
       "name": "ZipAll",
       "shortDescription": "ZipAll — Windows desktop app (C#/.NET/WinForms) to compress folders into .zip archives with exclusion rules",
       "description": "ZipAll — Windows desktop app (C#/.NET/WinForms) to compress folders into .zip archives with exclusion rules",
+      "descriptionManuallyEdited": true,
       "version": "1.1.0",
       "prerelease": false,
       "category": "Utilities",
@@ -2386,6 +2407,7 @@
       "order": 999,
       "icon": "assets/icons/default-app.svg",
       "screenshots": [
+        "assets/screenshots/zipall-auto.png",
         "assets/screenshots/zipall-1.png"
       ],
       "systemRequirements": "Windows 10/11, 64-bit",

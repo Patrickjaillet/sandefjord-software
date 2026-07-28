@@ -204,7 +204,7 @@ function renderLoginScreen() {
             ${
               stored
                 ? "Enter your passphrase to decrypt your stored GitHub token for this session."
-                : "Paste a GitHub token (fine-grained, contents:write on this repo, or classic with the repo scope) and choose a passphrase. The token is encrypted and stored only in this browser."
+                : "Paste a GitHub token (fine-grained, with Contents: Read and write AND Actions: Read and write on this repo, or classic with the repo and workflow scopes) and choose a passphrase. The token is encrypted and stored only in this browser."
             }
           </p>
           <form id="login-form">

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-28T06:48:25.991Z",
+  "generatedAt": "2026-07-28T12:32:14.029Z",
   "software": [
     {
       "id": "aiprompt",
@@ -2152,7 +2152,7 @@
       "name": "Sliders-GL",
       "shortDescription": "No description provided yet.",
       "description": "No description provided yet.",
-      "version": "1.0.0",
+      "version": "1.0.1",
       "prerelease": false,
       "category": "Utilities",
       "tags": [],
@@ -2161,10 +2161,26 @@
       "icon": "assets/icons/default-app.svg",
       "screenshots": [],
       "systemRequirements": "Windows 10/11, 64-bit",
-      "downloadUrl": "https://github.com/Patrickjaillet/Sliders-GL/releases/download/v1.0.0/Sliders.GL_1.0.0_x64-setup.exe",
-      "downloadSha256": "da7e71239e92284c3ff1dedb98d5d5e4f203191a21409393391266ededb306d6",
+      "downloadUrl": "https://github.com/Patrickjaillet/Sliders-GL/releases/download/v1.0.1/Sliders.GL_1.0.1_x64-setup.exe",
+      "downloadSha256": "23747efd116dd4a7672c11c284a76200794ecf054141a21a1c30704f0fcaa273",
       "repositoryUrl": "https://github.com/Patrickjaillet/Sliders-GL",
       "changelog": [
+        {
+          "version": "1.0.1",
+          "date": "2026-07-28",
+          "notes": [
+            "## Sliders GL v1.0.1",
+            "### Fixed",
+            "Accessibility: fixed several WCAG 2.1 AA color-contrast issues across the",
+            "gray theme — control borders, status toasts, the active pass/workspace",
+            "tabs, viewport HUD readouts, and status-bar text now all meet or exceed",
+            "the required contrast ratios.",
+            "Accessibility: the Outliner and Inspector panels are now reachable and",
+            "scrollable by keyboard.",
+            "See [CHANGELOG.md](https://github.com/Patrickjaillet/Sliders-GL/blob/main/CHANGELOG.md) for the full history."
+          ],
+          "prerelease": false
+        },
         {
           "version": "1.0.0",
           "date": "2026-07-26",
@@ -2200,6 +2216,26 @@
         }
       ],
       "versionHistory": [
+        {
+          "version": "1.0.1",
+          "date": "2026-07-28",
+          "prerelease": false,
+          "assets": [
+            {
+              "name": "Sliders.GL_1.0.1_x64-setup.exe",
+              "url": "https://github.com/Patrickjaillet/Sliders-GL/releases/download/v1.0.1/Sliders.GL_1.0.1_x64-setup.exe",
+              "size": 7901209,
+              "downloadCount": 0,
+              "sha256": "23747efd116dd4a7672c11c284a76200794ecf054141a21a1c30704f0fcaa273"
+            },
+            {
+              "name": "Sliders.GL_1.0.1_x64_en-US.msi",
+              "url": "https://github.com/Patrickjaillet/Sliders-GL/releases/download/v1.0.1/Sliders.GL_1.0.1_x64_en-US.msi",
+              "size": 8589312,
+              "downloadCount": 0
+            }
+          ]
+        },
         {
           "version": "1.0.0",
           "date": "2026-07-26",

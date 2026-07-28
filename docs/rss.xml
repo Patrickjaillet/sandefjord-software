@@ -6,6 +6,13 @@
   <description>Every release from every Sandefjord Software application, newest first.</description>
   <language>en</language>
   <item>
+    <title>Sliders-GL v1.0.1</title>
+    <link>https://patrickjaillet.github.io/sandefjord-software/software.html?id=sliders-gl</link>
+    <guid isPermaLink="false">sliders-gl-1.0.1</guid>
+    <pubDate>Tue, 28 Jul 2026 00:00:00 GMT</pubDate>
+    <description>## Sliders GL v1.0.1 ### Fixed Accessibility: fixed several WCAG 2.1 AA color-contrast issues across the gray theme — control borders, status toasts, the active pass/workspace tabs, viewport HUD readouts, and status-bar text now all meet or exceed the required contrast ratios. Accessibility: the Outliner and Inspector panels are now reachable and scrollable by keyboard. See [CHANGELOG.md](https://github.com/Patrickjaillet/Sliders-GL/blob/main/CHANGELOG.md) for the full history.</description>
+  </item>
+  <item>
     <title>Sliders-GL v1.0.0</title>
     <link>https://patrickjaillet.github.io/sandefjord-software/software.html?id=sliders-gl</link>
     <guid isPermaLink="false">sliders-gl-1.0.0</guid>

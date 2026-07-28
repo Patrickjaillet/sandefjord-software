@@ -7,6 +7,13 @@
   "language": "en",
   "items": [
     {
+      "id": "sliders-gl-1.0.1",
+      "url": "https://patrickjaillet.github.io/sandefjord-software/software.html?id=sliders-gl",
+      "title": "Sliders-GL v1.0.1",
+      "content_text": "## Sliders GL v1.0.1 ### Fixed Accessibility: fixed several WCAG 2.1 AA color-contrast issues across the gray theme — control borders, status toasts, the active pass/workspace tabs, viewport HUD readouts, and status-bar text now all meet or exceed the required contrast ratios. Accessibility: the Outliner and Inspector panels are now reachable and scrollable by keyboard. See [CHANGELOG.md](https://github.com/Patrickjaillet/Sliders-GL/blob/main/CHANGELOG.md) for the full history.",
+      "date_published": "2026-07-28T00:00:00.000Z"
+    },
+    {
       "id": "sliders-gl-1.0.0",
       "url": "https://patrickjaillet.github.io/sandefjord-software/software.html?id=sliders-gl",
       "title": "Sliders-GL v1.0.0",

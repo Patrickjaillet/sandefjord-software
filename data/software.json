@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-29T18:23:47.387Z",
+  "generatedAt": "2026-07-29T19:16:52.959Z",
   "software": [
     {
       "id": "aiprompt",
@@ -2177,7 +2177,9 @@
       "hidden": false,
       "order": 999,
       "icon": "assets/icons/default-app.svg",
-      "screenshots": [],
+      "screenshots": [
+        "assets/screenshots/shadertoycamerapath-auto.png"
+      ],
       "systemRequirements": "Windows 10/11, 64-bit",
       "downloadUrl": "https://github.com/Patrickjaillet/ShadertoyCameraPath/releases/download/v2.0.0/shadertoy-camera-path-studio.exe",
       "downloadSha256": "87aaa6486047032a05a4f8af382b72b6ee02f8f27b6fc20a0fca3968ab14d9dd",
@@ -2316,13 +2318,13 @@
               "name": "shadertoy-camera-path-studio.exe",
               "url": "https://github.com/Patrickjaillet/ShadertoyCameraPath/releases/download/v2.0.0/shadertoy-camera-path-studio.exe",
               "size": 12237824,
-              "downloadCount": 0,
+              "downloadCount": 2,
               "sha256": "87aaa6486047032a05a4f8af382b72b6ee02f8f27b6fc20a0fca3968ab14d9dd"
             }
           ]
         }
       ],
-      "totalDownloads": 0,
+      "totalDownloads": 2,
       "engagement": {
         "likes": 0,
         "comments": 0

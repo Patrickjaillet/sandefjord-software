@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-31T12:34:13.329Z",
+  "generatedAt": "2026-07-31T18:27:55.307Z",
   "software": [
     {
       "id": "aiprompt",
@@ -2521,7 +2521,7 @@
               "name": "Z-GL.Shadertoy_2.13.0_x64-setup.exe",
               "url": "https://github.com/Patrickjaillet/Z-GL-Shadertoy/releases/download/v2.13.0/Z-GL.Shadertoy_2.13.0_x64-setup.exe",
               "size": 7106657,
-              "downloadCount": 9,
+              "downloadCount": 10,
               "sha256": "55ccf892ffe37b5cb3d12d68eed018cea3a3249f6798889603bc8f3a87cd9af0"
             },
             {
@@ -2552,7 +2552,7 @@
           ]
         }
       ],
-      "totalDownloads": 12,
+      "totalDownloads": 13,
       "engagement": {
         "likes": 0,
         "comments": 0

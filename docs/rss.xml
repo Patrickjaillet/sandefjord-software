@@ -6,6 +6,13 @@
   <description>Every release from every Sandefjord Software application, newest first.</description>
   <language>en</language>
   <item>
+    <title>MicroShader v4.0.0</title>
+    <link>https://patrickjaillet.github.io/sandefjord-software/software.html?id=microshader</link>
+    <guid isPermaLink="false">microshader-4.0.0</guid>
+    <pubDate>Mon, 03 Aug 2026 00:00:00 GMT</pubDate>
+    <description>Major release: Phase 34 (twigl.app export parity) and Phase 38 (UI overhaul with multi-document editing) are both externally visible, workflow-changing additions. ## Highlights **twigl.app export parity** (classic/geek/geeker/geekest modes, ES 300 rewriting, MRT/backbuffer naming, tweet-budget presets). **Neyret and Inigo Quilez idiom libraries** (&quot;Golf Tips&quot; panel) — opt-in, inert suggestions, never auto-applied. **&quot;Golf harder&quot; compression-aware search**, extended with a hand-written DEFLATE encoder and a simulated-annealing deep search mode. **UI overhaul**: tab strip regrouped into Author/Analyze/Export/Settings, a new always-visible document tab strip with multi-document editing, session persistence across restarts, one-click export presets, `.ushaderprofile` save/load, exclude-list import, PNG viewport capture, and self-contained HTML session reports. **Branding/licensing cleanup** and an **offline-first audit**: confirmed zero network calls at run time across every new module. See `CHANGELOG.md` for the full per-phase changelog.</description>
+  </item>
+  <item>
     <title>MicroShader v3.0.2.0</title>
     <link>https://patrickjaillet.github.io/sandefjord-software/software.html?id=microshader</link>
     <guid isPermaLink="false">microshader-3.0.2.0</guid>

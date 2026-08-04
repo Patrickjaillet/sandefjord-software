@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-03T18:32:08.661Z",
+  "generatedAt": "2026-08-04T00:21:10.783Z",
   "software": [
     {
       "id": "aiprompt",
@@ -1600,7 +1600,7 @@
       "shortDescription": "GLSL Golfing engine",
       "description": "GLSL Golfing engine",
       "descriptionManuallyEdited": true,
-      "version": "3.0.2.0",
+      "version": "4.0.0",
       "prerelease": false,
       "category": "Utilities",
       "tags": [],
@@ -1612,10 +1612,24 @@
         "assets/screenshots/microshader-1.png"
       ],
       "systemRequirements": "Windows 10/11, 64-bit",
-      "downloadUrl": "https://github.com/Patrickjaillet/MicroShader/releases/download/v3.0.2.0/uShader-Setup-3.0.2.0.exe",
-      "downloadSha256": "12fe9639bd156779e659addb1f6896c27e5e202e493fd930f1352ecd713fbaa9",
+      "downloadUrl": "https://github.com/Patrickjaillet/MicroShader/releases/tag/v4.0.0",
       "repositoryUrl": "https://github.com/Patrickjaillet/MicroShader",
       "changelog": [
+        {
+          "version": "4.0.0",
+          "date": "2026-08-03",
+          "notes": [
+            "Major release: Phase 34 (twigl.app export parity) and Phase 38 (UI overhaul with multi-document editing) are both externally visible, workflow-changing additions.",
+            "## Highlights",
+            "**twigl.app export parity** (classic/geek/geeker/geekest modes, ES 300 rewriting, MRT/backbuffer naming, tweet-budget presets).",
+            "**Neyret and Inigo Quilez idiom libraries** (\"Golf Tips\" panel) — opt-in, inert suggestions, never auto-applied.",
+            "**\"Golf harder\" compression-aware search**, extended with a hand-written DEFLATE encoder and a simulated-annealing deep search mode.",
+            "**UI overhaul**: tab strip regrouped into Author/Analyze/Export/Settings, a new always-visible document tab strip with multi-document editing, session persistence across restarts, one-click export presets, `.ushaderprofile` save/load, exclude-list import, PNG viewport capture, and self-contained HTML session reports.",
+            "**Branding/licensing cleanup** and an **offline-first audit**: confirmed zero network calls at run time across every new module.",
+            "See `CHANGELOG.md` for the full per-phase changelog."
+          ],
+          "prerelease": false
+        },
         {
           "version": "3.0.2.0",
           "date": "2026-08-02",
@@ -2044,6 +2058,12 @@
         }
       ],
       "versionHistory": [
+        {
+          "version": "4.0.0",
+          "date": "2026-08-03",
+          "prerelease": false,
+          "assets": []
+        },
         {
           "version": "3.0.2.0",
           "date": "2026-08-02",

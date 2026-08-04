@@ -6,6 +6,27 @@
   <description>Every release from every Sandefjord Software application, newest first.</description>
   <language>en</language>
   <item>
+    <title>MicroShader v4.2.0</title>
+    <link>https://patrickjaillet.github.io/sandefjord-software/software.html?id=microshader</link>
+    <guid isPermaLink="false">microshader-4.2.0</guid>
+    <pubDate>Tue, 04 Aug 2026 00:00:00 GMT</pubDate>
+    <description>### Added A third live preview, labeled **Twigl**, joins the existing **Source** and **Golfed** ones next to the golfing controls: it shows your shader rendered exactly as twigl.app would run it, updating immediately as you change mode/ES 3.00/MRT/Backbuffer/ Sound in the Twigl Export tab. It stays blank whenever ES 3.00 or MRT is enabled, since those produce WebGL2-only GLSL this desktop viewport can&apos;t run (a known limitation, not a bug). Each of the three previews now shows its own label (&quot;Source&quot;, &quot;Golfed&quot;, &quot;Twigl&quot;) above it, so it&apos;s always clear which is which.</description>
+  </item>
+  <item>
+    <title>MicroShader v4.1.2</title>
+    <link>https://patrickjaillet.github.io/sandefjord-software/software.html?id=microshader</link>
+    <guid isPermaLink="false">microshader-4.1.2</guid>
+    <pubDate>Tue, 04 Aug 2026 00:00:00 GMT</pubDate>
+    <description>### Fixed The **Twigl** export tab showed a completely empty panel — no mode buttons, no toggles, no Copy/Import buttons, no snippet buttons, and no preview code — making the twigl.app export feature unusable from a normal launch of the application. The panel was never initialized at startup. The byte-budget line on the Twigl tab overlapped the second row of snippet buttons instead of appearing below them.</description>
+  </item>
+  <item>
+    <title>MicroShader v4.1.1</title>
+    <link>https://patrickjaillet.github.io/sandefjord-software/software.html?id=microshader</link>
+    <guid isPermaLink="false">microshader-4.1.1</guid>
+    <pubDate>Tue, 04 Aug 2026 00:00:00 GMT</pubDate>
+    <description>### Fixed The rotation-constant entries in the **Golf Tips** tab and the &quot;over budget&quot; hint banner showed garbled characters instead of degree signs and dashes. The application now launches maximized, instead of at a small default window size.</description>
+  </item>
+  <item>
     <title>MicroShader v4.1.0</title>
     <link>https://patrickjaillet.github.io/sandefjord-software/software.html?id=microshader</link>
     <guid isPermaLink="false">microshader-4.1.0</guid>

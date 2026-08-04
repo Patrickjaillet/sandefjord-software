@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-04T12:33:39.056Z",
+  "generatedAt": "2026-08-04T18:29:39.995Z",
   "software": [
     {
       "id": "aiprompt",
@@ -1600,7 +1600,7 @@
       "shortDescription": "GLSL Golfing engine",
       "description": "GLSL Golfing engine",
       "descriptionManuallyEdited": true,
-      "version": "4.1.0",
+      "version": "4.2.0",
       "prerelease": false,
       "category": "Utilities",
       "tags": [],
@@ -1612,10 +1612,55 @@
         "assets/screenshots/microshader-1.png"
       ],
       "systemRequirements": "Windows 10/11, 64-bit",
-      "downloadUrl": "https://github.com/Patrickjaillet/MicroShader/releases/download/v4.1.0/uShader-Setup-4.1.0.0.exe",
-      "downloadSha256": "d11f68864075217a7e4d01d3301b3b86bc592293fd20e65d3829aadcf9d66c45",
+      "downloadUrl": "https://github.com/Patrickjaillet/MicroShader/releases/download/v4.2.0/uShader-Setup-4.2.0.0.exe",
+      "downloadSha256": "c5f3e4cff94689a7951a7ce9e94c47873712ec6de0ed693dd57bed45a0ae58e6",
       "repositoryUrl": "https://github.com/Patrickjaillet/MicroShader",
       "changelog": [
+        {
+          "version": "4.2.0",
+          "date": "2026-08-04",
+          "notes": [
+            "### Added",
+            "A third live preview, labeled **Twigl**, joins the existing",
+            "**Source** and **Golfed** ones next to the golfing controls: it",
+            "shows your shader rendered exactly as twigl.app would run it,",
+            "updating immediately as you change mode/ES 3.00/MRT/Backbuffer/",
+            "Sound in the Twigl Export tab. It stays blank whenever ES 3.00 or",
+            "MRT is enabled, since those produce WebGL2-only GLSL this desktop",
+            "viewport can't run (a known limitation, not a bug).",
+            "Each of the three previews now shows its own label (\"Source\",",
+            "\"Golfed\", \"Twigl\") above it, so it's always clear which is which."
+          ],
+          "prerelease": false
+        },
+        {
+          "version": "4.1.2",
+          "date": "2026-08-04",
+          "notes": [
+            "### Fixed",
+            "The **Twigl** export tab showed a completely empty panel — no mode",
+            "buttons, no toggles, no Copy/Import buttons, no snippet buttons, and",
+            "no preview code — making the twigl.app export feature unusable from",
+            "a normal launch of the application. The panel was never initialized",
+            "at startup.",
+            "The byte-budget line on the Twigl tab overlapped the second row of",
+            "snippet buttons instead of appearing below them."
+          ],
+          "prerelease": false
+        },
+        {
+          "version": "4.1.1",
+          "date": "2026-08-04",
+          "notes": [
+            "### Fixed",
+            "The rotation-constant entries in the **Golf Tips** tab and the",
+            "\"over budget\" hint banner showed garbled characters instead of",
+            "degree signs and dashes.",
+            "The application now launches maximized, instead of at a small",
+            "default window size."
+          ],
+          "prerelease": false
+        },
         {
           "version": "4.1.0",
           "date": "2026-08-04",
@@ -2100,6 +2145,46 @@
       ],
       "versionHistory": [
         {
+          "version": "4.2.0",
+          "date": "2026-08-04",
+          "prerelease": false,
+          "assets": [
+            {
+              "name": "uShader-Setup-4.2.0.0.exe",
+              "url": "https://github.com/Patrickjaillet/MicroShader/releases/download/v4.2.0/uShader-Setup-4.2.0.0.exe",
+              "size": 2753791,
+              "downloadCount": 0,
+              "sha256": "c5f3e4cff94689a7951a7ce9e94c47873712ec6de0ed693dd57bed45a0ae58e6"
+            }
+          ]
+        },
+        {
+          "version": "4.1.2",
+          "date": "2026-08-04",
+          "prerelease": false,
+          "assets": [
+            {
+              "name": "uShader-Setup-4.1.2.0.exe",
+              "url": "https://github.com/Patrickjaillet/MicroShader/releases/download/v4.1.2/uShader-Setup-4.1.2.0.exe",
+              "size": 2753397,
+              "downloadCount": 0
+            }
+          ]
+        },
+        {
+          "version": "4.1.1",
+          "date": "2026-08-04",
+          "prerelease": false,
+          "assets": [
+            {
+              "name": "uShader-Setup-4.1.1.0.exe",
+              "url": "https://github.com/Patrickjaillet/MicroShader/releases/download/v4.1.1/uShader-Setup-4.1.1.0.exe",
+              "size": 2753385,
+              "downloadCount": 0
+            }
+          ]
+        },
+        {
           "version": "4.1.0",
           "date": "2026-08-04",
           "prerelease": false,
@@ -2108,7 +2193,7 @@
               "name": "uShader-Setup-4.1.0.0.exe",
               "url": "https://github.com/Patrickjaillet/MicroShader/releases/download/v4.1.0/uShader-Setup-4.1.0.0.exe",
               "size": 2753365,
-              "downloadCount": 0,
+              "downloadCount": 1,
               "sha256": "d11f68864075217a7e4d01d3301b3b86bc592293fd20e65d3829aadcf9d66c45"
             }
           ]
@@ -2265,7 +2350,7 @@
           ]
         }
       ],
-      "totalDownloads": 16,
+      "totalDownloads": 17,
       "engagement": {
         "likes": 0,
         "comments": 0

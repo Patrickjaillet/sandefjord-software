@@ -7,6 +7,27 @@
   "language": "en",
   "items": [
     {
+      "id": "microshader-4.2.0",
+      "url": "https://patrickjaillet.github.io/sandefjord-software/software.html?id=microshader",
+      "title": "MicroShader v4.2.0",
+      "content_text": "### Added A third live preview, labeled **Twigl**, joins the existing **Source** and **Golfed** ones next to the golfing controls: it shows your shader rendered exactly as twigl.app would run it, updating immediately as you change mode/ES 3.00/MRT/Backbuffer/ Sound in the Twigl Export tab. It stays blank whenever ES 3.00 or MRT is enabled, since those produce WebGL2-only GLSL this desktop viewport can't run (a known limitation, not a bug). Each of the three previews now shows its own label (\"Source\", \"Golfed\", \"Twigl\") above it, so it's always clear which is which.",
+      "date_published": "2026-08-04T00:00:00.000Z"
+    },
+    {
+      "id": "microshader-4.1.2",
+      "url": "https://patrickjaillet.github.io/sandefjord-software/software.html?id=microshader",
+      "title": "MicroShader v4.1.2",
+      "content_text": "### Fixed The **Twigl** export tab showed a completely empty panel — no mode buttons, no toggles, no Copy/Import buttons, no snippet buttons, and no preview code — making the twigl.app export feature unusable from a normal launch of the application. The panel was never initialized at startup. The byte-budget line on the Twigl tab overlapped the second row of snippet buttons instead of appearing below them.",
+      "date_published": "2026-08-04T00:00:00.000Z"
+    },
+    {
+      "id": "microshader-4.1.1",
+      "url": "https://patrickjaillet.github.io/sandefjord-software/software.html?id=microshader",
+      "title": "MicroShader v4.1.1",
+      "content_text": "### Fixed The rotation-constant entries in the **Golf Tips** tab and the \"over budget\" hint banner showed garbled characters instead of degree signs and dashes. The application now launches maximized, instead of at a small default window size.",
+      "date_published": "2026-08-04T00:00:00.000Z"
+    },
+    {
       "id": "microshader-4.1.0",
       "url": "https://patrickjaillet.github.io/sandefjord-software/software.html?id=microshader",
       "title": "MicroShader v4.1.0",

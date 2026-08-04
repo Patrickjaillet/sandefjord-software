@@ -6,6 +6,13 @@
   <description>Every release from every Sandefjord Software application, newest first.</description>
   <language>en</language>
   <item>
+    <title>MicroShader v4.1.0</title>
+    <link>https://patrickjaillet.github.io/sandefjord-software/software.html?id=microshader</link>
+    <guid isPermaLink="false">microshader-4.1.0</guid>
+    <pubDate>Tue, 04 Aug 2026 00:00:00 GMT</pubDate>
+    <description>### Added New **Capture GIF** action for the live viewport, with three built-in size/duration presets, animated and looping. The **Twigl Export** tab (mode, ES 3.00, MRT, backbuffer, sound) now keeps its own state per document, the same way the golfing profile already did. New **Import twigl shader** button: pastes twigl.app-formatted code and converts it back into a normal, editable shader. The &quot;Copy for twigl.app&quot; button (and the matching command-palette action) now shows a confirmation message after copying. Snippet names from the twigl snippet library are now automatically protected from renaming, avoiding a naming conflict after inserting a snippet. The &quot;Sound&quot; toggle&apos;s accessibility label now states clearly that it refers to a separate program from the one shown, specific to twigl.app. ### Fixed Twigl.app exports in **ES 3.00** mode now use current texture functions (the old ones no longer compiled in a real browser). Multi-target (**MRT**) exports in ES 3.00 now include the layout information WebGL2 requires. The **Backbuffer** and **Sound** toggles in the Twigl export panel now genuinely update the live preview. The command palette&apos;s &quot;Copy as twigl&quot; action now always matches what&apos;s shown on screen (including in MRT mode). Restoring a session on launch now correctly reopens the document and tab that were active when the app was last closed. A document that was intentionally cleared (but not saved) is no longer replaced with the default shader on the next launch. The stats panel now correctly reports whether frequency-aware renaming actually ran on the last pass. Improved the performance of the frequency-aware renaming option used by &quot;Golf harder&quot;.</description>
+  </item>
+  <item>
     <title>MicroShader v4.0.0</title>
     <link>https://patrickjaillet.github.io/sandefjord-software/software.html?id=microshader</link>
     <guid isPermaLink="false">microshader-4.0.0</guid>

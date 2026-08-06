@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-05T18:29:05.417Z",
+  "generatedAt": "2026-08-06T00:18:27.861Z",
   "software": [
     {
       "id": "aiprompt",
@@ -2453,7 +2453,7 @@
               "name": "uShader-Setup-4.3.0.0.exe",
               "url": "https://github.com/Patrickjaillet/MicroShader/releases/download/v4.3.0/uShader-Setup-4.3.0.0.exe",
               "size": 2759831,
-              "downloadCount": 0,
+              "downloadCount": 1,
               "sha256": "bbf1b51365e1023b0e0c2ed7c8143700dca49c867ff8de100c1e6d2d2baa6e32"
             }
           ]
@@ -2664,7 +2664,7 @@
           ]
         }
       ],
-      "totalDownloads": 18,
+      "totalDownloads": 19,
       "engagement": {
         "likes": 0,
         "comments": 0

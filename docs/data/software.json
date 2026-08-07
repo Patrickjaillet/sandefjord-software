@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-07T01:06:54.521Z",
+  "generatedAt": "2026-08-07T06:21:31.139Z",
   "software": [
     {
       "id": "aiprompt",
@@ -3597,13 +3597,13 @@
               "name": "WinMusicSetup-1.0.1.exe",
               "url": "https://github.com/Patrickjaillet/WinMusic/releases/download/v1.0.1/WinMusicSetup-1.0.1.exe",
               "size": 116735138,
-              "downloadCount": 0,
+              "downloadCount": 1,
               "sha256": "6933115dba923d3bfb3bb80429faab2ebe92b774e7433321ea7db6ae563ba66d"
             }
           ]
         }
       ],
-      "totalDownloads": 0,
+      "totalDownloads": 1,
       "engagement": {
         "likes": 0,
         "comments": 0

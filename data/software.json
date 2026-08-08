@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-08T00:08:55.497Z",
+  "generatedAt": "2026-08-08T06:31:03.668Z",
   "software": [
     {
       "id": "aiprompt",
@@ -3792,7 +3792,7 @@
               "name": "ZipAllSetup-1.1.0724.0.exe",
               "url": "https://github.com/Patrickjaillet/ZipAll/releases/download/v1.1.0/ZipAllSetup-1.1.0724.0.exe",
               "size": 66708097,
-              "downloadCount": 6,
+              "downloadCount": 7,
               "sha256": "9bc805050e0ab12fb386f8c032d49e6248ca87182cacd11dc548b140f012aa98"
             }
           ]
@@ -3811,7 +3811,7 @@
           ]
         }
       ],
-      "totalDownloads": 6,
+      "totalDownloads": 7,
       "engagement": {
         "likes": 0,
         "comments": 0

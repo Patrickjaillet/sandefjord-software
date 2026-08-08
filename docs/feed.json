@@ -7,6 +7,41 @@
   "language": "en",
   "items": [
     {
+      "id": "microshader-4.4.0",
+      "url": "https://patrickjaillet.github.io/sandefjord-software/software.html?id=microshader",
+      "title": "MicroShader v4.4.0",
+      "content_text": "### Added New **value sliders panel**, on the left edge of the Source and Viewport tabs: every float literal in your shader (`1.0`, `0.5`, `.25`, `1e-2`, ...) automatically gets its own draggable slider, no annotation needed. Each row shows a short snippet of the line the value comes from (so several `1.0`s in different places stay distinguishable). Dragging a slider rewrites that exact number in the Source editor in place and recompiles the live viewport as you drag, so lighting, colors, thresholds, speeds, and any other constant can be tuned while watching the result update in real time. A slider's range is scaled to its starting value (`0` gets `[-1, 1]`; a positive value `x` gets `[0, 2x]`; a negative value `x` gets a symmetric `[2x, -2x]`). Bare integers (loop bounds, array sizes, indices) and numbers inside comments are left alone. ### Fixed The very first version of the sliders panel's drag handling ran the full recompile (Rust golf engine + up to 4 GL shader compiles) synchronously from the `WM_MOUSEMOVE` handler, which could stall the message loop long enough to visibly freeze the thumb mid-drag. The recompile is now driven once per rendered frame instead. Releasing a slider drag re-synced the panel's rows -- recomputing each slider's range from the value just dragged to -- before marking the drag as over, which snapped every slider straight back to the center of its own range on release regardless of where it had been dragged. Fixed by reordering the release handling.",
+      "date_published": "2026-08-08T00:00:00.000Z"
+    },
+    {
+      "id": "microshader-4.3.4",
+      "url": "https://patrickjaillet.github.io/sandefjord-software/software.html?id=microshader",
+      "title": "MicroShader v4.3.4",
+      "content_text": "### Fixed The command palette's \"Import exclude list...\" entry didn't match its actual label (\"Import exclude/protected name list...\") in the README. The installer's fallback version string (used only when `/DMyAppVersion` isn't passed to Inno Setup) was stuck at a very old `1.6.0.18`; it now tracks the current release. ### Removed `ushader_golf`, the C API's non-traced golf entry point, was no longer called by the application (only by two C++ tests, which now use `ushader_golf_traced` instead -- a strict superset that just ignores the trace output when passed a null out-param). Removed the dead surface from both `capi.rs` and `golf_core.h`. ### Added Rust unit tests for the FFI boundary in `capi.rs` (9 tests), closing the last gap the 4.3.x accessibility/wiring audit found: the unsafe raw-pointer-array handling in `ushader_encode_gif` had no coverage anywhere, Rust or C++, until now. Rust unit tests for `aggressive.rs`'s one pure, standalone-testable helper (`shortest_scientific_form`); the module's per-pass functions remain covered end-to-end through `golfer.rs`'s existing test suite.",
+      "date_published": "2026-08-08T00:00:00.000Z"
+    },
+    {
+      "id": "microshader-4.3.3",
+      "url": "https://patrickjaillet.github.io/sandefjord-software/software.html?id=microshader",
+      "title": "MicroShader v4.3.3",
+      "content_text": "### Fixed **Ctrl+S** always opened a \"Save as...\" dialog, even for a document already saved to a known path, and **Ctrl+Shift+S** (\"Save As\", as documented in the README) wasn't bound to anything. Ctrl+S now saves silently to the document's existing path (falling back to the dialog only for a never-saved document), and Ctrl+Shift+S is a real, separate \"Save as...\" binding that always prompts. **Golf harder** and **Toggle Deep search** were only reachable by clicking their inspector buttons; they're now in the command palette (Ctrl+Shift+P) like every other action. The **Diff**, **Trace**, and **Stats** tabs, and the command palette itself, exposed no content to Windows screen readers (Narrator). They now register their text/rows with the app's UI Automation provider (trace steps as expandable/collapsible items, palette results as selectable items, diff/stats content as readable text). Keybindings and Minimap remain the last two panels without accessibility coverage.",
+      "date_published": "2026-08-08T00:00:00.000Z"
+    },
+    {
+      "id": "microshader-4.3.2",
+      "url": "https://patrickjaillet.github.io/sandefjord-software/software.html?id=microshader",
+      "title": "MicroShader v4.3.2",
+      "content_text": "### Fixed The **Viewport** tab still showed the Source/Golfed/Twigl mini previews next to the live viewport, duplicating what those three panels already show on their own tabs and leaving the main viewport needlessly cramped. The Viewport tab now shows only the live viewport, expanded to fill the space the mini previews used to occupy; the mini previews are unaffected on every other tab.",
+      "date_published": "2026-08-08T00:00:00.000Z"
+    },
+    {
+      "id": "microshader-4.3.1",
+      "url": "https://patrickjaillet.github.io/sandefjord-software/software.html?id=microshader",
+      "title": "MicroShader v4.3.1",
+      "content_text": "### Fixed MRT Twigl exports (2+ render targets) were not covered by the automatic rename-collision resolution added in 4.3.0: a local variable declared `o0`/`o1` (or `outColor0`/`outColor1`) could collide with the MRT output names without being renamed. Collision detection now also runs for MRT mode, triggering only on an actual local declaration of the colliding name (not on the plain MRT output usage every legitimate MRT shader is expected to contain), to avoid false positives. Screen-reader (Narrator) coverage was documented as complete for every control; the README now accurately states that the Diff, Trace, Stats, Keybindings, Command Palette, and Minimap panels are not yet fully covered. The application did not declare per-monitor DPI awareness, so the UI could render blurry or incorrectly sized on HiDPI displays; it now opts in to `DPI_AWARENESS_CONTEXT_PER_MONITOR_AWARE_V2` at startup (fixed-pixel layout scaling remains future work). A stale code comment described GIF capture as unimplemented; it has shipped since 4.1.0 and the comment now reflects that. A `partial_cmp().unwrap()` in the rotation-constant catalogue lookup could panic if given a `NaN` angle; it now falls back to `Equal` instead. ### Added Two new C++ test executables, `ui_pure_logic_test` and `win32_panel_state_test`, covering previously-untested pure-logic modules (fuzzy match, unified diff, GLSL formatting/tokenizing, keybindings storage, recent files, golf-options conversion) and stateful UI panel classes (command palette, diff view, trace view, document tab strip, keybindings, stats panel, appearance panel, minimap). Randomized round-trip tests for the GIF encoder's LZW dictionary (varying code size, dimensions, frame count, and palette size) guarding the invariants several internal `.expect()` calls rely on.",
+      "date_published": "2026-08-08T00:00:00.000Z"
+    },
+    {
       "id": "microshader-4.3.0",
       "url": "https://patrickjaillet.github.io/sandefjord-software/software.html?id=microshader",
       "title": "MicroShader v4.3.0",
@@ -250,41 +285,6 @@
       "title": "MicroShader v1.2.2",
       "content_text": "## Small Phase 10 follow-up \"Run golf\" is now the one accent-filled primary button in the UI, matching Phase 10's design intent that it be the single clearly-primary surface. ROADMAP.md's Phase 10 sub-sections (10.1-10.7) retrofitted with checkboxes and honest per-item notes on what matches the original spec exactly versus what was pragmatically approximated. Unsigned installer - Windows SmartScreen may show an \"unknown publisher\" warning; click \"More info\" -> \"Run anyway\". Verified on Windows 10 (LTSC 2019, build 17763); not independently verified on Windows 11.",
       "date_published": "2026-07-18T00:00:00.000Z"
-    },
-    {
-      "id": "microshader-1.2.1",
-      "url": "https://patrickjaillet.github.io/sandefjord-software/software.html?id=microshader",
-      "title": "MicroShader v1.2.1",
-      "content_text": "## Phase 10: dark UI/UX overhaul Full replacement of the white theme with a dark, Adobe Premiere Pro-style editing workspace: Named color-token table backing every UI color. Compact chrome: 2px corner radius, flat accent-underlined tabs, thin scrollbars. Custom borderless window frame with its own title bar (icon, minimize/maximize/close). Dark text-editor palette for Source/Golfed panels. Viewport restyled as a Program Monitor: black letterboxing, compile-status dot, timecode readout. Icons now shift color between idle/hover/active states. About popup rebuilt as a dark card. New design references under docs/design/, WCAG AA contrast-checked. Also fixes a crash when minimizing the window (found and fixed during verification of this release). Unsigned installer - Windows SmartScreen may show an \"unknown publisher\" warning; click \"More info\" -> \"Run anyway\". Verified on Windows 10 (LTSC 2019, build 17763); not independently verified on Windows 11.",
-      "date_published": "2026-07-18T00:00:00.000Z"
-    },
-    {
-      "id": "microshader-1.2.0",
-      "url": "https://patrickjaillet.github.io/sandefjord-software/software.html?id=microshader",
-      "title": "MicroShader v1.2.0",
-      "content_text": "## Changes since v1.0.0 Viewport recording: capture the running shader to an animated GIF, or to MP4/WebM. MP4/WebM now encode through a bundled ffmpeg.exe (no separate install or PATH entry needed) - see THIRD_PARTY_NOTICES.md for the FFmpeg (GPL) attribution this requires. Fixed: Open/Save for .glsl files silently failed on non-ASCII paths. Fixed: a stray console window appeared behind the main window on launch. Fixed: docked panels exposed a \"Hide tab bar\" menu that could hide a panel's tab. Unsigned installer - Windows SmartScreen may show an \"unknown publisher\" warning; click \"More info\" -> \"Run anyway\". Verified on Windows 10 (LTSC 2019, build 17763); not independently verified on Windows 11.",
-      "date_published": "2026-07-18T00:00:00.000Z"
-    },
-    {
-      "id": "microshader-1.0.0",
-      "url": "https://patrickjaillet.github.io/sandefjord-software/software.html?id=microshader",
-      "title": "MicroShader v1.0.0",
-      "content_text": "First stable release of uShader, a native Windows 10/11 GLSL shader golfer. ## Highlights Golfing engine: identifier renaming, numeric literal shortening, and whitespace stripping always run; an aggressive mode adds 14 further transformation passes (dead-code elimination, constant folding, declaration merging, function inlining, and more), each individually toggleable, plus a protected-names list. Live viewport with the standard Shadertoy uniform set (`iTime`, `iResolution`, `iMouse`, `iDate`, `iFrame`, `iFrameRate`), and a Compare mode that renders the source and golfed shaders side by side. GLSL-aware text editor with syntax highlighting and error-line highlighting on compile failure, plus a \"Formatted view\" toggle for the golfed output. Reduction stats: char/byte counts, reduction percentage, per-pass counters, and size-budget badges. Import/export: open and save `.glsl` files, copy the golfed output, export in Shadertoy format, and capture the viewport to PNG. About panel with logo, copyright, and links. ## Installing Download `uShader-Setup-1.0.0.9.exe` below and run it. The installer is unsigned (no code-signing certificate available), so Windows SmartScreen may show an \"unknown publisher\" warning — click \"More info\" -> \"Run anyway\". Requires Windows 10 or 11 (64-bit). Verified on Windows 10 (LTSC 2019, build 17763); not yet independently verified on Windows 11. See [CHANGELOG.md](https://github.com/Patrickjaillet/MicroShader/blob/main/CHANGELOG.md) for the full per-phase history.",
-      "date_published": "2026-07-18T00:00:00.000Z"
-    },
-    {
-      "id": "shaderfmt-1.0",
-      "url": "https://patrickjaillet.github.io/sandefjord-software/software.html?id=shaderfmt",
-      "title": "ShaderFmt v1.0",
-      "content_text": "No release notes provided.",
-      "date_published": "2026-07-12T00:00:00.000Z"
-    },
-    {
-      "id": "shaddem-1.0.0",
-      "url": "https://patrickjaillet.github.io/sandefjord-software/software.html?id=shaddem",
-      "title": "Shaddem v1.0.0",
-      "content_text": "No release notes provided.",
-      "date_published": "2026-07-10T00:00:00.000Z"
     }
   ]
 }

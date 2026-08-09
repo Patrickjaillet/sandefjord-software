@@ -7,6 +7,13 @@
   "language": "en",
   "items": [
     {
+      "id": "microshader-4.5.0",
+      "url": "https://patrickjaillet.github.io/sandefjord-software/software.html?id=microshader",
+      "title": "MicroShader v4.5.0",
+      "content_text": "## [4.5.0] - 2026-08-08 ### Added **Export → Standalone HTML...** (command palette): writes a single, self-contained `.html` file (inline script, no external resources) that runs the golfed shader in a fullscreen WebGL1 canvas with `iTime`/`iResolution`/`iMouse`/`iDate`/`iFrame`/`iFrameRate` all wired up, for publishing or sharing without going through twigl.app. **Copy as Shadertoy export JSON** (command palette): the golfed shader in Shadertoy's own JSON export format, ready to paste into shadertoy.com's \"Import\" dialog. **Copy as KodeLife**, and **Copy as Bonzomatic fixed** (it previously copied the golfed code unchanged, which does not compile as-is in Bonzomatic): both now rewrite the shader's uniforms and entry point to match each tool's real convention, verified against Bonzomatic's own source and a real shared KodeLife project rather than guessed. **\"Golf harder — Exhaustive\"**, next to the existing \"Deep\" toggle: when both are on, searches 4 independent simulated-annealing walks in parallel instead of 1, for a wider search at the same per-walk budget. **Local, no-telemetry crash reporter**: writes a plain-text report (exception info + your last 20 actions) to `%APPDATA%\\ushader\\crash_reports\\` if the app ever crashes. Nothing is ever sent anywhere automatically; use the new **\"Copy last crash report\"** command to attach it to a GitHub issue yourself. **Opt-in update check**: \"Check for updates now\" and \"Toggle check for updates on startup\" in the command palette (off by default). When a newer release is available, \"Download and install latest update\" fetches the real installer and opens it — your own confirmation is always still required, nothing installs silently. **Copy CHANGELOG.md to clipboard** (command palette). **Portable mode**: drop a `portable.txt` file next to `ushader.exe` and all local settings (recent files, keybindings, golf profiles, crash reports, update setting) are stored in a `config\\` folder next to the executable instead of your Windows user profile — no installation, no registry writes, suitable for a USB stick. See `uShader-GUIDE.md` for how to assemble a portable folder. ### Changed The golf engine now catches a few more identity/simplification cases that the older pass-based golfer could not reach on its own (e.g. `(x+0)*1` inside a function call argument), via a new internal equality-saturation (\"e-graph\") pass. Off by default for now while it continues to grow; no user-visible toggle yet. Continuous fuzz testing (random option combinations against the whole shader corpus, checked by actually compiling every result) is now part of the test suite, closing a couple of small, previously-unnoticed correctness gaps (a macro-referenced local wrongly eliminated as dead code).",
+      "date_published": "2026-08-08T00:00:00.000Z"
+    },
+    {
       "id": "microshader-4.4.0",
       "url": "https://patrickjaillet.github.io/sandefjord-software/software.html?id=microshader",
       "title": "MicroShader v4.4.0",
@@ -277,13 +284,6 @@
       "url": "https://patrickjaillet.github.io/sandefjord-software/software.html?id=microshader",
       "title": "MicroShader v1.2.3",
       "content_text": "## Phase 10 follow-up: two more gaps closed Checkboxes (all 16, across golf-pass toggles, \"Aggressive golf\", \"Formatted view\", \"Compare\") are now a bespoke flat 12px square matching the Phase 10 spec, instead of the default ImGui shape. The \"Protected names\" field now shows a 1px accent focus ring while being edited. Unsigned installer - Windows SmartScreen may show an \"unknown publisher\" warning; click \"More info\" -> \"Run anyway\". Verified on Windows 10 (LTSC 2019, build 17763); not independently verified on Windows 11.",
-      "date_published": "2026-07-18T00:00:00.000Z"
-    },
-    {
-      "id": "microshader-1.2.2",
-      "url": "https://patrickjaillet.github.io/sandefjord-software/software.html?id=microshader",
-      "title": "MicroShader v1.2.2",
-      "content_text": "## Small Phase 10 follow-up \"Run golf\" is now the one accent-filled primary button in the UI, matching Phase 10's design intent that it be the single clearly-primary surface. ROADMAP.md's Phase 10 sub-sections (10.1-10.7) retrofitted with checkboxes and honest per-item notes on what matches the original spec exactly versus what was pragmatically approximated. Unsigned installer - Windows SmartScreen may show an \"unknown publisher\" warning; click \"More info\" -> \"Run anyway\". Verified on Windows 10 (LTSC 2019, build 17763); not independently verified on Windows 11.",
       "date_published": "2026-07-18T00:00:00.000Z"
     }
   ]

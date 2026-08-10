@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-10T07:06:14.970Z",
+  "generatedAt": "2026-08-10T12:40:32.670Z",
   "software": [
     {
       "id": "aiprompt",
@@ -3021,7 +3021,7 @@
               "name": "uShader-Setup-4.5.1.0.exe",
               "url": "https://github.com/Patrickjaillet/uShader/releases/download/v4.5.1/uShader-Setup-4.5.1.0.exe",
               "size": 2839336,
-              "downloadCount": 0,
+              "downloadCount": 2,
               "sha256": "4268867bb128894bc29a55519c372f507e772cf840e509dfc922e4cf72f84784"
             }
           ]
@@ -3041,7 +3041,7 @@
           ]
         }
       ],
-      "totalDownloads": 4,
+      "totalDownloads": 6,
       "engagement": {
         "likes": 0,
         "comments": 0

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-10T18:40:16.568Z",
+  "generatedAt": "2026-08-11T00:49:25.163Z",
   "software": [
     {
       "id": "aiprompt",
@@ -3490,7 +3490,7 @@
               "name": "uShader-Setup-4.5.2.0.exe",
               "url": "https://github.com/Patrickjaillet/uShader/releases/download/v4.5.2/uShader-Setup-4.5.2.0.exe",
               "size": 2839181,
-              "downloadCount": 0,
+              "downloadCount": 1,
               "sha256": "57661df2b1c9ec0fdc5c6ec369e1b86e80da009402004f55a40ee10033f22284"
             }
           ]
@@ -3524,7 +3524,7 @@
           ]
         }
       ],
-      "totalDownloads": 6,
+      "totalDownloads": 7,
       "engagement": {
         "likes": 0,
         "comments": 0
@@ -4179,7 +4179,7 @@
               "name": "ZipAllSetup-1.1.0724.0.exe",
               "url": "https://github.com/Patrickjaillet/ZipAll/releases/download/v1.1.0/ZipAllSetup-1.1.0724.0.exe",
               "size": 66708097,
-              "downloadCount": 8,
+              "downloadCount": 9,
               "sha256": "9bc805050e0ab12fb386f8c032d49e6248ca87182cacd11dc548b140f012aa98"
             }
           ]
@@ -4198,7 +4198,7 @@
           ]
         }
       ],
-      "totalDownloads": 8,
+      "totalDownloads": 9,
       "engagement": {
         "likes": 0,
         "comments": 0

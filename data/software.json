@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-12T00:56:12.408Z",
+  "generatedAt": "2026-08-12T07:05:11.199Z",
   "software": [
     {
       "id": "aiprompt",
@@ -1514,13 +1514,13 @@
               "name": "glsl-hyper-golfer-1.0.0.zip",
               "url": "https://github.com/Patrickjaillet/GLSL-Hyper-Golfer/releases/download/1.0.0/glsl-hyper-golfer-1.0.0.zip",
               "size": 283602,
-              "downloadCount": 10,
+              "downloadCount": 11,
               "sha256": "d32e6d0c33089c2cf0a0e025d7c048d9c99f6f66f675646e7164e9e97fa854c4"
             }
           ]
         }
       ],
-      "totalDownloads": 10,
+      "totalDownloads": 11,
       "engagement": {
         "likes": 0,
         "comments": 0

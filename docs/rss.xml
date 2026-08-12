@@ -6,6 +6,13 @@
   <description>Every release from every Sandefjord Software application, newest first.</description>
   <language>en</language>
   <item>
+    <title>GPUTools v1.0.0</title>
+    <link>https://patrickjaillet.github.io/sandefjord-software/software.html?id=gputools</link>
+    <guid isPermaLink="false">gputools-1.0.0</guid>
+    <pubDate>Wed, 12 Aug 2026 00:00:00 GMT</pubDate>
+    <description>First public release. README finalized for end users, including two real, freshly captured application screenshots. Full regression pass: every automated test (ingestion, compiler backend, static analysis, watchdog risk calibration suite, reporting, CLI, and GUI smoke test) passes end-to-end against the real glslang and SPIRV-Cross backends. Final repository audit: LICENSE (GPLv3), .gitignore, .gitattributes, and third-party attribution all verified present and consistent.</description>
+  </item>
+  <item>
     <title>uShader v4.5.2</title>
     <link>https://patrickjaillet.github.io/sandefjord-software/software.html?id=ushader</link>
     <guid isPermaLink="false">ushader-4.5.2</guid>

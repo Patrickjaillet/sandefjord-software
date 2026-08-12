@@ -7,6 +7,13 @@
   "language": "en",
   "items": [
     {
+      "id": "gputools-1.0.0",
+      "url": "https://patrickjaillet.github.io/sandefjord-software/software.html?id=gputools",
+      "title": "GPUTools v1.0.0",
+      "content_text": "First public release. README finalized for end users, including two real, freshly captured application screenshots. Full regression pass: every automated test (ingestion, compiler backend, static analysis, watchdog risk calibration suite, reporting, CLI, and GUI smoke test) passes end-to-end against the real glslang and SPIRV-Cross backends. Final repository audit: LICENSE (GPLv3), .gitignore, .gitattributes, and third-party attribution all verified present and consistent.",
+      "date_published": "2026-08-12T00:00:00.000Z"
+    },
+    {
       "id": "ushader-4.5.2",
       "url": "https://patrickjaillet.github.io/sandefjord-software/software.html?id=ushader",
       "title": "uShader v4.5.2",

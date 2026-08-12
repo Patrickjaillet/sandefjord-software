@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-12T07:05:11.199Z",
+  "generatedAt": "2026-08-12T12:36:14.935Z",
   "software": [
     {
       "id": "aiprompt",
@@ -1521,6 +1521,50 @@
         }
       ],
       "totalDownloads": 11,
+      "engagement": {
+        "likes": 0,
+        "comments": 0
+      }
+    },
+    {
+      "id": "gputools",
+      "githubRepoId": 1331975838,
+      "name": "GPUTools",
+      "shortDescription": "GPUTools — Shader Watchdog / Efficiency Analyzer",
+      "description": "GPUTools — Shader Watchdog / Efficiency Analyzer",
+      "version": "1.0.0",
+      "prerelease": false,
+      "category": "Utilities",
+      "tags": [],
+      "hidden": false,
+      "order": 999,
+      "icon": "assets/icons/default-app.svg",
+      "screenshots": [],
+      "systemRequirements": "Windows 10/11, 64-bit",
+      "downloadUrl": "https://github.com/Patrickjaillet/GPUTools/releases/tag/v1.0.0",
+      "repositoryUrl": "https://github.com/Patrickjaillet/GPUTools",
+      "changelog": [
+        {
+          "version": "1.0.0",
+          "date": "2026-08-12",
+          "notes": [
+            "First public release.",
+            "README finalized for end users, including two real, freshly captured application screenshots.",
+            "Full regression pass: every automated test (ingestion, compiler backend, static analysis, watchdog risk calibration suite, reporting, CLI, and GUI smoke test) passes end-to-end against the real glslang and SPIRV-Cross backends.",
+            "Final repository audit: LICENSE (GPLv3), .gitignore, .gitattributes, and third-party attribution all verified present and consistent."
+          ],
+          "prerelease": false
+        }
+      ],
+      "versionHistory": [
+        {
+          "version": "1.0.0",
+          "date": "2026-08-12",
+          "prerelease": false,
+          "assets": []
+        }
+      ],
+      "totalDownloads": 0,
       "engagement": {
         "likes": 0,
         "comments": 0
@@ -4067,7 +4111,7 @@
               "name": "Z-GL.Shadertoy_2.13.0_x64-setup.exe",
               "url": "https://github.com/Patrickjaillet/Z-GL-Shadertoy/releases/download/v2.13.0/Z-GL.Shadertoy_2.13.0_x64-setup.exe",
               "size": 7106657,
-              "downloadCount": 12,
+              "downloadCount": 13,
               "sha256": "55ccf892ffe37b5cb3d12d68eed018cea3a3249f6798889603bc8f3a87cd9af0"
             },
             {
@@ -4098,7 +4142,7 @@
           ]
         }
       ],
-      "totalDownloads": 17,
+      "totalDownloads": 18,
       "engagement": {
         "likes": 0,
         "comments": 0

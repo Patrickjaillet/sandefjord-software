@@ -6,6 +6,13 @@
   <description>Every release from every Sandefjord Software application, newest first.</description>
   <language>en</language>
   <item>
+    <title>p5ccs v1.0.0.0</title>
+    <link>https://patrickjaillet.github.io/sandefjord-software/software.html?id=p5ccs</link>
+    <guid isPermaLink="false">p5ccs-1.0.0.0</guid>
+    <pubDate>Thu, 13 Aug 2026 00:00:00 GMT</pubDate>
+    <description>First stable release of Processing 5 - Creative Coding Station: a native Windows creative-coding IDE for [p5.js](https://p5js.org/), built with C# / WPF / WPF-UI. Offline-first — the p5.js runtime, code editor, and export pipeline all run locally with zero network dependency. ## Highlights since 0.9.9-rc.1 This release is exclusively release engineering (feature freeze was declared in 0.9.9-rc.1): Version bumped to `1.0.0.0` throughout, verified against the compiled binary&apos;s actual `FileVersionInfo`. The installer now reads its version straight off the published executable&apos;s file version resource instead of a hand-maintained constant, which had silently drifted 3 releases stale before this release caught it. The installer switched to a per-user install (no admin/UAC elevation required) — the previous admin-required install was found, via real installer testing, to hang indefinitely on a UAC consent prompt in any non-interactive session. ## Installation Download the installer for your architecture below and run it — no administrator rights required. See [docs/KNOWN-LIMITATIONS.md](docs/KNOWN-LIMITATIONS.md) for exactly what has and hasn&apos;t been verified on real hardware for each Windows version/architecture combination. Full changelog: [docs/CHANGELOG.md](docs/CHANGELOG.md)</description>
+  </item>
+  <item>
     <title>uShader v4.5.2</title>
     <link>https://patrickjaillet.github.io/sandefjord-software/software.html?id=ushader</link>
     <guid isPermaLink="false">ushader-4.5.2</guid>

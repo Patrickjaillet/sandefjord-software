@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-13T07:08:36.640Z",
+  "generatedAt": "2026-08-13T12:41:26.214Z",
   "software": [
     {
       "id": "numis-euro",
@@ -57,6 +57,70 @@
       "totalDownloads": 25,
       "engagement": {
         "likes": 1,
+        "comments": 0
+      }
+    },
+    {
+      "id": "p5ccs",
+      "githubRepoId": 1332271046,
+      "name": "p5ccs",
+      "shortDescription": "Processing 5 - Creative Coding Station: native Windows p5.js IDE (C# / WPF / WPF-UI)",
+      "description": "Processing 5 - Creative Coding Station: native Windows p5.js IDE (C# / WPF / WPF-UI)",
+      "version": "1.0.0.0",
+      "prerelease": false,
+      "category": "Utilities",
+      "tags": [],
+      "hidden": false,
+      "order": 999,
+      "icon": "assets/icons/default-app.svg",
+      "screenshots": [],
+      "systemRequirements": "Windows 10/11, 64-bit",
+      "downloadUrl": "https://github.com/Patrickjaillet/p5ccs/releases/download/v1.0.0.0/P5CCS-Setup-1.0.0.0-arm64.exe",
+      "downloadSha256": "881372fa5baf718d790d9e6923e23fe2f297e60d786ac479230c598688a0054a",
+      "repositoryUrl": "https://github.com/Patrickjaillet/p5ccs",
+      "changelog": [
+        {
+          "version": "1.0.0.0",
+          "date": "2026-08-13",
+          "notes": [
+            "First stable release of Processing 5 - Creative Coding Station: a native Windows creative-coding IDE for [p5.js](https://p5js.org/), built with C# / WPF / WPF-UI. Offline-first — the p5.js runtime, code editor, and export pipeline all run locally with zero network dependency.",
+            "## Highlights since 0.9.9-rc.1",
+            "This release is exclusively release engineering (feature freeze was declared in 0.9.9-rc.1):",
+            "Version bumped to `1.0.0.0` throughout, verified against the compiled binary's actual `FileVersionInfo`.",
+            "The installer now reads its version straight off the published executable's file version resource instead of a hand-maintained constant, which had silently drifted 3 releases stale before this release caught it.",
+            "The installer switched to a per-user install (no admin/UAC elevation required) — the previous admin-required install was found, via real installer testing, to hang indefinitely on a UAC consent prompt in any non-interactive session.",
+            "## Installation",
+            "Download the installer for your architecture below and run it — no administrator rights required. See [docs/KNOWN-LIMITATIONS.md](docs/KNOWN-LIMITATIONS.md) for exactly what has and hasn't been verified on real hardware for each Windows version/architecture combination.",
+            "Full changelog: [docs/CHANGELOG.md](docs/CHANGELOG.md)"
+          ],
+          "prerelease": false
+        }
+      ],
+      "versionHistory": [
+        {
+          "version": "1.0.0.0",
+          "date": "2026-08-13",
+          "prerelease": false,
+          "assets": [
+            {
+              "name": "P5CCS-Setup-1.0.0.0-arm64.exe",
+              "url": "https://github.com/Patrickjaillet/p5ccs/releases/download/v1.0.0.0/P5CCS-Setup-1.0.0.0-arm64.exe",
+              "size": 71787991,
+              "downloadCount": 0,
+              "sha256": "881372fa5baf718d790d9e6923e23fe2f297e60d786ac479230c598688a0054a"
+            },
+            {
+              "name": "P5CCS-Setup-1.0.0.0-x64.exe",
+              "url": "https://github.com/Patrickjaillet/p5ccs/releases/download/v1.0.0.0/P5CCS-Setup-1.0.0.0-x64.exe",
+              "size": 88999219,
+              "downloadCount": 1
+            }
+          ]
+        }
+      ],
+      "totalDownloads": 1,
+      "engagement": {
+        "likes": 0,
         "comments": 0
       }
     },

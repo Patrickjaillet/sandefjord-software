@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-13T12:41:26.214Z",
+  "generatedAt": "2026-08-13T18:45:04.892Z",
   "software": [
     {
       "id": "numis-euro",
@@ -106,7 +106,7 @@
               "name": "P5CCS-Setup-1.0.0.0-arm64.exe",
               "url": "https://github.com/Patrickjaillet/p5ccs/releases/download/v1.0.0.0/P5CCS-Setup-1.0.0.0-arm64.exe",
               "size": 71787991,
-              "downloadCount": 0,
+              "downloadCount": 1,
               "sha256": "881372fa5baf718d790d9e6923e23fe2f297e60d786ac479230c598688a0054a"
             },
             {
@@ -118,7 +118,7 @@
           ]
         }
       ],
-      "totalDownloads": 1,
+      "totalDownloads": 2,
       "engagement": {
         "likes": 0,
         "comments": 0
@@ -206,7 +206,7 @@
               "name": "Sliders.GL_1.0.1_x64-setup.exe",
               "url": "https://github.com/Patrickjaillet/Sliders-GL/releases/download/v1.0.1/Sliders.GL_1.0.1_x64-setup.exe",
               "size": 7901209,
-              "downloadCount": 4,
+              "downloadCount": 5,
               "sha256": "23747efd116dd4a7672c11c284a76200794ecf054141a21a1c30704f0fcaa273"
             },
             {
@@ -238,7 +238,7 @@
           ]
         }
       ],
-      "totalDownloads": 9,
+      "totalDownloads": 10,
       "engagement": {
         "likes": 0,
         "comments": 0
@@ -1668,7 +1668,7 @@
               "name": "uShader-Setup-4.5.2.0.exe",
               "url": "https://github.com/Patrickjaillet/uShader/releases/download/v4.5.2/uShader-Setup-4.5.2.0.exe",
               "size": 2839181,
-              "downloadCount": 1,
+              "downloadCount": 2,
               "sha256": "57661df2b1c9ec0fdc5c6ec369e1b86e80da009402004f55a40ee10033f22284"
             }
           ]
@@ -1696,13 +1696,13 @@
               "name": "uShader-Setup-4.5.0.0.exe",
               "url": "https://github.com/Patrickjaillet/uShader/releases/download/v4.5.0/uShader-Setup-4.5.0.0.exe",
               "size": 2827392,
-              "downloadCount": 4,
+              "downloadCount": 5,
               "sha256": "c4f7bb6048f138697a3dbcad52da82a31e33a9d9f657cb5559ae30f245489ecc"
             }
           ]
         }
       ],
-      "totalDownloads": 7,
+      "totalDownloads": 9,
       "engagement": {
         "likes": 0,
         "comments": 0

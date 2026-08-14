@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-14T12:37:10.931Z",
+  "generatedAt": "2026-08-14T18:38:49.895Z",
   "software": [
     {
       "id": "numis-euro",
@@ -130,7 +130,7 @@
       "name": "retrotools26",
       "shortDescription": "Retro Tools 2026 — a professional 1G1R ROM manager for retrogaming collections, written in Rust. Parses No-Intro/Redump/TOSEC DATs, scans an",
       "description": "Retro Tools 2026 — a professional 1G1R ROM manager for retrogaming collections, written in Rust. Parses No-Intro/Redump/TOSEC DATs, scans and hashes ROMs (incl. ZIP/7Z/RAR/CHD), builds precise 1G1R sets with configurable region/language rules, and ships a fast egui desktop UI plus a full-featured CLI. Extensible via a static plugin system.",
-      "version": "0.1.5",
+      "version": "0.1.7",
       "prerelease": false,
       "category": "Utilities",
       "tags": [],
@@ -139,10 +139,31 @@
       "icon": "assets/icons/default-app.svg",
       "screenshots": [],
       "systemRequirements": "Windows 10/11, 64-bit",
-      "downloadUrl": "https://github.com/Patrickjaillet/retrotools26/releases/download/v0.1.5/RetroTools2026-Setup-0.1.5.exe",
-      "downloadSha256": "e46ad7db39bb353e4ba2f4992276cf9665f7d20f18fa31d3d0c181b9e10f9efd",
+      "downloadUrl": "https://github.com/Patrickjaillet/retrotools26/releases/download/v0.1.7/RetroTools2026-Setup-0.1.7.exe",
+      "downloadSha256": "ecd758f392a5de50b6e61d0adf485e888db06f37d360da7ec89fd7d8cb31ac64",
       "repositoryUrl": "https://github.com/Patrickjaillet/retrotools26",
       "changelog": [
+        {
+          "version": "0.1.7",
+          "date": "2026-08-14",
+          "notes": [
+            "## [0.1.7] - 2026-08-14",
+            "### Fixed",
+            "Games tab Grid view still overlapped the details panel with a large game list after the v0.1.6 fix: the per-row card count calculation counted only each card's content width (180px), not its rendered width including the card frame's inner margin (10px each side) — one card too many fit in the calculation and still overflowed the column. Now uses the full rendered card width and the real item spacing read from `ui.spacing()` instead of a guessed constant; verified with a 200-game scrollable list."
+          ],
+          "prerelease": false
+        },
+        {
+          "version": "0.1.6",
+          "date": "2026-08-14",
+          "notes": [
+            "## [0.1.6] - 2026-08-14",
+            "### Fixed",
+            "Games tab Grid view: two rendering bugs found via a real user report (34410 games, TOSEC Amiga DAT). The status tile on each card used `Frame` + `centered_and_justified` (same bug as `platform_badge::draw`, fixed the same way — exact-size `Painter` allocation). Separately, `horizontal_wrapped` inside the `ScrollArea` nested in the grid's half-width column was wrapping against the whole window's width instead of the constrained column width, so cards kept flowing past the column boundary and under the details panel instead of wrapping; replaced with explicit row-chunking based on a freshly measured `ui.available_width()`.",
+            "Landing page download buttons pointed at the old v0.1.0 release assets — never updated across the v0.1.1-v0.1.4 releases. Now point at the current release."
+          ],
+          "prerelease": false
+        },
         {
           "version": "0.1.5",
           "date": "2026-08-14",
@@ -299,6 +320,45 @@
       ],
       "versionHistory": [
         {
+          "version": "0.1.7",
+          "date": "2026-08-14",
+          "prerelease": false,
+          "assets": [
+            {
+              "name": "RetroTools2026-Portable-0.1.7.zip",
+              "url": "https://github.com/Patrickjaillet/retrotools26/releases/download/v0.1.7/RetroTools2026-Portable-0.1.7.zip",
+              "size": 14653725,
+              "downloadCount": 0
+            },
+            {
+              "name": "RetroTools2026-Setup-0.1.7.exe",
+              "url": "https://github.com/Patrickjaillet/retrotools26/releases/download/v0.1.7/RetroTools2026-Setup-0.1.7.exe",
+              "size": 13065717,
+              "downloadCount": 0,
+              "sha256": "ecd758f392a5de50b6e61d0adf485e888db06f37d360da7ec89fd7d8cb31ac64"
+            }
+          ]
+        },
+        {
+          "version": "0.1.6",
+          "date": "2026-08-14",
+          "prerelease": false,
+          "assets": [
+            {
+              "name": "RetroTools2026-Portable-0.1.6.zip",
+              "url": "https://github.com/Patrickjaillet/retrotools26/releases/download/v0.1.6/RetroTools2026-Portable-0.1.6.zip",
+              "size": 14653213,
+              "downloadCount": 0
+            },
+            {
+              "name": "RetroTools2026-Setup-0.1.6.exe",
+              "url": "https://github.com/Patrickjaillet/retrotools26/releases/download/v0.1.6/RetroTools2026-Setup-0.1.6.exe",
+              "size": 13067073,
+              "downloadCount": 1
+            }
+          ]
+        },
+        {
           "version": "0.1.5",
           "date": "2026-08-14",
           "prerelease": false,
@@ -313,7 +373,7 @@
               "name": "RetroTools2026-Setup-0.1.5.exe",
               "url": "https://github.com/Patrickjaillet/retrotools26/releases/download/v0.1.5/RetroTools2026-Setup-0.1.5.exe",
               "size": 13068623,
-              "downloadCount": 1,
+              "downloadCount": 2,
               "sha256": "e46ad7db39bb353e4ba2f4992276cf9665f7d20f18fa31d3d0c181b9e10f9efd"
             }
           ]
@@ -395,7 +455,7 @@
           ]
         }
       ],
-      "totalDownloads": 6,
+      "totalDownloads": 8,
       "engagement": {
         "likes": 0,
         "comments": 0

@@ -1,6 +1,56 @@
 {
-  "generatedAt": "2026-08-15T12:14:19.105Z",
+  "generatedAt": "2026-08-15T18:11:47.355Z",
   "software": [
+    {
+      "id": "le-petit-editeur-glsl",
+      "githubRepoId": 1335118890,
+      "name": "Le-Petit-Editeur-GLSL",
+      "shortDescription": "Un éditeur de shaders léger pour Windows, pensé pour écrire, régler et tester en temps réel des effets visuels générés par le GPU — le genre",
+      "description": "Un éditeur de shaders léger pour Windows, pensé pour écrire, régler et tester en temps réel des effets visuels générés par le GPU — le genre d'effets qu'on trouve sur [Shadertoy](https://www.shadertoy.com/). Compatible avec le code Shadertoy tel quel : pas de syntaxe spéciale à apprendre.",
+      "version": "0.1.0",
+      "prerelease": true,
+      "category": "Utilities",
+      "tags": [],
+      "hidden": false,
+      "order": 999,
+      "icon": "assets/icons/default-app.svg",
+      "screenshots": [],
+      "systemRequirements": "Windows 10/11, 64-bit",
+      "downloadUrl": "https://github.com/Patrickjaillet/Le-Petit-Editeur-GLSL/releases/download/v0.1.0/PetitEditeurGLSL-Setup-0.1.0.exe",
+      "downloadSha256": "ea545221784d8efbc05d358068e7caf10199196d792b94abbb94a11a3f0d6859",
+      "repositoryUrl": "https://github.com/Patrickjaillet/Le-Petit-Editeur-GLSL",
+      "changelog": [
+        {
+          "version": "0.1.0",
+          "date": "2026-08-15",
+          "notes": [
+            "*Full Changelog**: https://github.com/Patrickjaillet/Le-Petit-Editeur-GLSL/commits/v0.1.0"
+          ],
+          "prerelease": true
+        }
+      ],
+      "versionHistory": [
+        {
+          "version": "0.1.0",
+          "date": "2026-08-15",
+          "prerelease": true,
+          "assets": [
+            {
+              "name": "PetitEditeurGLSL-Setup-0.1.0.exe",
+              "url": "https://github.com/Patrickjaillet/Le-Petit-Editeur-GLSL/releases/download/v0.1.0/PetitEditeurGLSL-Setup-0.1.0.exe",
+              "size": 178258302,
+              "downloadCount": 0,
+              "sha256": "ea545221784d8efbc05d358068e7caf10199196d792b94abbb94a11a3f0d6859"
+            }
+          ]
+        }
+      ],
+      "totalDownloads": 0,
+      "engagement": {
+        "likes": 0,
+        "comments": 0
+      }
+    },
     {
       "id": "numis-euro",
       "githubRepoId": 1270335065,
@@ -328,7 +378,7 @@
               "name": "RetroTools2026-Portable-0.1.7.zip",
               "url": "https://github.com/Patrickjaillet/retrotools26/releases/download/v0.1.7/RetroTools2026-Portable-0.1.7.zip",
               "size": 14653725,
-              "downloadCount": 0
+              "downloadCount": 1
             },
             {
               "name": "RetroTools2026-Setup-0.1.7.exe",
@@ -455,7 +505,7 @@
           ]
         }
       ],
-      "totalDownloads": 9,
+      "totalDownloads": 10,
       "engagement": {
         "likes": 0,
         "comments": 0

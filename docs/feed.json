@@ -7,6 +7,13 @@
   "language": "en",
   "items": [
     {
+      "id": "le-petit-editeur-glsl-0.1.0",
+      "url": "https://patrickjaillet.github.io/sandefjord-software/software.html?id=le-petit-editeur-glsl",
+      "title": "Le-Petit-Editeur-GLSL v0.1.0",
+      "content_text": "*Full Changelog**: https://github.com/Patrickjaillet/Le-Petit-Editeur-GLSL/commits/v0.1.0",
+      "date_published": "2026-08-15T00:00:00.000Z"
+    },
+    {
       "id": "retrotools26-0.1.7",
       "url": "https://patrickjaillet.github.io/sandefjord-software/software.html?id=retrotools26",
       "title": "retrotools26 v0.1.7",

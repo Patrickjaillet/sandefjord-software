@@ -6,6 +6,20 @@
   <description>Every release from every Sandefjord Software application, newest first.</description>
   <language>en</language>
   <item>
+    <title>Le-Petit-Editeur-GLSL v0.1.6</title>
+    <link>https://patrickjaillet.github.io/sandefjord-software/software.html?id=le-petit-editeur-glsl</link>
+    <guid isPermaLink="false">le-petit-editeur-glsl-0.1.6</guid>
+    <pubDate>Sat, 15 Aug 2026 00:00:00 GMT</pubDate>
+    <description>## Version 0.1.6 — 15 août 2026 ### Nouveau **Export vidéo : l&apos;assemblage en `.mp4` fonctionne enfin.** La limitation annoncée dans la version précédente est levée : *Fichier → Exporter une vidéo (MP4)…* produit maintenant directement un fichier `.mp4` prêt à partager, sans étape manuelle avec un outil externe. - Une **barre de progression annulable** affiche séparément l&apos;avancement du rendu (&quot;Rendu : 120/300 images&quot;) puis celui de l&apos;encodage. Annuler à tout moment interrompt proprement l&apos;opération en cours et ne laisse aucun fichier temporaire sur le disque. - L&apos;encodage utilise un réglage de qualité (CRF) plutôt qu&apos;un débit fixe, pour un résultat visuellement régulier quel que soit le shader exporté. - Aucune installation séparée n&apos;est nécessaire : l&apos;outil d&apos;encodage est fourni directement avec le logiciel. - Une nouvelle option en ligne de commande (`--export-mp4`) permet d&apos;exporter une vidéo sans ouvrir l&apos;interface, utile pour traiter plusieurs shaders à la suite. ### Modifié **Le golfeur produit un code encore plus court**, avec trois nouvelles optimisations toujours actives (comme le retrait des commentaires ou le raccourcissement des nombres, sans nouvelle case à cocher) : - une affectation qui reprend la même variable à gauche et à droite (`x = x + valeur;`) est récrite sous sa forme composée, plus courte (`x += valeur;`) ; - un constructeur de vecteur dont tous les arguments sont identiques (`vec3(v, v, v)`) est réduit à la forme courte équivalente (`vec3(v)`) ; - le mot-clé `in` devant un paramètre de fonction (`in vec2 fragCoord`), optionnel en GLSL, est retiré automatiquement (`vec2 fragCoord`).</description>
+  </item>
+  <item>
+    <title>Le-Petit-Editeur-GLSL v0.1.5</title>
+    <link>https://patrickjaillet.github.io/sandefjord-software/software.html?id=le-petit-editeur-glsl</link>
+    <guid isPermaLink="false">le-petit-editeur-glsl-0.1.5</guid>
+    <pubDate>Sat, 15 Aug 2026 00:00:00 GMT</pubDate>
+    <description>## Version 0.1.5 — 15 août 2026 ### Nouveau **Export vidéo (première étape).** Un nouveau menu *Fichier → Exporter une vidéo (MP4)…* ouvre une fenêtre de réglages où choisir : - la **durée** de l&apos;export, en secondes ou directement en nombre d&apos;images ; - la **cadence** (24, 30 ou 60 images par seconde, ou une valeur libre) ; - la **résolution** de sortie, indépendante de la taille actuelle de l&apos;aperçu ; - le **niveau de compression**, avec trois réglages simples (Qualité, Équilibré, Taille minimale) ou un réglage précis pour les personnes qui savent ce qu&apos;elles font. Une estimation de la taille du fichier final s&apos;affiche en direct pendant que vous ajustez les réglages. ⚠️ **À savoir dans cette version** : l&apos;assemblage automatique en un véritable fichier `.mp4` n&apos;est pas encore disponible. Le logiciel produit pour l&apos;instant une série d&apos;images numérotées (une par image de l&apos;animation) et vous indique où les retrouver une fois la capture terminée ; il faut encore les assembler soi-même avec un outil externe. L&apos;export direct en `.mp4` arrivera dans une prochaine mise à jour. **Fenêtre &quot;À propos&quot; mise à jour** (menu *Aide → À propos*) : elle affiche maintenant le nom complet du logiciel, le numéro de version, les informations de copyright et une adresse de contact.</description>
+  </item>
+  <item>
     <title>Le-Petit-Editeur-GLSL v0.1.0</title>
     <link>https://patrickjaillet.github.io/sandefjord-software/software.html?id=le-petit-editeur-glsl</link>
     <guid isPermaLink="false">le-petit-editeur-glsl-0.1.0</guid>

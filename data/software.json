@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-15T18:11:47.355Z",
+  "generatedAt": "2026-08-16T00:34:13.855Z",
   "software": [
     {
       "id": "le-petit-editeur-glsl",
@@ -7,8 +7,8 @@
       "name": "Le-Petit-Editeur-GLSL",
       "shortDescription": "Un éditeur de shaders léger pour Windows, pensé pour écrire, régler et tester en temps réel des effets visuels générés par le GPU — le genre",
       "description": "Un éditeur de shaders léger pour Windows, pensé pour écrire, régler et tester en temps réel des effets visuels générés par le GPU — le genre d'effets qu'on trouve sur [Shadertoy](https://www.shadertoy.com/). Compatible avec le code Shadertoy tel quel : pas de syntaxe spéciale à apprendre.",
-      "version": "0.1.0",
-      "prerelease": true,
+      "version": "0.1.6",
+      "prerelease": false,
       "category": "Utilities",
       "tags": [],
       "hidden": false,
@@ -16,10 +16,75 @@
       "icon": "assets/icons/default-app.svg",
       "screenshots": [],
       "systemRequirements": "Windows 10/11, 64-bit",
-      "downloadUrl": "https://github.com/Patrickjaillet/Le-Petit-Editeur-GLSL/releases/download/v0.1.0/PetitEditeurGLSL-Setup-0.1.0.exe",
-      "downloadSha256": "ea545221784d8efbc05d358068e7caf10199196d792b94abbb94a11a3f0d6859",
+      "downloadUrl": "https://github.com/Patrickjaillet/Le-Petit-Editeur-GLSL/releases/download/v0.1.6/PetitEditeurGLSL-Setup-0.1.6.exe",
+      "downloadSha256": "dd9d0581c8e64138cd2bd140740fcb8731a1f2676380dec4b3822c9460c80ea4",
       "repositoryUrl": "https://github.com/Patrickjaillet/Le-Petit-Editeur-GLSL",
       "changelog": [
+        {
+          "version": "0.1.6",
+          "date": "2026-08-15",
+          "notes": [
+            "## Version 0.1.6 — 15 août 2026",
+            "### Nouveau",
+            "**Export vidéo : l'assemblage en `.mp4` fonctionne enfin.** La limitation",
+            "annoncée dans la version précédente est levée : *Fichier → Exporter une",
+            "vidéo (MP4)…* produit maintenant directement un fichier `.mp4` prêt à",
+            "partager, sans étape manuelle avec un outil externe.",
+            "- Une **barre de progression annulable** affiche séparément l'avancement",
+            "du rendu (\"Rendu : 120/300 images\") puis celui de l'encodage. Annuler à",
+            "tout moment interrompt proprement l'opération en cours et ne laisse",
+            "aucun fichier temporaire sur le disque.",
+            "- L'encodage utilise un réglage de qualité (CRF) plutôt qu'un débit fixe,",
+            "pour un résultat visuellement régulier quel que soit le shader exporté.",
+            "- Aucune installation séparée n'est nécessaire : l'outil d'encodage est",
+            "fourni directement avec le logiciel.",
+            "- Une nouvelle option en ligne de commande (`--export-mp4`) permet",
+            "d'exporter une vidéo sans ouvrir l'interface, utile pour traiter",
+            "plusieurs shaders à la suite.",
+            "### Modifié",
+            "**Le golfeur produit un code encore plus court**, avec trois nouvelles",
+            "optimisations toujours actives (comme le retrait des commentaires ou le",
+            "raccourcissement des nombres, sans nouvelle case à cocher) :",
+            "- une affectation qui reprend la même variable à gauche et à droite",
+            "(`x = x + valeur;`) est récrite sous sa forme composée, plus courte",
+            "(`x += valeur;`) ;",
+            "- un constructeur de vecteur dont tous les arguments sont identiques",
+            "(`vec3(v, v, v)`) est réduit à la forme courte équivalente",
+            "(`vec3(v)`) ;",
+            "- le mot-clé `in` devant un paramètre de fonction (`in vec2 fragCoord`),",
+            "optionnel en GLSL, est retiré automatiquement (`vec2 fragCoord`)."
+          ],
+          "prerelease": false
+        },
+        {
+          "version": "0.1.5",
+          "date": "2026-08-15",
+          "notes": [
+            "## Version 0.1.5 — 15 août 2026",
+            "### Nouveau",
+            "**Export vidéo (première étape).** Un nouveau menu *Fichier → Exporter",
+            "une vidéo (MP4)…* ouvre une fenêtre de réglages où choisir :",
+            "- la **durée** de l'export, en secondes ou directement en nombre d'images ;",
+            "- la **cadence** (24, 30 ou 60 images par seconde, ou une valeur libre) ;",
+            "- la **résolution** de sortie, indépendante de la taille actuelle de",
+            "l'aperçu ;",
+            "- le **niveau de compression**, avec trois réglages simples (Qualité,",
+            "Équilibré, Taille minimale) ou un réglage précis pour les personnes qui",
+            "savent ce qu'elles font.",
+            "Une estimation de la taille du fichier final s'affiche en direct pendant",
+            "que vous ajustez les réglages.",
+            "⚠️ **À savoir dans cette version** : l'assemblage automatique en un",
+            "véritable fichier `.mp4` n'est pas encore disponible. Le logiciel produit",
+            "pour l'instant une série d'images numérotées (une par image de",
+            "l'animation) et vous indique où les retrouver une fois la capture",
+            "terminée ; il faut encore les assembler soi-même avec un outil externe.",
+            "L'export direct en `.mp4` arrivera dans une prochaine mise à jour.",
+            "**Fenêtre \"À propos\" mise à jour** (menu *Aide → À propos*) : elle",
+            "affiche maintenant le nom complet du logiciel, le numéro de version, les",
+            "informations de copyright et une adresse de contact."
+          ],
+          "prerelease": true
+        },
         {
           "version": "0.1.0",
           "date": "2026-08-15",
@@ -31,6 +96,33 @@
       ],
       "versionHistory": [
         {
+          "version": "0.1.6",
+          "date": "2026-08-15",
+          "prerelease": false,
+          "assets": [
+            {
+              "name": "PetitEditeurGLSL-Setup-0.1.6.exe",
+              "url": "https://github.com/Patrickjaillet/Le-Petit-Editeur-GLSL/releases/download/v0.1.6/PetitEditeurGLSL-Setup-0.1.6.exe",
+              "size": 214337318,
+              "downloadCount": 0,
+              "sha256": "dd9d0581c8e64138cd2bd140740fcb8731a1f2676380dec4b3822c9460c80ea4"
+            }
+          ]
+        },
+        {
+          "version": "0.1.5",
+          "date": "2026-08-15",
+          "prerelease": true,
+          "assets": [
+            {
+              "name": "PetitEditeurGLSL-Setup-0.1.5.exe",
+              "url": "https://github.com/Patrickjaillet/Le-Petit-Editeur-GLSL/releases/download/v0.1.5/PetitEditeurGLSL-Setup-0.1.5.exe",
+              "size": 214336166,
+              "downloadCount": 0
+            }
+          ]
+        },
+        {
           "version": "0.1.0",
           "date": "2026-08-15",
           "prerelease": true,
@@ -39,13 +131,13 @@
               "name": "PetitEditeurGLSL-Setup-0.1.0.exe",
               "url": "https://github.com/Patrickjaillet/Le-Petit-Editeur-GLSL/releases/download/v0.1.0/PetitEditeurGLSL-Setup-0.1.0.exe",
               "size": 178258302,
-              "downloadCount": 0,
+              "downloadCount": 1,
               "sha256": "ea545221784d8efbc05d358068e7caf10199196d792b94abbb94a11a3f0d6859"
             }
           ]
         }
       ],
-      "totalDownloads": 0,
+      "totalDownloads": 1,
       "engagement": {
         "likes": 0,
         "comments": 0

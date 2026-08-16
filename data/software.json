@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-16T12:15:35.661Z",
+  "generatedAt": "2026-08-16T18:11:58.328Z",
   "software": [
     {
       "id": "le-petit-editeur-glsl",
@@ -7,7 +7,7 @@
       "name": "Le-Petit-Editeur-GLSL",
       "shortDescription": "Un éditeur de shaders léger pour Windows, pensé pour écrire, régler et tester en temps réel des effets visuels générés par le GPU — le genre",
       "description": "Un éditeur de shaders léger pour Windows, pensé pour écrire, régler et tester en temps réel des effets visuels générés par le GPU — le genre d'effets qu'on trouve sur [Shadertoy](https://www.shadertoy.com/). Compatible avec le code Shadertoy tel quel : pas de syntaxe spéciale à apprendre.",
-      "version": "0.1.10",
+      "version": "0.1.12",
       "prerelease": false,
       "category": "Utilities",
       "tags": [],
@@ -16,10 +16,41 @@
       "icon": "assets/icons/default-app.svg",
       "screenshots": [],
       "systemRequirements": "Windows 10/11, 64-bit",
-      "downloadUrl": "https://github.com/Patrickjaillet/Le-Petit-Editeur-GLSL/releases/download/v0.1.10/PetitEditeurGLSL-Setup-0.1.10.exe",
-      "downloadSha256": "1d52471aa1477c8ff55c30130bfdafdf6ad0756354307b6d0391e870bdbffdc1",
+      "downloadUrl": "https://github.com/Patrickjaillet/Le-Petit-Editeur-GLSL/releases/download/v0.1.12/PetitEditeurGLSL-Setup-0.1.12.exe",
+      "downloadSha256": "07d36367e070239dfeb23456b2b904ae957eae81b7815e99fc2b4b2d19f4a786",
       "repositoryUrl": "https://github.com/Patrickjaillet/Le-Petit-Editeur-GLSL",
       "changelog": [
+        {
+          "version": "0.1.12",
+          "date": "2026-08-16",
+          "notes": [
+            "## Version 0.1.12 — August 16, 2026",
+            "### New",
+            "**An audio file (.mp3/.wav/.ogg/.flac) can now be used as a source for an `iChannel`**, exactly as on shadertoy.com: a new option \"Audio (file)...\" appears in the dropdown menu for each slot, between \"Video (file)...\" and \"Webcam\" (drag-and-dropping an audio file directly onto a slot also works). The chosen file plays in a loop and is **audible** during preview — unlike a video, which remains muted — since that is the whole point of a sound-reactive shader. The shader can then sample, just like on Shadertoy, the frequency spectrum (`texture(iChannelX, vec2(u, 0.25)).x`) and the waveform (`texture(iChannelX, vec2(u, 0.75)).x`) of the playing track.",
+            "⚠️ **Note for this version**: exact spectrum scaling (matching volume level to amplitude intensity) is tuned visually rather than guaranteed pixel-perfect to shadertoy.com due to the lack of an officially published formula; live microphone input is not provided (audio files only); and there is no UI volume slider yet (playback follows system volume)."
+          ],
+          "prerelease": false
+        },
+        {
+          "version": "0.1.11",
+          "date": "2026-08-16",
+          "notes": [
+            "## Version 0.1.11 — August 16, 2026",
+            "### Fixed",
+            "**Small shader constants could be zeroed out as soon as their slider was moved.**",
+            "A ray marching epsilon, an anti-aliasing bias, or any other very small number (`0.0001`, `1e-5`...) kept its true value in the code as long as its slider wasn't touched — but upon the very first movement, however small, it could end up silently rewritten as `0.0`, without any error message (the default displayed precision did not adapt to the magnitude of the number). The default number of decimals now adjusts to the literal's original value, keeping behavior unchanged for common values.",
+            "**Moving a slider with the mouse wheel or keyboard could leave orphan `-` signs accumulating in the code.** The protection intended to prevent resynchronization during slider manipulation was only triggered for a classic mouse drag; mouse wheel scrolling and keyboard arrow keys, which produce the exact same kind of rapid burst of edits, slipped through. This is now handled in the same way regardless of the method used to move the slider.",
+            "**The color picker (swatch next to a `vec3`/`vec4`) could display a different color than the one actually used by the shader, without ever auto-correcting.** A bright color chosen for an originally dark constant could exceed the expected range for the associated sliders; the display was then silently clamped, but the written code still contained the unclamped value — creating a permanent mismatch between what was displayed and what was calculated. The color written in code now always matches the displayed color.",
+            "**`vec3(-1.0, 0.5, 0.2)` and other vectors with negative components were never recognized as a single color/X-Y group.** Nothing was lost (each component remained editable as a separate slider), but grouping into a single control — the flagship feature of vector sliders — was never triggered whenever a component was negative, which is very common for directions or offsets. This is now fixed: these vectors are grouped like any other.",
+            "**A corrupted or manually tampered project file could crash or corrupt the sliders panel UI.** A `NaN`/`Infinity` boundary slipped into a project's `.json` file passed through existing checks and could inject non-finite values into the interface sliders. Such inputs are now simply ignored on opening, without affecting the rest of the project.",
+            "**Switching passes (Image/Buffer A-D) mid-slider drag could, in rare cases, rewrite the wrong area of the code.** The risk only concerned a very narrow window (switching tabs without releasing a mouse drag, usually when combining keyboard + mouse, or on a touch screen), but is now explicitly prevented.",
+            "### Added",
+            "**`vec4(r, g, b, a)` constants (color + transparency) now group into a single control**, featuring the same color picker as `vec3`, instead of remaining as 4 separate numerical sliders.",
+            "**Right-clicking a component of a vector slider (`vec2`/`vec3`/`vec4`)**: it is now possible to adjust its bounds and decimal precision, exactly as was already possible on a simple numerical slider.",
+            "The \"Reset category\", \"Randomize category\", and \"Clear keyframes\" buttons now display a tooltip clarifying that they apply to all sliders in the category, including those currently hidden by the search filter."
+          ],
+          "prerelease": false
+        },
         {
           "version": "0.1.10",
           "date": "2026-08-16",
@@ -159,6 +190,33 @@
       ],
       "versionHistory": [
         {
+          "version": "0.1.12",
+          "date": "2026-08-16",
+          "prerelease": false,
+          "assets": [
+            {
+              "name": "PetitEditeurGLSL-Setup-0.1.12.exe",
+              "url": "https://github.com/Patrickjaillet/Le-Petit-Editeur-GLSL/releases/download/v0.1.12/PetitEditeurGLSL-Setup-0.1.12.exe",
+              "size": 211019962,
+              "downloadCount": 0,
+              "sha256": "07d36367e070239dfeb23456b2b904ae957eae81b7815e99fc2b4b2d19f4a786"
+            }
+          ]
+        },
+        {
+          "version": "0.1.11",
+          "date": "2026-08-16",
+          "prerelease": false,
+          "assets": [
+            {
+              "name": "PetitEditeurGLSL-Setup-0.1.11.exe",
+              "url": "https://github.com/Patrickjaillet/Le-Petit-Editeur-GLSL/releases/download/v0.1.11/PetitEditeurGLSL-Setup-0.1.11.exe",
+              "size": 205456508,
+              "downloadCount": 0
+            }
+          ]
+        },
+        {
           "version": "0.1.10",
           "date": "2026-08-16",
           "prerelease": false,
@@ -167,7 +225,7 @@
               "name": "PetitEditeurGLSL-Setup-0.1.10.exe",
               "url": "https://github.com/Patrickjaillet/Le-Petit-Editeur-GLSL/releases/download/v0.1.10/PetitEditeurGLSL-Setup-0.1.10.exe",
               "size": 205468913,
-              "downloadCount": 0,
+              "downloadCount": 1,
               "sha256": "1d52471aa1477c8ff55c30130bfdafdf6ad0756354307b6d0391e870bdbffdc1"
             }
           ]
@@ -240,7 +298,7 @@
           ]
         }
       ],
-      "totalDownloads": 2,
+      "totalDownloads": 3,
       "engagement": {
         "likes": 0,
         "comments": 0
@@ -573,13 +631,13 @@
               "name": "RetroTools2026-Portable-0.1.7.zip",
               "url": "https://github.com/Patrickjaillet/retrotools26/releases/download/v0.1.7/RetroTools2026-Portable-0.1.7.zip",
               "size": 14653725,
-              "downloadCount": 1
+              "downloadCount": 2
             },
             {
               "name": "RetroTools2026-Setup-0.1.7.exe",
               "url": "https://github.com/Patrickjaillet/retrotools26/releases/download/v0.1.7/RetroTools2026-Setup-0.1.7.exe",
               "size": 13065717,
-              "downloadCount": 1,
+              "downloadCount": 2,
               "sha256": "ecd758f392a5de50b6e61d0adf485e888db06f37d360da7ec89fd7d8cb31ac64"
             }
           ]
@@ -700,7 +758,7 @@
           ]
         }
       ],
-      "totalDownloads": 10,
+      "totalDownloads": 12,
       "engagement": {
         "likes": 0,
         "comments": 0

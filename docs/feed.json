@@ -7,6 +7,27 @@
   "language": "en",
   "items": [
     {
+      "id": "le-petit-editeur-glsl-0.1.10",
+      "url": "https://patrickjaillet.github.io/sandefjord-software/software.html?id=le-petit-editeur-glsl",
+      "title": "Le-Petit-Editeur-GLSL v0.1.10",
+      "content_text": "## Version 0.1.10 — 16 août 2026 ### New **New set of major European and Asian language files.** Norwegian, Swedish, German, Spanish, Italian, Portuguese, Japanese, Chinese (Simplified), Korean, Hindi",
+      "date_published": "2026-08-16T00:00:00.000Z"
+    },
+    {
+      "id": "le-petit-editeur-glsl-0.1.9",
+      "url": "https://patrickjaillet.github.io/sandefjord-software/software.html?id=le-petit-editeur-glsl",
+      "title": "Le-Petit-Editeur-GLSL v0.1.9",
+      "content_text": "## Version 0.1.9 — 16 août 2026 ### Corrigé **Un shader pouvait s'afficher délavé, presque blanc, alors qu'il est vif et saturé sur shadertoy.com.** En cause : quand un shader calcule lui-même le canal alpha de `fragColor` (au lieu de le laisser à 1, ce que font la plupart des shaders sans même y penser), le logiciel transmettait cette valeur telle quelle jusqu'à l'affichage — qui la traitait comme une vraie transparence et laissait transparaître le fond clair de la fenêtre derrière l'image. Shadertoy, lui, ignore toujours ce canal pour l'image finale affichée (son visualiseur est opaque par construction) : le rendu y reste donc plein et saturé quoi que le shader écrive dans `fragColor.a`. La passe Image (celle qui s'affiche réellement) est désormais forcée opaque de la même façon, ce qui aligne le rendu sur celui de shadertoy.com. Les passes Buffer A-D ne sont **pas** concernées : plusieurs techniques de shaders s'en servent pour stocker des données dans leur propre canal alpha d'une passe à l'autre, et cette valeur reste donc intacte pour elles. ## Version 0.1.8 — 16 août 2026 ### Nouveau **Sélecteur de langue dans les Préférences.** *Fichier → Préférences…* propose maintenant un menu déroulant pour choisir la langue de l'interface, avec la liste des langues effectivement présentes sur le disque (pas de langue \"à moitié installée\" dans la liste). Le choix est mémorisé et repris au prochain lancement. **Le changement ne s'applique pas à chaud** : comme les menus, boutons et messages déjà affichés ne se retraduisent pas tout seuls, un message le rappelle au moment de valider — il suffit de relancer le logiciel pour voir la nouvelle langue partout.",
+      "date_published": "2026-08-16T00:00:00.000Z"
+    },
+    {
+      "id": "le-petit-editeur-glsl-0.1.7",
+      "url": "https://patrickjaillet.github.io/sandefjord-software/software.html?id=le-petit-editeur-glsl",
+      "title": "Le-Petit-Editeur-GLSL v0.1.7",
+      "content_text": "## Version 0.1.7 — 16 août 2026 ### Nouveau **Premières briques pour les langues.** Le logiciel sait maintenant charger un fichier de traduction (`lngs/fr.json`, `lngs/en.json`) au démarrage, avec repli automatique sur le français si une traduction est incomplète. **Rien n'est encore visible dans l'interface** : les menus, boutons et messages restent pour l'instant en français en dur, en attendant qu'ils soient progressivement branchés sur ce système. Pas de sélecteur de langue dans les Préférences pour le moment non plus — ce sera la dernière pièce du puzzle une fois les textes migrés. ### Corrigé **Export vidéo : la fenêtre d'encodage restait bloquée à 100 %.** Une fois l'encodage terminé, la boîte de dialogue *Exporter une vidéo (MP4)* pouvait rester affichée indéfiniment sans jamais se fermer, obligeant à forcer la fermeture du logiciel. En cause : la sortie d'erreur de l'outil d'encodage n'était jamais lue pendant l'export, ce qui pouvait le faire se bloquer silencieusement juste avant de se terminer, même après avoir atteint 100 %. Elle est maintenant systématiquement vidée en tâche de fond, et l'export se termine et se ferme normalement.",
+      "date_published": "2026-08-16T00:00:00.000Z"
+    },
+    {
       "id": "le-petit-editeur-glsl-0.1.6",
       "url": "https://patrickjaillet.github.io/sandefjord-software/software.html?id=le-petit-editeur-glsl",
       "title": "Le-Petit-Editeur-GLSL v0.1.6",

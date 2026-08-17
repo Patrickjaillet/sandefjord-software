@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-17T06:29:42.709Z",
+  "generatedAt": "2026-08-17T12:18:51.095Z",
   "software": [
     {
       "id": "le-petit-editeur-glsl",
@@ -198,7 +198,7 @@
               "name": "PetitEditeurGLSL-Setup-0.1.12.exe",
               "url": "https://github.com/Patrickjaillet/Le-Petit-Editeur-GLSL/releases/download/v0.1.12/PetitEditeurGLSL-Setup-0.1.12.exe",
               "size": 211019962,
-              "downloadCount": 1,
+              "downloadCount": 3,
               "sha256": "07d36367e070239dfeb23456b2b904ae957eae81b7815e99fc2b4b2d19f4a786"
             }
           ]
@@ -298,7 +298,7 @@
           ]
         }
       ],
-      "totalDownloads": 4,
+      "totalDownloads": 6,
       "engagement": {
         "likes": 0,
         "comments": 0
@@ -345,19 +345,19 @@
               "name": "NumisEuro-5.0.0-portable.zip",
               "url": "https://github.com/Patrickjaillet/Numis-Euro/releases/download/install/NumisEuro-5.0.0-portable.zip",
               "size": 1351673,
-              "downloadCount": 11
+              "downloadCount": 12
             },
             {
               "name": "NumisEuro-5.0.0-setup.exe",
               "url": "https://github.com/Patrickjaillet/Numis-Euro/releases/download/install/NumisEuro-5.0.0-setup.exe",
               "size": 3157039,
-              "downloadCount": 14,
+              "downloadCount": 15,
               "sha256": "0aedc907c264deaf431266b01ba08290924d8d2136515b67de9f906d2f1a35ee"
             }
           ]
         }
       ],
-      "totalDownloads": 25,
+      "totalDownloads": 27,
       "engagement": {
         "likes": 1,
         "comments": 0
@@ -409,19 +409,19 @@
               "name": "P5CCS-Setup-1.0.0.0-arm64.exe",
               "url": "https://github.com/Patrickjaillet/p5ccs/releases/download/v1.0.0.0/P5CCS-Setup-1.0.0.0-arm64.exe",
               "size": 71787991,
-              "downloadCount": 1,
+              "downloadCount": 2,
               "sha256": "881372fa5baf718d790d9e6923e23fe2f297e60d786ac479230c598688a0054a"
             },
             {
               "name": "P5CCS-Setup-1.0.0.0-x64.exe",
               "url": "https://github.com/Patrickjaillet/p5ccs/releases/download/v1.0.0.0/P5CCS-Setup-1.0.0.0-x64.exe",
               "size": 88999219,
-              "downloadCount": 1
+              "downloadCount": 2
             }
           ]
         }
       ],
-      "totalDownloads": 2,
+      "totalDownloads": 4,
       "engagement": {
         "likes": 0,
         "comments": 0
@@ -631,13 +631,13 @@
               "name": "RetroTools2026-Portable-0.1.7.zip",
               "url": "https://github.com/Patrickjaillet/retrotools26/releases/download/v0.1.7/RetroTools2026-Portable-0.1.7.zip",
               "size": 14653725,
-              "downloadCount": 2
+              "downloadCount": 3
             },
             {
               "name": "RetroTools2026-Setup-0.1.7.exe",
               "url": "https://github.com/Patrickjaillet/retrotools26/releases/download/v0.1.7/RetroTools2026-Setup-0.1.7.exe",
               "size": 13065717,
-              "downloadCount": 2,
+              "downloadCount": 3,
               "sha256": "ecd758f392a5de50b6e61d0adf485e888db06f37d360da7ec89fd7d8cb31ac64"
             }
           ]
@@ -758,7 +758,7 @@
           ]
         }
       ],
-      "totalDownloads": 12,
+      "totalDownloads": 14,
       "engagement": {
         "likes": 0,
         "comments": 0
@@ -846,14 +846,14 @@
               "name": "Sliders.GL_1.0.1_x64-setup.exe",
               "url": "https://github.com/Patrickjaillet/Sliders-GL/releases/download/v1.0.1/Sliders.GL_1.0.1_x64-setup.exe",
               "size": 7901209,
-              "downloadCount": 5,
+              "downloadCount": 6,
               "sha256": "23747efd116dd4a7672c11c284a76200794ecf054141a21a1c30704f0fcaa273"
             },
             {
               "name": "Sliders.GL_1.0.1_x64_en-US.msi",
               "url": "https://github.com/Patrickjaillet/Sliders-GL/releases/download/v1.0.1/Sliders.GL_1.0.1_x64_en-US.msi",
               "size": 8589312,
-              "downloadCount": 2
+              "downloadCount": 3
             }
           ]
         },
@@ -878,7 +878,7 @@
           ]
         }
       ],
-      "totalDownloads": 10,
+      "totalDownloads": 12,
       "engagement": {
         "likes": 0,
         "comments": 0
@@ -2308,7 +2308,7 @@
               "name": "uShader-Setup-4.5.2.0.exe",
               "url": "https://github.com/Patrickjaillet/uShader/releases/download/v4.5.2/uShader-Setup-4.5.2.0.exe",
               "size": 2839181,
-              "downloadCount": 2,
+              "downloadCount": 3,
               "sha256": "57661df2b1c9ec0fdc5c6ec369e1b86e80da009402004f55a40ee10033f22284"
             }
           ]
@@ -2342,7 +2342,7 @@
           ]
         }
       ],
-      "totalDownloads": 10,
+      "totalDownloads": 11,
       "engagement": {
         "likes": 0,
         "comments": 0

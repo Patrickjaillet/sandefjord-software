@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-17T12:18:51.095Z",
+  "generatedAt": "2026-08-17T18:20:55.626Z",
   "software": [
     {
       "id": "le-petit-editeur-glsl",
@@ -298,11 +298,7 @@
           ]
         }
       ],
-      "totalDownloads": 6,
-      "engagement": {
-        "likes": 0,
-        "comments": 0
-      }
+      "totalDownloads": 6
     },
     {
       "id": "numis-euro",
@@ -357,11 +353,7 @@
           ]
         }
       ],
-      "totalDownloads": 27,
-      "engagement": {
-        "likes": 1,
-        "comments": 0
-      }
+      "totalDownloads": 27
     },
     {
       "id": "p5ccs",
@@ -421,11 +413,7 @@
           ]
         }
       ],
-      "totalDownloads": 4,
-      "engagement": {
-        "likes": 0,
-        "comments": 0
-      }
+      "totalDownloads": 4
     },
     {
       "id": "retrotools26",

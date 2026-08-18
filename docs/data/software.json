@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-18T00:32:34.489Z",
+  "generatedAt": "2026-08-18T06:22:15.240Z",
   "software": [
     {
       "id": "le-petit-editeur-glsl",
@@ -215,7 +215,7 @@
               "name": "PetitEditeurGLSL-Setup-0.1.13.exe",
               "url": "https://github.com/Patrickjaillet/Le-Petit-Editeur-GLSL/releases/download/v0.1.13/PetitEditeurGLSL-Setup-0.1.13.exe",
               "size": 165975980,
-              "downloadCount": 1,
+              "downloadCount": 2,
               "sha256": "cf9a2204f9e134ea07cfb7a44b4682b08db6fe2a0896ab987d5c49a05f777cc5"
             }
           ]
@@ -329,7 +329,7 @@
           ]
         }
       ],
-      "totalDownloads": 7,
+      "totalDownloads": 8,
       "engagement": {
         "likes": 0,
         "comments": 0

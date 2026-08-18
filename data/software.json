@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-17T18:20:55.626Z",
+  "generatedAt": "2026-08-18T00:32:34.489Z",
   "software": [
     {
       "id": "le-petit-editeur-glsl",
@@ -7,7 +7,7 @@
       "name": "Le-Petit-Editeur-GLSL",
       "shortDescription": "Un éditeur de shaders léger pour Windows, pensé pour écrire, régler et tester en temps réel des effets visuels générés par le GPU — le genre",
       "description": "Un éditeur de shaders léger pour Windows, pensé pour écrire, régler et tester en temps réel des effets visuels générés par le GPU — le genre d'effets qu'on trouve sur [Shadertoy](https://www.shadertoy.com/). Compatible avec le code Shadertoy tel quel : pas de syntaxe spéciale à apprendre.",
-      "version": "0.1.12",
+      "version": "0.1.13",
       "prerelease": false,
       "category": "Utilities",
       "tags": [],
@@ -16,10 +16,27 @@
       "icon": "assets/icons/default-app.svg",
       "screenshots": [],
       "systemRequirements": "Windows 10/11, 64-bit",
-      "downloadUrl": "https://github.com/Patrickjaillet/Le-Petit-Editeur-GLSL/releases/download/v0.1.12/PetitEditeurGLSL-Setup-0.1.12.exe",
-      "downloadSha256": "07d36367e070239dfeb23456b2b904ae957eae81b7815e99fc2b4b2d19f4a786",
+      "downloadUrl": "https://github.com/Patrickjaillet/Le-Petit-Editeur-GLSL/releases/download/v0.1.13/PetitEditeurGLSL-Setup-0.1.13.exe",
+      "downloadSha256": "cf9a2204f9e134ea07cfb7a44b4682b08db6fe2a0896ab987d5c49a05f777cc5",
       "repositoryUrl": "https://github.com/Patrickjaillet/Le-Petit-Editeur-GLSL",
       "changelog": [
+        {
+          "version": "0.1.13",
+          "date": "2026-08-17",
+          "notes": [
+            "## Version 0.1.13 — August 17, 2026",
+            "### New",
+            "**GLSL and Shadertoy shaders are now both accepted automatically, with no manual conversion.** Until now, every pass had to follow the Shadertoy convention (a `mainImage` function). Pasting or typing a \"raw\" GLSL fragment shader — with its own `void main()`, its own `#version` directive, its own `uniform` declarations, or the older `gl_FragColor`/`gl_FragData` output style — now compiles directly, without editing it by hand first. The software detects which style is being used and adapts on the fly:",
+            "- the shader's own `#version` is kept if present, otherwise one is added automatically;",
+            "- Shadertoy's built-in values (`iTime`, `iResolution`, `iMouse`, `iChannel0-3`, ...) are made available only for the ones the code actually uses;",
+            "- the older `gl_FragColor`/`gl_FragData[0]` output style is translated automatically into the modern form;",
+            "- the shader's own custom `uniform` declarations are now accepted as well (currently given a default value of 0 — not wired to the sliders panel yet);",
+            "- compile-error messages point to the correct line in the editor in both styles, exactly as before.",
+            "- The `Common` tab and Buffer A-D passes keep working exactly as before, independently of which style each pass uses.",
+            "**A small indicator now appears in the footer** (🌈 *Shadertoy* / 📄 *GLSL*) showing which style was detected for the pass currently being edited, updating live shortly after you stop typing or as soon as you switch tabs. Hovering over it explains, in plain language, which part of the code triggered that detection (e.g. \"detected via `mainImage()`\")."
+          ],
+          "prerelease": false
+        },
         {
           "version": "0.1.12",
           "date": "2026-08-16",
@@ -190,6 +207,20 @@
       ],
       "versionHistory": [
         {
+          "version": "0.1.13",
+          "date": "2026-08-17",
+          "prerelease": false,
+          "assets": [
+            {
+              "name": "PetitEditeurGLSL-Setup-0.1.13.exe",
+              "url": "https://github.com/Patrickjaillet/Le-Petit-Editeur-GLSL/releases/download/v0.1.13/PetitEditeurGLSL-Setup-0.1.13.exe",
+              "size": 165975980,
+              "downloadCount": 1,
+              "sha256": "cf9a2204f9e134ea07cfb7a44b4682b08db6fe2a0896ab987d5c49a05f777cc5"
+            }
+          ]
+        },
+        {
           "version": "0.1.12",
           "date": "2026-08-16",
           "prerelease": false,
@@ -298,7 +329,11 @@
           ]
         }
       ],
-      "totalDownloads": 6
+      "totalDownloads": 7,
+      "engagement": {
+        "likes": 0,
+        "comments": 0
+      }
     },
     {
       "id": "numis-euro",
@@ -353,7 +388,11 @@
           ]
         }
       ],
-      "totalDownloads": 27
+      "totalDownloads": 27,
+      "engagement": {
+        "likes": 1,
+        "comments": 0
+      }
     },
     {
       "id": "p5ccs",
@@ -413,7 +452,11 @@
           ]
         }
       ],
-      "totalDownloads": 4
+      "totalDownloads": 4,
+      "engagement": {
+        "likes": 0,
+        "comments": 0
+      }
     },
     {
       "id": "retrotools26",

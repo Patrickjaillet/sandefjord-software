@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-19T12:20:21.320Z",
+  "generatedAt": "2026-08-19T18:16:43.199Z",
   "software": [
     {
       "id": "le-petit-editeur-glsl",
@@ -7,7 +7,7 @@
       "name": "Le-Petit-Editeur-GLSL",
       "shortDescription": "A lightweight shader editor for Windows, designed for writing, tweaking, and testing real-time GPU-generated visual effects — the kind of ef",
       "description": "A lightweight shader editor for Windows, designed for writing, tweaking, and testing real-time GPU-generated visual effects — the kind of effects found on Shadertoy. Fully compatible with Shadertoy code out of the box: no special syntax to learn.",
-      "version": "0.1.16",
+      "version": "0.1.18",
       "prerelease": false,
       "category": "Utilities",
       "tags": [],
@@ -16,10 +16,33 @@
       "icon": "assets/icons/default-app.svg",
       "screenshots": [],
       "systemRequirements": "Windows 10/11, 64-bit",
-      "downloadUrl": "https://github.com/Patrickjaillet/Le-Petit-Editeur-GLSL/releases/download/v0.1.16/PetitEditeurGLSL-Setup-0.1.16.exe",
-      "downloadSha256": "61f25c0b8b8de9c21a618242ba7ab81adf040b83b0ff2d67642b06878c452b73",
+      "downloadUrl": "https://github.com/Patrickjaillet/Le-Petit-Editeur-GLSL/releases/download/v0.1.18/PetitEditeurGLSL-Setup-0.1.18.exe",
+      "downloadSha256": "47b4d25b40437f067edda61de9592133bf7e3fc8dd88143a5b664624d9c4ee6e",
       "repositoryUrl": "https://github.com/Patrickjaillet/Le-Petit-Editeur-GLSL",
       "changelog": [
+        {
+          "version": "0.1.18",
+          "date": "2026-08-19",
+          "notes": [
+            "## Version 0.1.18 — August 19, 2026",
+            "### Fixed",
+            "**A hexadecimal integer literal in a shader's code (e.g. `0x1F`) could be turned into a broken slider.** Dragging it would corrupt the surrounding source text (e.g. `0x1F` becoming `5x1F`, no longer valid code). Hexadecimal literals are no longer picked up as sliders at all.",
+            "**A very first assignment to any `iChannel` — made before ever switching between the Image/Buffer A-D tabs — could silently attach to the wrong pass** (Buffer A instead of the pass actually shown). No error, nothing visibly wrong on screen; fixed so the textures panel is correctly synced with the displayed pass from the moment the window opens.",
+            "**Scrolling the mouse wheel or using the keyboard arrows directly on an integer slider's track could do nothing for many notches in a row** (for a typical range, up to ~30 notches before the first visible change) — the value did move on the paired spin box just fine, only the slider track itself felt unresponsive. Both now respond identically, one unit per notch.",
+            "**A shader with several dozen sliders simultaneously animated by keyframes could visibly stutter while playing**, occasionally dropping an entire frame's worth of time (measured up to ~43ms) just updating the sliders panel, before the next frame had even started rendering. Reworked so this never exceeds about 10ms even in that scenario.",
+            "**An emptied pass tab (a Buffer nobody's using anymore) kept its last-compiled shader silently running and rendering every frame in the background**, costing GPU time for nothing. Clearing a tab's code now actually tears down its render pipeline.",
+            "**`.bmp`, `.gif`, and `.webp` image files could be selected in an `iChannel` picker but failed to load** — the software's own file filters advertised `.bmp` support that wasn't actually there. All three now load correctly.",
+            "### New",
+            "**A per-slider interpolation curve for keyframe animation**: choose Linear, Smooth (ease), or Stepped from the keyframe menu, with a live graph showing the actual curve shape as you pick.",
+            "**Adjustable preview resolution**, independent of the window size: a new control in the status bar renders the live preview at 100/75/50/25% to keep things smooth on a heavy shader, always showing the resolution actually in use.",
+            "**Audio `iChannel` volume and mute**, adjustable right from the textures panel, independent of the system volume — saved with the project.",
+            "**Procedural textures (checkerboard, white noise, value noise) now have adjustable pattern size and random seed**, instead of fixed built-in values.",
+            "**Cubemap assignment now shows a 6-face preview thumbnail** (not just one face), and checks every face's file and dimensions *before* closing the dialog — a missing file or a mismatched face size is caught immediately, naming exactly which face and why.",
+            "**Video, webcam, and audio `iChannel` slots now show a live thumbnail** of their actual content (a real decoded frame, or a waveform sparkline) instead of a generic icon.",
+            "**Dropping an unsupported file onto a texture slot now explains why it was refused**, naming the file extension, instead of silently doing nothing."
+          ],
+          "prerelease": false
+        },
         {
           "version": "0.1.17",
           "date": "2026-08-19",
@@ -256,6 +279,20 @@
       ],
       "versionHistory": [
         {
+          "version": "0.1.18",
+          "date": "2026-08-19",
+          "prerelease": false,
+          "assets": [
+            {
+              "name": "PetitEditeurGLSL-Setup-0.1.18.exe",
+              "url": "https://github.com/Patrickjaillet/Le-Petit-Editeur-GLSL/releases/download/v0.1.18/PetitEditeurGLSL-Setup-0.1.18.exe",
+              "size": 166221279,
+              "downloadCount": 0,
+              "sha256": "47b4d25b40437f067edda61de9592133bf7e3fc8dd88143a5b664624d9c4ee6e"
+            }
+          ]
+        },
+        {
           "version": "0.1.17",
           "date": "2026-08-19",
           "prerelease": true,
@@ -270,7 +307,7 @@
               "name": "PetitEditeurGLSL-Setup-0.1.16.exe",
               "url": "https://github.com/Patrickjaillet/Le-Petit-Editeur-GLSL/releases/download/v0.1.16/PetitEditeurGLSL-Setup-0.1.16.exe",
               "size": 166131461,
-              "downloadCount": 0
+              "downloadCount": 2
             }
           ]
         },
@@ -424,7 +461,7 @@
           ]
         }
       ],
-      "totalDownloads": 9,
+      "totalDownloads": 11,
       "engagement": {
         "likes": 0,
         "comments": 0
@@ -471,19 +508,19 @@
               "name": "NumisEuro-5.0.0-portable.zip",
               "url": "https://github.com/Patrickjaillet/Numis-Euro/releases/download/install/NumisEuro-5.0.0-portable.zip",
               "size": 1351673,
-              "downloadCount": 12
+              "downloadCount": 13
             },
             {
               "name": "NumisEuro-5.0.0-setup.exe",
               "url": "https://github.com/Patrickjaillet/Numis-Euro/releases/download/install/NumisEuro-5.0.0-setup.exe",
               "size": 3157039,
-              "downloadCount": 15,
+              "downloadCount": 16,
               "sha256": "0aedc907c264deaf431266b01ba08290924d8d2136515b67de9f906d2f1a35ee"
             }
           ]
         }
       ],
-      "totalDownloads": 27,
+      "totalDownloads": 29,
       "engagement": {
         "likes": 1,
         "comments": 0
@@ -535,19 +572,19 @@
               "name": "P5CCS-Setup-1.0.0.0-arm64.exe",
               "url": "https://github.com/Patrickjaillet/p5ccs/releases/download/v1.0.0.0/P5CCS-Setup-1.0.0.0-arm64.exe",
               "size": 71787991,
-              "downloadCount": 2,
+              "downloadCount": 3,
               "sha256": "881372fa5baf718d790d9e6923e23fe2f297e60d786ac479230c598688a0054a"
             },
             {
               "name": "P5CCS-Setup-1.0.0.0-x64.exe",
               "url": "https://github.com/Patrickjaillet/p5ccs/releases/download/v1.0.0.0/P5CCS-Setup-1.0.0.0-x64.exe",
               "size": 88999219,
-              "downloadCount": 2
+              "downloadCount": 3
             }
           ]
         }
       ],
-      "totalDownloads": 4,
+      "totalDownloads": 6,
       "engagement": {
         "likes": 0,
         "comments": 0
@@ -757,13 +794,13 @@
               "name": "RetroTools2026-Portable-0.1.7.zip",
               "url": "https://github.com/Patrickjaillet/retrotools26/releases/download/v0.1.7/RetroTools2026-Portable-0.1.7.zip",
               "size": 14653725,
-              "downloadCount": 3
+              "downloadCount": 4
             },
             {
               "name": "RetroTools2026-Setup-0.1.7.exe",
               "url": "https://github.com/Patrickjaillet/retrotools26/releases/download/v0.1.7/RetroTools2026-Setup-0.1.7.exe",
               "size": 13065717,
-              "downloadCount": 3,
+              "downloadCount": 4,
               "sha256": "ecd758f392a5de50b6e61d0adf485e888db06f37d360da7ec89fd7d8cb31ac64"
             }
           ]
@@ -884,7 +921,7 @@
           ]
         }
       ],
-      "totalDownloads": 14,
+      "totalDownloads": 16,
       "engagement": {
         "likes": 0,
         "comments": 0
@@ -972,14 +1009,14 @@
               "name": "Sliders.GL_1.0.1_x64-setup.exe",
               "url": "https://github.com/Patrickjaillet/Sliders-GL/releases/download/v1.0.1/Sliders.GL_1.0.1_x64-setup.exe",
               "size": 7901209,
-              "downloadCount": 6,
+              "downloadCount": 7,
               "sha256": "23747efd116dd4a7672c11c284a76200794ecf054141a21a1c30704f0fcaa273"
             },
             {
               "name": "Sliders.GL_1.0.1_x64_en-US.msi",
               "url": "https://github.com/Patrickjaillet/Sliders-GL/releases/download/v1.0.1/Sliders.GL_1.0.1_x64_en-US.msi",
               "size": 8589312,
-              "downloadCount": 3
+              "downloadCount": 4
             }
           ]
         },
@@ -1004,7 +1041,7 @@
           ]
         }
       ],
-      "totalDownloads": 12,
+      "totalDownloads": 14,
       "engagement": {
         "likes": 0,
         "comments": 0
@@ -2434,7 +2471,7 @@
               "name": "uShader-Setup-4.5.2.0.exe",
               "url": "https://github.com/Patrickjaillet/uShader/releases/download/v4.5.2/uShader-Setup-4.5.2.0.exe",
               "size": 2839181,
-              "downloadCount": 3,
+              "downloadCount": 4,
               "sha256": "57661df2b1c9ec0fdc5c6ec369e1b86e80da009402004f55a40ee10033f22284"
             }
           ]
@@ -2468,7 +2505,7 @@
           ]
         }
       ],
-      "totalDownloads": 11,
+      "totalDownloads": 12,
       "engagement": {
         "likes": 0,
         "comments": 0

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-20T06:24:19.328Z",
+  "generatedAt": "2026-08-20T12:22:26.556Z",
   "software": [
     {
       "id": "le-petit-editeur-glsl",
@@ -468,6 +468,118 @@
       }
     },
     {
+      "id": "mameset-cleaner",
+      "githubRepoId": 1339710043,
+      "name": "MAMESET-Cleaner",
+      "shortDescription": "MAMESET Cleaner est un logiciel de bureau destiné à nettoyer et organiser un set de ROMs MAME.",
+      "description": "MAMESET Cleaner est un logiciel de bureau destiné à nettoyer et organiser un set de ROMs MAME.",
+      "version": "2.0.0",
+      "prerelease": false,
+      "category": "Utilities",
+      "tags": [],
+      "hidden": false,
+      "order": 999,
+      "icon": "assets/icons/default-app.svg",
+      "screenshots": [],
+      "systemRequirements": "Windows 10/11, 64-bit",
+      "downloadUrl": "https://github.com/Patrickjaillet/MAMESET-Cleaner/releases/download/v2.0.0/MAMESET-Cleaner-Setup-v2.0.0.exe",
+      "downloadSha256": "b1da84f56ae6b2ec5d5fafb99403f045502ab253a56ee176d6263b8aed7c8589",
+      "repositoryUrl": "https://github.com/Patrickjaillet/MAMESET-Cleaner",
+      "changelog": [
+        {
+          "version": "2.0.0",
+          "date": "2026-08-20",
+          "notes": [
+            "MAMESET Cleaner becomes a multi-console ROM set cleaning tool.",
+            "Beyond its original MAME support, the application can now install a plugin for another console system directly from its new \"Plugins\" section, and clean that system's ROM set with the same duplicate detection, filtering, cleanup and reporting tools already used for MAME.",
+            "## What's new since v1.0.0",
+            "**Plugin system**: install, update and remove console-specific plugins from a new \"Plugins\" section, with SHA-256 verification on every download and a non-blocking progress bar.",
+            "**30 console systems available today**, spanning Nintendo (NES/Famicom, SNES, N64, Game Boy/Color, Game Boy Advance, DS, GameCube/Wii), Sega (Master System, Mega Drive/Genesis, Game Gear, Sega CD, Saturn, Dreamcast), Sony (PlayStation, PlayStation 2, PSP), SNK/Atari/other manufacturers (Neo Geo AES/MVS, Neo Geo Pocket, Atari 2600/5200/7800/Lynx/Jaguar, TurboGrafx-16/PC Engine, WonderSwan, 3DO), and classic 8/16-bit computers (Commodore 64, Amiga, ZX Spectrum, Amstrad CPC, MSX/MSX2).",
+            "**A \"Système actif\" selector** in Settings to switch between MAME and any installed plugin before scanning.",
+            "**Hardening**: a plugin can no longer claim another system's identity or impersonate the built-in MAME system; a plugin encountering an internal error is now reported cleanly instead of being able to affect the rest of the application.",
+            "Over 150 automated tests now cover the software, including every console plugin loaded and exercised as a real compiled library.",
+            "## System requirements",
+            "Windows 10 or Windows 11 (64-bit).",
+            "## Installation",
+            "Two options:",
+            "**`MAMESET-Cleaner-Setup-v2.0.0.exe`**: standard Windows installer (silent install/uninstall tested).",
+            "**`mameset_cleaner.exe`**: portable executable, no installation required.",
+            "Console plugins are downloaded separately, on demand, from the application's \"Plugins\" section."
+          ],
+          "prerelease": false
+        },
+        {
+          "version": "1.0.0",
+          "date": "2026-08-19",
+          "notes": [
+            "Première version stable de MAMESET Cleaner.",
+            "MAMESET Cleaner nettoie et organise un set de ROMs MAME : détection des doublons (logique 1G1R), filtrage par genre/langue/région/statut/fabricant/année, nettoyage sécurisé (corbeille, sauvegarde préalable, confirmation obligatoire) et rapports détaillés.",
+            "## Fonctionnalités principales",
+            "Scan du dossier de ROMs (.zip, .7z, dossiers non compressés) avec détection réelle des fichiers corrompus",
+            "Détection des doublons selon une priorité régionale personnalisable",
+            "Filtrage multi-critères combinables",
+            "Nettoyage réel avec corbeille Windows par défaut, sauvegarde optionnelle et vérification d'intégrité automatique après nettoyage",
+            "Rapports JSON/CSV détaillés",
+            "Interface français/anglais, thème clair/sombre",
+            "## Configuration requise",
+            "Windows 10 ou Windows 11 (64 bits).",
+            "## Installation",
+            "Deux options :",
+            "**`MAMESET-Cleaner-Setup-v1.0.0.exe`** : installateur Windows classique (installation et désinstallation silencieuses testées).",
+            "**`mameset_cleaner.exe`** : exécutable portable, aucune installation requise.",
+            "Voir le [README](https://github.com/Patrickjaillet/MAMESET-Cleaner#readme) pour le détail des fonctionnalités et [docs/COMPILATION.md](https://github.com/Patrickjaillet/MAMESET-Cleaner/blob/master/docs/COMPILATION.md) pour compiler depuis les sources."
+          ],
+          "prerelease": false
+        }
+      ],
+      "versionHistory": [
+        {
+          "version": "2.0.0",
+          "date": "2026-08-20",
+          "prerelease": false,
+          "assets": [
+            {
+              "name": "MAMESET-Cleaner-Setup-v2.0.0.exe",
+              "url": "https://github.com/Patrickjaillet/MAMESET-Cleaner/releases/download/v2.0.0/MAMESET-Cleaner-Setup-v2.0.0.exe",
+              "size": 7704554,
+              "downloadCount": 0,
+              "sha256": "b1da84f56ae6b2ec5d5fafb99403f045502ab253a56ee176d6263b8aed7c8589"
+            },
+            {
+              "name": "mameset_cleaner.exe",
+              "url": "https://github.com/Patrickjaillet/MAMESET-Cleaner/releases/download/v2.0.0/mameset_cleaner.exe",
+              "size": 16189952,
+              "downloadCount": 0
+            }
+          ]
+        },
+        {
+          "version": "1.0.0",
+          "date": "2026-08-19",
+          "prerelease": false,
+          "assets": [
+            {
+              "name": "MAMESET-Cleaner-Setup-v1.0.0.exe",
+              "url": "https://github.com/Patrickjaillet/MAMESET-Cleaner/releases/download/v1.0.0/MAMESET-Cleaner-Setup-v1.0.0.exe",
+              "size": 6911873,
+              "downloadCount": 0
+            },
+            {
+              "name": "mameset_cleaner.exe",
+              "url": "https://github.com/Patrickjaillet/MAMESET-Cleaner/releases/download/v1.0.0/mameset_cleaner.exe",
+              "size": 13823488,
+              "downloadCount": 0
+            }
+          ]
+        }
+      ],
+      "totalDownloads": 0,
+      "engagement": {
+        "likes": 0,
+        "comments": 0
+      }
+    },
+    {
       "id": "numis-euro",
       "githubRepoId": 1270335065,
       "name": "Numis-Euro",
@@ -794,13 +906,13 @@
               "name": "RetroTools2026-Portable-0.1.7.zip",
               "url": "https://github.com/Patrickjaillet/retrotools26/releases/download/v0.1.7/RetroTools2026-Portable-0.1.7.zip",
               "size": 14653725,
-              "downloadCount": 4
+              "downloadCount": 5
             },
             {
               "name": "RetroTools2026-Setup-0.1.7.exe",
               "url": "https://github.com/Patrickjaillet/retrotools26/releases/download/v0.1.7/RetroTools2026-Setup-0.1.7.exe",
               "size": 13065717,
-              "downloadCount": 4,
+              "downloadCount": 6,
               "sha256": "ecd758f392a5de50b6e61d0adf485e888db06f37d360da7ec89fd7d8cb31ac64"
             }
           ]
@@ -921,7 +1033,7 @@
           ]
         }
       ],
-      "totalDownloads": 16,
+      "totalDownloads": 19,
       "engagement": {
         "likes": 0,
         "comments": 0

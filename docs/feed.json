@@ -7,6 +7,13 @@
   "language": "en",
   "items": [
     {
+      "id": "mameset-cleaner-3.0.0",
+      "url": "https://patrickjaillet.github.io/sandefjord-software/software.html?id=mameset-cleaner",
+      "title": "MAMESET-Cleaner v3.0.0",
+      "content_text": "MAMESET Cleaner now covers the full No-Intro, TOSEC and Redump catalogs: 87 console and computer systems, on top of its native MAME support. ## What's new since v2.0.0 **87 systems available** for download from the \"Plugins\" section, up from 30 at v2.0.0 — every major Nintendo, Sega, Sony, SNK and Atari console, plus dozens of classic 1st/2nd-generation consoles, handhelds and 8/16-bit home computers (full list on the [project website](https://patrickjaillet.github.io/MAMESET-Cleaner)). **The \"Plugins\" section and the \"Système actif\" selector in Settings are now grouped by manufacturer with a search box**, so the catalog stays usable at this scale instead of an unmanageable flat list. **Fixed a real cross-plugin identity bug**: `abi_stable`'s plugin loader used to cache the first-loaded plugin and silently keep returning it for every subsequent, different plugin loaded in the same process — meaning switching between two console systems in one session could fail to actually switch. Fixed and covered by a dedicated regression test. Over 270 automated tests now cover the software, including all 87 console plugins, each loaded and exercised as a real compiled library. ## System requirements Windows 10 or Windows 11 (64-bit). ## Installation Two options: **`MAMESET-Cleaner-Setup-v3.0.0.exe`**: standard Windows installer (silent install/uninstall tested). **`mameset_cleaner.exe`**: portable executable, no installation required. Console plugins are downloaded separately, on demand, from the application's \"Plugins\" section.",
+      "date_published": "2026-08-20T00:00:00.000Z"
+    },
+    {
       "id": "mameset-cleaner-2.0.0",
       "url": "https://patrickjaillet.github.io/sandefjord-software/software.html?id=mameset-cleaner",
       "title": "MAMESET-Cleaner v2.0.0",

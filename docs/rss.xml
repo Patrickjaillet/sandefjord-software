@@ -6,6 +6,13 @@
   <description>Every release from every Sandefjord Software application, newest first.</description>
   <language>en</language>
   <item>
+    <title>MAMESET-Cleaner v7.0.0</title>
+    <link>https://patrickjaillet.github.io/sandefjord-software/software.html?id=mameset-cleaner</link>
+    <guid isPermaLink="false">mameset-cleaner-7.0.0</guid>
+    <pubDate>Fri, 21 Aug 2026 00:00:00 GMT</pubDate>
+    <description>## Interface redesign: dense, classic RomCenter-inspired look This release restyles the interface toward a denser, more information-rich look inspired by RomCenter — a layout and density change only. The app&apos;s existing color theme is unchanged. *Highlights** The Results view is now a compact grid with a colored status column (green/red/amber/grey), always paired with a short text code (`OK`/`MISS`/`BAD`/`N/A`) so status is never conveyed by color alone. New CRC and size columns are also shown, and the header now has a sort-direction indicator. The sidebar is now a flatter toolbar (square rows, a solid pressed-in outline for the active view) instead of the previous rounded icon rail. A new persistent status bar at the bottom of the window always shows live scan counts (OK/Missing/Corrupted/Unreferenced), no matter which section you&apos;re viewing. Settings, Filters, Plugins, and About are all tightened toward the same denser proportions. No changes to scanning, filtering, deduplication, or verification behavior — this release is entirely about layout and information density. See `CHANGELOG.md` for the full version history.</description>
+  </item>
+  <item>
     <title>MAMESET-Cleaner v6.0.0</title>
     <link>https://patrickjaillet.github.io/sandefjord-software/software.html?id=mameset-cleaner</link>
     <guid isPermaLink="false">mameset-cleaner-6.0.0</guid>

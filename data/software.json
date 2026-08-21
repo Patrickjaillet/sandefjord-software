@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-21T06:24:20.401Z",
+  "generatedAt": "2026-08-21T12:21:44.053Z",
   "software": [
     {
       "id": "le-petit-editeur-glsl",
@@ -473,7 +473,7 @@
       "name": "MAMESET-Cleaner",
       "shortDescription": "MAMESET Cleaner est un logiciel de bureau destiné à nettoyer et organiser un set de ROMs MAME.",
       "description": "MAMESET Cleaner est un logiciel de bureau destiné à nettoyer et organiser un set de ROMs MAME.",
-      "version": "6.0.0",
+      "version": "7.0.0",
       "prerelease": false,
       "category": "Utilities",
       "tags": [],
@@ -482,10 +482,26 @@
       "icon": "assets/icons/default-app.svg",
       "screenshots": [],
       "systemRequirements": "Windows 10/11, 64-bit",
-      "downloadUrl": "https://github.com/Patrickjaillet/MAMESET-Cleaner/releases/download/v6.0.0/MAMESET-Cleaner-Setup-v6.0.0.exe",
-      "downloadSha256": "6c0dcac75510aa3201a6f0490c2088cd0ef7a141982e6066e87ed7542cbe032b",
+      "downloadUrl": "https://github.com/Patrickjaillet/MAMESET-Cleaner/releases/download/v7.0.0/MAMESET-Cleaner-Setup-v7.0.0.exe",
+      "downloadSha256": "1aab5e055229fcb002489912fbadd4c299a0cefe874cf149a4047032a21a0760",
       "repositoryUrl": "https://github.com/Patrickjaillet/MAMESET-Cleaner",
       "changelog": [
+        {
+          "version": "7.0.0",
+          "date": "2026-08-21",
+          "notes": [
+            "## Interface redesign: dense, classic RomCenter-inspired look",
+            "This release restyles the interface toward a denser, more information-rich look inspired by RomCenter — a layout and density change only. The app's existing color theme is unchanged.",
+            "*Highlights**",
+            "The Results view is now a compact grid with a colored status column (green/red/amber/grey), always paired with a short text code (`OK`/`MISS`/`BAD`/`N/A`) so status is never conveyed by color alone. New CRC and size columns are also shown, and the header now has a sort-direction indicator.",
+            "The sidebar is now a flatter toolbar (square rows, a solid pressed-in outline for the active view) instead of the previous rounded icon rail.",
+            "A new persistent status bar at the bottom of the window always shows live scan counts (OK/Missing/Corrupted/Unreferenced), no matter which section you're viewing.",
+            "Settings, Filters, Plugins, and About are all tightened toward the same denser proportions.",
+            "No changes to scanning, filtering, deduplication, or verification behavior — this release is entirely about layout and information density.",
+            "See `CHANGELOG.md` for the full version history."
+          ],
+          "prerelease": false
+        },
         {
           "version": "6.0.0",
           "date": "2026-08-21",
@@ -572,6 +588,20 @@
       ],
       "versionHistory": [
         {
+          "version": "7.0.0",
+          "date": "2026-08-21",
+          "prerelease": false,
+          "assets": [
+            {
+              "name": "MAMESET-Cleaner-Setup-v7.0.0.exe",
+              "url": "https://github.com/Patrickjaillet/MAMESET-Cleaner/releases/download/v7.0.0/MAMESET-Cleaner-Setup-v7.0.0.exe",
+              "size": 8136826,
+              "downloadCount": 0,
+              "sha256": "1aab5e055229fcb002489912fbadd4c299a0cefe874cf149a4047032a21a0760"
+            }
+          ]
+        },
+        {
           "version": "6.0.0",
           "date": "2026-08-21",
           "prerelease": false,
@@ -580,7 +610,7 @@
               "name": "MAMESET-Cleaner-Setup-v6.0.0.exe",
               "url": "https://github.com/Patrickjaillet/MAMESET-Cleaner/releases/download/v6.0.0/MAMESET-Cleaner-Setup-v6.0.0.exe",
               "size": 8125093,
-              "downloadCount": 0,
+              "downloadCount": 1,
               "sha256": "6c0dcac75510aa3201a6f0490c2088cd0ef7a141982e6066e87ed7542cbe032b"
             }
           ]
@@ -645,7 +675,7 @@
           ]
         }
       ],
-      "totalDownloads": 2,
+      "totalDownloads": 3,
       "engagement": {
         "likes": 0,
         "comments": 0

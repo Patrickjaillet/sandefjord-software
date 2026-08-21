@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-20T18:20:39.087Z",
+  "generatedAt": "2026-08-21T00:35:15.223Z",
   "software": [
     {
       "id": "le-petit-editeur-glsl",
@@ -562,7 +562,7 @@
               "name": "MAMESET-Cleaner-Setup-v3.0.0.exe",
               "url": "https://github.com/Patrickjaillet/MAMESET-Cleaner/releases/download/v3.0.0/MAMESET-Cleaner-Setup-v3.0.0.exe",
               "size": 7731038,
-              "downloadCount": 0,
+              "downloadCount": 1,
               "sha256": "c2dc5415730f48760ddd10aff0f2ab64e04c09b060cdac6672d60ae59b6ef5aa"
             },
             {
@@ -613,7 +613,7 @@
           ]
         }
       ],
-      "totalDownloads": 1,
+      "totalDownloads": 2,
       "engagement": {
         "likes": 0,
         "comments": 0

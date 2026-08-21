@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-21T00:35:15.223Z",
+  "generatedAt": "2026-08-21T06:24:20.401Z",
   "software": [
     {
       "id": "le-petit-editeur-glsl",
@@ -473,7 +473,7 @@
       "name": "MAMESET-Cleaner",
       "shortDescription": "MAMESET Cleaner est un logiciel de bureau destiné à nettoyer et organiser un set de ROMs MAME.",
       "description": "MAMESET Cleaner est un logiciel de bureau destiné à nettoyer et organiser un set de ROMs MAME.",
-      "version": "3.0.0",
+      "version": "6.0.0",
       "prerelease": false,
       "category": "Utilities",
       "tags": [],
@@ -482,10 +482,28 @@
       "icon": "assets/icons/default-app.svg",
       "screenshots": [],
       "systemRequirements": "Windows 10/11, 64-bit",
-      "downloadUrl": "https://github.com/Patrickjaillet/MAMESET-Cleaner/releases/download/v3.0.0/MAMESET-Cleaner-Setup-v3.0.0.exe",
-      "downloadSha256": "c2dc5415730f48760ddd10aff0f2ab64e04c09b060cdac6672d60ae59b6ef5aa",
+      "downloadUrl": "https://github.com/Patrickjaillet/MAMESET-Cleaner/releases/download/v6.0.0/MAMESET-Cleaner-Setup-v6.0.0.exe",
+      "downloadSha256": "6c0dcac75510aa3201a6f0490c2088cd0ef7a141982e6066e87ed7542cbe032b",
       "repositoryUrl": "https://github.com/Patrickjaillet/MAMESET-Cleaner",
       "changelog": [
+        {
+          "version": "6.0.0",
+          "date": "2026-08-21",
+          "notes": [
+            "## Correctness release: 1G1R deduplication now actually works across all 87 systems",
+            "This release fixes a significant correctness gap: 1G1R duplicate detection previously only worked for MAME. Every other supported system (No-Intro, TOSEC, and Redump-based — 86 of the 87 systems) silently performed zero deduplication, because those DAT formats never declare the parent/clone relationships MAME's own files do.",
+            "*Highlights**",
+            "1G1R grouping now works correctly for all 87 systems. Regional releases (USA/Europe/Japan/etc.) are grouped and deduplicated everywhere, while multi-disc releases are carefully kept separate — never merged.",
+            "Region priority is now fully configurable in Settings (add, remove, reorder), instead of being fixed to World > USA > Europe > Japan.",
+            "A new optional preferred-language setting breaks ties within a region.",
+            "Official releases are now preferred over prototypes/betas/demos/unlicensed copies by default when picking which copy to keep, with a toggle to disable this for curated proto/beta collections.",
+            "Added an optional deep-verification mode that recomputes SHA1 (not just CRC32 and size) for extra confidence — off by default since it's slower on large sets.",
+            "The Results view now explains why a ROM was flagged as corrupted (wrong size, CRC32, or SHA1) instead of a bare status.",
+            "No changes to scanning, filtering, or cleanup mechanics beyond what's described above.",
+            "See `CHANGELOG.md` for the full version history."
+          ],
+          "prerelease": false
+        },
         {
           "version": "3.0.0",
           "date": "2026-08-20",
@@ -553,6 +571,20 @@
         }
       ],
       "versionHistory": [
+        {
+          "version": "6.0.0",
+          "date": "2026-08-21",
+          "prerelease": false,
+          "assets": [
+            {
+              "name": "MAMESET-Cleaner-Setup-v6.0.0.exe",
+              "url": "https://github.com/Patrickjaillet/MAMESET-Cleaner/releases/download/v6.0.0/MAMESET-Cleaner-Setup-v6.0.0.exe",
+              "size": 8125093,
+              "downloadCount": 0,
+              "sha256": "6c0dcac75510aa3201a6f0490c2088cd0ef7a141982e6066e87ed7542cbe032b"
+            }
+          ]
+        },
         {
           "version": "3.0.0",
           "date": "2026-08-20",

@@ -6,6 +6,13 @@
   <description>Every release from every Sandefjord Software application, newest first.</description>
   <language>en</language>
   <item>
+    <title>MAMESET-Cleaner v6.0.0</title>
+    <link>https://patrickjaillet.github.io/sandefjord-software/software.html?id=mameset-cleaner</link>
+    <guid isPermaLink="false">mameset-cleaner-6.0.0</guid>
+    <pubDate>Fri, 21 Aug 2026 00:00:00 GMT</pubDate>
+    <description>## Correctness release: 1G1R deduplication now actually works across all 87 systems This release fixes a significant correctness gap: 1G1R duplicate detection previously only worked for MAME. Every other supported system (No-Intro, TOSEC, and Redump-based — 86 of the 87 systems) silently performed zero deduplication, because those DAT formats never declare the parent/clone relationships MAME&apos;s own files do. *Highlights** 1G1R grouping now works correctly for all 87 systems. Regional releases (USA/Europe/Japan/etc.) are grouped and deduplicated everywhere, while multi-disc releases are carefully kept separate — never merged. Region priority is now fully configurable in Settings (add, remove, reorder), instead of being fixed to World &gt; USA &gt; Europe &gt; Japan. A new optional preferred-language setting breaks ties within a region. Official releases are now preferred over prototypes/betas/demos/unlicensed copies by default when picking which copy to keep, with a toggle to disable this for curated proto/beta collections. Added an optional deep-verification mode that recomputes SHA1 (not just CRC32 and size) for extra confidence — off by default since it&apos;s slower on large sets. The Results view now explains why a ROM was flagged as corrupted (wrong size, CRC32, or SHA1) instead of a bare status. No changes to scanning, filtering, or cleanup mechanics beyond what&apos;s described above. See `CHANGELOG.md` for the full version history.</description>
+  </item>
+  <item>
     <title>MAMESET-Cleaner v3.0.0</title>
     <link>https://patrickjaillet.github.io/sandefjord-software/software.html?id=mameset-cleaner</link>
     <guid isPermaLink="false">mameset-cleaner-3.0.0</guid>

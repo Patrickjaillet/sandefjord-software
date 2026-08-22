@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-22T12:15:24.168Z",
+  "generatedAt": "2026-08-22T18:12:11.182Z",
   "software": [
     {
       "id": "le-petit-editeur-glsl",
@@ -1339,7 +1339,7 @@
               "name": "SophiaWin11-Setup.exe",
               "url": "https://github.com/Patrickjaillet/sophia-win11/releases/download/v1.2.0.0/SophiaWin11-Setup.exe",
               "size": 79846148,
-              "downloadCount": 1,
+              "downloadCount": 2,
               "sha256": "6a7237750d14ab1434d33bb9ce14d58aa82463bf98e1eb8e827dfe323570e93d"
             }
           ]
@@ -1371,7 +1371,7 @@
           ]
         }
       ],
-      "totalDownloads": 1,
+      "totalDownloads": 2,
       "engagement": {
         "likes": 0,
         "comments": 0

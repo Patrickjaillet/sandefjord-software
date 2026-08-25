@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-24T18:22:08.481Z",
+  "generatedAt": "2026-08-25T00:33:50.547Z",
   "software": [
     {
       "id": "le-petit-editeur-glsl",
@@ -1014,7 +1014,7 @@
               "name": "RetroTools2026-Setup-0.1.7.exe",
               "url": "https://github.com/Patrickjaillet/retrotools26/releases/download/v0.1.7/RetroTools2026-Setup-0.1.7.exe",
               "size": 13065717,
-              "downloadCount": 9,
+              "downloadCount": 10,
               "sha256": "ecd758f392a5de50b6e61d0adf485e888db06f37d360da7ec89fd7d8cb31ac64"
             }
           ]
@@ -1135,7 +1135,7 @@
           ]
         }
       ],
-      "totalDownloads": 23,
+      "totalDownloads": 24,
       "engagement": {
         "likes": 0,
         "comments": 0

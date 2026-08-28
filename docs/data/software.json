@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-28T01:51:13.487Z",
+  "generatedAt": "2026-08-28T17:48:55.279Z",
   "software": [
     {
       "id": "le-petit-editeur-glsl",
@@ -1223,7 +1223,7 @@
               "name": "Sliders.GL_1.0.1_x64-setup.exe",
               "url": "https://github.com/Patrickjaillet/Sliders-GL/releases/download/v1.0.1/Sliders.GL_1.0.1_x64-setup.exe",
               "size": 7901209,
-              "downloadCount": 8,
+              "downloadCount": 9,
               "sha256": "23747efd116dd4a7672c11c284a76200794ecf054141a21a1c30704f0fcaa273"
             },
             {
@@ -1255,7 +1255,7 @@
           ]
         }
       ],
-      "totalDownloads": 16,
+      "totalDownloads": 17,
       "engagement": {
         "likes": 0,
         "comments": 0

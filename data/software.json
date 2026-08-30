@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-29T20:06:02.336Z",
+  "generatedAt": "2026-08-30T02:06:25.327Z",
   "software": [
     {
       "id": "le-petit-editeur-glsl",
@@ -1008,7 +1008,7 @@
               "name": "RetroTools2026-Portable-0.1.7.zip",
               "url": "https://github.com/Patrickjaillet/retrotools26/releases/download/v0.1.7/RetroTools2026-Portable-0.1.7.zip",
               "size": 14653725,
-              "downloadCount": 7
+              "downloadCount": 8
             },
             {
               "name": "RetroTools2026-Setup-0.1.7.exe",
@@ -1135,7 +1135,7 @@
           ]
         }
       ],
-      "totalDownloads": 25,
+      "totalDownloads": 26,
       "engagement": {
         "likes": 0,
         "comments": 0

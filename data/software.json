@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-31T12:00:52.318Z",
+  "generatedAt": "2026-08-31T22:07:46.538Z",
   "software": [
     {
       "id": "le-petit-editeur-glsl",
@@ -287,7 +287,7 @@
               "name": "PetitEditeurGLSL-Setup-0.1.18.exe",
               "url": "https://github.com/Patrickjaillet/Le-Petit-Editeur-GLSL/releases/download/v0.1.18/PetitEditeurGLSL-Setup-0.1.18.exe",
               "size": 166221279,
-              "downloadCount": 3,
+              "downloadCount": 4,
               "sha256": "47b4d25b40437f067edda61de9592133bf7e3fc8dd88143a5b664624d9c4ee6e"
             }
           ]
@@ -461,7 +461,7 @@
           ]
         }
       ],
-      "totalDownloads": 14,
+      "totalDownloads": 15,
       "engagement": {
         "likes": 0,
         "comments": 0
@@ -596,7 +596,7 @@
               "name": "MAMESET-Cleaner-Setup-v7.0.0.exe",
               "url": "https://github.com/Patrickjaillet/MAMESET-Cleaner/releases/download/v7.0.0/MAMESET-Cleaner-Setup-v7.0.0.exe",
               "size": 8136826,
-              "downloadCount": 2,
+              "downloadCount": 3,
               "sha256": "1aab5e055229fcb002489912fbadd4c299a0cefe874cf149a4047032a21a0760"
             }
           ]
@@ -675,7 +675,7 @@
           ]
         }
       ],
-      "totalDownloads": 5,
+      "totalDownloads": 6,
       "engagement": {
         "likes": 0,
         "comments": 0
@@ -722,19 +722,19 @@
               "name": "NumisEuro-5.0.0-portable.zip",
               "url": "https://github.com/Patrickjaillet/Numis-Euro/releases/download/install/NumisEuro-5.0.0-portable.zip",
               "size": 1351673,
-              "downloadCount": 14
+              "downloadCount": 15
             },
             {
               "name": "NumisEuro-5.0.0-setup.exe",
               "url": "https://github.com/Patrickjaillet/Numis-Euro/releases/download/install/NumisEuro-5.0.0-setup.exe",
               "size": 3157039,
-              "downloadCount": 17,
+              "downloadCount": 18,
               "sha256": "0aedc907c264deaf431266b01ba08290924d8d2136515b67de9f906d2f1a35ee"
             }
           ]
         }
       ],
-      "totalDownloads": 31,
+      "totalDownloads": 33,
       "engagement": {
         "likes": 1,
         "comments": 0
@@ -786,19 +786,19 @@
               "name": "P5CCS-Setup-1.0.0.0-arm64.exe",
               "url": "https://github.com/Patrickjaillet/p5ccs/releases/download/v1.0.0.0/P5CCS-Setup-1.0.0.0-arm64.exe",
               "size": 71787991,
-              "downloadCount": 4,
+              "downloadCount": 5,
               "sha256": "881372fa5baf718d790d9e6923e23fe2f297e60d786ac479230c598688a0054a"
             },
             {
               "name": "P5CCS-Setup-1.0.0.0-x64.exe",
               "url": "https://github.com/Patrickjaillet/p5ccs/releases/download/v1.0.0.0/P5CCS-Setup-1.0.0.0-x64.exe",
               "size": 88999219,
-              "downloadCount": 4
+              "downloadCount": 5
             }
           ]
         }
       ],
-      "totalDownloads": 8,
+      "totalDownloads": 10,
       "engagement": {
         "likes": 0,
         "comments": 0
@@ -1008,13 +1008,13 @@
               "name": "RetroTools2026-Portable-0.1.7.zip",
               "url": "https://github.com/Patrickjaillet/retrotools26/releases/download/v0.1.7/RetroTools2026-Portable-0.1.7.zip",
               "size": 14653725,
-              "downloadCount": 10
+              "downloadCount": 11
             },
             {
               "name": "RetroTools2026-Setup-0.1.7.exe",
               "url": "https://github.com/Patrickjaillet/retrotools26/releases/download/v0.1.7/RetroTools2026-Setup-0.1.7.exe",
               "size": 13065717,
-              "downloadCount": 10,
+              "downloadCount": 11,
               "sha256": "ecd758f392a5de50b6e61d0adf485e888db06f37d360da7ec89fd7d8cb31ac64"
             }
           ]
@@ -1135,7 +1135,7 @@
           ]
         }
       ],
-      "totalDownloads": 28,
+      "totalDownloads": 30,
       "engagement": {
         "likes": 0,
         "comments": 0
@@ -1223,14 +1223,14 @@
               "name": "Sliders.GL_1.0.1_x64-setup.exe",
               "url": "https://github.com/Patrickjaillet/Sliders-GL/releases/download/v1.0.1/Sliders.GL_1.0.1_x64-setup.exe",
               "size": 7901209,
-              "downloadCount": 9,
+              "downloadCount": 10,
               "sha256": "23747efd116dd4a7672c11c284a76200794ecf054141a21a1c30704f0fcaa273"
             },
             {
               "name": "Sliders.GL_1.0.1_x64_en-US.msi",
               "url": "https://github.com/Patrickjaillet/Sliders-GL/releases/download/v1.0.1/Sliders.GL_1.0.1_x64_en-US.msi",
               "size": 8589312,
-              "downloadCount": 5
+              "downloadCount": 6
             }
           ]
         },
@@ -1255,7 +1255,7 @@
           ]
         }
       ],
-      "totalDownloads": 17,
+      "totalDownloads": 19,
       "engagement": {
         "likes": 0,
         "comments": 0
@@ -1339,7 +1339,7 @@
               "name": "SophiaWin11-Setup.exe",
               "url": "https://github.com/Patrickjaillet/sophia-win11/releases/download/v1.2.0.0/SophiaWin11-Setup.exe",
               "size": 79846148,
-              "downloadCount": 5,
+              "downloadCount": 6,
               "sha256": "6a7237750d14ab1434d33bb9ce14d58aa82463bf98e1eb8e827dfe323570e93d"
             }
           ]
@@ -1371,7 +1371,7 @@
           ]
         }
       ],
-      "totalDownloads": 5,
+      "totalDownloads": 6,
       "engagement": {
         "likes": 0,
         "comments": 0
@@ -2801,7 +2801,7 @@
               "name": "uShader-Setup-4.5.2.0.exe",
               "url": "https://github.com/Patrickjaillet/uShader/releases/download/v4.5.2/uShader-Setup-4.5.2.0.exe",
               "size": 2839181,
-              "downloadCount": 5,
+              "downloadCount": 6,
               "sha256": "57661df2b1c9ec0fdc5c6ec369e1b86e80da009402004f55a40ee10033f22284"
             }
           ]
@@ -2835,7 +2835,7 @@
           ]
         }
       ],
-      "totalDownloads": 13,
+      "totalDownloads": 14,
       "engagement": {
         "likes": 0,
         "comments": 0

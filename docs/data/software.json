@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-04T10:10:07.121Z",
+  "generatedAt": "2026-09-04T15:19:12.299Z",
   "software": [
     {
       "id": "ffmpegui",
@@ -169,7 +169,7 @@
               "name": "FFmpegUI-0.1.1-Setup.exe",
               "url": "https://github.com/Patrickjaillet/ffmpegui/releases/download/v0.1.1/FFmpegUI-0.1.1-Setup.exe",
               "size": 258233794,
-              "downloadCount": 2,
+              "downloadCount": 3,
               "sha256": "059df9b97fd75ea0c96a6a3d26cf87f3a2282bc8e1cf069482bc2031a5eeb5b3"
             }
           ]
@@ -181,7 +181,7 @@
           "assets": []
         }
       ],
-      "totalDownloads": 2,
+      "totalDownloads": 3,
       "engagement": {
         "likes": 0,
         "comments": 0
@@ -1194,7 +1194,7 @@
               "name": "RetroTools2026-Portable-0.1.7.zip",
               "url": "https://github.com/Patrickjaillet/retrotools26/releases/download/v0.1.7/RetroTools2026-Portable-0.1.7.zip",
               "size": 14653725,
-              "downloadCount": 13
+              "downloadCount": 14
             },
             {
               "name": "RetroTools2026-Setup-0.1.7.exe",
@@ -1321,7 +1321,7 @@
           ]
         }
       ],
-      "totalDownloads": 32,
+      "totalDownloads": 33,
       "engagement": {
         "likes": 0,
         "comments": 0
@@ -4316,7 +4316,7 @@
               "name": "Videotoy-Setup-2.0.0.exe",
               "url": "https://github.com/Patrickjaillet/Videotoy/releases/download/v2.0.0/Videotoy-Setup-2.0.0.exe",
               "size": 34892415,
-              "downloadCount": 0,
+              "downloadCount": 1,
               "sha256": "5b489f0bf896e00ca8fdbfd7c2a4784814354e99cfea330740b388e79df36fc4"
             }
           ]
@@ -4348,7 +4348,7 @@
           ]
         }
       ],
-      "totalDownloads": 14,
+      "totalDownloads": 15,
       "engagement": {
         "likes": 0,
         "comments": 0

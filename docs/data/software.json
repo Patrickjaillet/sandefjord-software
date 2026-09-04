@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-03T20:14:03.003Z",
+  "generatedAt": "2026-09-04T01:47:33.428Z",
   "software": [
     {
       "id": "ffmpegui",
@@ -169,7 +169,7 @@
               "name": "FFmpegUI-0.1.1-Setup.exe",
               "url": "https://github.com/Patrickjaillet/ffmpegui/releases/download/v0.1.1/FFmpegUI-0.1.1-Setup.exe",
               "size": 258233794,
-              "downloadCount": 1,
+              "downloadCount": 2,
               "sha256": "059df9b97fd75ea0c96a6a3d26cf87f3a2282bc8e1cf069482bc2031a5eeb5b3"
             }
           ]
@@ -181,7 +181,7 @@
           "assets": []
         }
       ],
-      "totalDownloads": 1,
+      "totalDownloads": 2,
       "engagement": {
         "likes": 0,
         "comments": 0

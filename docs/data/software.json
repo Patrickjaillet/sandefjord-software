@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-05T09:34:46.355Z",
+  "generatedAt": "2026-09-05T14:07:28.514Z",
   "software": [
     {
       "id": "ffmpegui",
@@ -1194,7 +1194,7 @@
               "name": "RetroTools2026-Portable-0.1.7.zip",
               "url": "https://github.com/Patrickjaillet/retrotools26/releases/download/v0.1.7/RetroTools2026-Portable-0.1.7.zip",
               "size": 14653725,
-              "downloadCount": 14
+              "downloadCount": 15
             },
             {
               "name": "RetroTools2026-Setup-0.1.7.exe",
@@ -1321,7 +1321,7 @@
           ]
         }
       ],
-      "totalDownloads": 33,
+      "totalDownloads": 34,
       "engagement": {
         "likes": 0,
         "comments": 0

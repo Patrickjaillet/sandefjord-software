@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-06T09:49:37.018Z",
+  "generatedAt": "2026-09-06T14:31:37.826Z",
   "software": [
     {
       "id": "ffmpegui",
@@ -7,7 +7,7 @@
       "name": "ffmpegui",
       "shortDescription": "Windows desktop GUI for FFmpeg — transcoding, batch processing, preview and analysis. Freeware.",
       "description": "Windows desktop GUI for FFmpeg — transcoding, batch processing, preview and analysis. Freeware.",
-      "version": "0.3.0",
+      "version": "1.0.0",
       "prerelease": false,
       "category": "Utilities",
       "tags": [],
@@ -16,10 +16,54 @@
       "icon": "assets/icons/default-app.svg",
       "screenshots": [],
       "systemRequirements": "Windows 10/11, 64-bit",
-      "downloadUrl": "https://github.com/Patrickjaillet/ffmpegui/releases/download/v0.3.0/FFmpegUI-0.3.0-Setup.exe",
-      "downloadSha256": "50f5b26f18e3f487b361cccaff3c3a22f15c776a9f0b086390ad975b1da58987",
+      "downloadUrl": "https://github.com/Patrickjaillet/ffmpegui/releases/download/v1.0.0/FFmpegUI-1.0.0-Setup.exe",
+      "downloadSha256": "52c7fa8e3cbff1d8e115bf3866bdc19fc9b49ece87ef83e3b9ad890d5522aaf0",
       "repositoryUrl": "https://github.com/Patrickjaillet/ffmpegui",
       "changelog": [
+        {
+          "version": "1.0.0",
+          "date": "2026-09-06",
+          "notes": [
+            "# FFmpegUI 1.0.0",
+            "First stable release. The core FFmpeg workflow — detection and capability caching, input analysis, integrated preview, the full encode pipeline (video / audio / filters / subtitles / output / stream mapping / expert mode), presets, the parallel batch queue, trimming and assembly, screen capture, live streaming, comparison viewports, and a complete French / English UI — is in place, covered by 196 tests including 32 end-to-end runs against a real FFmpeg binary, with static analysis and a coverage gate wired into the build.",
+            "### Added",
+            "**Static analysis and code-coverage gate** (roadmap section 21) — .NET analyzers and code-style enforcement are on solution-wide (`EnableNETAnalyzers`, `AnalysisLevel=latest-Default`, `EnforceCodeStyleInBuild`), with an `.editorconfig` calibrated to the existing code: a handful of correctness rules (CA2016, CA2201, CA1001, CA1068, CA1826) are promoted to warnings and the noisy culture/naming rules that do not apply to a Windows-only single-culture app are silenced. Analyzer findings stay warnings, not errors, so `TreatWarningsAsErrors` still gates real compiler warnings. `coverlet.msbuild` now enforces a minimum total line coverage of 65 % over `Core` + `Engine` + `Services` (`dotnet test -p:CollectCoverage=true`), currently at ~71 %.",
+            "**Full French / English UI** (roadmap section 16) — the internationalisation proof of concept is extended to the whole application. Every tab (Inputs, Preview, Compare, Trim, Concat, Screen Capture, Live, Encode, Advanced Tools, Queue, FFmpeg Status, Settings, About), the shell menu, the navigation sidebar and the dockable panels now pull their strings from `en.json` / `fr.json` (326 keys each) and switch language live. A new `{loc:T Key}` XAML markup extension (backed by a static `LocalizationResource` holder) replaces the verbose binding syntax; `NavigationItem` titles are localised and re-raise on language change.",
+            "**Live streaming** (roadmap section 14) — a new \"Live\" tab:",
+            "- **Source**: a local file (from Inputs, played `-re`), the screen (`gdigrab`, optional region), a webcam (`dshow`, listed by the same device enumerator as the Inputs tab), or **screen + webcam picture-in-picture** (`-filter_complex [1:v]scale=W:-1[pip];[0:v][pip]overlay=<position>[outv]`). An optional microphone (`dshow` audio) can be added to any source.",
+            "- **Destination**: RTMP (`-f flv`), SRT (`-f mpegts`), RTSP (`-f rtsp`), or local-file-only. Bitrate, keyframe interval and audio settings are configurable.",
+            "- **Record while streaming** — a checkbox routes the output through the `tee` muxer to both the stream URL and a local file in one FFmpeg process. Paths inside the tee spec are written with forward slashes because the muxer treats `\\` as an escape (found by an integration test).",
+            "- Long-running process with a graceful `q`-on-stdin stop and drained stdout/stderr, reusing the pattern proven for Screen Capture; the last error line is surfaced if the stream ends badly. New `FFmpegUI.Core.LiveStreamOptions`, `LiveStreamArgumentsBuilder` and `LiveStreamJobRunner` (Engine), `LiveStreamViewModel`.",
+            "- Validated end to end against the real `ffmpeg` binary: a local file streamed to a local file produces a valid 2 s output, and the tee path produces both the `.flv` and the `.mp4`. RTMP/SRT/RTSP URL construction is unit-tested (a real ingest server is out of scope).",
+            "**Apply a preset to a batch of files** (roadmap section 12): a \"Batch encode all inputs with a preset\" panel in the Inputs tab — pick a saved or built-in encoding profile and \"Queue all local inputs\" enqueues one job per local file in the list. New `BatchEncodeService` (Services) probes each file for its duration, builds the argument list from the profile's video / audio / container option records (no per-file stream mapping — FFmpeg's default first-video + first-audio), and names the output `<name>_<preset><ext>`. Validated end to end against the real `ffmpeg` binary: two files produce two jobs with probed durations and the right extensions, and the first job encodes to a valid h264 + aac file.",
+            "**Trim / Extract / Assemble** (roadmap section 10) — the Trim tab gains:",
+            "- **Multi-segment extraction** — a list of (start → end) rows; \"Queue all segments\" enqueues one trim job per row (`_segNN` suffix), honouring the Stream-copy toggle.",
+            "- **Scene-cut detection** (`scdet`) — \"Detect scenes\" runs `scdet=threshold=N`, parses the `lavfi.scd.time` lines and fills the segment list with the cut-to-cut ranges (new `SceneAndSilenceDetector`, Engine).",
+            "- **Silence-based auto-split** (`silencedetect`) — \"Split at silence\" parses `silence_start`/`silence_end` and fills the segment list with the *non-silent* ranges between the gaps.",
+            "- **Frame extraction at an interval** — `-vf fps=1/N` (+ optional width) to a `%03d.jpg` pattern.",
+            "- **Images → Video** — pick the first image (pattern inferred from its trailing digits), set a frame rate, and queue an `-f image2 -framerate N` encode; needs no Inputs file. New `SegmentArgumentsBuilder` (Engine), `FFmpegUI.Core.SegmentOptions` records.",
+            "- Validated end to end against the real `ffmpeg` binary (5 integration tests): scene cuts and the silence gap are found on synthetic clips with known structure, three trim segments produce three ~1 s files, the interval extractor yields multiple JPEGs, and a 6-frame PNG sequence at 6 fps builds a 1 s video.",
+            "**Video filters** (roadmap section 9) — the Filters column of the Encode tab gains, on top of the existing crop / scale / rotate / eq / denoise / sharpen / blur / deinterlace:",
+            "- **Filtergraph validation** — a \"Validate filtergraph\" button runs the current expression through `ffmpeg -f lavfi -i nullsrc -vf … -f null -` and reports OK or FFmpeg's first error line (new `FilterGraphValidator`, Engine).",
+            "- **Stabilization** (`vidstab`) — a 2-pass job: `EncodingJobRunner` detects the `<VIDSTAB_TRF>` token in the filter chain, runs `vidstabdetect` to a temp `.trf` first, then the real encode with `vidstabtransform` (temp file cleaned up afterwards; composes with encode two-pass if both are on).",
+            "- **Frame interpolation** (`minterpolate=fps=N:mi_mode=mci`).",
+            "- **Text overlay** (`drawtext`) — text, font file, size, colour, border, and a nine-point position.",
+            "- **Image / logo overlay** — an extra `-i` input driven through `-filter_complex … [bg][ov]overlay=…[outv] -map [outv]`, with an opacity slider (`format=rgba,colorchannelmixer=aa=…`) and a nine-point position. Input-index bookkeeping accounts for the subtitle-mux and container extra inputs.",
+            "- **Fade in / out**, **chroma key / color key** (a `format=yuv420p` is appended after keying when there is no overlay, so the encoder does not choke on the alpha), and **3D LUT** (`.cube` file picker).",
+            "- **Filter presets** — the whole filter configuration is saved to / loaded from named JSON files (new `FilterPreset` / `FilterPresetStore`).",
+            "- New `FFmpegUI.Core.VideoFilterOptions` sub-records; `IVideoFilterArgumentsBuilder` gained overlay and validation members. The visual node editor stays with section 27 (v6.0.0).",
+            "### Fixed",
+            "**Filter values containing spaces** (e.g. `drawtext=text='Hello World'`) were split into separate arguments because `EncodingJobRunner` joined the argument list with a plain space. Arguments that contain a space and are not already quoted are now wrapped in quotes. Found by a section-9 integration test.",
+            "**Chroma key on an 8-bit source produced a 4:4:4 stream** that `libx264`'s `main` profile rejected. The filter builder appends `format=yuv420p` after keying when no overlay follows.",
+            "**Inputs tab: the analysis panel never appeared** — the `StackPanel`'s style set `Visibility=\"Collapsed\"` as the base value with the only trigger also collapsing it (for a null `SelectedFile`), so a selected file's format / streams / chapters were never shown. The base value is now `Visible`, collapsed only when no file is selected.",
+            "**GitHub repository links used the wrong owner casing** (`PatrickJaillet` instead of the actual login `Patrickjaillet`) throughout the presentation site, `README.md` and `CONTRIBUTING.md`. GitHub redirected them, but they are now the canonical form.",
+            "### Changed",
+            "**`README.md` rebuilt as a proper showcase** — positioning, a tab-by-tab feature tour, a capability table, and screenshots, with shield badges for download / license / platform.",
+            "**New screenshots** — all captures in `docs/scs/` are fresh real captures of the running app (Inputs, Preview, Encode, Queue with a running job, FFmpeg Status, Trim, Live, Settings), used across `README.md` and the presentation site.",
+            "**Presentation-site comparison table** — rows for features that have since shipped (source/output comparison view, waveform / vectorscope / histogram, lossless stream-copy trim, live streaming) are no longer marked \"Planned\"; the batch-queue and French/English rows note N-parallel jobs and whole-app coverage."
+          ],
+          "prerelease": false
+        },
         {
           "version": "0.3.0",
           "date": "2026-09-06",
@@ -75,6 +119,20 @@
       ],
       "versionHistory": [
         {
+          "version": "1.0.0",
+          "date": "2026-09-06",
+          "prerelease": false,
+          "assets": [
+            {
+              "name": "FFmpegUI-1.0.0-Setup.exe",
+              "url": "https://github.com/Patrickjaillet/ffmpegui/releases/download/v1.0.0/FFmpegUI-1.0.0-Setup.exe",
+              "size": 258491485,
+              "downloadCount": 1,
+              "sha256": "52c7fa8e3cbff1d8e115bf3866bdc19fc9b49ece87ef83e3b9ad890d5522aaf0"
+            }
+          ]
+        },
+        {
           "version": "0.3.0",
           "date": "2026-09-06",
           "prerelease": false,
@@ -83,7 +141,7 @@
               "name": "FFmpegUI-0.3.0-Setup.exe",
               "url": "https://github.com/Patrickjaillet/ffmpegui/releases/download/v0.3.0/FFmpegUI-0.3.0-Setup.exe",
               "size": 258438604,
-              "downloadCount": 0,
+              "downloadCount": 1,
               "sha256": "50f5b26f18e3f487b361cccaff3c3a22f15c776a9f0b086390ad975b1da58987"
             }
           ]
@@ -102,7 +160,7 @@
           ]
         }
       ],
-      "totalDownloads": 0,
+      "totalDownloads": 2,
       "engagement": {
         "likes": 0,
         "comments": 0

@@ -1,6 +1,113 @@
 {
-  "generatedAt": "2026-09-06T01:39:45.254Z",
+  "generatedAt": "2026-09-06T09:49:37.018Z",
   "software": [
+    {
+      "id": "ffmpegui",
+      "githubRepoId": 1358577639,
+      "name": "ffmpegui",
+      "shortDescription": "Windows desktop GUI for FFmpeg — transcoding, batch processing, preview and analysis. Freeware.",
+      "description": "Windows desktop GUI for FFmpeg — transcoding, batch processing, preview and analysis. Freeware.",
+      "version": "0.3.0",
+      "prerelease": false,
+      "category": "Utilities",
+      "tags": [],
+      "hidden": false,
+      "order": 999,
+      "icon": "assets/icons/default-app.svg",
+      "screenshots": [],
+      "systemRequirements": "Windows 10/11, 64-bit",
+      "downloadUrl": "https://github.com/Patrickjaillet/ffmpegui/releases/download/v0.3.0/FFmpegUI-0.3.0-Setup.exe",
+      "downloadSha256": "50f5b26f18e3f487b361cccaff3c3a22f15c776a9f0b086390ad975b1da58987",
+      "repositoryUrl": "https://github.com/Patrickjaillet/ffmpegui",
+      "changelog": [
+        {
+          "version": "0.3.0",
+          "date": "2026-09-06",
+          "notes": [
+            "## FFmpegUI v0.3.0",
+            "### Interface",
+            "**Dockable shell** — the sidebar is replaced by a docking manager. Every module view is now a reorderable tab that can be torn off into a floating window and re-docked. Two new side panels — **Metadata** (a live media summary of the file selected in Inputs) and **Queue Monitor** (compact job list, progress, start/stop) — can be docked beside, above or below any tab, or floated. The panel layout is remembered across sessions, and the View menu adds predefined \"Encoding\" / \"Analysis\" layouts plus \"Reset Layout\".",
+            "**Compare tab** — two independent players for a source and an encoded output (a completed queue job, or any browsed file). Side-by-side with a draggable divider, a split view with a position slider, or source/output only. Optional synchronized playback keeps both players locked to a shared transport.",
+            "**Zoom and pan** on the Preview viewport (mouse wheel 1×–8×, left-drag, \"Reset zoom\").",
+            "### Inputs",
+            "**Image sequences** (`frame%04d.png` + frame rate — the pattern is inferred from the first image).",
+            "**Network streams** — RTSP / RTMP / HTTP / UDP / SRT URLs.",
+            "**Capture devices** — a refreshable list of webcams and microphones, plus \"Add screen\" for a desktop capture.",
+            "**Export analysis report** — the selected input's `ffprobe` analysis as a `.json` or a human-readable `.txt`.",
+            "**Embedded subtitle preview** — a burned-in frame per subtitle stream.",
+            "### Video",
+            "**Advanced parameters**: tune, B-frames count, GOP size / keyframe interval, aspect ratio, encoding threads, manual colour space / primaries / transfer.",
+            "**Two-pass encoding** — the analysis pass and the final encode run as a single queue item.",
+            "**Hardware-accelerated decoding** (`-hwaccel`) — None / Auto / CUDA / QSV / D3D11VA / DXVA2; \"Auto\" falls back to software when no compatible GPU is present.",
+            "**HDR passthrough** — HDR10 / HDR10+ / Dolby Vision are detected on the source. In stream-copy the bitstream is carried through untouched; a re-encode to `libx265` re-injects the HDR10 mastering-display and MaxCLL metadata. HDR10+ dynamic metadata and Dolby Vision RPU cannot be preserved through a re-encode — the app says so and points you to stream copy.",
+            "### Audio",
+            "**A/V sync offset** (positive delays the audio, negative trims its start).",
+            "**Advanced filters** — noise gate, compressor, a raw equalizer expression, and a resampler-engine selector (swr / soxr).",
+            "**Multiple tracks / mixing** — tick two or more source audio tracks and mix them (`amix` or `amerge`).",
+            "**Extract audio to a separate file** (aac / mp3 / flac / wav / opus, chosen from the extension).",
+            "### Subtitles",
+            "**Burn-in style override** — font, size, text and outline colour, alignment, margin, outline width, bold / italic (ASS `force_style`).",
+            "**Extract embedded subtitles** to `.srt` / `.vtt` / `.ass`.",
+            "**Convert a subtitle file** between SRT, WebVTT and ASS (\"Advanced Tools\").",
+            "### Quality",
+            "17 new end-to-end integration tests run the real encoding pipeline against the bundled FFmpeg and verify the produced files. They found and fixed four defects along the way (image-sequence demuxer selection, 10-bit HEVC profile, an HDR `-x265-params` conflict, and a doubled audio-extraction output path).",
+            "### Installation",
+            "Download `FFmpegUI-0.3.0-Setup.exe` below and run it. Per-user install, no administrator rights required. Windows 11 (64-bit). FFmpeg is bundled."
+          ],
+          "prerelease": false
+        },
+        {
+          "version": "0.2.0",
+          "date": "2026-09-05",
+          "notes": [
+            "## FFmpegUI v0.2.0",
+            "### Added",
+            "**Compare tab** — source vs. output viewports with two independent players. Side-by-side (with a draggable divider), split view (a position slider wipes between source and output), source-only and output-only modes. The output player binds to a completed queue job or a browsed file. Optional synchronized playback keeps both players locked to a shared transport, correcting drift automatically.",
+            "**Zoom and pan on the Preview viewport** — mouse-wheel zoom (1×–8×, centered on the cursor), left-drag pan, and a \"Reset zoom\" button.",
+            "**Dockable shell** — the sidebar is replaced by a docking manager: every module view is now a dockable, reorderable tab that can be torn off into a floating window and re-docked. Two new anchorable side panels — \"Metadata\" (a live media summary of the file selected in Inputs) and \"Queue Monitor\" (compact job list, progress, start/stop) — can be docked beside, above or below any tab, or floated. The panel layout is remembered across sessions. The View menu adds predefined \"Encoding\" and \"Analysis\" layouts and a \"Reset Layout\" entry.",
+            "**Advanced video encoding parameters** in the Encode tab — tune (film / animation / grain / stillimage / fastdecode / zerolatency / psnr / ssim), B-frames count, GOP size / keyframe interval, aspect ratio, encoding thread count, and manual colour-space / primaries / transfer fields. All persisted in saved encoding profiles.",
+            "**Two-pass encoding** — a two-pass job runs the analysis pass and the final encode as a single queue item, sharing a per-job stats file that is cleaned up afterwards.",
+            "### Installation",
+            "Download `FFmpegUI-0.2.0-Setup.exe` below and run it. Per-user install, no administrator rights required. Windows 11 (64-bit). FFmpeg is bundled."
+          ],
+          "prerelease": false
+        }
+      ],
+      "versionHistory": [
+        {
+          "version": "0.3.0",
+          "date": "2026-09-06",
+          "prerelease": false,
+          "assets": [
+            {
+              "name": "FFmpegUI-0.3.0-Setup.exe",
+              "url": "https://github.com/Patrickjaillet/ffmpegui/releases/download/v0.3.0/FFmpegUI-0.3.0-Setup.exe",
+              "size": 258438604,
+              "downloadCount": 0,
+              "sha256": "50f5b26f18e3f487b361cccaff3c3a22f15c776a9f0b086390ad975b1da58987"
+            }
+          ]
+        },
+        {
+          "version": "0.2.0",
+          "date": "2026-09-05",
+          "prerelease": false,
+          "assets": [
+            {
+              "name": "FFmpegUI-0.2.0-Setup.exe",
+              "url": "https://github.com/Patrickjaillet/ffmpegui/releases/download/v0.2.0/FFmpegUI-0.2.0-Setup.exe",
+              "size": 258416281,
+              "downloadCount": 0
+            }
+          ]
+        }
+      ],
+      "totalDownloads": 0,
+      "engagement": {
+        "likes": 0,
+        "comments": 0
+      }
+    },
     {
       "id": "le-petit-editeur-glsl",
       "githubRepoId": 1335118890,

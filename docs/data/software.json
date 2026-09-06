@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-06T14:31:37.826Z",
+  "generatedAt": "2026-09-06T19:42:04.327Z",
   "software": [
     {
       "id": "ffmpegui",
@@ -7,7 +7,7 @@
       "name": "ffmpegui",
       "shortDescription": "Windows desktop GUI for FFmpeg — transcoding, batch processing, preview and analysis. Freeware.",
       "description": "Windows desktop GUI for FFmpeg — transcoding, batch processing, preview and analysis. Freeware.",
-      "version": "1.0.0",
+      "version": "2.0.0",
       "prerelease": false,
       "category": "Utilities",
       "tags": [],
@@ -16,10 +16,42 @@
       "icon": "assets/icons/default-app.svg",
       "screenshots": [],
       "systemRequirements": "Windows 10/11, 64-bit",
-      "downloadUrl": "https://github.com/Patrickjaillet/ffmpegui/releases/download/v1.0.0/FFmpegUI-1.0.0-Setup.exe",
-      "downloadSha256": "52c7fa8e3cbff1d8e115bf3866bdc19fc9b49ece87ef83e3b9ad890d5522aaf0",
+      "downloadUrl": "https://github.com/Patrickjaillet/ffmpegui/releases/download/v2.0.0/FFmpegUI-2.0.0-Setup.exe",
+      "downloadSha256": "a99cb146f6042c32881b9304e08526bf196e69094198d4af3dfcdc30918e35c9",
       "repositoryUrl": "https://github.com/Patrickjaillet/ffmpegui",
       "changelog": [
+        {
+          "version": "2.0.0",
+          "date": "2026-09-06",
+          "notes": [
+            "## FFmpegUI v2.0.0 — shader-to-video engine",
+            "The shader-to-video engine (roadmap section 23), built on top of the stable v1.0 core. A new **Shaders** tab takes a GLSL, Shadertoy, HLSL or WGSL shader — auto-detected and transpiled through SPIR-V to native Direct3D 11 — with every scalar Shadertoy uniform mapped, all four `iChannel` slots assignable to an image, an imported video or an audio FFT, multi-pass buffers with feedback plus Cubemap A, and a topological pass-graph resolver. A live D3D11 preview renders the whole graph while you type; export runs offscreen one frame at a time straight into FFmpeg, standalone or as a Replace / Blend / PostProcess filter on an imported video with its audio, from the tab or the batch queue. Shaders save to a foldered, tag-filtered local library or a self-contained `.json`. 56 new tests (252 total), including end-to-end renders of every dialect and channel type against a real FFmpeg binary. Also: the Preview / Compare native-crash fix, the presentation site redesign, and the window now opening maximized.",
+            "### Added",
+            "**Shader engine — HLSL pipeline, end to end** — a new `FFmpegUI.Shaders` project (`Vortice.Direct3D11` / `DXGI` / `D3DCompiler`), immutable shader domain types in `Core`, and a dockable **Shaders** tab wired into DI, navigation and the FR/EN localisation. `ShaderRenderPipeline` creates a hardware D3D11 device, compiles the pixel shader, renders a fullscreen triangle to a B8G8R8A8 target with the Shadertoy uniform cbuffer, and reads the pixels back; `ShaderVideoRenderer` drives it strictly one frame at a time and pipes BGRA straight to `ffmpeg -f rawvideo -pix_fmt bgra -i -` (no intermediate file), reusing the existing encode-argument builders. Dialect detection, the multi-pass dependency-graph resolver (topological order, single-pass feedback allowed, mutual cycles rejected), and the raw-BGRA pipe arguments are pure and tested; a `Section23` integration test renders an HLSL shader to a valid h264/mp4 verified with `ffprobe`.",
+            "**Syntax-highlighting shader editor** — the Shaders tab's pass and Common editors are an AvalonEdit `CodeEditor` with line numbers and a `ShaderSyntax.xshd` definition covering GLSL, HLSL and WGSL: keywords, `vec*` / `float*` / `mat*` / texture types, builtin functions, Shadertoy uniforms, numbers, comments and preprocessor directives. Two-way bindable via a `SourceText` dependency property.",
+            "**GLSL, Shadertoy and WGSL shaders transpile and render** — a unified `ShaderTranspiler` handles all four dialects: HLSL passes through; GLSL / Shadertoy GLSL are wrapped and compiled to SPIR-V with `glslangValidator`; WGSL is compiled to SPIR-V with `naga` (the wgpu shader translator — chosen over `tint`, which ships no prebuilt binary); both SPIR-V paths then converge on `spirv-cross --hlsl` for the final HLSL SM 5.0. The three self-contained binaries ship under `tools/shader/`, located relative to the app directory with a `PATH` fallback. Each dialect renders to video end to end; compile / parse errors surface with the original tool's message.",
+            "**All scalar Shadertoy uniforms are mapped** — the auto-generated cbuffer feeds every scalar uniform: `iTime` / `iTimeDelta` / `iFrame` / `iFrameRate` advance per frame, `iResolution` is the export size, `iDate` is the wall-clock at render start, `iMouse` is a fixed position, and `iChannelResolution[4]` carries each channel's real source dimensions. Verified by a test that reads every uniform, so a cbuffer layout mismatch would fail the render.",
+            "**`iChannel0`–`iChannel3` input sources** (section 23.2) — each channel can be assigned a **static image** (decoded once with FFmpeg), an **imported video** (decoded up front to a temp raw-BGRA file, advanced one frame per render frame so it stays in step with `iTime`), an **audio FFT** channel (Shadertoy's 512×2 texture — magnitude spectrum from a hand-written radix-2 FFT plus the waveform, windowed at the audio position matching the render time), or a **multi-pass buffer** (`BufferA`–`BufferD`) sampled through ping-pong render targets for feedback. Per-channel wrap and filter modes. Four BGRA texture slots per pass at registers `t1`–`t4` / `s1`–`s4`; an unbound channel samples a 1×1 black texture. New \"iChannel sources\" panel. Five integration tests render each source type to a valid mp4.",
+            "**`#include` resolution and shared Common** — the Common source is prepended to every pass and `#include \"common\"` / `#include \"<module>\"` directives are resolved (unknown or duplicate includes dropped), for both wrapped Shadertoy and plain GLSL.",
+            "**Clearer transpile errors** — compiler output no longer leaks the temp working directory or internal file names, is capped in length, is prefixed with the pass it came from, and carries a note about which source its line numbers refer to.",
+            "**Built-in example shader library** — a dropdown loads four ready-to-render examples with no network: a Shadertoy plasma, a raymarched sphere (using the Common tab), a native-HLSL gradient, and a multi-pass feedback trail. A test transpiles every example, every pass.",
+            "**Direct Shadertoy import** — paste a `shadertoy.com/view/XXXX` URL (or a bare id) and, with a Shadertoy API key stored in settings, the full pass graph is pulled from the Shadertoy API: Common, Buffer A–D and Image, with channel bindings mapped and passes topologically ordered. Without a key it explains how to paste manually. The full imported graph loads into the per-pass editors.",
+            "**Multi-pass editing** — a per-pass editor: a selector strip switches between Image, Buffer A–D and Cubemap A, each pass with its own source and four `iChannel` bindings; \"+ Buffer\" / \"+ Cubemap\" add a pass, \"Remove pass\" deletes the selected one. Passes are always submitted to the renderer with the Image pass last. Validate and Export warn (in the status line) when an image / video / audio channel has no file chosen.",
+            "**Cubemap A pass** — a Shadertoy `mainCubemap(out vec4, in vec2, in vec3 rayOri, in vec3 rayDir)` pass renders to a `TextureCube` (six array slices, one render-target view and per-face ray direction per face); any pass whose channel points at Cubemap A samples it as a `samplerCube`. \"+ Cubemap\" in the tab; an integration test renders a cube and an Image pass that samples it.",
+            "**Live shader preview** (section 23.3) — a real-time D3D11 viewport: a `CompositionTarget.Rendering` loop renders the full pass graph into a `WriteableBitmap` at a chosen preview resolution (320×180 to 1280×720, independent of export size). Editing any pass source, the Common tab, the dialect, a channel binding or the resolution rebuilds the preview (400 ms debounce, off the UI thread, cancellable). Play / Pause / Reset for `iTime`, a scrub slider, click-drag `iMouse` simulation, a live render-FPS readout, and an info line showing `iTime` / `iFrame` / `iMouse` plus an audio-channel note.",
+            "**Shader render → audio, queue, safety** (section 23.4) — when a shader uses an audio-FFT channel (or a filter-overlay source video with \"mux audio\" on), that audio is muxed straight into the output file. An \"Add to queue\" button drops the shader render into the encoding queue as a real job (progress and cancel included). Before a heavy render — Export or queue — a warning dialog appears when width × height × frames × passes exceeds a configurable threshold (Settings, in megapixel-frames; 0 disables it).",
+            "**Shader as a video filter** (section 23.5) — the \"Filter / Overlay\" render mode applies the shader to an imported video: `FilterOverlayPlan` probes the source video and takes its resolution, frame rate and length for the output, then binds the source frames to the Image pass's `iChannel0`. A composition selector — Replace, Blend (with an opacity slider), PostProcess — controls whether the shader output replaces the frame or is mixed with the source. The file selected in the Inputs tab is picked up automatically as the filter source (switching the mode and filling in export resolution / frame rate / duration from the video); a checkbox turns the link off.",
+            "**Shader library** (section 23.6) — save a shader with its whole state (pass graph, per-channel bindings and linked source files, filter/composition settings, default export resolution and duration) to a local library, each entry a `.json` under `%AppData%\\FFmpegUI\\shaders`. Entries carry a folder path and free-text tags; the library is a collapsible folder tree with a filter box matching name, tags and folder. Load and Delete from the tree; Export writes a self-contained `.json` and Import reads one back, warning about any referenced file that no longer exists.",
+            "### Changed",
+            "**The window opens maximized.** The main window now starts maximized (still a normal window — the title bar and taskbar stay visible), centred when restored down.",
+            "**Presentation site redesigned** — a dark, cinematic theme with an aurora-lit hero, refined type scale, elevated cards with hover states, scroll-reveal animations (reduced-motion aware), a gradient roadmap timeline, a light/dark theme toggle, click-to-zoom screenshots, and the real app screenshots throughout (now including the Shaders tab).",
+            "### Fixed",
+            "**Preview / Compare crashed the app** with a native `AccessViolationException` from `MediaPlayer.Stop()` (a libVLC 3.0.x regression — the D3D11 video output was failing with `SetThumbNailClip failed: 0x800706f4`, and the following `Stop()` corrupted memory). The players no longer call `Stop()` at all: switching media uses `Play(newMedia)`, clearing uses `Media = null`, and the stop button pauses and rewinds. `Loaded` / `Unloaded` no longer tear the player down on every tab switch — these views are session-long singletons and cleanup now runs once from the application exit hook. `LibVLC` is created with `--avcodec-hw=none` and related resilient options. A crash here had also been persisting a broken dock layout, which made tabs disappear on the next launch.",
+            "--",
+            "*Install:** download `FFmpegUI-2.0.0-Setup.exe` below and run it (per-user, no admin rights). Windows 11 (64-bit). Bring your own FFmpeg build — on `PATH`, in a folder you select, or downloaded from the FFmpeg Status tab."
+          ],
+          "prerelease": false
+        },
         {
           "version": "1.0.0",
           "date": "2026-09-06",
@@ -119,6 +151,20 @@
       ],
       "versionHistory": [
         {
+          "version": "2.0.0",
+          "date": "2026-09-06",
+          "prerelease": false,
+          "assets": [
+            {
+              "name": "FFmpegUI-2.0.0-Setup.exe",
+              "url": "https://github.com/Patrickjaillet/ffmpegui/releases/download/v2.0.0/FFmpegUI-2.0.0-Setup.exe",
+              "size": 261834630,
+              "downloadCount": 1,
+              "sha256": "a99cb146f6042c32881b9304e08526bf196e69094198d4af3dfcdc30918e35c9"
+            }
+          ]
+        },
+        {
           "version": "1.0.0",
           "date": "2026-09-06",
           "prerelease": false,
@@ -127,7 +173,7 @@
               "name": "FFmpegUI-1.0.0-Setup.exe",
               "url": "https://github.com/Patrickjaillet/ffmpegui/releases/download/v1.0.0/FFmpegUI-1.0.0-Setup.exe",
               "size": 258491485,
-              "downloadCount": 1,
+              "downloadCount": 2,
               "sha256": "52c7fa8e3cbff1d8e115bf3866bdc19fc9b49ece87ef83e3b9ad890d5522aaf0"
             }
           ]
@@ -160,7 +206,7 @@
           ]
         }
       ],
-      "totalDownloads": 2,
+      "totalDownloads": 4,
       "engagement": {
         "likes": 0,
         "comments": 0
@@ -1179,7 +1225,7 @@
               "name": "RetroTools2026-Setup-0.1.7.exe",
               "url": "https://github.com/Patrickjaillet/retrotools26/releases/download/v0.1.7/RetroTools2026-Setup-0.1.7.exe",
               "size": 13065717,
-              "downloadCount": 11,
+              "downloadCount": 12,
               "sha256": "ecd758f392a5de50b6e61d0adf485e888db06f37d360da7ec89fd7d8cb31ac64"
             }
           ]
@@ -1300,7 +1346,7 @@
           ]
         }
       ],
-      "totalDownloads": 34,
+      "totalDownloads": 35,
       "engagement": {
         "likes": 0,
         "comments": 0
